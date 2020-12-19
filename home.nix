@@ -23,6 +23,7 @@
     syncthing
     wofi
     rofi
+    rofi-calc
     bat
     wl-clipboard
     ripgrep
