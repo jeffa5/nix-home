@@ -35,5 +35,11 @@
           ];
         };
       };
+
+      devShell.x86_64-linux =
+        with nixpkgs.legacyPackages.x86_64-linux;
+        pkgs.mkShell {
+          buildInputs = [ pkgs.nixpkgs-fmt pkgs.rnix-lsp ];
+        };
     };
 }
