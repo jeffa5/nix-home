@@ -7,20 +7,19 @@
   };
 
   outputs = { home-manager, nixpkgs, ... }:
-  {
-
-    nixosConfigurations = {
-      carbide = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./carbide
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useUserPackages = true;
-            home-manager.users.andrew = import ./home.nix;
-          }
-        ];
+    {
+      nixosConfigurations = {
+        carbide = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./carbide
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useUserPackages = true;
+              home-manager.users.andrew = import ./home.nix;
+            }
+          ];
+        };
       };
     };
-  };
 }
