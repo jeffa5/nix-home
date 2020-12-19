@@ -33,6 +33,7 @@
     swayidle
     lm_sensors
     fd
+    xdg_utils
   ];
 
   programs = {
