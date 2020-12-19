@@ -1,26 +1,13 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-    ];
-
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelModules = [ "kvm-intel" "coretemp" "nct6775" ];
-
-  networking.hostName = "carbide";
-  networking.networkmanager.enable = true;
-
   time.timeZone = "Europe/London";
 
+  networking.networkmanager.enable = true;
   networking.useDHCP = false;
-  networking.interfaces.enp3s0.useDHCP = true;
 
   sound.enable = true;
   hardware.pulseaudio.enable = true;
-
 
   users.users.andrew = {
     isNormalUser = true;
@@ -38,8 +25,11 @@
       experimental-features = nix-command flakes
       keep-outputs = true
       keep-derivations = true
-    '';
-  };
+      '';
+    };
+
+  # needed for sway
+  hardware.opengl.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

@@ -12,7 +12,21 @@
         carbide = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            ./carbide
+            ./nixos
+            ./nixos/carbide
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useUserPackages = true;
+              home-manager.users.andrew = import ./home.nix;
+            }
+          ];
+        };
+
+        xps-15 = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            ./nixos
+            ./nixos/xps-15
             home-manager.nixosModules.home-manager
             {
               home-manager.useUserPackages = true;

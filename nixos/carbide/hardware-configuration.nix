@@ -36,6 +36,5 @@
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 
-  hardware.opengl.enable = true;
   hardware.cpu.intel.updateMicrocode = true;
 }
