@@ -14,9 +14,9 @@
     efiSupport = true;
     device = "nodev";
     extraEntries = ''
-        menuentry 'Arch Linux' {
-          configfile (hd0,gpt1)/arch/grub/grub.cfg
-        }
+      menuentry 'Arch Linux' {
+        configfile (hd0,gpt1)/arch/grub/grub.cfg
+      }
     '';
   };
 
