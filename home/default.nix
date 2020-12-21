@@ -12,7 +12,6 @@
     htop
     waybar
     xwayland
-    zathura
     (nerdfonts.override { fonts = [ "Hack" ]; })
     spotify
     aerc
@@ -116,6 +115,8 @@
     neovim = import ./neovim.nix pkgs;
 
     tmux = import ./tmux.nix;
+
+    zathura = import ./zathura.nix;
 
     zsh = import ./zsh.nix pkgs;
   };
