@@ -14,7 +14,7 @@
         home-manager.nixosModules.home-manager
         {
           home-manager.useUserPackages = true;
-          home-manager.users.andrew = import ./home.nix;
+          home-manager.users.andrew = import ./home;
         }
       ] ++ modules;
     }; in

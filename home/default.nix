@@ -71,12 +71,12 @@
       };
     };
 
-    neovim = import ./home/neovim.nix pkgs;
+    neovim = import ./neovim.nix pkgs;
 
-    zsh = import ./home/zsh.nix pkgs;
+    zsh = import ./zsh.nix pkgs;
   };
 
-  wayland.windowManager.sway = import ./home/sway.nix pkgs;
+  wayland.windowManager.sway = import ./sway.nix pkgs;
 
   services = {
     wlsunset = {
