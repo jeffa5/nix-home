@@ -17,7 +17,6 @@
     zathura
     (nerdfonts.override { fonts = [ "Hack" ]; })
     spotify
-    tmux
     aerc
     newsboat
     syncthing
@@ -72,6 +71,8 @@
     };
 
     neovim = import ./neovim.nix pkgs;
+
+    tmux = import ./tmux.nix;
 
     zsh = import ./zsh.nix pkgs;
   };
