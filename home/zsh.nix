@@ -2,7 +2,6 @@ pkgs: {
   enable = true;
   plugins = [
     {
-      # will source zsh-autosuggestions.plugin.zsh
       name = "zsh-autosuggestions";
       src = pkgs.fetchFromGitHub {
         owner = "zsh-users";
@@ -35,32 +34,31 @@ pkgs: {
     plugins = [ "git" "gitfast" ];
   };
 
+  dotDir = ".config/zsh";
+
+  shellAliases = {
+    cat = "bat";
+    ping = "prettyping --nolegend";
+    gdm = "git diff master";
+    wiki = "vim ~/wiki/index.md";
+  };
+
   initExtra = ''
-      source ~/.zsh/vi
-      source ~/.zsh/aliases
-      source ~/.zsh/prompt
-      [ -f ~/.zsh/local_aliases ] && source ~/.zsh/local_aliases
+    source ~/.zsh/vi
+    source ~/.zsh/prompt
+    [ -f ~/.zsh/local_aliases ] && source ~/.zsh/local_aliases
 
-      export EDITOR=nvim
-      export VISUAL=nvim
+    export EDITOR=nvim
+    export VISUAL=nvim
 
-      autoload edit-command-line; zle -N edit-command-line
-      bindkey '^e' edit-command-line
+    autoload edit-command-line; zle -N edit-command-line
+    bindkey '^e' edit-command-line
 
-      export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+    export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
-      zstyle ':completion:*:*:make:*' tag-order 'targets'
+    zstyle ':completion:*:*:make:*' tag-order 'targets'
 
-    # OPAM configuration
-      . $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-
-      [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-      fpath+=${ZDOTDIR:-~}/.zsh/functions
-
-      autoload -U +X bashcompinit && bashcompinit
-      autoload -Uz compinit && compinit -i
-
-      export TERM=xterm-256color
+    autoload -U +X bashcompinit && bashcompinit
+    autoload -Uz compinit && compinit -i
   '';
 }
