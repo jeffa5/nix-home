@@ -12,18 +12,13 @@
     # start new panes in current directory
     bind % split-window -h -c "#{pane_current_path}"
     bind '"' split-window -v -c "#{pane_current_path}"
-
-    # rename sessions and windows
-    # bind r command-prompt -I "#W" "rename-window -- '%%'"
-    # bind R command-prompt -I "#S" "rename-session -- '%%'"
+    bind C new-window -c "#{pane_current_path}"
 
     # switch panes without prefix
     bind -n M-h select-pane -L
     bind -n M-l select-pane -R
     bind -n M-j select-pane -D
     bind -n M-k select-pane -U
-
-    bind C new-window -c "#{pane_current_path}"
 
     # create a new session
     unbind-key 'n'
@@ -33,6 +28,7 @@
     unbind-key 'p'
     bind-key 'p' setw synchronize-panes
 
+    # VI mode
     bind-key -T copy-mode-vi 'v' send -X begin-selection
     bind-key -T copy-mode-vi 'y' send -X copy-selection-and-cancel
 
@@ -44,17 +40,6 @@
     # start windows and panes at 1
     setw -g pane-base-index 1
 
-    #
-    # STYLING
-    #
-
-    # status bar
-    # set -g status-style "bg=#3a3a3a"
-    # set -g window-status-activity-style "bg=#cc241d"
-    # set -g window-status-current-style "bg=#928374"
-    # set -g window-status-last-style "bg=#665c54"
-
-    # loud or quiet?
     set -g visual-activity off
     set -g visual-bell off
     set -g visual-silence off
