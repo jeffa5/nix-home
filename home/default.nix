@@ -11,7 +11,6 @@
   home.packages = with pkgs  ; [
     htop
     waybar
-    mako
     xwayland
     alacritty
     zathura
@@ -50,9 +49,27 @@
       enableZshIntegration = true;
     };
 
+    ssh = {
+      enable = true;
+      matchBlocks = {
+        "github.com" = {
+          hostname = "ssh.github.com";
+          port = 443;
+        };
+      };
+    };
+
     git = {
       enable = true;
+      package = pkgs.gitAndTools.gitFull;
       delta.enable = true;
+      userEmail = "dev@jeffas.io";
+      userName = "Andrew Jeffery";
+      extraConfig = {
+        pull = {
+          ff = "only";
+        };
+      };
     };
 
     firefox = {
@@ -68,6 +85,31 @@
           };
         };
       };
+    };
+
+    mako = {
+      enable = true;
+      backgroundColor = "#282828";
+      # borderColor = ""
+      borderSize = 4;
+      defaultTimeout = 5000;
+      font = "hack 12";
+      height = 200;
+      textColor = "#ebdbb2";
+      width = 400;
+      extraConfig = ''
+        [hidden]
+        border-color=#83a598
+
+        [urgency=low]
+        border-color=#b8bb26
+
+        [urgency=normal]
+        border-color=#fabd2f
+
+        [urgency=high]
+        border-color=#fb4934
+      '';
     };
 
     neovim = import ./neovim.nix pkgs;
