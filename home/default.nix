@@ -12,7 +12,6 @@
     htop
     waybar
     xwayland
-    alacritty
     zathura
     (nerdfonts.override { fonts = [ "Hack" ]; })
     spotify
@@ -37,6 +36,8 @@
 
   programs = {
     home-manager.enable = true;
+
+    alacritty = import ./alacritty.nix pkgs;
 
     direnv = {
       enable = true;
