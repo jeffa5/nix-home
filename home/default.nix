@@ -31,6 +31,7 @@
     lm_sensors
     fd
     xdg_utils
+    libreoffice
   ];
 
   programs = {
