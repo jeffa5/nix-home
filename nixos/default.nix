@@ -32,6 +32,8 @@
   console.packages = [ colemakdh ];
   console.keyMap = "iso-uk-colemak-dh";
 
+  services.fstrim.enable = true;
+
   programs.sway.enable = true;
 
   # This value determines the NixOS release from which the default
