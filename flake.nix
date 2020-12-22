@@ -7,17 +7,20 @@
   };
 
   outputs = { home-manager, nixpkgs, ... }:
-    let machine = modules: nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ./nixos
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useUserPackages = true;
-          home-manager.users.andrew = import ./home;
-        }
-      ] ++ modules;
-    }; in
+    let
+      colemakdh = import ./colemakdh nixpkgs;
+      machine = modules: nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          (import ./nixos { inherit colemakdh; })
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useUserPackages = true;
+            home-manager.users.andrew = import ./home;
+          }
+        ] ++ modules;
+      };
+    in
     {
       nixosConfigurations = {
         carbide = machine [ ./nixos/carbide ];

@@ -1,3 +1,4 @@
+{ colemakdh }:
 { config, pkgs, ... }:
 
 {
@@ -27,6 +28,9 @@
       keep-derivations = true
     '';
   };
+
+  console.packages = [ colemakdh ];
+  console.keyMap = "iso-uk-colemak-dh";
 
   programs.sway.enable = true;
 
