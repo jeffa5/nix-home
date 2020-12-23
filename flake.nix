@@ -9,23 +9,32 @@
   outputs = { home-manager, nixpkgs, ... }:
     let
       colemakdh = import ./colemakdh nixpkgs;
-      machine = modules: nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          (import ./nixos { inherit colemakdh; })
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useUserPackages = true;
-            home-manager.users.andrew = import ./home;
-          }
-        ] ++ modules;
-      };
+      mkMachine =
+        { modules
+        , hostName
+        }: nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            (import ./nixos { inherit colemakdh hostName; })
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useUserPackages = true;
+              home-manager.users.andrew = import ./home;
+            }
+          ] ++ modules;
+        };
     in
     {
       nixosConfigurations = {
-        carbide = machine [ ./nixos/carbide ];
+        carbide = mkMachine {
+          modules = [ ./nixos/carbide ];
+          hostName = "carbide";
+        };
 
-        xps-15 = machine [ ./nixos/xps-15 ];
+        xps-15 = mkMachine {
+          modules = [ ./nixos/xps-15 ];
+          hostName = "xps-15";
+        };
       };
 
       devShell.x86_64-linux =

@@ -1,9 +1,10 @@
-{ colemakdh }:
+{ colemakdh, hostName }:
 { config, pkgs, ... }:
 
 {
   time.timeZone = "Europe/London";
 
+  networking.hostName = hostName;
   networking.networkmanager.enable = true;
   networking.useDHCP = false;
 

@@ -32,6 +32,9 @@
     fd
     xdg_utils
     libreoffice
+    taskwarrior
+    lf
+    borgbackup
   ];
 
   programs = {
