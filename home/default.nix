@@ -15,7 +15,6 @@
     (nerdfonts.override { fonts = [ "Hack" ]; })
     spotify
     aerc
-    newsboat
     syncthing
     wofi
     rofi
@@ -117,6 +116,8 @@
     };
 
     neovim = import ./neovim.nix pkgs;
+
+    newsboat = import ./newsboat.nix;
 
     tmux = import ./tmux.nix;
 
