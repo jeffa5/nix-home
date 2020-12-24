@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
 {
+  imports = [ ./aerc.nix ];
+
   nixpkgs.config.allowUnfree = true;
 
   home.username = "andrew";
