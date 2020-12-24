@@ -10,12 +10,10 @@
     let
       colemakdh = import ./colemakdh nixpkgs;
       mkMachine =
-        { modules
-        , hostName
-        }: nixpkgs.lib.nixosSystem {
+        modules: nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            (import ./nixos { inherit colemakdh hostName; })
+            (import ./nixos { inherit colemakdh; })
             home-manager.nixosModules.home-manager
             {
               home-manager.useUserPackages = true;
@@ -26,15 +24,9 @@
     in
     {
       nixosConfigurations = {
-        carbide = mkMachine {
-          modules = [ ./nixos/carbide ];
-          hostName = "carbide";
-        };
+        carbide = mkMachine [ ./nixos/carbide ];
 
-        xps-15 = mkMachine {
-          modules = [ ./nixos/xps-15 ];
-          hostName = "xps-15";
-        };
+        xps-15 = mkMachine [ ./nixos/xps-15 ];
       };
 
       devShell.x86_64-linux =

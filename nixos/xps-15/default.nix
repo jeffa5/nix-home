@@ -20,5 +20,6 @@
     '';
   };
 
+  networking.hostName = "xps-15";
   networking.interfaces.wlp2s0.useDHCP = true;
 }
