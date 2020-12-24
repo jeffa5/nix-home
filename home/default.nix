@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ./aerc.nix ];
+  imports = [ ./aerc.nix ./swaylock.nix ];
 
   nixpkgs.config.allowUnfree = true;
 
