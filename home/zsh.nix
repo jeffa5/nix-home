@@ -43,18 +43,53 @@ pkgs: {
     wiki = "vim ~/wiki/index.md";
   };
 
-  initExtra = ''
-    source ~/.zsh/vi
-    source ~/.zsh/prompt
-    [ -f ~/.zsh/local_aliases ] && source ~/.zsh/local_aliases
+  sessionVariables = {
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+    KEYTIMEOUT = 1;
+    FZF_DEFAULT_COMMAND = "rg --files --no-ignore --hidden --follow --glob \"!.git/*\"";
+  };
 
-    export EDITOR=nvim
-    export VISUAL=nvim
+  initExtra = ''
+    bindkey -v
+    bindkey '^?' backward-delete-char
+    bindkey '^h' backward-delete-char
+    bindkey '^w' backward-kill-word
+    bindkey '^r' fzf-history-widget
+
+    autoload -U colors && colors
+
+    MAGENTA="%{$fg_bold[magenta]%}"
+    CYAN="%{$fg_bold[cyan]%}"
+    BLUE="%{$fg_bold[blue]%}"
+    GREEN="%{$fg_bold[green]%}"
+    YELLOW="%{$fg_bold[yellow]%}"
+    RED="%{$fg_bold[red]%}"
+    WHITE="%{$fg_bold[white]%}"
+    RESET="%{$reset_color%}"
+
+    autoload -Uz vcs_info
+    precmd_vcs_info() { vcs_info }
+    precmd_functions+=( precmd_vcs_info )
+    zstyle ':vcs_info:git:*' formats "''${MAGENTA}:''${YELLOW}%b"
+
+    function zle-line-init zle-keymap-select {
+        DIR="''${BLUE}%3~"
+        STATUS="%(?.''${GREEN}.''${RED})"
+        PROMPT_USER="%(!.#.$)"
+        NRM_PROMPT="''${WHITE}(N)"
+        VI="''${''${KEYMAP/vicmd/$NRM_PROMPT}/(main|viins)/}"
+        PROMPT="''${VI}''${MAGENTA}[''${DIR}''${vcs_info_msg_0_}''${MAGENTA}]''${STATUS}''${PROMPT_USER}''${RESET} "
+        zle reset-prompt
+    }
+
+    zle -N zle-line-init
+    zle -N zle-keymap-select
+
 
     autoload edit-command-line; zle -N edit-command-line
     bindkey '^e' edit-command-line
 
-    export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
     zstyle ':completion:*:*:make:*' tag-order 'targets'
 
