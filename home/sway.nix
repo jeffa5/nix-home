@@ -1,25 +1,14 @@
 pkgs:
 let
-  mod = "Mod4";
-
   normal_bg = "#282828";
   normal_fg = "#ebdbb2";
   focus_bg = "#98971a";
   inactive_bg = "#282828";
   urgent_bg = "#cc241d";
 in
-{
+rec {
   enable = true;
   extraConfig = ''
-    set $left h
-    set $down j
-    set $up k
-    set $right l
-
-    set $term alacritty
-
-    set $menu ~/.local/bin/sway/rofi
-
     set $workspace1 "1 "
     set $workspace2 "2 "
     set $workspace3 "3 "
@@ -31,89 +20,29 @@ in
     set $workspace9 "9 "
     set $workspace10 "10 "
 
-    output * bg #458588 fill
-
-    input "1739:31251:DLL07BE:01_06CB:7A13_Touchpad" {
-      middle_emulation enabled
-      tap enabled
-      natural_scroll enabled
+    set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (p) shutdown
+    mode "$mode_system" {
+        bindsym l exec --no-startup-id $locker, mode "default"
+        bindsym e exit, mode "default"
+        bindsym s exec --no-startup-id $locker && systemctl suspend, mode "default"
+        bindsym h exec --no-startup-id $locker && systemctl hybrid-sleep, mode "default"
+        bindsym r exec --no-startup-id systemctl reboot, mode "default"
+        bindsym p exec --no-startup-id systemctl poweroff -i, mode "default"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
     }
-
-    bindsym ${mod}+Return exec $term
-
-    bindsym ${mod}+q kill
-
-    bindsym ${mod}+space exec $menu
-
-    floating_modifier ${mod} normal
-
-    bindsym ${mod}+Shift+r reload
-
-    bindsym ${mod}+$left focus left
-    bindsym ${mod}+$down focus down
-    bindsym ${mod}+$up focus up
-    bindsym ${mod}+$right focus right
-    bindsym ${mod}+Left focus left
-    bindsym ${mod}+Down focus down
-    bindsym ${mod}+Up focus up
-    bindsym ${mod}+Right focus right
-
-    bindsym ${mod}+Shift+$left move left
-    bindsym ${mod}+Shift+$down move down
-    bindsym ${mod}+Shift+$up move up
-    bindsym ${mod}+Shift+$right move right
-    bindsym ${mod}+Shift+Left move left
-    bindsym ${mod}+Shift+Down move down
-    bindsym ${mod}+Shift+Up move up
-    bindsym ${mod}+Shift+Right move right
-
-    bindsym ${mod}+1 workspace $workspace1
-    bindsym ${mod}+2 workspace $workspace2
-    bindsym ${mod}+3 workspace $workspace3
-    bindsym ${mod}+4 workspace $workspace4
-    bindsym ${mod}+5 workspace $workspace5
-    bindsym ${mod}+6 workspace $workspace6
-    bindsym ${mod}+7 workspace $workspace7
-    bindsym ${mod}+8 workspace $workspace8
-    bindsym ${mod}+9 workspace $workspace9
-    bindsym ${mod}+0 workspace $workspace10
-
-    bindsym ${mod}+Shift+1 move container to workspace $workspace1
-    bindsym ${mod}+Shift+2 move container to workspace $workspace2
-    bindsym ${mod}+Shift+3 move container to workspace $workspace3
-    bindsym ${mod}+Shift+4 move container to workspace $workspace4
-    bindsym ${mod}+Shift+5 move container to workspace $workspace5
-    bindsym ${mod}+Shift+6 move container to workspace $workspace6
-    bindsym ${mod}+Shift+7 move container to workspace $workspace7
-    bindsym ${mod}+Shift+8 move container to workspace $workspace8
-    bindsym ${mod}+Shift+9 move container to workspace $workspace9
-    bindsym ${mod}+Shift+0 move container to workspace $workspace10
-
-    bindsym ${mod}+b splith
-    bindsym ${mod}+v splitv
-
-    bindsym ${mod}+s layout stacking
-    bindsym ${mod}+w layout tabbed
-    bindsym ${mod}+e layout toggle split
-
-    bindsym ${mod}+f fullscreen
-
-    bindsym ${mod}+Shift+space floating toggle
-
-    bindsym ${mod}+a focus parent
-
-    include ~/.config/sway/config.d/*
   '';
+
   config = {
-    modifier = mod;
-    keybindings = { };
+    modifier = "Mod4";
+
     bars = [
       {
-        command = "\${pkgs.waybar}/bin/waybar";
+        command = "${pkgs.waybar}/bin/waybar";
       }
     ];
-    colors = {
 
+    colors = {
       focused = {
         background = focus_bg;
         border = focus_bg;
@@ -143,5 +72,61 @@ in
         text = urgent_bg;
       };
     };
+
+    gaps = {
+      inner = 10;
+    };
+
+    input = {
+      "*" = { xkb_layout = "iso-uk-colemak-dh"; };
+      "1739:31251:DLL07BE:01_06CB:7A13_Touchpad" = {
+        middle_emulation = "enabled";
+        tap = "enabled";
+        natural_scroll = "enabled";
+      };
+    };
+
+    output = {
+      "*" = { bg = "#458588 solid_color"; };
+      "eDP-1" = {
+        position = "0 2160";
+      };
+      "HDMI-A-1" = {
+        position = "0 1080";
+      };
+      "DP-2" = {
+        position = "1920 1080";
+      };
+    };
+
+    keybindings = pkgs.lib.mkOptionDefault {
+      "${config.modifier}+q" = "kill";
+      "${config.modifier}+Shift+r" = "reload";
+      "${config.modifier}+space" = "exec ~/.local/bin/sway/rofi";
+      "${config.modifier}+Alt+f" = "exec --no-startup-id swaymsg 'workspace $workspace1; exec ${pkgs.firefox}/bin/firefox'";
+      "${config.modifier}+Alt+s" = "exec --no-startup-id swaymsg 'workspace $workspace10; exec ${pkgs.spotify}/bin/spotify'";
+      "${config.modifier}+Alt+m" = "exec --no-startup-id swaymsg 'workspace $workspace9; exec ${config.terminal}/bin/alacritty -e ${pkgs.aerc}/bin/aerc'";
+      "${config.modifier}+Alt+n" = "exec --no-startup-id swaymsg 'workspace $workspace8; exec ${config.terminal} -e ${pkgs.newsboat}/bin/newsboat'";
+      "${config.modifier}+c" = "exec ~/.local/bin/sway/calc";
+      "${config.modifier}+p" = "exec ~/.local/bin/sway/screenshot";
+      "${config.modifier}+t" = "exec ~/.local/bin/sway/productivity-timer";
+      "${config.modifier}+Shift+y" = "move workspace to output left";
+      "${config.modifier}+Shift+u" = "move workspace to output down";
+      "${config.modifier}+Shift+i" = "move workspace to output up";
+      "${config.modifier}+Shift+o" = "move workspace to output right";
+      "${config.modifier}+Alt+l" = "exec '~/.local/bin/sway/lockscreen &'";
+      "${config.modifier}+Shift+e" = "mode $mode_system";
+      "--locked XF86AudioRaiseVolume" = "exec --no-startup-id ${pkgs.pamixer}/bin/pamixer --increase 5";
+      "--locked XF86AudioLowerVolume" = "exec --no-startup-id ${pkgs.pamixer}/bin/pamixer --decrease 5";
+      "--locked XF86AudioMute" = "exec --no-startup-id ${pkgs.pamixer}/bin/pamixer --toggle-mute";
+      "--locked XF86AudioPlay" = "exec --no-startup-id ${pkgs.playerctl}/bin/playerctl --player spotify play-pause";
+      "--locked XF86AudioPause" = "exec --no-startup-id ${pkgs.playerctl}/bin/playerctl --player spotify play-pause";
+      "--locked XF86AudioNext" = "exec --no-startup-id ${pkgs.playerctl}/bin/playerctl --player spotify next";
+      "--locked XF86AudioPrev" = "exec --no-startup-id ${pkgs.playerctl}/bin/playerctl --player spotify previous";
+      "--locked XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl -q set +10%";
+      "--locked XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl -q set 10%-";
+    };
+
+    terminal = "${pkgs.alacritty}/bin/alacritty";
   };
 }
