@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+pgrep rofi && pkill rofi && exit 0
+
+inputs=(
+  "Toggle pause"
+  "Reset timer"
+  "Restart session"
+  "Skip session"
+)
+
+send_to_server() {
+  echo "$1" | nc -U /tmp/owork.sock
+}
+
+selection=$(printf "%s\n" "${inputs[@]}" | rofi -dmenu -p "Timer" -i -l 4)
+
+case $selection in
+  "Toggle pause")
+    send_to_server "set/toggle"
+    ;;
+  "Reset timer")
+    send_to_server "set/reset"
+    ;;
+  "Restart session")
+    send_to_server "set/restart"
+    ;;
+  "Skip session")
+    send_to_server "set/skip"
+    ;;
+  *) ;;
+esac

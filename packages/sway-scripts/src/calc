@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# if rofi is running, kill it. Otherwise run it
+pgrep rofi && pkill rofi || rofi -show calc -modi calc -no-show-match -no-sort

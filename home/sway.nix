@@ -1,4 +1,4 @@
-pkgs:
+{ pkgs, sway-scripts }:
 let
   normal_bg = "#282828";
   normal_fg = "#ebdbb2";
@@ -102,19 +102,19 @@ rec {
     keybindings = pkgs.lib.mkOptionDefault {
       "${config.modifier}+q" = "kill";
       "${config.modifier}+Shift+r" = "reload";
-      "${config.modifier}+space" = "exec ~/.local/bin/sway/rofi";
+      "${config.modifier}+space" = "exec ${sway-scripts}/bin/rofi";
       "${config.modifier}+Alt+f" = "exec --no-startup-id swaymsg 'workspace $workspace1; exec ${pkgs.firefox}/bin/firefox'";
       "${config.modifier}+Alt+s" = "exec --no-startup-id swaymsg 'workspace $workspace10; exec ${pkgs.spotify}/bin/spotify'";
       "${config.modifier}+Alt+m" = "exec --no-startup-id swaymsg 'workspace $workspace9; exec ${config.terminal}/bin/alacritty -e ${pkgs.aerc}/bin/aerc'";
       "${config.modifier}+Alt+n" = "exec --no-startup-id swaymsg 'workspace $workspace8; exec ${config.terminal} -e ${pkgs.newsboat}/bin/newsboat'";
-      "${config.modifier}+c" = "exec ~/.local/bin/sway/calc";
-      "${config.modifier}+p" = "exec ~/.local/bin/sway/screenshot";
-      "${config.modifier}+t" = "exec ~/.local/bin/sway/productivity-timer";
+      "${config.modifier}+c" = "exec ${sway-scripts}/bin/calc";
+      "${config.modifier}+p" = "exec ${sway-scripts}/bin/screenshot";
+      "${config.modifier}+t" = "exec ${sway-scripts}/bin/productivity-timer";
       "${config.modifier}+Shift+y" = "move workspace to output left";
       "${config.modifier}+Shift+u" = "move workspace to output down";
       "${config.modifier}+Shift+i" = "move workspace to output up";
       "${config.modifier}+Shift+o" = "move workspace to output right";
-      "${config.modifier}+Alt+l" = "exec '~/.local/bin/sway/lockscreen &'";
+      "${config.modifier}+Alt+l" = "exec '${sway-scripts}/bin/lockscreen &'";
       "${config.modifier}+Shift+e" = "mode $mode_system";
       "--locked XF86AudioRaiseVolume" = "exec --no-startup-id ${pkgs.pamixer}/bin/pamixer --increase 5";
       "--locked XF86AudioLowerVolume" = "exec --no-startup-id ${pkgs.pamixer}/bin/pamixer --decrease 5";

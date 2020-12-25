@@ -1,0 +1,118 @@
+#!/usr/bin/env bash
+
+# if rofi is running, kill it
+pgrep rofi && pkill rofi && exit 0
+
+inputs=(
+    "Focused output"
+    "All outputs"
+    "One output"
+    "Region"
+    "Window"
+    "Colour Picker"
+)
+selection=$(printf "%s\n" "${inputs[@]}" | rofi -dmenu -p "screenshot" -i)
+
+PICTURE_DIR="$HOME/pictures/screenshots/"
+PICTURE_FILE="$PICTURE_DIR$(date +'%Y-%m-%d-%H%M%S_grim.png')"
+
+destination() {
+    printf "File\nClipboard" | rofi -dmenu -p "Destination" -i
+}
+
+notify-file() {
+    notify-send --icon "$2" "$1" "$2"
+}
+
+notify-clipboard() {
+    temp="$(mktemp)"
+    wl-paste >"$temp"
+    notify-send --icon "$temp" "$1"
+    rm "$temp"
+}
+
+case "$selection" in
+"Focused output")
+    dest=$(destination)
+    case "$dest" in
+    "File")
+        grim -o $(swaymsg -t get_outputs | jq --raw-output '.[] | select(.focused) | .name') "$PICTURE_FILE"
+        notify-file "Output saved to file!" "$PICTURE_FILE"
+        ;;
+    "Clipboard")
+        grim -o $(swaymsg -t get_outputs | jq --raw-output '.[] | select(.focused) | .name') - | wl-copy
+        notify-clipboard "Output saved to clipboard!"
+        ;;
+    esac
+    ;;
+
+"All outputs")
+    dest=$(destination)
+    case "$dest" in
+    "File")
+        grim "$PICTURE_FILE"
+        notify-file "Output saved to file!" "$PICTURE_FILE"
+        ;;
+    "Clipboard")
+        grim - | wl-copy
+        notify-clipboard "Output saved to clipboard!"
+        ;;
+    esac
+    ;;
+
+"One output")
+    selection=$(swaymsg -t get_outputs | jq --raw-output '.[] | select(.active) | .name' | rofi -dmenu -p "screenshot" -i)
+    if [ -n "$selection" ]; then
+        dest=$(destination)
+        case "$dest" in
+        "File")
+            grim -o "$selection" "$PICTURE_FILE"
+            notify-file "Output saved to file!" "$PICTURE_FILE"
+            ;;
+        "Clipboard")
+            grim -o "$selection" - | wl-copy
+            notify-clipboard "Output saved to clipboard!"
+            ;;
+        esac
+    fi
+    ;;
+
+"Region")
+    selection=$(slurp)
+    if [ -n "$selection" ]; then
+        dest=$(destination)
+        case "$dest" in
+        "File")
+            grim -g "$selection" "$PICTURE_FILE"
+            notify-file "Region saved to file!" "$PICTURE_FILE"
+            ;;
+        "Clipboard")
+            grim -g "$selection" - | wl-copy
+            notify-clipboard "Region saved to clipboard!"
+            ;;
+        esac
+    fi
+    ;;
+
+"Window")
+    selection=$(swaymsg -t get_tree | jq -r '.. | (.nodes? // empty)[] | select(.pid and .visible) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' | slurp)
+    if [ -n "$selection" ]; then
+        dest=$(destination)
+        case "$dest" in
+        "File")
+            grim -g "$selection" "$PICTURE_FILE"
+            notify-file "Window saved to file!" "$PICTURE_FILE"
+            ;;
+        "Clipboard")
+            grim -g "$selection" - | wl-copy
+            notify-clipboard "Window saved to clipboard!"
+            ;;
+        esac
+    fi
+    ;;
+
+"Colour Picker")
+    colour=$(grim -g "$(slurp -p)" -t ppm - | convert - -format '%[pixel:p{0,0}]' txt:- | sed -n 2p | awk '{ print $3 }')
+    notify-send "Colour Picker" "$colour"
+    ;;
+esac

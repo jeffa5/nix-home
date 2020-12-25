@@ -1,4 +1,4 @@
-{ status-bar }:
+{ status-bar, sway-scripts }:
 { config, pkgs, ... }:
 
 {
@@ -75,7 +75,7 @@
     zsh = import ./zsh.nix pkgs;
   };
 
-  wayland.windowManager.sway = import ./sway.nix pkgs;
+  wayland.windowManager.sway = import ./sway.nix { inherit pkgs sway-scripts; };
 
   services = {
     wlsunset = {

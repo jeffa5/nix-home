@@ -10,6 +10,7 @@
     let
       colemakdh = import packages/colemakdh nixpkgs;
       status-bar = import packages/status-bar nixpkgs;
+      sway-scripts = import packages/sway-scripts nixpkgs;
       mkMachine =
         modules: nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
@@ -19,7 +20,7 @@
             {
               home-manager.useUserPackages = true;
               home-manager.users.andrew = (import ./home {
-                inherit status-bar;
+                inherit status-bar sway-scripts;
               });
             }
           ] ++ modules;
