@@ -45,7 +45,7 @@
         };
         network = {
           interval = 5;
-          format = " {signalStrength}%  {bandwidthDownBits}  {bandwidthUpBits}";
+          format = " {bandwidthDownBits}  {bandwidthUpBits}";
         };
         battery = {
           format = "{icon} {capacity}%";
