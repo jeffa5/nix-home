@@ -1,3 +1,4 @@
+{ status-bar }:
 { config, pkgs, ... }:
 
 {
@@ -67,7 +68,7 @@
 
     tmux = import ./tmux.nix;
 
-    waybar = import ./waybar.nix;
+    waybar = import ./waybar.nix status-bar;
 
     zathura = import ./zathura.nix;
 

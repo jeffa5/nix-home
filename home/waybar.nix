@@ -1,3 +1,4 @@
+status-bar:
 {
   enable = true;
   settings = [
@@ -27,7 +28,7 @@
         };
         backlight = {
           format = " {percent}%";
-          exec-if = "$HOME/.local/bin/status-bar/backlight";
+          exec-if = "${status-bar}/bin/backlight";
         };
         memory = {
           format = " {}%";
@@ -63,7 +64,7 @@
         "custom/spotify" = {
           format = "{}";
           interval = 1;
-          exec = "$HOME/.local/bin/status-bar/mediaplayer";
+          exec = "${status-bar}/bin/mediaplayer";
           exec-if = "playerctl status &> /dev/null";
           escape = true;
           on-click = "playerctl play-pause";

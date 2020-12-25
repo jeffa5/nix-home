@@ -8,7 +8,8 @@
 
   outputs = { home-manager, nixpkgs, ... }:
     let
-      colemakdh = import ./packages/colemakdh nixpkgs;
+      colemakdh = import packages/colemakdh nixpkgs;
+      status-bar = import packages/status-bar nixpkgs;
       mkMachine =
         modules: nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
@@ -17,7 +18,9 @@
             home-manager.nixosModules.home-manager
             {
               home-manager.useUserPackages = true;
-              home-manager.users.andrew = import ./home;
+              home-manager.users.andrew = (import ./home {
+                inherit status-bar;
+              });
             }
           ] ++ modules;
         };
