@@ -1,5 +1,12 @@
 pkgs:
-let mod = "Mod4"; in {
+let mod = "Mod4";
+
+normal_bg ="#282828";
+normal_fg ="#ebdbb2";
+focus_bg ="#98971a";
+inactive_bg= "#282828";
+urgent_bg ="#cc241d";
+in {
   enable = true;
   extraConfig = ''
     set $left h
@@ -103,5 +110,20 @@ let mod = "Mod4"; in {
         command = "\${pkgs.waybar}/bin/waybar";
       }
     ];
+    colors = {
+
+      focused = {
+        { background = focus_bg; border =focus_bg; childBorder =focus_bg; indicator =focus_bg; text =normal_fg; }
+      }
+      focusedInactive = {
+        { background = inactive_bg; border =inactive_bg; childBorder =inactive_bg; indicator =inactive_bg; text =normal_fg; }
+      }
+      unfocused = {
+        { background = normal_bg; border =normal_bg; childBorder =normal_bg; indicator =normal_bg; text =normal_fg; }
+      }
+      urgent = {
+        { background = normal_bg; border =urgent_bg; childBorder =urgent_bg; indicator =urgent_bg; text =urgent_bg; }
+      }
+    }
   };
 }
