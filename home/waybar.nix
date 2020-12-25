@@ -46,7 +46,8 @@ status-bar:
         };
         network = {
           interval = 5;
-          format = " {bandwidthDownBits}  {bandwidthUpBits}";
+          format-ethernet = " {bandwidthDownBits}  {bandwidthUpBits}";
+          format-wifi = " {signalStrength}%  {bandwidthDownBits}  {bandwidthUpBits}";
         };
         battery = {
           format = "{icon} {capacity}%";
