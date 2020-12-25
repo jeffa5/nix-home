@@ -5,6 +5,6 @@ derivation {
   builder = "${bash}/bin/bash";
   args = [ ./builder.sh ];
   inherit coreutils;
-  src = ./.;
+  src = ./src;
   system = "x86_64-linux";
 }
