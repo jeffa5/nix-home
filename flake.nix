@@ -8,7 +8,7 @@
 
   outputs = { home-manager, nixpkgs, ... }:
     let
-      colemakdh = import ./colemakdh nixpkgs;
+      colemakdh = import ./packages/colemakdh nixpkgs;
       mkMachine =
         modules: nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
