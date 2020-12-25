@@ -12,7 +12,6 @@
 
   home.packages = with pkgs  ; [
     htop
-    waybar
     xwayland
     (nerdfonts.override { fonts = [ "Hack" ]; })
     spotify
@@ -67,6 +66,8 @@
     newsboat = import ./newsboat.nix;
 
     tmux = import ./tmux.nix;
+
+    waybar = import ./waybar.nix;
 
     zathura = import ./zathura.nix;
 
