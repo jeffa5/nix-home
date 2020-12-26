@@ -47,7 +47,6 @@ pkgs: {
     EDITOR = "nvim";
     VISUAL = "nvim";
     KEYTIMEOUT = 1;
-    FZF_DEFAULT_COMMAND = "rg --files --no-ignore --hidden --follow --glob \"!.git/*\"";
   };
 
   initExtra = ''
