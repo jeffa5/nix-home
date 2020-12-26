@@ -102,6 +102,16 @@ rec {
     keybindings = pkgs.lib.mkOptionDefault {
       "${config.modifier}+q" = "kill";
       "${config.modifier}+Shift+r" = "reload";
+      "${config.modifier}+1" = "workspace $workspace1";
+      "${config.modifier}+2" = "workspace $workspace2";
+      "${config.modifier}+3" = "workspace $workspace3";
+      "${config.modifier}+4" = "workspace $workspace4";
+      "${config.modifier}+5" = "workspace $workspace5";
+      "${config.modifier}+6" = "workspace $workspace6";
+      "${config.modifier}+7" = "workspace $workspace7";
+      "${config.modifier}+8" = "workspace $workspace8";
+      "${config.modifier}+9" = "workspace $workspace9";
+      "${config.modifier}+0" = "workspace $workspace10";
       "${config.modifier}+space" = "exec ${sway-scripts}/bin/rofi";
       "${config.modifier}+Alt+f" = "exec --no-startup-id swaymsg 'workspace $workspace1; exec ${pkgs.firefox}/bin/firefox'";
       "${config.modifier}+Alt+s" = "exec --no-startup-id swaymsg 'workspace $workspace10; exec ${pkgs.spotify}/bin/spotify'";
