@@ -5,29 +5,44 @@ let
   focus_bg = "#98971a";
   inactive_bg = "#282828";
   urgent_bg = "#cc241d";
+
+  sway-lockscreen = pkgs.writeScriptBin "sway-lockscreen" ''
+    #!${pkgs.stdenv.shell}
+    ${pkgs.swayidle}/bin/swayidle \
+      timeout 60 '${pkgs.sway}/bin/swaymsg "output * dpms off"' \
+      resume '${pkgs.sway}/bin/swaymsg "output * dpms on"' \
+      timeout 300 '${pkgs.systemd}/bin/systemctl suspend' \
+      after-resume '${pkgs.sway}/bin/swaymsg "output * dpms on"' &
+
+    pid=$!
+
+    ${pkgs.swaylock}/bin/swaylock
+
+    kill $pid
+  '';
 in
 rec {
   enable = true;
   extraConfig = ''
-    set $workspace1 "1 "
-    set $workspace2 "2 "
-    set $workspace3 "3 "
-    set $workspace4 "4  "
-    set $workspace5 "5  "
-    set $workspace6 "6  "
-    set $workspace7 "7  "
-    set $workspace8 "8 "
-    set $workspace9 "9 "
-    set $workspace10 "10 "
+    set $workspace1 1 
+    set $workspace2 2 
+    set $workspace3 3 
+    set $workspace4 4
+    set $workspace5 5
+    set $workspace6 6
+    set $workspace7 7
+    set $workspace8 8 
+    set $workspace9 9 
+    set $workspace10 10 
 
     set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (p) shutdown
     mode "$mode_system" {
         bindsym l exec --no-startup-id $locker, mode "default"
         bindsym e exit, mode "default"
-        bindsym s exec --no-startup-id $locker && systemctl suspend, mode "default"
-        bindsym h exec --no-startup-id $locker && systemctl hybrid-sleep, mode "default"
-        bindsym r exec --no-startup-id systemctl reboot, mode "default"
-        bindsym p exec --no-startup-id systemctl poweroff -i, mode "default"
+        bindsym s exec --no-startup-id $locker && ${pkgs.systemd}/bin/systemctl suspend, mode "default"
+        bindsym h exec --no-startup-id $locker && ${pkgs.systemd}/bin/systemctl hybrid-sleep, mode "default"
+        bindsym r exec --no-startup-id ${pkgs.systemd}/bin/systemctl reboot, mode "default"
+        bindsym p exec --no-startup-id ${pkgs.systemd}/bin/systemctl poweroff -i, mode "default"
         bindsym Return mode "default"
         bindsym Escape mode "default"
     }
@@ -112,6 +127,16 @@ rec {
       "${config.modifier}+8" = "workspace $workspace8";
       "${config.modifier}+9" = "workspace $workspace9";
       "${config.modifier}+0" = "workspace $workspace10";
+      "${config.modifier}+Shift+1" = "move container to workspace $workspace1";
+      "${config.modifier}+Shift+2" = "move container to workspace $workspace2";
+      "${config.modifier}+Shift+3" = "move container to workspace $workspace3";
+      "${config.modifier}+Shift+4" = "move container to workspace $workspace4";
+      "${config.modifier}+Shift+5" = "move container to workspace $workspace5";
+      "${config.modifier}+Shift+6" = "move container to workspace $workspace6";
+      "${config.modifier}+Shift+7" = "move container to workspace $workspace7";
+      "${config.modifier}+Shift+8" = "move container to workspace $workspace8";
+      "${config.modifier}+Shift+9" = "move container to workspace $workspace9";
+      "${config.modifier}+Shift+0" = "move container to workspace $workspace10";
       "${config.modifier}+space" = "exec ${sway-scripts}/bin/rofi";
       "${config.modifier}+Alt+f" = "exec --no-startup-id swaymsg 'workspace $workspace1; exec ${pkgs.firefox}/bin/firefox'";
       "${config.modifier}+Alt+s" = "exec --no-startup-id swaymsg 'workspace $workspace10; exec ${pkgs.spotify}/bin/spotify'";
@@ -124,7 +149,7 @@ rec {
       "${config.modifier}+Shift+u" = "move workspace to output down";
       "${config.modifier}+Shift+i" = "move workspace to output up";
       "${config.modifier}+Shift+o" = "move workspace to output right";
-      "${config.modifier}+Alt+l" = "exec '${sway-scripts}/bin/lockscreen &'";
+      "${config.modifier}+Alt+l" = "exec '${sway-lockscreen}/bin/sway-lockscreen &'";
       "${config.modifier}+Shift+e" = "mode $mode_system";
       "--locked XF86AudioRaiseVolume" = "exec --no-startup-id ${pkgs.pamixer}/bin/pamixer --increase 5";
       "--locked XF86AudioLowerVolume" = "exec --no-startup-id ${pkgs.pamixer}/bin/pamixer --decrease 5";
