@@ -42,6 +42,8 @@
     taskwarrior
     lf
     borgbackup
+    prettyping
+    darktable
   ];
 
   programs = {
