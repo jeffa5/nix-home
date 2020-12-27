@@ -79,7 +79,7 @@
 
     tmux = import ./tmux.nix;
 
-    waybar = import ./waybar.nix status-bar;
+    waybar = import ./waybar.nix { inherit pkgs status-bar; };
 
     zathura = import ./zathura.nix;
 

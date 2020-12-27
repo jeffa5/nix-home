@@ -1,4 +1,4 @@
-status-bar:
+{ pkgs, status-bar }:
 {
   enable = true;
   settings = [
@@ -66,9 +66,9 @@ status-bar:
           format = "{}";
           interval = 1;
           exec = "${status-bar}/bin/mediaplayer";
-          exec-if = "playerctl status &> /dev/null";
+          exec-if = "${pkgs.playerctl}/bin/playerctl --player spotify status &> /dev/null";
           escape = true;
-          on-click = "playerctl play-pause";
+          on-click = "${pkgs.playerctl}/bin/playerctl --player spotify play-pause";
         };
       };
     }
