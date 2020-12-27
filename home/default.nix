@@ -42,6 +42,7 @@
     borgbackup
     prettyping
     darktable
+    gitAndTools.git-open
   ];
 
   programs = {
