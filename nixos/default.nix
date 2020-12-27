@@ -66,6 +66,10 @@ in
   console.keyMap = "iso-uk-colemak-dh";
 
   services = {
+    pipewire = {
+      enable = true;
+    };
+
     fstrim.enable = true;
 
     borgbackup.jobs.home-andrew = rec {
@@ -92,6 +96,18 @@ in
       removableDevice = true;
     };
   };
+
+  xdg = {
+    portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-wlr
+        xdg-desktop-portal-gtk
+      ];
+      gtkUsePortal = true;
+    };
+  };
+
 
   programs.sway.enable = true;
 

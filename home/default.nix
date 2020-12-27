@@ -6,8 +6,15 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  home.username = "andrew";
-  home.homeDirectory = "/home/andrew";
+  home = {
+    username = "andrew";
+    homeDirectory = "/home/andrew";
+    sessionVariables = {
+      MOZ_ENABLE_WAYLAND = 1;
+      XDG_CURRENT_DESKTOP = "sway";
+      XDG_SESSION_TYPE = "wayland";
+    };
+  };
 
   fonts.fontconfig.enable = true;
 

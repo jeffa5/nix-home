@@ -46,6 +46,9 @@ rec {
         bindsym Return mode "default"
         bindsym Escape mode "default"
     }
+
+    # This ensures all user units started after the command (not those already running) set the variables
+    exec systemctl --user import-environment
   '';
 
   config = {

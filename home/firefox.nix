@@ -1,6 +1,11 @@
 pkgs: {
   enable = true;
-  package = pkgs.firefox-wayland;
+  package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
+    forceWayland = true;
+    extraPolicies = {
+      ExtensionSettings = { };
+    };
+  };
   profiles = {
     andrew = {
       settings = {
