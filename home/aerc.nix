@@ -1,4 +1,4 @@
-{
+pkgs: {
   xdg.configFile."aerc/aerc.conf".text = ''
     [ui]
     index-format=%Z %D %-30.30n %s
@@ -9,6 +9,11 @@
 
     [compose]
     address-book-cmd=khard email --remove-first-line --parsable '%s'
+
+    [filters]
+    subject,~^\[PATCH=awk -f ${pkgs.aerc}/share/aerc/filters/hldiff
+    text/html=${pkgs.aerc}/share/aerc/filters/html
+    text/*=awk -f ${pkgs.aerc}/share/aerc/filters/plaintext
   '';
 
   xdg.configFile."aerc/binds.conf".text = ''
