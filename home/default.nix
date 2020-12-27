@@ -17,7 +17,6 @@
     (nerdfonts.override { fonts = [ "Hack" ]; })
     spotify
     aerc
-    syncthing
     wofi
     rofi
     rofi-calc
@@ -78,6 +77,10 @@
   wayland.windowManager.sway = import ./sway.nix { inherit pkgs sway-scripts; };
 
   services = {
+    syncthing = {
+      enable = true;
+    };
+
     wlsunset = {
       enable = true;
       latitude = "51.5";
