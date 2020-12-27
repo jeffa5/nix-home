@@ -154,6 +154,7 @@ pkgs: {
     coc-highlight
     coc-json
     coc-yaml
+    coc-go
     {
       plugin = vim-fugitive;
       config = ''
