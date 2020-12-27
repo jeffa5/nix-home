@@ -39,7 +39,6 @@
     fd
     xdg_utils
     libreoffice
-    taskwarrior
     lf
     borgbackup
     prettyping
@@ -73,6 +72,10 @@
     neovim = import ./neovim.nix pkgs;
 
     newsboat = import ./newsboat.nix;
+
+    taskwarrior = {
+      enable = true;
+    };
 
     tmux = import ./tmux.nix;
 
