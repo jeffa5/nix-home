@@ -6,9 +6,10 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  home = {
+  home = rec {
     username = "andrew";
     homeDirectory = "/home/andrew";
+    sessionPath = [ "${homeDirectory}/.cargo/bin" ];
     sessionVariables = {
       MOZ_ENABLE_WAYLAND = 1;
       XDG_CURRENT_DESKTOP = "sway";
