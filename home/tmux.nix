@@ -6,6 +6,7 @@
   keyMode = "vi";
   prefix = "M-m";
   terminal = "tmux-256color";
+  secureSocket = true;
   extraConfig = ''
     bind r source-file ~/.tmux.conf \; display-message "Config reloaded..."
 
