@@ -14,6 +14,9 @@ pkgs: {
     subject,~^\[PATCH=awk -f ${pkgs.aerc}/share/aerc/filters/hldiff
     text/html=${pkgs.aerc}/share/aerc/filters/html
     text/*=awk -f ${pkgs.aerc}/share/aerc/filters/plaintext
+
+    [triggers]
+    new-email=exec ${pkgs.libnotify}/bin/notify-send "New email from %n" "%s"
   '';
 
   xdg.configFile."aerc/binds.conf".text = ''
