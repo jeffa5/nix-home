@@ -19,7 +19,7 @@
 
   fonts.fontconfig.enable = true;
 
-  home.packages = with pkgs  ; [
+  home.packages = with pkgs; [
     htop
     xwayland
     (nerdfonts.override { fonts = [ "Hack" ]; })
@@ -47,6 +47,7 @@
     xournalpp
     mendeley
     signal-desktop
+    chromium
   ];
 
   programs = {
