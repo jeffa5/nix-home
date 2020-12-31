@@ -3,7 +3,7 @@
     ignore-empty-password
     show-failed-attempts
 
-    image=~/.wallpaper.png
+    color=458588
 
     bs-hl-color=ebdbb250
     indicator-radius=256
