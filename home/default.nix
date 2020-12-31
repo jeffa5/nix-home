@@ -44,6 +44,9 @@
     prettyping
     darktable
     gitAndTools.git-open
+    xournalpp
+    mendeley
+    signal-desktop
   ];
 
   programs = {
