@@ -45,7 +45,7 @@ in
 
   users.users.andrew = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "docker" ];
     shell = pkgs.zsh;
   };
 
@@ -108,6 +108,7 @@ in
     };
   };
 
+  virtualisation.docker.enable = true;
 
   programs.sway.enable = true;
 
