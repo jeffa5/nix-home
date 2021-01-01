@@ -17,6 +17,10 @@
     };
   };
 
+  xdg.mimeApps.defaultApplications = {
+    "text/html" = [ "firefox.desktop" ];
+  };
+
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
