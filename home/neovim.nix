@@ -153,6 +153,7 @@ pkgs: {
     coc-yank
     coc-highlight
     coc-json
+    coc-prettier
     coc-yaml
     coc-go
     {
