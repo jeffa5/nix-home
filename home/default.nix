@@ -53,6 +53,7 @@
     signal-desktop
     chromium
     (import ./import-nef.nix pkgs)
+    thunderbird
   ];
 
   programs = {
