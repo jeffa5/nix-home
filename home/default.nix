@@ -2,7 +2,7 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ (import ./aerc.nix pkgs) ./swaylock.nix ./xkb.nix ];
+  imports = [ (import ./aerc.nix pkgs) ./swaylock.nix ./xkb.nix (import ./latexmk.nix pkgs) ];
 
   nixpkgs.config.allowUnfree = true;
 
