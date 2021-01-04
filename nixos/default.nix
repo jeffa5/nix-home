@@ -41,7 +41,14 @@ in
   networking.useDHCP = false;
 
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  hardware = {
+    pulseaudio = {
+      enable = true;
+      package = pkgs.pulseaudioFull;
+    };
+
+    bluetooth.enable = true;
+  };
 
   users.users.andrew = {
     isNormalUser = true;
@@ -67,6 +74,10 @@ in
 
   services = {
     pipewire = {
+      enable = true;
+    };
+
+    blueman = {
       enable = true;
     };
 
