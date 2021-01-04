@@ -294,6 +294,12 @@ pkgs: {
         let g:limelight_conceal_ctermfg = 'darkgray'
       '';
     }
-    vim-polyglot
+    {
+      plugin = vim-polyglot;
+      config = ''
+        let g:vim_markdown_conceal = 0
+        let g:vim_markdown_conceal_code_blocks = 0
+      '';
+    }
   ];
 }
