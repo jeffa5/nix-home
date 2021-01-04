@@ -55,6 +55,7 @@
     (import ./import-nef.nix pkgs)
     thunderbird
     slack
+    imv
   ];
 
   programs = {

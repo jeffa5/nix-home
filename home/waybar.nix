@@ -6,7 +6,7 @@
       height = 21;
       position = "bottom";
       modules-left = [ "sway/workspaces" "sway/mode" ];
-      modules-right = [ "custom/spotify" "pulseaudio" "backlight" "memory" "cpu" "network" "battery" "clock" "tray" ];
+      modules-right = [ "custom/spotify" "pulseaudio" "backlight" "memory" "cpu" "temperature" "network" "battery" "clock" "tray" ];
       modules = {
         "sway/workspaces" = {
           disable-scroll = true;
@@ -43,6 +43,11 @@
             warning = 50;
             critical = 80;
           };
+        };
+        temperature = {
+          critical-threshold = 70;
+          format-critical = " {temperatureC}°C";
+          format = "ﰕ {temperatureC}°C";
         };
         network = {
           interval = 5;
@@ -117,6 +122,7 @@
     #clock,
     #battery,
     #cpu,
+    #temperature,
     #memory,
     #backlight,
     #network,
@@ -163,6 +169,14 @@
     }
 
     #cpu.critical {
+      background: #cc241d;
+    }
+
+    #temperature {
+      background: #282828;
+    }
+
+    #temperature.critical {
       background: #cc241d;
     }
 
