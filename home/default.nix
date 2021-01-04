@@ -54,6 +54,7 @@
     chromium
     (import ./import-nef.nix pkgs)
     thunderbird
+    slack
   ];
 
   programs = {
