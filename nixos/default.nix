@@ -52,7 +52,7 @@ in
 
   users.users.andrew = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "docker" ];
+    extraGroups = [ "wheel" "docker" "networkmanager" ];
     shell = pkgs.zsh;
   };
 
@@ -122,6 +122,7 @@ in
   virtualisation.docker.enable = true;
 
   programs.sway.enable = true;
+  programs.nm-applet.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
