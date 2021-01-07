@@ -67,6 +67,9 @@
           interval = 1;
           format = " {:%H:%M:%S  %a %d/%m/%Y}";
         };
+        tray = {
+          spacing = 8;
+        };
         "custom/spotify" = {
           format = "{}";
           interval = 1;
