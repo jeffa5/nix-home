@@ -26,6 +26,7 @@
     { url = "https://unixism.net/feed/"; }
     { url = "https://feeds.feedburner.com/martinkl"; }
     { url = "https://christine.website/blog.rss"; }
+    { url = "https://stackoverflow.blog/feed/"; }
   ];
   extraConfig = ''
     confirm-exit yes
