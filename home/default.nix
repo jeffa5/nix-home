@@ -56,6 +56,7 @@
     thunderbird
     slack
     imv
+    skype
   ];
 
   programs = {
