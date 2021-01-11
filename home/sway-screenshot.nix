@@ -1,6 +1,6 @@
 pkgs:
 let
-  rofi = "${pkgs.rofi}/bin/rofi";
+  wofi = "${pkgs.wofi}/bin/wofi";
   slurp = "${pkgs.slurp}/bin/slurp";
   grim = "${pkgs.grim}/bin/grim";
   notify-send = "${pkgs.libnotify}/bin/notify-send";
@@ -12,18 +12,18 @@ in
 ''
   #!${pkgs.stdenv.shell}
 
-  # if rofi is running, kill it
-  pgrep rofi && pkill rofi && exit 0
+  # if wofi is running, kill it
+  pgrep wofi && pkill wofi && exit 0
 
   inputs=$(printf "Focused output\nAll outputs\nRegion\nFocused window\nWindow\nColour Picker")
 
-  selection=$(echo "''$inputs" | ${rofi} -dmenu -p "screenshot" -i)
+  selection=$(echo "''$inputs" | ${wofi} -dmenu -p "screenshot" -i)
 
   PICTURE_DIR="$HOME/Pictures/screenshots/"
   PICTURE_FILE="$PICTURE_DIR$(date +'%Y-%m-%d-%H%M%S_screenshot.png')"
 
   destination() {
-      printf "File\nClipboard" | ${rofi} -dmenu -p "Destination" -i
+      printf "File\nClipboard" | ${wofi} -dmenu -p "Destination" -i
   }
 
   case "$selection" in

@@ -30,7 +30,6 @@
     spotify
     aerc
     wofi
-    rofi
     bat
     wl-clipboard
     ripgrep

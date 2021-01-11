@@ -142,7 +142,7 @@ rec {
       "${config.modifier}+Shift+8" = "move container to workspace $workspace8";
       "${config.modifier}+Shift+9" = "move container to workspace $workspace9";
       "${config.modifier}+Shift+0" = "move container to workspace $workspace10";
-      "${config.modifier}+space" = "exec ${sway-scripts}/bin/rofi";
+      "${config.modifier}+space" = "exec ${sway-scripts}/bin/wofi";
       "${config.modifier}+Alt+f" = "exec --no-startup-id swaymsg 'workspace $workspace1; exec ${pkgs.firefox}/bin/firefox'";
       "${config.modifier}+Alt+s" = "exec --no-startup-id swaymsg 'workspace $workspace10; exec ${pkgs.spotify}/bin/spotify'";
       "${config.modifier}+Alt+m" = "exec --no-startup-id swaymsg 'workspace $workspace9; exec ${config.terminal} -e ${pkgs.aerc}/bin/aerc'";
