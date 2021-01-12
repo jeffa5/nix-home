@@ -62,6 +62,7 @@
     slack
     imv
     skype
+    pavucontrol
   ];
 
   programs = {
