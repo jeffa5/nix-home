@@ -12,4 +12,5 @@
 
   networking.hostName = "carbide";
   networking.interfaces.enp3s0.useDHCP = true;
+  networking.interfaces.wlp6s0.useDHCP = true;
 }
