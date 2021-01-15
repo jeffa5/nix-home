@@ -5,6 +5,7 @@ let
     ".cache"
     ".cargo" # rust
     "*/target" # rust
+    "*/_opam" # ocaml
     "*/_build" # ocaml
     ".npm/_cacache" # node
     "*/node_modules" # node
