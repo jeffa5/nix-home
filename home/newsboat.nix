@@ -27,6 +27,7 @@
     { url = "https://feeds.feedburner.com/martinkl"; }
     { url = "https://christine.website/blog.rss"; }
     { url = "https://stackoverflow.blog/feed/"; }
+    { url = "https://pijul.org/posts/index.xml"; }
   ];
   extraConfig = ''
     confirm-exit yes
