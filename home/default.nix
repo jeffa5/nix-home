@@ -63,6 +63,7 @@
     imv
     skype
     pavucontrol
+    nextcloud-client
   ];
 
   programs = {
