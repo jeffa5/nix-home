@@ -13,11 +13,6 @@
     version = 2;
     efiSupport = true;
     device = "nodev";
-    extraEntries = ''
-      menuentry 'Arch Linux' {
-        configfile (hd0,gpt1)/arch/grub/grub.cfg
-      }
-    '';
   };
 
   networking.hostName = "xps-15";
