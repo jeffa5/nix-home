@@ -10,6 +10,12 @@
     (import ./wofi.nix)
   ];
 
+  xdg.configFile."nvim/coc-settings.json".text = ''
+    {
+      "rust-analyzer.checkOnSave.command": "clippy"
+    }
+  '';
+
   nixpkgs.config.allowUnfree = true;
 
   home = rec {
