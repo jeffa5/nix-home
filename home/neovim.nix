@@ -3,7 +3,7 @@ pkgs: {
     enable = true;
     vimAlias = true;
     vimdiffAlias = true;
-    extraPackages = with pkgs; [ nodejs ];
+    extraPackages = with pkgs; [ nodejs rustfmt ];
     extraConfig = ''
       let mapleader = "\<Space>"
 
