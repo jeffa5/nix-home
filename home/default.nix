@@ -8,13 +8,8 @@
     ./xkb.nix
     (import ./latexmk.nix pkgs)
     (import ./wofi.nix)
+    (import ./neovim.nix pkgs)
   ];
-
-  xdg.configFile."nvim/coc-settings.json".text = ''
-    {
-      "rust-analyzer.checkOnSave.command": "clippy"
-    }
-  '';
 
   nixpkgs.config.allowUnfree = true;
 
@@ -94,8 +89,6 @@
     firefox = import ./firefox.nix pkgs;
 
     mako = import ./mako.nix;
-
-    neovim = import ./neovim.nix pkgs;
 
     newsboat = import ./newsboat.nix;
 
