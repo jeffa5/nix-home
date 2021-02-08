@@ -11,6 +11,7 @@ let
     "*/node_modules" # node
     "*/venv" # python
     "*/.venv" # python
+    ".kube" # kubernetes
   ];
 
   borgbackupMonitor = { config, pkgs, lib, ... }: with lib; {
