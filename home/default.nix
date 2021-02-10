@@ -64,6 +64,7 @@
     imv
     skype
     pavucontrol
+    krb5 # for cl access
   ];
 
   programs = {
