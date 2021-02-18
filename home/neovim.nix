@@ -158,7 +158,6 @@ pkgs: {
       coc-go
       coc-vimtex
       coc-prettier
-      coc-markdownlint
       {
         plugin = vim-fugitive;
         config = ''
@@ -266,7 +265,6 @@ pkgs: {
               \ 'args': ['-s'],
               \ }
           let g:neoformat_enabled_go = ['gofmt']
-          let g:neoformat_enabled_markdown = []
           let g:neoformat_sh_shfmt = {
               \ 'exe': 'shfmt',
               \ 'args': ['-i 2', '-ci', '-bn', '-s'],
