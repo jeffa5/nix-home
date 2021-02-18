@@ -131,7 +131,8 @@
     #network,
     #pulseaudio,
     #mode,
-    #custom-spotify {
+    #custom-spotify,
+    #tray {
       padding: 0 5px;
       margin: 0 3px;
       background: #282828;
