@@ -5,6 +5,9 @@ pkgs: {
   userEmail = "dev@jeffas.io";
   userName = "Andrew Jeffery";
   extraConfig = {
+    init = {
+      defaultBranch = "main";
+    };
     pull = {
       ff = "only";
     };
