@@ -66,6 +66,7 @@
     pavucontrol
     krb5 # for cl access
     okular
+    vlc
   ];
 
   programs = {
