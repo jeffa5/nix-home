@@ -11,6 +11,9 @@ let
     "*/node_modules" # node
     "*/venv" # python
     "*/.venv" # python
+    "go/pkg/mod/cache" # golang
+    ".config/Slack/Cache" # slack
+    ".config/Microsoft/Microsoft Teams/Cache" # ms teams
     ".kube" # kubernetes
   ];
 
