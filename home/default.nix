@@ -67,6 +67,7 @@
     krb5 # for cl access
     okular
     vlc
+    inkscape
   ];
 
   programs = {
