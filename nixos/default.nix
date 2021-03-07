@@ -24,6 +24,13 @@ let
 
     ${waytext-bin} -t "$text"
   '';
+  owork-args = [
+    "--work-duration 30"
+    "--short-break 5"
+    "--long-break 15"
+    "--work-sessions 4"
+    "--notify-script ${productivity-timer-notify}/bin/productivity-timer-notify"
+  ];
   common-excludes = [
     ".cache"
     ".cargo" # rust
@@ -152,7 +159,7 @@ in
     wantedBy = [ "multi-user.target" ];
 
     serviceConfig = {
-      ExecStart = "${owork.packages.x86_64-linux.owork}/bin/owork --long-break 25 --short-break 5 --work-duration 30 --work-sessions 4 --notify-script ${productivity-timer-notify}/bin/productivity-timer-notify";
+      ExecStart = "${owork.packages.x86_64-linux.owork}/bin/owork ${builtins.concatStringsSep " " owork-args}";
       Restart = "on-failure";
     };
   };
