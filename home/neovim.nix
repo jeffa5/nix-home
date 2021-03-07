@@ -172,6 +172,13 @@ pkgs: {
           nnoremap <Leader>gr :Gbrowse<CR>
         '';
       }
+      vim-rhubarb
+      {
+        plugin = fugitive-gitlab-vim;
+        config = ''
+          let g:fugitive_gitlab_domains = ['https://gitlab.developers.cam.ac.uk/']
+        '';
+      }
       vim-eunuch
       vim-commentary
       vim-unimpaired
