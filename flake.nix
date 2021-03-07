@@ -11,9 +11,13 @@
       url = "github:jeffa5/waytext/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    owork = {
+      url = "github:jeffa5/owork/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, home-manager, nixpkgs, waytext }:
+  outputs = { self, home-manager, nixpkgs, waytext, owork }:
     let
       colemakdh = import packages/colemakdh nixpkgs;
       status-bar = import packages/status-bar nixpkgs;
@@ -22,7 +26,7 @@
         modules: nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            (import ./nixos { inherit colemakdh; })
+            (import ./nixos { inherit colemakdh waytext owork; })
             home-manager.nixosModules.home-manager
             {
               home-manager.useUserPackages = true;

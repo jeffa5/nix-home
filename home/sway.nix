@@ -22,6 +22,36 @@ let
   '';
 
   sway-screenshot = pkgs.writeScriptBin "sway-screenshot" (import ./sway-screenshot.nix pkgs);
+
+  productivity-timer = pkgs.writeScriptBin "productivity-timer" ''
+    #!${pkgs.bash}/bin/bash
+
+    pgrep wofi && pkill wofi && exit 0
+
+    inputs="Toggle pause\nReset timer\nRestart session\nSkip session"
+
+    send_to_server() {
+      echo "$1" | nc -U /tmp/owork.sock
+    }
+
+    selection=$(echo -e "$inputs" | ${pkgs.wofi}/bin/wofi --dmenu --prompt "Timer" --insensitive --lines 5)
+
+    case $selection in
+      "Toggle pause")
+        send_to_server "set/toggle"
+        ;;
+      "Reset timer")
+        send_to_server "set/reset"
+        ;;
+      "Restart session")
+        send_to_server "set/restart"
+        ;;
+      "Skip session")
+        send_to_server "set/skip"
+        ;;
+      *) ;;
+    esac
+  '';
 in
 rec {
   enable = true;
@@ -143,6 +173,7 @@ rec {
       "${config.modifier}+Shift+9" = "move container to workspace $workspace9";
       "${config.modifier}+Shift+0" = "move container to workspace $workspace10";
       "${config.modifier}+space" = "exec ${sway-scripts}/bin/wofi";
+      "${config.modifier}+t" = "exec ${productivity-timer}/bin/productivity-timer";
       "${config.modifier}+Alt+f" = "exec --no-startup-id swaymsg 'workspace $workspace1; exec ${pkgs.firefox}/bin/firefox'";
       "${config.modifier}+Alt+s" = "exec --no-startup-id swaymsg 'workspace $workspace10; exec ${pkgs.spotify}/bin/spotify'";
       "${config.modifier}+Alt+m" = "exec --no-startup-id swaymsg 'workspace $workspace9; exec ${config.terminal} -e ${pkgs.aerc}/bin/aerc'";

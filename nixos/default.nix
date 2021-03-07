@@ -1,6 +1,29 @@
-{ colemakdh }:
+{ colemakdh, waytext, owork }:
 { config, pkgs, ... }:
 let
+  waytext-bin = "${waytext.packages.x86_64-linux.waytext}/bin/waytext";
+  productivity-timer-notify = pkgs.writeScriptBin "productivity-timer-notify" ''
+    #!${pkgs.stdenv.shell}
+
+    pgrep waytext && pkill waytext
+
+    case "$1" in
+    "Idle")
+        text="Idle"
+        ;;
+    "Work")
+        text="Start work"
+        ;;
+    "Short")
+        text="Take a short break"
+        ;;
+    "Long")
+        text="Take a long break"
+        ;;
+    esac
+
+    ${waytext-bin} -t "$text"
+  '';
   common-excludes = [
     ".cache"
     ".cargo" # rust
@@ -121,6 +144,16 @@ in
         xdg-desktop-portal-gtk
       ];
       gtkUsePortal = true;
+    };
+  };
+
+  systemd.user.services.owork = {
+    description = "owork productivity timer";
+    wantedBy = [ "multi-user.target" ];
+
+    serviceConfig = {
+      ExecStart = "${owork.packages.x86_64-linux.owork}/bin/owork --long-break 25 --short-break 5 --work-duration 30 --work-sessions 4 --notify-script ${productivity-timer-notify}/bin/productivity-timer-notify";
+      Restart = "on-failure";
     };
   };
 

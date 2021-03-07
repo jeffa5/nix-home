@@ -1,12 +1,79 @@
 { pkgs, status-bar }:
+let productivity-timer =
+  pkgs.writeScriptBin "productivity-timer" ''
+    #!${pkgs.stdenv.shell}
+
+    socket=/tmp/owork.sock
+
+    send_to_pomo() {
+        [ -e $socket ] && echo "$1" | nc -U $socket
+    }
+
+    state=$(send_to_pomo "get/state")
+    time=$(send_to_pomo "get/time")
+    sessions_complete=$(send_to_pomo "get/completed")
+    paused=$(send_to_pomo "get/paused")
+    percent=$(send_to_pomo "get/percentage")
+
+    if [ -z "$state" ]; then
+        exit 1
+    fi
+
+    if [ $paused == "true" ]; then
+        if [ $state == "Idle" ]; then
+            pomo=" $state"
+        else
+            pomo=" $state $time $sessions_complete"
+        fi
+    else
+        pomo="$state $time $sessions_complete"
+        if [ $percent -ge 80 ]; then
+            pomo=" $pomo"
+            colour="#b8bb26"
+        elif [ $percent -ge 60 ]; then
+            pomo=" $pomo"
+            colour="#98971a"
+        elif [ $percent -ge 40 ]; then
+            pomo=" $pomo"
+            colour="#fabd2f"
+        elif [ $percent -ge 20 ]; then
+            pomo=" $pomo"
+            colour="#d79921"
+        elif [ $percent -ge 10 ]; then
+            pomo=" $pomo"
+            colour="#fb4934"
+        else
+            pomo=" $pomo"
+            colour="#cc241d"
+        fi
+    fi
+
+    echo $pomo
+  '';
+in
 {
   enable = true;
   settings = [
     {
       height = 21;
       position = "bottom";
-      modules-left = [ "sway/workspaces" "sway/mode" ];
-      modules-right = [ "custom/spotify" "pulseaudio" "backlight" "memory" "cpu" "temperature" "network" "battery" "clock" "tray" ];
+      modules-left = [
+        "sway/workspaces"
+        "sway/mode"
+      ];
+      modules-right = [
+        "custom/spotify"
+        "custom/owork"
+        "pulseaudio"
+        "backlight"
+        "memory"
+        "cpu"
+        "temperature"
+        "network"
+        "battery"
+        "clock"
+        "tray"
+      ];
       modules = {
         "sway/workspaces" = {
           disable-scroll = true;
@@ -70,6 +137,12 @@
         tray = {
           spacing = 8;
         };
+        "custom/owork" = {
+          format = "{}";
+          interval = 1;
+          exec = "${productivity-timer}/bin/productivity-timer";
+          exec-if = "pgrep owork";
+        };
         "custom/spotify" = {
           format = "{}";
           interval = 1;
@@ -131,6 +204,7 @@
     #network,
     #pulseaudio,
     #mode,
+    #custom-owork,
     #custom-spotify,
     #tray {
       padding: 0 5px;
@@ -209,6 +283,10 @@
     }
 
     #pulseaudio {
+      background: #282828;
+    }
+
+    #custom-owork {
       background: #282828;
     }
 
