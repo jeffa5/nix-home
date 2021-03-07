@@ -162,13 +162,13 @@ pkgs: {
         plugin = vim-fugitive;
         config = ''
           nnoremap <Leader>gs :Gstatus<CR>
-          nnoremap <Leader>gc :Gcommit -v -q<CR>
-          nnoremap <Leader>ga :Gcommit --amend -v -q<CR>
-          nnoremap <Leader>go :Gpull<CR>
+          nnoremap <Leader>gc :Git commit -v -q<CR>
+          nnoremap <Leader>ga :Git commit --amend -v -q<CR>
+          nnoremap <Leader>go :Git pull<CR>
           nnoremap <Leader>gl :Glog<CR>
-          nnoremap <Leader>gp :Gpush<CR>
-          nnoremap <Leader>gf :Gfetch<CR>
-          nnoremap <Leader>gb :Gblame<CR>
+          nnoremap <Leader>gp :Git push<CR>
+          nnoremap <Leader>gf :Git fetch<CR>
+          nnoremap <Leader>gb :Git blame<CR>
           nnoremap <Leader>gr :Gbrowse<CR>
         '';
       }
