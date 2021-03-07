@@ -3,10 +3,17 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    waytext = {
+      url = "github:jeffa5/waytext/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { home-manager, nixpkgs, ... }:
+  outputs = { self, home-manager, nixpkgs, waytext }:
     let
       colemakdh = import packages/colemakdh nixpkgs;
       status-bar = import packages/status-bar nixpkgs;
@@ -20,7 +27,7 @@
             {
               home-manager.useUserPackages = true;
               home-manager.users.andrew = (import ./home {
-                inherit status-bar sway-scripts;
+                inherit status-bar sway-scripts waytext;
               });
             }
           ] ++ modules;

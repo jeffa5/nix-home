@@ -1,4 +1,4 @@
-{ status-bar, sway-scripts }:
+{ status-bar, sway-scripts, waytext }:
 { config, pkgs, ... }:
 
 {
@@ -68,7 +68,7 @@
     okular
     vlc
     inkscape
-  ];
+  ] ++ [ waytext.packages.x86_64-linux.waytext ];
 
   programs = {
     home-manager.enable = true;
