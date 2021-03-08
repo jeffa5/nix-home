@@ -17,13 +17,13 @@ in
 
   inputs=$(printf "Focused output\nAll outputs\nRegion\nFocused window\nWindow\nColour Picker")
 
-  selection=$(echo "''$inputs" | ${wofi} -dmenu -p "screenshot" -i)
+  selection=$(echo "''$inputs" | ${wofi} --dmenu -p "screenshot" -i)
 
   PICTURE_DIR="$HOME/Pictures/screenshots/"
   PICTURE_FILE="$PICTURE_DIR$(date +'%Y-%m-%d-%H%M%S_screenshot.png')"
 
   destination() {
-      printf "File\nClipboard" | ${wofi} -dmenu -p "Destination" -i
+      printf "File\nClipboard" | ${wofi} --dmenu -p "Destination" -i
   }
 
   case "$selection" in
