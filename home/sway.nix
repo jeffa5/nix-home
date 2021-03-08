@@ -34,7 +34,7 @@ let
       echo "$1" | nc -U /tmp/owork.sock
     }
 
-    selection=$(echo -e "$inputs" | ${pkgs.wofi}/bin/wofi --dmenu --prompt "Timer" --insensitive --lines 5)
+    selection=$(echo -e "$inputs" | ${pkgs.wofi}/bin/wofi --dmenu --cache-file "/tmp/wofi-owork-cache" --prompt "Timer" --insensitive --lines 5 && rm /tmp/wofi-owork-cache)
 
     case $selection in
       "Toggle pause")
