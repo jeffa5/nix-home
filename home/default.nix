@@ -68,6 +68,7 @@
     okular
     vlc
     inkscape
+    discord
   ] ++ [ waytext.packages.x86_64-linux.waytext ];
 
   programs = {
