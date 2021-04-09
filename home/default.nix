@@ -69,6 +69,7 @@
     vlc
     inkscape
     discord
+    zoom-us
   ] ++ [ waytext.packages.x86_64-linux.waytext ];
 
   programs = {
