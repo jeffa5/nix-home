@@ -82,8 +82,6 @@ pkgs: {
       set ignorecase
       set smartcase
 
-      autocmd FileType * setlocal formatoptions-=cro
-
       autocmd ColorScheme * highlight Comment cterm=italic
 
       fun! TrimWhitespace()
