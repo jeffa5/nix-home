@@ -95,8 +95,6 @@
 
     mako = import ./mako.nix;
 
-    newsboat = import ./newsboat.nix;
-
     taskwarrior = {
       enable = true;
     };
