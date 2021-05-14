@@ -175,9 +175,8 @@ rec {
       "${config.modifier}+space" = "exec ${sway-scripts}/bin/wofi";
       "${config.modifier}+t" = "exec ${productivity-timer}/bin/productivity-timer";
       "${config.modifier}+Alt+f" = "exec --no-startup-id swaymsg 'workspace $workspace1; exec ${pkgs.firefox}/bin/firefox'";
+      "${config.modifier}+Alt+m" = "exec --no-startup-id swaymsg 'workspace $workspace9; exec ${pkgs.thunderbird}/bin/thunderbird'";
       "${config.modifier}+Alt+s" = "exec --no-startup-id swaymsg 'workspace $workspace10; exec ${pkgs.spotify}/bin/spotify'";
-      "${config.modifier}+Alt+m" = "exec --no-startup-id swaymsg 'workspace $workspace9; exec ${config.terminal} -e ${pkgs.aerc}/bin/aerc'";
-      "${config.modifier}+Alt+n" = "exec --no-startup-id swaymsg 'workspace $workspace8; exec ${config.terminal} -e ${pkgs.newsboat}/bin/newsboat'";
       "${config.modifier}+p" = "exec ${sway-screenshot}/bin/sway-screenshot";
       "${config.modifier}+Shift+y" = "move workspace to output left";
       "${config.modifier}+Shift+u" = "move workspace to output down";
