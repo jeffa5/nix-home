@@ -11,5 +11,8 @@ pkgs: {
     pull = {
       ff = "only";
     };
+    merge = {
+      tool = "vimdiff";
+    };
   };
 }
