@@ -163,6 +163,7 @@ in
         clock = {
           interval = 1;
           format = " {:%H:%M:%S  %a %d/%m/%Y}";
+          tooltip-format = "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>";
         };
         tray = {
           spacing = 8;
