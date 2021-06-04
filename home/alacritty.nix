@@ -44,7 +44,7 @@ pkgs: {
     };
 
     mouse = {
-      url = {
+      hints = {
         launcher = "${pkgs.xdg_utils}/bin/xdg-open";
       };
     };
