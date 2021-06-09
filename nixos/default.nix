@@ -169,6 +169,16 @@ in
   programs.sway.enable = true;
   programs.nm-applet.enable = true;
 
+  nix = {
+    autoOptimiseStore = true;
+
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+    };
+  };
+
   boot.kernel.sysctl."fs.inotify.max_user_watches" = pkgs.lib.mkDefault 524288;
 
   # This value determines the NixOS release from which the default
