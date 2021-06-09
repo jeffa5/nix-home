@@ -24,8 +24,13 @@
     };
   };
 
-  xdg.mimeApps.defaultApplications = {
-    "text/html" = [ "firefox.desktop" ];
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "text/html" = [ "firefox.desktop" ];
+      "application/pdf" = [ "org.pwmt.zathura-pdf-mupdf.desktop" ];
+      "image/svg+xml" = [ "imv.desktop" ];
+    };
   };
 
   fonts.fontconfig.enable = true;
