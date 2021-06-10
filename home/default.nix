@@ -78,6 +78,7 @@
     vlc
     inkscape
     discord
+    bitwarden
   ] ++ [ waytext.packages.x86_64-linux.waytext ];
 
   programs = {
