@@ -29,6 +29,8 @@
     defaultApplications = {
       "application/pdf" = [ "org.pwmt.zathura-pdf-mupdf.desktop" ];
       "image/svg+xml" = [ "imv.desktop" ];
+      "image/jpeg" = [ "imv.desktop" ];
+      "image/jpg" = [ "imv.desktop" ];
       "text/html" = [ "firefox.desktop" ];
       "x-scheme-handler/http" = [ "firefox.desktop" ];
       "x-scheme-handler/https" = [ "firefox.desktop" ];
