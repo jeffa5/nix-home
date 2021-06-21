@@ -9,6 +9,7 @@
     (import ./latexmk.nix pkgs)
     (import ./wofi.nix)
     (import ./neovim.nix pkgs)
+    ./imv.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
