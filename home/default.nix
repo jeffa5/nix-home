@@ -32,6 +32,7 @@
       "image/svg+xml" = [ "imv.desktop" ];
       "image/jpeg" = [ "imv.desktop" ];
       "image/jpg" = [ "imv.desktop" ];
+      "image/png" = [ "imv.desktop" ];
       "text/html" = [ "firefox.desktop" ];
       "x-scheme-handler/http" = [ "firefox.desktop" ];
       "x-scheme-handler/https" = [ "firefox.desktop" ];
