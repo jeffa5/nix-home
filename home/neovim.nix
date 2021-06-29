@@ -159,7 +159,7 @@ pkgs: {
       {
         plugin = vim-fugitive;
         config = ''
-          nnoremap <Leader>gs :Gstatus<CR>
+          nnoremap <Leader>gs :Git<CR>
           nnoremap <Leader>gc :Git commit -v -q<CR>
           nnoremap <Leader>ga :Git commit --amend -v -q<CR>
           nnoremap <Leader>go :Git pull<CR>
