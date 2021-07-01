@@ -67,6 +67,7 @@
     prettyping
     darktable
     gitAndTools.git-open
+    git-extras
     xournalpp
     mendeley
     signal-desktop
