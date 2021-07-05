@@ -97,11 +97,23 @@ in
 
   nix = {
     package = pkgs.nixFlakes;
+
     extraOptions = ''
       experimental-features = nix-command flakes
       keep-outputs = true
       keep-derivations = true
+
+      min-free = ${toString (512 * 1024 * 1024)}
+      max-free = ${toString (10 * 1024 * 1024 * 1024)}
     '';
+
+    autoOptimiseStore = true;
+
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+    };
   };
 
   console.packages = [ colemakdh ];
@@ -168,10 +180,6 @@ in
 
   programs.sway.enable = true;
   programs.nm-applet.enable = true;
-
-  nix = {
-    autoOptimiseStore = true;
-  };
 
   boot.kernel.sysctl."fs.inotify.max_user_watches" = pkgs.lib.mkDefault 524288;
 
