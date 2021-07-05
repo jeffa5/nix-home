@@ -31,7 +31,7 @@ pkgs: {
   ];
   oh-my-zsh = {
     enable = true;
-    plugins = [ "git" "gitfast" ];
+    plugins = [ "git" "gitfast" "docker" ];
   };
 
   dotDir = ".config/zsh";
