@@ -83,6 +83,7 @@
     vlc
     inkscape
     bitwarden
+    zoom-us
   ] ++ [ waytext.packages.x86_64-linux.waytext ];
 
   programs = {
