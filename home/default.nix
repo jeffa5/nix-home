@@ -23,6 +23,13 @@
       XDG_CURRENT_DESKTOP = "sway";
       XDG_SESSION_TYPE = "wayland";
     };
+
+    file = {
+      ".cargo/config".text = ''
+        [build]
+        rustc-wrapper = "${pkgs.sccache}/bin/sccache"
+      '';
+    };
   };
 
   xdg.mimeApps = {
@@ -84,6 +91,7 @@
     inkscape
     bitwarden
     zoom-us
+    sccache
   ] ++ [ waytext.packages.x86_64-linux.waytext ];
 
   programs = {
