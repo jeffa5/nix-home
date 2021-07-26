@@ -194,6 +194,16 @@ in
     desktopManager.gnome.enable = true;
   };
 
+  environment.gnome.excludePackages = [
+    pkgs.gnome.epiphany # browser
+    pkgs.gnome.gnome-terminal
+    pkgs.gnome.gedit
+    pkgs.gnome-tour
+  ];
+
+  services.dbus.packages = [ pkgs.gnome3.dconf ];
+  services.udev.packages = [ pkgs.gnome3.gnome-settings-daemon ];
+
   programs.sway.enable = true;
   programs.nm-applet.enable = true;
 
