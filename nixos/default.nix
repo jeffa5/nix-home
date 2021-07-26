@@ -204,6 +204,7 @@ in
     pkgs.gnome-tour
   ];
 
+  services.dbus.packages = [ pkgs.gnome3.dconf ];
   services.udev.packages = [ pkgs.gnome.gnome-settings-daemon ];
 
   programs.sway.enable = true;
