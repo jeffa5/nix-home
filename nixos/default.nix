@@ -201,8 +201,7 @@ in
     pkgs.gnome-tour
   ];
 
-  services.dbus.packages = [ pkgs.gnome3.dconf ];
-  services.udev.packages = [ pkgs.gnome3.gnome-settings-daemon ];
+  services.udev.packages = [ pkgs.gnome.gnome-settings-daemon ];
 
   programs.sway.enable = true;
   programs.nm-applet.enable = true;
