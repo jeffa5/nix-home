@@ -192,10 +192,7 @@ in
     displayManager.gdm.wayland = true;
 
     desktopManager.gnome.enable = true;
-    desktopManager.plasma5.enable = true;
   };
-
-  programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.gnome3.seahorse}/libexec/seahorse/ssh-askpass";
 
   programs.sway.enable = true;
   programs.nm-applet.enable = true;
