@@ -47,7 +47,7 @@
       devShell.x86_64-linux =
         with nixpkgs.legacyPackages.x86_64-linux;
         pkgs.mkShell {
-          buildInputs = [ pkgs.nixpkgs-fmt pkgs.rnix-lsp ];
+          buildInputs = with pkgs; [ dconf2nix nixpkgs-fmt rnix-lsp ];
         };
     };
 }
