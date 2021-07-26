@@ -130,7 +130,7 @@ in
     "org/gnome/shell" = {
       disabled-extensions = [ "apps-menu@gnome-shell-extensions.gcampax.github.com" "native-window-placement@gnome-shell-extensions.gcampax.github.com" "drive-menu@gnome-shell-extensions.gcampax.github.com" "window-list@gnome-shell-extensions.gcampax.github.com" ];
       enabled-extensions = [ "auto-move-windows@gnome-shell-extensions.gcampax.github.com" "appindicatorsupport@rgcjonas.gmail.com" "workspace-indicator@gnome-shell-extensions.gcampax.github.com" "x11gestures@joseexposito.github.io" ];
-      favorite-apps = [ "firefox.desktop" "Alacritty.desktop" "spotify.desktop" ];
+      favorite-apps = [ "firefox.desktop" "Alacritty.desktop" "slack.desktop" "thunderbird.desktop" "spotify.desktop" ];
       had-bluetooth-devices-setup = true;
       welcome-dialog-last-shown-version = "40.1";
     };
