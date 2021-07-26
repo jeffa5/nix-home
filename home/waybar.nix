@@ -101,6 +101,7 @@ in
         "temperature"
         "network"
         "battery"
+        "sway/language"
         "clock"
         "tray"
       ];
@@ -108,6 +109,7 @@ in
         "sway/workspaces" = {
           disable-scroll = true;
         };
+        "sway/language" = { };
         pulseaudio = {
           format = "{icon} {volume}%";
           format-bluetooth = " {volume}%";
@@ -229,6 +231,7 @@ in
 
     #clock,
     #battery,
+    #language,
     #cpu,
     #temperature,
     #memory,
@@ -268,6 +271,10 @@ in
 
     #battery.full {
       background: #98971a;
+    }
+
+    #language {
+      background: #282828;
     }
 
     #cpu {

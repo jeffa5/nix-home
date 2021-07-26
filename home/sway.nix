@@ -128,7 +128,10 @@ rec {
     };
 
     input = {
-      "*" = { xkb_layout = "iso-uk-colemak-dh"; };
+      "*" = {
+        xkb_layout = "iso-uk-colemak-dh,gb";
+        xkb_options = "grp:alt_shift_toggle";
+      };
       "1739:31251:DLL07BE:01_06CB:7A13_Touchpad" = {
         middle_emulation = "enabled";
         tap = "enabled";
