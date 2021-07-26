@@ -92,8 +92,6 @@
     bitwarden
     zoom-us
     sccache
-
-    gnomeExtensions.appindicator
   ] ++ [ waytext.packages.x86_64-linux.waytext ];
 
   programs = {

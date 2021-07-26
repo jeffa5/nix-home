@@ -195,8 +195,6 @@ in
     desktopManager.plasma5.enable = true;
   };
 
-  services.udev.packages = with pkgs; [ gnome3.gnome-settings-daemon ];
-
   programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.gnome3.seahorse}/libexec/seahorse/ssh-askpass";
 
   programs.sway.enable = true;
