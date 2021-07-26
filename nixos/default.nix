@@ -197,11 +197,13 @@ in
 
   programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.gnome3.seahorse}/libexec/seahorse/ssh-askpass";
 
-  environment.gnome.excludePackages = [
-    pkgs.gnome.epiphany # browser
-    pkgs.gnome.gnome-terminal
-    pkgs.gnome.gedit
+  environment.gnome.excludePackages = with pkgs.gnome; [
+    epiphany # browser
+    gnome-terminal
+    gedit
     pkgs.gnome-tour
+    geary
+    pkgs.rxvt-unicode
   ];
 
   services.dbus.packages = [ pkgs.gnome3.dconf ];
