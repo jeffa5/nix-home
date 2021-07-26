@@ -178,10 +178,31 @@ in
 
   virtualisation.docker.enable = true;
 
+  services.xserver = {
+    enable = true;
+    layout = "uk-colemakdh";
+
+    extraLayouts.uk-colemakdh = {
+      description = "UK Colemak";
+      languages = [ "eng" ];
+      symbolsFile = ./../packages/colemakdh/iso-uk-colemak-dh;
+    };
+
+    displayManager.gdm.enable = true;
+    displayManager.gdm.wayland = true;
+
+    desktopManager.gnome.enable = true;
+    desktopManager.plasma5.enable = true;
+  };
+
+  services.udev.packages = with pkgs; [ gnome3.gnome-settings-daemon ];
+
+  programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.gnome3.seahorse}/libexec/seahorse/ssh-askpass";
+
   programs.sway.enable = true;
   programs.nm-applet.enable = true;
 
-  boot.kernel.sysctl."fs.inotify.max_user_watches" = pkgs.lib.mkDefault 524288;
+  # boot.kernel.sysctl."fs.inotify.max_user_watches" = pkgs.lib.mkDefault 524288;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
