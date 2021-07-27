@@ -109,7 +109,9 @@ in
         "sway/workspaces" = {
           disable-scroll = true;
         };
-        "sway/language" = { };
+        "sway/language" = {
+          on-click = "${pkgs.sway}/bin/swaymsg -t command input '*' xkb_switch_layout next";
+        };
         pulseaudio = {
           format = "{icon} {volume}%";
           format-bluetooth = " {volume}%";
