@@ -107,6 +107,7 @@
     direnv = {
       enable = true;
       enableZshIntegration = true;
+      enableFishIntegration = true;
       nix-direnv = {
         enable = true;
         enableFlakes = true;
@@ -116,6 +117,7 @@
     fzf = {
       enable = true;
       enableZshIntegration = true;
+      enableFishIntegration = true;
     };
 
     ssh = import ./ssh.nix;
@@ -137,6 +139,8 @@
     zathura = import ./zathura.nix;
 
     zsh = import ./zsh.nix pkgs;
+
+    fish = import ./fish.nix pkgs;
   };
 
   wayland.windowManager.sway = import ./sway.nix { inherit pkgs sway-scripts; };

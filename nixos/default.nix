@@ -93,6 +93,7 @@ in
 
   environment.systemPackages = with pkgs; [
     zsh
+    fish
   ];
 
   nix = {
