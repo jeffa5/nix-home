@@ -6,8 +6,24 @@ let
 in
 {
   dconf.settings = {
-    "org/blueman/plugins/powermanager" = {
-      auto-power-on = "@mb true";
+    "org/gnome/GWeather" = {
+      temperature-unit = "centigrade";
+    };
+
+    "org/gnome/Geary" = {
+      folder-list-pane-position-horizontal = 100;
+      messages-pane-position = 351;
+      migrated-config = true;
+    };
+
+    "org/gnome/Music" = {
+      window-maximized = true;
+      window-position = [ 0 0 ];
+      window-size = [ 1920 1006 ];
+    };
+
+    "org/gnome/desktop/calendar" = {
+      show-weekdate = false;
     };
 
     "org/gnome/desktop/input-sources" = {
@@ -72,6 +88,7 @@ in
 
     "org/gnome/desktop/privacy" = {
       disable-microphone = false;
+      report-technical-problems = true;
     };
 
     "org/gnome/desktop/screensaver" = {
@@ -85,6 +102,28 @@ in
 
     "org/gnome/desktop/session" = {
       idle-delay = "uint32 0";
+    };
+
+    "org/gnome/desktop/wm/keybindings" = {
+      switch-to-workspace-1 = [ "<Super>1" ];
+      switch-to-workspace-2 = [ "<Super>2" ];
+      switch-to-workspace-3 = [ "<Super>3" ];
+      switch-to-workspace-4 = [ "<Super>4" ];
+      switch-to-workspace-5 = [ "<Super>5" ];
+      switch-to-workspace-6 = [ "<Super>6" ];
+      switch-to-workspace-7 = [ "<Super>7" ];
+      switch-to-workspace-8 = [ "<Super>8" ];
+      switch-to-workspace-9 = [ "<Super>9" ];
+      switch-to-workspace-10 = [ "<Super>0" ];
+    };
+
+    "org/gnome/desktop/wm/preferences" = {
+      num-workspaces = 10;
+    };
+
+    "org/gnome/evolution-data-server" = {
+      migrated = true;
+      network-monitor-gio-name = "";
     };
 
     "org/gnome/gnome-system-monitor" = {
@@ -102,7 +141,7 @@ in
     "org/gnome/mutter" = {
       attach-modal-dialogs = true;
       center-new-windows = false;
-      dynamic-workspaces = true;
+      dynamic-workspaces = false;
       edge-tiling = true;
       focus-change-on-pointer-rest = true;
       workspaces-only-on-primary = true;
@@ -111,6 +150,14 @@ in
     "org/gnome/nautilus/preferences" = {
       default-folder-viewer = "icon-view";
       search-filter-time-type = "last_modified";
+    };
+
+    "org/gnome/nautilus/window-state" = {
+      maximized = true;
+    };
+
+    "org/gnome/photos" = {
+      window-maximized = true;
     };
 
     "org/gnome/settings-daemon/plugins/color" = {
@@ -139,8 +186,31 @@ in
       application-list = [ "Alacritty.desktop:2" "firefox.desktop:1" "spotify.desktop:5" "slack.desktop:3" "thunderbird.desktop:4" ];
     };
 
+    "org/gnome/shell/world-clocks" = {
+      locations = "@av []";
+    };
+
+    "org/gnome/system/location" = {
+      enabled = false;
+    };
+
     "org/gnome/tweaks" = {
       show-extensions-notice = false;
+    };
+
+    "org/gtk/settings/file-chooser" = {
+      date-format = "regular";
+      location-mode = "path-bar";
+      show-hidden = false;
+      show-size-column = true;
+      show-type-column = true;
+      sidebar-width = 171;
+      sort-column = "modified";
+      sort-directories-first = false;
+      sort-order = "descending";
+      type-format = "category";
+      window-position = mkTuple [ 26 23 ];
+      window-size = mkTuple [ 1203 958 ];
     };
 
   };
