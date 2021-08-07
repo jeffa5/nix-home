@@ -17,7 +17,6 @@ pkgs.writeScriptBin "import-nef" ''
   fi
 
   count=$(ls -1 $source_dir/**/*.NEF | wc -l)
-  new=0
 
   function process_file() {
     name=$(basename $file)
@@ -41,14 +40,18 @@ pkgs.writeScriptBin "import-nef" ''
     new_name="$year-$month-$day-$hour-$minute-$second-$hashsum.NEF"
     new_path="$day_dir/$new_name"
 
+    local ret=1 # assume new file
+
     if [[ ! -f "$new_path" ]]; then
       echo "New      $file -> $new_path"
-      ((new += 1))
     else
       echo "Existing $file -> $new_path"
+      ret=0 # no new file
     fi
 
     cp -n $file $new_path
+
+    return $ret
   }
 
   function process_files() {
@@ -70,5 +73,6 @@ pkgs.writeScriptBin "import-nef" ''
   e=$(date +%s)
 
   echo
-  echo "Imported $new new files out of $count total files in $((e - s)) seconds"
+  # todo calculate new file count
+  echo "Imported $count total files in $((e - s)) seconds"
 ''
