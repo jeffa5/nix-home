@@ -40,10 +40,12 @@ pkgs.writeScriptBin "import-nef" ''
 
     new_name="$year-$month-$day-$hour-$minute-$second-$hashsum.NEF"
     new_path="$day_dir/$new_name"
-    echo "$file -> $new_path"
 
     if [[ ! -f "$new_path" ]]; then
+      echo "New      $file -> $new_path"
       ((new += 1))
+    else
+      echo "Existing $file -> $new_path"
     fi
 
     cp -n $file $new_path
