@@ -119,6 +119,7 @@ in
 
   console.packages = [ colemakdh ];
   console.keyMap = "iso-uk-colemak-dh";
+  console.earlySetup = true;
 
   services = {
     pipewire = {
