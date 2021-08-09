@@ -105,7 +105,11 @@ in
     };
 
     "org/gnome/desktop/wm/keybindings" = {
+      close = [ "<Super>q" ];
+      switch-applications = "@as []";
+      switch-applications-backward = "@as []";
       switch-to-workspace-1 = [ "<Super>1" ];
+      switch-to-workspace-10 = [ "<Super>0" ];
       switch-to-workspace-2 = [ "<Super>2" ];
       switch-to-workspace-3 = [ "<Super>3" ];
       switch-to-workspace-4 = [ "<Super>4" ];
@@ -114,7 +118,8 @@ in
       switch-to-workspace-7 = [ "<Super>7" ];
       switch-to-workspace-8 = [ "<Super>8" ];
       switch-to-workspace-9 = [ "<Super>9" ];
-      switch-to-workspace-10 = [ "<Super>0" ];
+      switch-windows = [ "<Super>Tab" ];
+      switch-windows-backward = [ "<Shift><Super>Tab" ];
     };
 
     "org/gnome/desktop/wm/preferences" = {
