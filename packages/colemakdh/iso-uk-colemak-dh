@@ -7,10 +7,10 @@ xkb_symbols "uk-colemakdh"
   key <AD05> { [ b, B, dead_ogonek, asciitilde ] };
 
   key <AC05> { [ g, G, dead_diaresis, asciitilde ] };
-  key <AC06> { [ k, K, dead_caron, asciitilde ] };
+  key <AC06> { [ m, M, dead_caron, asciitilde ] };
 
   key <AB04> { [ d, D, oe, OE ] };
   key <AB05> { [ v, V, dead_breve, asciitilde ] };
-  key <AB06> { [ m, M, dead_breve, asciitilde ] };
+  key <AB06> { [ k, K, dead_breve, asciitilde ] };
   key <AB07> { [ h, H, dead_macron, asciitilde ] };
 };
