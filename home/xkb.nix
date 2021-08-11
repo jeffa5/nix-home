@@ -17,7 +17,7 @@
       key <AC02> { [ r, R ] };
       key <AC03> { [ s, S ] };
       key <AC04> { [ t, T ] };
-      key <AC06> { [ k, K ] };
+      key <AC06> { [ m, M ] };
       key <AC07> { [ n, N ] };
       key <AC08> { [ e, E ] };
       key <AC09> { [ i, I ] };
@@ -25,7 +25,7 @@
 
       key <AB04> { [ d, D ] };
       key <AB05> { [ v, V ] };
-      key <AB06> { [ m, M ] };
+      key <AB06> { [ k, K ] };
       key <AB07> { [ h, H ] };
     };
   '';
