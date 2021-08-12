@@ -125,6 +125,11 @@
       enableFishIntegration = true;
     };
 
+    starship = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
     ssh = import ./ssh.nix;
 
     git = import ./git.nix pkgs;

@@ -72,20 +72,6 @@ pkgs: {
     precmd_functions+=( precmd_vcs_info )
     zstyle ':vcs_info:git:*' formats "''${MAGENTA}:''${YELLOW}%b"
 
-    function zle-line-init zle-keymap-select {
-        DIR="''${BLUE}%3~"
-        STATUS="%(?.''${GREEN}.''${RED})"
-        PROMPT_USER="%(!.#.$)"
-        NRM_PROMPT="''${WHITE}(N)"
-        VI="''${''${KEYMAP/vicmd/$NRM_PROMPT}/(main|viins)/}"
-        PROMPT="''${VI}''${MAGENTA}[''${DIR}''${vcs_info_msg_0_}''${MAGENTA}]''${STATUS}''${PROMPT_USER}''${RESET} "
-        zle reset-prompt
-    }
-
-    zle -N zle-line-init
-    zle -N zle-keymap-select
-
-
     autoload edit-command-line; zle -N edit-command-line
     bindkey '^e' edit-command-line
 
