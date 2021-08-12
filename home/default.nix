@@ -128,6 +128,7 @@
     starship = {
       enable = true;
       enableZshIntegration = true;
+      enableFishIntegration = true;
     };
 
     ssh = import ./ssh.nix;
