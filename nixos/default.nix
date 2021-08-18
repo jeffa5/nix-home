@@ -181,7 +181,6 @@ in
   virtualisation.docker.enable = true;
 
   services.xserver = {
-    enable = true;
     layout = "uk-colemakdh";
 
     extraLayouts.uk-colemakdh = {
@@ -189,27 +188,7 @@ in
       languages = [ "eng" ];
       symbolsFile = ./../packages/colemakdh/iso-uk-colemak-dh;
     };
-
-    displayManager.gdm.enable = true;
-    displayManager.gdm.wayland = true;
-
-    desktopManager.gnome.enable = true;
-    desktopManager.plasma5.enable = true;
   };
-
-  programs.ssh.askPassword = pkgs.lib.mkForce "${pkgs.gnome3.seahorse}/libexec/seahorse/ssh-askpass";
-
-  environment.gnome.excludePackages = with pkgs.gnome; [
-    epiphany # browser
-    gnome-terminal
-    gedit
-    pkgs.gnome-tour
-    geary
-    pkgs.rxvt-unicode
-  ];
-
-  services.dbus.packages = [ pkgs.gnome3.dconf ];
-  services.udev.packages = [ pkgs.gnome.gnome-settings-daemon ];
 
   programs.sway.enable = true;
   programs.nm-applet.enable = true;
