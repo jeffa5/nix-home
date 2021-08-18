@@ -75,13 +75,7 @@ in
   networking.networkmanager.enable = true;
   networking.useDHCP = false;
 
-  sound.enable = true;
   hardware = {
-    pulseaudio = {
-      enable = true;
-      package = pkgs.pulseaudioFull;
-    };
-
     bluetooth.enable = true;
   };
 
@@ -121,9 +115,12 @@ in
   console.keyMap = "iso-uk-colemak-dh";
   console.earlySetup = true;
 
+  security.rtkit.enable = true;
   services = {
     pipewire = {
       enable = true;
+      alsa.enable = true;
+      pulse.enable = true;
     };
 
     blueman = {
