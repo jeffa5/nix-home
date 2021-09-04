@@ -136,6 +136,7 @@ in
         mode = "none";
       };
       repo = "/backups/${config.networking.hostName}";
+      doInit = false;
       compression = "auto,zstd,3";
       startAt = "hourly";
       extraCreateArgs = "--verbose --stats --list --filter=AME --checkpoint-interval 600";
