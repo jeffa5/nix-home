@@ -133,13 +133,11 @@ in
       paths = "/home/andrew";
       exclude = map (x: paths + "/" + x) common-excludes;
       encryption = {
-        mode = "keyfile-blake2";
-        passphrase = "";
+        mode = "none";
       };
       repo = "/backups/${config.networking.hostName}";
       compression = "auto,zstd,3";
       startAt = "hourly";
-      doInit = false;
       extraCreateArgs = "--verbose --stats --list --filter=AME --checkpoint-interval 600";
       extraPruneArgs = "--verbose --stats --list --save-space";
       prune = {
