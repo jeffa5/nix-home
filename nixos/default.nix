@@ -79,10 +79,14 @@ in
     bluetooth.enable = true;
   };
 
-  users.users.andrew = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "docker" "networkmanager" ];
-    shell = pkgs.zsh;
+  users = {
+    extraGroups.vboxusers.members = [ "andrew" ];
+
+    users.andrew = {
+      isNormalUser = true;
+      extraGroups = [ "wheel" "docker" "networkmanager" ];
+      shell = pkgs.zsh;
+    };
   };
 
   environment.systemPackages = with pkgs; [
@@ -175,6 +179,7 @@ in
   };
 
   virtualisation.docker.enable = true;
+  virtualisation.virtualbox.host.enable = true;
 
   services.xserver = {
     layout = "uk-colemakdh";
