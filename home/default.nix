@@ -93,6 +93,9 @@
     bitwarden
     zoom-us
     sccache
+
+    fishPlugins.done
+    fishPlugins.forgit
   ] ++ [ waytext.packages.x86_64-linux.waytext ];
 
   programs = {
@@ -125,6 +128,11 @@
       enable = true;
       enableZshIntegration = true;
       enableFishIntegration = true;
+      settings = {
+        nix_shell = {
+          disabled = false;
+        };
+      };
     };
 
     ssh = import ./ssh.nix;
