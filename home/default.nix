@@ -94,7 +94,8 @@
     zoom-us
     sccache
 
-    fishPlugins.done
+    jq
+
     fishPlugins.forgit
   ] ++ [ waytext.packages.x86_64-linux.waytext ];
 
