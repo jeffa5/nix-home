@@ -191,8 +191,20 @@ in
     };
   };
 
-  programs.sway.enable = true;
-  programs.nm-applet.enable = true;
+  programs = {
+    sway.enable = true;
+
+    nm-applet.enable = true;
+
+    fish = {
+      enable = true;
+      vendor = {
+        completions.enable = true;
+        config.enable = true;
+        functions.enable = true;
+      };
+    };
+  };
 
   # boot.kernel.sysctl."fs.inotify.max_user_watches" = pkgs.lib.mkDefault 524288;
 
