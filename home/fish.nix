@@ -4,6 +4,11 @@ pkgs: {
   shellAbbrs = {
     cat = "bat";
     ping = "prettyping --nolegend";
+    gc = "git commit";
+    gst = "git status";
+    gl = "git pull";
+    gp = "git push";
+    gpf = "git push --force-with-lease";
   };
 
   interactiveShellInit = ''
