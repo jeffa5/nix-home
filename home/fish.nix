@@ -4,6 +4,7 @@ pkgs: {
   shellAbbrs = {
     cat = "bat";
     ping = "prettyping --nolegend";
+    g = "git";
     gc = "git commit";
     gst = "git status";
     gl = "git pull";
