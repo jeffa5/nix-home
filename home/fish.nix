@@ -5,7 +5,7 @@ pkgs: {
     cat = "bat";
     ping = "prettyping --nolegend";
     g = "git";
-    gc = "git commit";
+    gc = "git commit -v";
     gst = "git status";
     gl = "git pull";
     gp = "git push";
