@@ -94,6 +94,7 @@
     bitwarden
     zoom-us
     sccache
+    nextcloud-client
 
     jq
 
