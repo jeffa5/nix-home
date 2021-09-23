@@ -6,10 +6,12 @@ pkgs: {
     ping = "prettyping --nolegend";
     g = "git";
     gc = "git commit -v";
+    gdm = "git diff main";
     gst = "git status";
     gl = "git pull";
     gp = "git push";
     gpf = "git push --force-with-lease";
+    gcm = "git checkout main";
   };
 
   interactiveShellInit = ''
