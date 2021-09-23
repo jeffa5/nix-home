@@ -12,6 +12,8 @@ pkgs: {
     gp = "git push";
     gpf = "git push --force-with-lease";
     gcm = "git checkout main";
+    grbc = "git rebase --continue";
+    grba = "git rebase --abort";
   };
 
   interactiveShellInit = ''
