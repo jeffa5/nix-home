@@ -14,6 +14,7 @@ pkgs: {
     gcm = "git checkout main";
     grbc = "git rebase --continue";
     grba = "git rebase --abort";
+    gsh = "git show";
   };
 
   interactiveShellInit = ''
