@@ -95,6 +95,7 @@
     zoom-us
     sccache
     nextcloud-client
+    kubectx
 
     jq
 
@@ -133,6 +134,9 @@
       enableFishIntegration = true;
       settings = {
         nix_shell = {
+          disabled = false;
+        };
+        kubernetes = {
           disabled = false;
         };
       };
