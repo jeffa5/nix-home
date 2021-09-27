@@ -15,6 +15,7 @@ pkgs: {
     grbc = "git rebase --continue";
     grba = "git rebase --abort";
     gsh = "git show";
+    glog = "git log --oneline --graph";
   };
 
   interactiveShellInit = ''
