@@ -77,6 +77,7 @@ in
 
   hardware = {
     bluetooth.enable = true;
+    keyboard.zsa.enable = true;
   };
 
   users = {
@@ -84,7 +85,7 @@ in
 
     users.andrew = {
       isNormalUser = true;
-      extraGroups = [ "wheel" "docker" "networkmanager" ];
+      extraGroups = [ "wheel" "docker" "networkmanager" "plugdev" ];
       shell = pkgs.fish;
     };
   };
