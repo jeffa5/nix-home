@@ -147,6 +147,9 @@ rec {
       "HDMI-A-1" = {
         position = "0 1080";
       };
+      "DP-1" = {
+        position = "0 1080";
+      };
       "DP-2" = {
         position = "1920 1080";
       };
