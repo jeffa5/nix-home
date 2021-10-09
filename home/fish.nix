@@ -9,9 +9,11 @@ pkgs: {
     gdm = "git diff main";
     gst = "git status";
     gl = "git pull";
+    glum = "git pull upstream main";
     gp = "git push";
     gpf = "git push --force-with-lease";
     gcm = "git checkout main";
+    grbm = "git rebase main";
     grbc = "git rebase --continue";
     grba = "git rebase --abort";
     gsh = "git show";
