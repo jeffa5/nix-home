@@ -12,5 +12,8 @@
         GSSAPIAuthentication = "yes";
       };
     };
+    "caelum*" = {
+      user = "apj39";
+    };
   };
 }
