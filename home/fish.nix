@@ -18,6 +18,8 @@ pkgs: {
     grba = "git rebase --abort";
     gsh = "git show";
     glog = "git log --oneline --graph";
+    gco = "git checkout";
+    gstp = "git stash pop";
   };
 
   interactiveShellInit = ''
