@@ -98,6 +98,10 @@
     kubectx
 
     jq
+    texlab
+    anki
+
+    strongswan
 
     fishPlugins.forgit
 
