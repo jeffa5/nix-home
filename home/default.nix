@@ -101,8 +101,6 @@
     texlab
     anki
 
-    fishPlugins.forgit
-
     wally-cli
   ] ++ [ waytext.packages.x86_64-linux.waytext ];
 
