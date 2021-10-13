@@ -101,8 +101,6 @@
     texlab
     anki
 
-    strongswan
-
     fishPlugins.forgit
 
     wally-cli
