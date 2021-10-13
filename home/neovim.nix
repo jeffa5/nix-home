@@ -155,6 +155,7 @@ pkgs: {
       coc-yaml
       coc-go
       coc-vimtex
+      coc-texlab
       coc-prettier
       {
         plugin = vim-fugitive;
