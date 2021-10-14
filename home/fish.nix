@@ -12,6 +12,7 @@ pkgs: {
     gl = "git pull";
     glum = "git pull upstream main";
     gp = "git push";
+    gpu = "git push --set-upstream origin HEAD";
     gpf = "git push --force-with-lease";
     gcm = "git checkout main";
     grbm = "git rebase main";
@@ -20,6 +21,7 @@ pkgs: {
     gsh = "git show";
     glog = "git log --oneline --graph";
     gco = "git checkout";
+    gcb = "git checkout -b";
     gstp = "git stash pop";
   };
 
