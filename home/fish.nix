@@ -7,6 +7,7 @@ pkgs: {
     g = "git";
     ga = "git add";
     gc = "git commit -v";
+    gd = "git diff";
     gdm = "git diff main";
     gst = "git status";
     gl = "git pull";
