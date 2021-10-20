@@ -5,7 +5,8 @@ pkgs: {
     vimdiffAlias = true;
     extraPackages = with pkgs; [ nodejs rustfmt ];
     extraConfig = ''
-      let mapleader = "\<Space>"
+      nnoremap <Space> <Nop>
+      map <Space> <Leader>
 
       nnoremap <Leader>c :nohlsearch<CR>
 
