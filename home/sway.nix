@@ -142,13 +142,14 @@ rec {
     output = {
       "*" = { bg = "#458588 solid_color"; };
       "eDP-1" = {
-        position = "0 2160";
+        position = "1080 2160";
       };
       "HDMI-A-1" = {
         position = "0 1080";
       };
       "DP-1" = {
-        position = "0 1080";
+        position = "0 0";
+        scale = "1.5";
       };
       "DP-2" = {
         position = "1920 1080";
