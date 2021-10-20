@@ -16,6 +16,7 @@ pkgs: {
     gpu = "git push --set-upstream origin HEAD";
     gpf = "git push --force-with-lease";
     gcm = "git checkout main";
+    grb = "git rebase";
     grbm = "git rebase main";
     grbc = "git rebase --continue";
     grba = "git rebase --abort";
