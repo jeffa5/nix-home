@@ -6,7 +6,7 @@ pkgs: {
     extraPackages = with pkgs; [ nodejs rustfmt ];
     extraConfig = ''
       nnoremap <Space> <Nop>
-      map <Space> <Leader>
+      let mapleader=" "
 
       nnoremap <Leader>c :nohlsearch<CR>
 
