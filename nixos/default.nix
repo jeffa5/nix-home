@@ -78,6 +78,7 @@ in
   hardware = {
     bluetooth.enable = true;
     keyboard.zsa.enable = true;
+    pulseaudio.enable = false;
   };
 
   users = {
@@ -190,6 +191,10 @@ in
       languages = [ "eng" ];
       symbolsFile = ./../packages/colemakdh/iso-uk-colemak-dh;
     };
+
+    enable = true;
+    displayManager.sddm.enable = true;
+    desktopManager.plasma5.enable = true;
   };
 
   programs = {
