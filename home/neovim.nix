@@ -5,8 +5,7 @@ pkgs: {
     vimdiffAlias = true;
     extraPackages = with pkgs; [ nodejs rustfmt ];
     extraConfig = ''
-      nnoremap <Space> <Nop>
-      map <Space> <Leader>
+      let mapleader = " "
 
       nnoremap <Leader>c :nohlsearch<CR>
 
@@ -92,6 +91,76 @@ pkgs: {
       endfun
 
       autocmd BufWritePre * :call TrimWhitespace()
+
+      " coc
+      inoremap <silent><expr> <TAB>
+            \ pumvisible() ? "\<C-n>" :
+            \ <SID>check_back_space() ? "\<TAB>" :
+            \ coc#refresh()
+      inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+      function! s:check_back_space() abort
+        let col = col('.') - 1
+        return !col || getline('.')[col - 1]  =~# '\s'
+      endfunction
+
+      inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+      function! s:check_back_space() abort
+          let col = col('.') - 1
+          return !col || getline('.')[col - 1]  =~# '\s'
+      endfunction
+
+      let g:coc_snippet_next = '<TAB>'
+      let g:coc_snippet_prev = '<S-TAB>'
+
+      nmap <LocalLeader>d <Plug>(coc-definition)
+      nmap <LocalLeader>t <Plug>(coc-type-definition)
+      nmap <LocalLeader>f <Plug>(coc-references)
+      nmap <LocalLeader>r <Plug>(coc-rename)
+      nmap <LocalLeader>i <Plug>(coc-implementation)
+      nnoremap <Leader>s <Plug>(coc-diagnostic-prev)
+      nnoremap <Leader>d <Plug>(coc-diagnostic-next)
+      nnoremap <Leader>a :CocList --auto-preview diagnostics<CR>
+      nmap <LocalLeader>a :CocAction<CR>
+      nmap <LocalLeader>c <Plug>(coc-codelens-action)
+
+      nnoremap <LocalLeader>h :call <SID>show_documentation()<CR>
+
+      function! s:show_documentation()
+          if (index(['vim','help'], &filetype) >= 0)
+            execute 'h '.expand('<cword>')
+          else
+            call CocAction('doHover')
+          endif
+      endfunction
+
+      autocmd CursorHold * silent call CocActionAsync('highlight')
+
+      " fugitive
+      nnoremap <Leader>gs :Git<CR>
+      nnoremap <Leader>gc :Git commit -v -q<CR>
+      nnoremap <Leader>ga :Git commit --amend -v -q<CR>
+      nnoremap <Leader>go :Git pull<CR>
+      nnoremap <Leader>gl :Glog<CR>
+      nnoremap <Leader>gp :Git push<CR>
+      nnoremap <Leader>gf :Git fetch<CR>
+      nnoremap <Leader>gb :Git blame<CR>
+      nnoremap <Leader>gr :Gbrowse<CR>
+
+      " fzf
+      nnoremap <Leader>b :Buffers<CR>
+      nnoremap <Leader>f :Files<CR>
+      nnoremap <Leader>l :Lines<CR>
+      nnoremap <Leader>/ :BLines<CR>
+      nnoremap <Leader>t :Windows<CR>
+
+      " goyo
+      nnoremap <silent><Leader>y :Goyo<CR>
+      let g:goyo_linenr = 1
+      let g:goyo_width = 100
+      autocmd! User GoyoEnter Limelight
+      autocmd! User GoyoLeave Limelight!
     '';
     plugins = with pkgs.vimPlugins; [
       {
@@ -101,54 +170,7 @@ pkgs: {
           colorscheme gruvbox
         '';
       }
-      {
-        plugin = coc-nvim;
-        config = ''
-          inoremap <silent><expr> <TAB>
-                \ pumvisible() ? "\<C-n>" :
-                \ <SID>check_back_space() ? "\<TAB>" :
-                \ coc#refresh()
-          inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-          function! s:check_back_space() abort
-            let col = col('.') - 1
-            return !col || getline('.')[col - 1]  =~# '\s'
-          endfunction
-
-          inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-          function! s:check_back_space() abort
-              let col = col('.') - 1
-              return !col || getline('.')[col - 1]  =~# '\s'
-          endfunction
-
-          let g:coc_snippet_next = '<TAB>'
-          let g:coc_snippet_prev = '<S-TAB>'
-
-          nmap <LocalLeader>d <Plug>(coc-definition)
-          nmap <LocalLeader>t <Plug>(coc-type-definition)
-          nmap <LocalLeader>f <Plug>(coc-references)
-          nmap <LocalLeader>r <Plug>(coc-rename)
-          nmap <LocalLeader>i <Plug>(coc-implementation)
-          nmap <Leader>s <Plug>(coc-diagnostic-prev)
-          nmap <Leader>d <Plug>(coc-diagnostic-next)
-          nmap <Leader>a :CocList --auto-preview diagnostics<CR>
-          nmap <LocalLeader>a :CocAction<CR>
-          nmap <LocalLeader>c <Plug>(coc-codelens-action)
-
-          nnoremap <LocalLeader>h :call <SID>show_documentation()<CR>
-
-          function! s:show_documentation()
-              if (index(['vim','help'], &filetype) >= 0)
-                execute 'h '.expand('<cword>')
-              else
-                call CocAction('doHover')
-              endif
-          endfunction
-
-          autocmd CursorHold * silent call CocActionAsync('highlight')
-        '';
-      }
+      coc-nvim
       coc-rust-analyzer
       coc-yank
       coc-highlight
@@ -158,20 +180,7 @@ pkgs: {
       coc-vimtex
       coc-texlab
       coc-prettier
-      {
-        plugin = vim-fugitive;
-        config = ''
-          nnoremap <Leader>gs :Git<CR>
-          nnoremap <Leader>gc :Git commit -v -q<CR>
-          nnoremap <Leader>ga :Git commit --amend -v -q<CR>
-          nnoremap <Leader>go :Git pull<CR>
-          nnoremap <Leader>gl :Glog<CR>
-          nnoremap <Leader>gp :Git push<CR>
-          nnoremap <Leader>gf :Git fetch<CR>
-          nnoremap <Leader>gb :Git blame<CR>
-          nnoremap <Leader>gr :Gbrowse<CR>
-        '';
-      }
+      vim-fugitive
       vim-rhubarb
       {
         plugin = fugitive-gitlab-vim;
@@ -221,16 +230,7 @@ pkgs: {
           endfunction
         '';
       }
-      {
-        plugin = fzf-vim;
-        config = ''
-          nmap <Leader>b :Buffers<CR>
-          nmap <Leader>f :Files<CR>
-          nmap <Leader>l :Lines<CR>
-          nmap <Leader>/ :BLines<CR>
-          nmap <Leader>t :Windows<CR>
-        '';
-      }
+      fzf-vim
       {
         plugin = indentLine;
         config = ''
@@ -258,7 +258,7 @@ pkgs: {
       {
         plugin = neoformat;
         config = ''
-          nmap <Leader>e :Neoformat<CR>
+          nnoremap <Leader>e :Neoformat<CR>
           augroup fmt
               autocmd!
               autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
@@ -285,16 +285,7 @@ pkgs: {
           let g:vimspector_enable_mappings='HUMAN'
         '';
       }
-      {
-        plugin = goyo-vim;
-        config = ''
-          nmap <silent><Leader>y :Goyo<CR>
-          let g:goyo_linenr = 1
-          let g:goyo_width = 100
-          autocmd! User GoyoEnter Limelight
-          autocmd! User GoyoLeave Limelight!
-        '';
-      }
+      goyo-vim
       {
         plugin = limelight-vim;
         config = ''
