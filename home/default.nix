@@ -165,6 +165,15 @@
     zsh = import ./zsh.nix pkgs;
 
     fish = import ./fish.nix pkgs;
+
+    vscode = {
+      enable = true;
+      package = pkgs.vscodium;
+      extensions = with pkgs.vscode-extensions; [
+        vscodevim.vim
+        matklad.rust-analyzer
+      ];
+    };
   };
 
   wayland.windowManager.sway = import ./sway.nix { inherit pkgs sway-scripts; };
