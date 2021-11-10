@@ -53,6 +53,7 @@
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
+    android-udev-rules
     htop
     xwayland
     (nerdfonts.override { fonts = [ "Hack" ]; })

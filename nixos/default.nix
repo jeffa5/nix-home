@@ -87,7 +87,7 @@ in
 
     users.andrew = {
       isNormalUser = true;
-      extraGroups = [ "wheel" "docker" "networkmanager" "plugdev" ];
+      extraGroups = [ "wheel" "docker" "networkmanager" "plugdev" "adbusers" ];
       shell = pkgs.fish;
     };
   };
@@ -200,6 +200,10 @@ in
 
   programs = {
     sway.enable = true;
+
+    steam.enable = true;
+
+    adb.enable = true;
 
     nm-applet.enable = true;
 
