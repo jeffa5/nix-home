@@ -71,6 +71,7 @@ in
   imports = [ borgbackupMonitor ];
 
   time.timeZone = "Europe/London";
+  nixpkgs.config.allowUnfree = true;
 
   networking.networkmanager.enable = true;
   networking.useDHCP = false;
