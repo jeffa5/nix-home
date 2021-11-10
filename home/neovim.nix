@@ -119,9 +119,9 @@ pkgs: {
       nmap <LocalLeader>f <Plug>(coc-references)
       nmap <LocalLeader>r <Plug>(coc-rename)
       nmap <LocalLeader>i <Plug>(coc-implementation)
-      nnoremap <Leader>s <Plug>(coc-diagnostic-prev)
-      nnoremap <Leader>d <Plug>(coc-diagnostic-next)
-      nnoremap <Leader>a :CocList --auto-preview diagnostics<CR>
+      nmap <Leader>s <Plug>(coc-diagnostic-prev)
+      nmap <Leader>d <Plug>(coc-diagnostic-next)
+      nmap <Leader>a :CocList --auto-preview diagnostics<CR>
       nmap <LocalLeader>a :CocAction<CR>
       nmap <LocalLeader>c <Plug>(coc-codelens-action)
 
