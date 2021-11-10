@@ -33,7 +33,7 @@
       options = [ "nofail" ];
     };
 
-  swapDevices = [ ];
+  swapDevices = [{ device = "/swapfile"; size = (1024 * 16) + (1024 * 2); }];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 
