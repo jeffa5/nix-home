@@ -12,6 +12,13 @@
         GSSAPIAuthentication = "yes";
       };
     };
+    "quoth" = {
+      hostname = "quoth.cl.cam.ac.uk";
+      user = "apj39";
+      extraOptions = {
+        GSSAPIAuthentication = "yes";
+      };
+    };
     "caelum*" = {
       user = "apj39";
     };
