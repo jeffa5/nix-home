@@ -29,7 +29,7 @@ in
     "org/gnome/desktop/input-sources" = {
       per-window = false;
       show-all-sources = false;
-      sources = [ (mkTuple [ "xkb" "uk-colemakdh" ]) (mkTuple [ "xkb" "gb" ]) ];
+      sources = [ (mkTuple [ "xkb" "uk-cdh" ]) (mkTuple [ "xkb" "gb" ]) ];
       xkb-options = [ "terminate:ctrl_alt_bksp" "lv3:ralt_switch" ];
     };
 

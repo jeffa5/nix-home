@@ -189,9 +189,9 @@ in
   virtualisation.virtualbox.host.enable = true;
 
   services.xserver = {
-    layout = "uk-colemakdh";
+    layout = "uk-cdh,gb";
 
-    extraLayouts.uk-colemakdh = {
+    extraLayouts.uk-cdh = {
       description = "UK Colemak";
       languages = [ "eng" ];
       symbolsFile = ./../packages/colemakdh/iso-uk-colemak-dh;
