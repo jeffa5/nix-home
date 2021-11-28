@@ -1,4 +1,4 @@
-{ colemakdh, waytext, owork }:
+{ colemakdh, waytext, owork, nixpkgs }:
 { config, pkgs, ... }:
 let
   waytext-bin = "${waytext.packages.x86_64-linux.waytext}/bin/waytext";
@@ -116,6 +116,9 @@ in
       dates = "weekly";
       options = "--delete-older-than 30d";
     };
+
+    # make nix shell commands use same nixpkgs as system
+    registry.nixpkgs.flake = nixpkgs;
   };
 
   console.packages = [ colemakdh ];

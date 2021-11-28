@@ -26,7 +26,7 @@
         modules: nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            (import ./nixos { inherit colemakdh waytext owork; })
+            (import ./nixos { inherit colemakdh waytext owork nixpkgs; })
             home-manager.nixosModules.home-manager
             {
               home-manager.useUserPackages = true;
