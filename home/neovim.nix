@@ -146,7 +146,7 @@ pkgs: {
       nnoremap <Leader>gp :Git push<CR>
       nnoremap <Leader>gf :Git fetch<CR>
       nnoremap <Leader>gb :Git blame<CR>
-      nnoremap <Leader>gr :Gbrowse<CR>
+      nnoremap <Leader>gr :GBrowse<CR>
 
       " fzf
       nnoremap <Leader>b :Buffers<CR>
