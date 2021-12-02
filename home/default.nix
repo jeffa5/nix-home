@@ -34,22 +34,6 @@
     };
   };
 
-  xdg.mimeApps = {
-    enable = true;
-    defaultApplications = {
-      "application/pdf" = [ "org.pwmt.zathura-pdf-mupdf.desktop" ];
-      # "image/svg+xml" = [ "imv.desktop" ];
-      # "image/jpeg" = [ "imv.desktop" ];
-      # "image/jpg" = [ "imv.desktop" ];
-      # "image/png" = [ "imv.desktop" ];
-      "text/html" = [ "firefox.desktop" ];
-      "x-scheme-handler/http" = [ "firefox.desktop" ];
-      "x-scheme-handler/https" = [ "firefox.desktop" ];
-      "x-scheme-handler/about" = [ "firefox.desktop" ];
-      "x-scheme-handler/unknown" = [ "firefox.desktop" ];
-    };
-  };
-
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
