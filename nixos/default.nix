@@ -127,6 +127,10 @@ in
 
   security.rtkit.enable = true;
   services = {
+    ananicy = {
+      enable = true;
+    };
+
     pipewire = {
       enable = true;
       alsa.enable = true;
