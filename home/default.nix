@@ -10,7 +10,7 @@
     (import ./wofi.nix)
     (import ./neovim.nix pkgs)
     # ./imv.nix
-    ./dconf.nix
+    # ./dconf.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
