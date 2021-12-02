@@ -9,7 +9,7 @@
     (import ./latexmk.nix pkgs)
     (import ./wofi.nix)
     (import ./neovim.nix pkgs)
-    ./imv.nix
+    # ./imv.nix
     ./dconf.nix
   ];
 
@@ -38,10 +38,10 @@
     enable = true;
     defaultApplications = {
       "application/pdf" = [ "org.pwmt.zathura-pdf-mupdf.desktop" ];
-      "image/svg+xml" = [ "imv.desktop" ];
-      "image/jpeg" = [ "imv.desktop" ];
-      "image/jpg" = [ "imv.desktop" ];
-      "image/png" = [ "imv.desktop" ];
+      # "image/svg+xml" = [ "imv.desktop" ];
+      # "image/jpeg" = [ "imv.desktop" ];
+      # "image/jpg" = [ "imv.desktop" ];
+      # "image/png" = [ "imv.desktop" ];
       "text/html" = [ "firefox.desktop" ];
       "x-scheme-handler/http" = [ "firefox.desktop" ];
       "x-scheme-handler/https" = [ "firefox.desktop" ];
@@ -85,7 +85,7 @@
     (import ./import-nef.nix pkgs)
     thunderbird
     slack
-    imv
+    # imv
     skype
     pavucontrol
     krb5 # for cl access
