@@ -152,8 +152,6 @@
 
     firefox = import ./firefox.nix pkgs;
 
-    mako = import ./mako.nix;
-
     taskwarrior = {
       enable = true;
     };

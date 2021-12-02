@@ -1,5 +1,5 @@
 {
-  enable = true;
+  enable = false;
   backgroundColor = "#282828";
   borderSize = 4;
   defaultTimeout = 5000;
