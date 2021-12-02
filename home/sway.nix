@@ -54,7 +54,7 @@ let
   '';
 in
 rec {
-  enable = true;
+  enable = false;
   extraConfig = ''
     set $workspace1 1 
     set $workspace2 2 

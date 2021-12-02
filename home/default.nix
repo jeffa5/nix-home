@@ -4,7 +4,7 @@
 {
   imports = [
     (import ./aerc.nix pkgs)
-    ./swaylock.nix
+    # ./swaylock.nix
     ./xkb.nix
     (import ./latexmk.nix pkgs)
     (import ./wofi.nix)
@@ -21,7 +21,7 @@
     sessionPath = [ "${homeDirectory}/.cargo/bin" ];
     sessionVariables = {
       MOZ_ENABLE_WAYLAND = 1;
-      XDG_CURRENT_DESKTOP = "sway";
+      # XDG_CURRENT_DESKTOP = "sway";
       XDG_SESSION_TYPE = "wayland";
       EDITOR = "vim";
     };
@@ -66,8 +66,8 @@
     playerctl
     pamixer
     tree
-    swaylock
-    swayidle
+    # swaylock
+    # swayidle
     lm_sensors
     fd
     xdg_utils
@@ -151,6 +151,8 @@
     git = import ./git.nix pkgs;
 
     firefox = import ./firefox.nix pkgs;
+
+    mako = import ./mako.nix;
 
     taskwarrior = {
       enable = true;
