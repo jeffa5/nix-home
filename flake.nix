@@ -29,6 +29,7 @@
             (import ./nixos { inherit colemakdh waytext owork nixpkgs; })
             home-manager.nixosModules.home-manager
             {
+              home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.andrew = (import ./home {
                 inherit status-bar sway-scripts waytext;
