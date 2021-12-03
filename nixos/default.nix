@@ -210,7 +210,7 @@ in
   };
 
   programs = {
-    sway.enable = true;
+    sway.enable = false;
 
     steam.enable = true;
 
