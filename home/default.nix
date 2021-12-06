@@ -85,6 +85,7 @@ let homeDirectory = "/home/andrew"; in
     kubectx
     just
     file
+    todoist-electron
 
     jq
     texlab
