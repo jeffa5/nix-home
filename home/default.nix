@@ -82,6 +82,7 @@
     nextcloud-client
     kubectx
     just
+    file
 
     jq
     texlab
