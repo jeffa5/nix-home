@@ -81,7 +81,6 @@
     sccache
     nextcloud-client
     kubectx
-    todoist-electron
     just
 
     jq
