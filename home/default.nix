@@ -1,6 +1,8 @@
 { status-bar, sway-scripts, waytext }:
 { config, pkgs, ... }:
 
+let homeDirectory = "/home/andrew"; in
+
 {
   imports = [
     (import ./aerc.nix pkgs)
@@ -15,9 +17,9 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  home = rec {
+  home = {
+    inherit homeDirectory;
     username = "andrew";
-    homeDirectory = "/home/andrew";
     sessionPath = [ "${homeDirectory}/.cargo/bin" ];
     sessionVariables = {
       MOZ_ENABLE_WAYLAND = 1;
