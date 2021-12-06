@@ -138,7 +138,7 @@ in
     };
 
     blueman = {
-      enable = true;
+      enable = false;
     };
 
     fstrim.enable = true;

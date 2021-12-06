@@ -73,7 +73,7 @@ let homeDirectory = "/home/andrew"; in
     slack
     # imv
     skype
-    pavucontrol
+    # pavucontrol
     krb5 # for cl access
     okular
     vlc
