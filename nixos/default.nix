@@ -149,7 +149,7 @@ in
       encryption = {
         mode = "none";
       };
-      repo = "/backups/${config.networking.hostName}";
+      repo = "/backups/backups/${config.networking.hostName}/borg";
       doInit = false;
       compression = "auto,zstd,3";
       startAt = "hourly";

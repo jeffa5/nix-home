@@ -60,6 +60,7 @@ let homeDirectory = "/home/andrew"; in
     libreoffice
     lf
     borgbackup
+    vorta
     prettyping
     darktable
     gitAndTools.git-open
@@ -155,6 +156,8 @@ let homeDirectory = "/home/andrew"; in
     zsh = import ./zsh.nix pkgs;
 
     fish = import ./fish.nix pkgs;
+
+    nix-index.enable = true;
 
     vscode = {
       enable = true;
