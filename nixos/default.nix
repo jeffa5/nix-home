@@ -74,6 +74,7 @@ in
   nixpkgs.config.allowUnfree = true;
 
   networking.networkmanager.enable = true;
+  networking.networkmanager.enableStrongSwan = true;
   networking.useDHCP = false;
 
   hardware = {
