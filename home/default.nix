@@ -54,6 +54,10 @@ let homeDirectory = "/home/andrew"; in
     tree
     # swaylock
     # swayidle
+    filelight
+    fslint
+    ark
+    rsibreak
     lm_sensors
     fd
     xdg_utils
