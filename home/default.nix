@@ -90,7 +90,9 @@ let homeDirectory = "/home/andrew"; in
     kubectx
     just
     file
-    todoist-electron
+    (todoist-electron.override {
+      electron = electron_15;
+    })
 
     jq
     texlab
