@@ -1,11 +1,12 @@
 pkgs: {
   enable = true;
-  package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
-    forceWayland = true;
-    extraPolicies = {
-      ExtensionSettings = { };
-    };
-  };
+  # package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
+  #   forceWayland = true;
+  #   extraPolicies = {
+  #     ExtensionSettings = { };
+  #   };
+  # };
+  package = pkgs.firefox-bin;
   profiles = {
     andrew = {
       settings = {
