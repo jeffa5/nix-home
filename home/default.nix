@@ -44,20 +44,13 @@ let homeDirectory = "/home/andrew"; in
     xwayland
     (nerdfonts.override { fonts = [ "Hack" ]; })
     spotify
-    aerc
-    wofi
     bat
     wl-clipboard
     ripgrep
-    playerctl
-    pamixer
     tree
-    # swaylock
-    # swayidle
     filelight
-    fslint
+    czkawka
     ark
-    rsibreak
     lm_sensors
     fd
     xdg_utils
@@ -76,9 +69,7 @@ let homeDirectory = "/home/andrew"; in
     (import ./import-nef.nix pkgs)
     thunderbird
     slack
-    # imv
     skype
-    # pavucontrol
     krb5 # for cl access
     okular
     vlc
@@ -90,9 +81,7 @@ let homeDirectory = "/home/andrew"; in
     kubectx
     just
     file
-    (todoist-electron.override {
-      electron = electron_15;
-    })
+    todoist-electron
 
     jq
     texlab
@@ -109,10 +98,8 @@ let homeDirectory = "/home/andrew"; in
     direnv = {
       enable = true;
       enableZshIntegration = true;
-      enableFishIntegration = true;
       nix-direnv = {
         enable = true;
-        enableFlakes = true;
       };
     };
 
@@ -131,14 +118,6 @@ let homeDirectory = "/home/andrew"; in
       enable = true;
       enableZshIntegration = true;
       enableFishIntegration = true;
-      settings = {
-        nix_shell = {
-          disabled = false;
-        };
-        kubernetes = {
-          disabled = false;
-        };
-      };
     };
 
     ssh = import ./ssh.nix;

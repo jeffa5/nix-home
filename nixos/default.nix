@@ -110,7 +110,9 @@ in
       max-free = ${toString (10 * 1024 * 1024 * 1024)}
     '';
 
-    autoOptimiseStore = true;
+    settings = {
+      auto-optimise-store = true;
+    };
 
     gc = {
       automatic = true;
