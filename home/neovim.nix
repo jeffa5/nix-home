@@ -180,6 +180,7 @@ pkgs: {
       coc-vimtex
       coc-texlab
       coc-prettier
+      coc-pyright
       vim-fugitive
       vim-rhubarb
       {
