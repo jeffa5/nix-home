@@ -233,6 +233,7 @@ in
   };
 
   # boot.kernel.sysctl."fs.inotify.max_user_watches" = pkgs.lib.mkDefault 524288;
+  boot.tmpOnTmpfs = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
