@@ -181,6 +181,7 @@ pkgs: {
       coc-texlab
       coc-prettier
       coc-pyright
+      coc-tsserver
       vim-fugitive
       vim-rhubarb
       {
