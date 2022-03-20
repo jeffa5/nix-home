@@ -69,7 +69,7 @@ let homeDirectory = "/home/andrew"; in
     (import ./import-nef.nix pkgs)
     thunderbird
     slack
-    skype
+    skypeforlinux
     krb5 # for cl access
     okular
     vlc
