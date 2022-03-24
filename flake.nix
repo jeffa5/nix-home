@@ -16,6 +16,8 @@
       sway-scripts = import packages/sway-scripts nixpkgs;
       username = "andrew";
       system = "x86_64-linux";
+      stateVersion = "21.11";
+      lib = nixpkgs.lib;
       mkMachine =
         modules: nixpkgs.lib.nixosSystem {
           inherit system;
@@ -25,14 +27,30 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.${username} = (import ./home { gui = true; });
+              home-manager.users.${username} = (import ./home { gui = true; username = "andrew"; });
             }
           ] ++ modules;
         };
+      mkHomesForUser = username: {
+        ${username} = home-manager.lib.homeManagerConfiguration {
+          configuration = import ./home { inherit username; gui = true; };
+          inherit system username stateVersion;
+          homeDirectory = "/home/${username}";
+        };
+
+        "${username}-tui" = home-manager.lib.homeManagerConfiguration {
+          configuration = import ./home { inherit username; gui = false; };
+          inherit system username stateVersion;
+          homeDirectory = "/home/${username}";
+        };
+      };
+      mkHomes = users: (
+        lib.foldl (a: b: a // b) { } (map mkHomesForUser users)
+      );
     in
     {
       # whole system configs
-      # nixos-rebuild switch --flake '<flake-uri>#andrew'
+      # nixos-rebuild switch --flake '<flake-uri>#xps-15'
       # to install
       nixosConfigurations = {
         carbide = mkMachine [ ./nixos/carbide ];
@@ -43,19 +61,7 @@
       # standalone home environment
       # home-manager switch --flake '<flake-uri>#andrew'
       # to install
-      homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
-        configuration = import ./home { gui = true; };
-        inherit system username;
-        homeDirectory = "/home/${username}";
-        stateVersion = "21.11";
-      };
-
-      homeConfigurations.andrew-tui = home-manager.lib.homeManagerConfiguration {
-        configuration = import ./home { gui = false; };
-        inherit system username;
-        homeDirectory = "/home/${username}";
-        stateVersion = "21.11";
-      };
+      homeConfigurations = mkHomes [ "andrew" "apj39" ];
 
       devShell.${system} =
         with nixpkgs.legacyPackages.${system};

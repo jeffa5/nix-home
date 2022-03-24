@@ -1,8 +1,7 @@
-{ gui }:
+{ gui, username }:
 { config, pkgs, ... }:
 
 let
-  username = "andrew";
   homeDirectory = "/home/${username}";
 
   guiPkgs =
@@ -72,8 +71,7 @@ in
   nixpkgs.config.allowUnfree = true;
 
   home = {
-    inherit homeDirectory;
-    username = "${username}";
+    inherit homeDirectory username;
     sessionPath = [ "${homeDirectory}/.cargo/bin" ];
     sessionVariables = {
       MOZ_ENABLE_WAYLAND = 1;
