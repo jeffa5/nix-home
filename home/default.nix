@@ -88,6 +88,8 @@ let homeDirectory = "/home/andrew"; in
     anki
 
     wally-cli
+
+    ferdi
   ] ++ [ waytext.packages.x86_64-linux.waytext ];
 
   programs = {
