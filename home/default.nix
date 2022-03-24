@@ -1,4 +1,3 @@
-{ status-bar, sway-scripts, waytext }:
 { config, pkgs, ... }:
 
 let homeDirectory = "/home/andrew"; in
@@ -90,7 +89,7 @@ let homeDirectory = "/home/andrew"; in
     wally-cli
 
     ferdi
-  ] ++ [ waytext.packages.x86_64-linux.waytext ];
+  ];
 
   programs = {
     home-manager.enable = true;
@@ -136,8 +135,6 @@ let homeDirectory = "/home/andrew"; in
 
     tmux = import ./tmux.nix;
 
-    waybar = import ./waybar.nix { inherit pkgs status-bar; };
-
     zathura = import ./zathura.nix;
 
     zsh = import ./zsh.nix pkgs;
@@ -155,8 +152,6 @@ let homeDirectory = "/home/andrew"; in
       ];
     };
   };
-
-  wayland.windowManager.sway = import ./sway.nix { inherit pkgs sway-scripts; };
 
   services = {
     nextcloud-client = {
