@@ -25,7 +25,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.${username} = (import ./home);
+              home-manager.users.${username} = (import ./home { gui = true; });
             }
           ] ++ modules;
         };
@@ -44,7 +44,14 @@
       # home-manager switch --flake '<flake-uri>#andrew'
       # to install
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
-        configuration = import ./home;
+        configuration = import ./home { gui = true; };
+        inherit system username;
+        homeDirectory = "/home/${username}";
+        stateVersion = "21.11";
+      };
+
+      homeConfigurations.andrew-tui = home-manager.lib.homeManagerConfiguration {
+        configuration = import ./home { gui = false; };
         inherit system username;
         homeDirectory = "/home/${username}";
         stateVersion = "21.11";

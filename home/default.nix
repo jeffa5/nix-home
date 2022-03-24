@@ -1,8 +1,65 @@
+{ gui }:
 { config, pkgs, ... }:
 
 let
   username = "andrew";
   homeDirectory = "/home/${username}";
+
+  guiPkgs =
+    if gui then
+      (with pkgs; [
+        (import ./import-nef.nix pkgs)
+        android-udev-rules
+        anki
+        ark
+        bitwarden
+        borgbackup
+        chromium
+        czkawka
+        darktable
+        ferdi
+        filelight
+        gitAndTools.git-open
+        inkscape
+        libreoffice
+        mendeley
+        nextcloud-client
+        okular
+        signal-desktop
+        skypeforlinux
+        slack
+        spotify
+        texlab
+        thunderbird
+        todoist-electron
+        vlc
+        vorta
+        wally-cli
+        wl-clipboard
+        xdg_utils
+        xournalpp
+        xwayland
+        zoom-us
+      ]) else [ ];
+
+  tuiPkgs = with pkgs; [
+    (nerdfonts.override { fonts = [ "Hack" ]; })
+    bat
+    fd
+    file
+    git-extras
+    htop
+    jq
+    just
+    krb5 # for cl access
+    kubectx
+    lf
+    lm_sensors
+    prettyping
+    ripgrep
+    sccache
+    tree
+  ];
 in
 
 {
@@ -34,66 +91,14 @@ in
     };
   };
 
-  fonts.fontconfig.enable = true;
+  fonts.fontconfig.enable = gui;
 
-  home.packages = with pkgs; [
-    android-udev-rules
-    htop
-    xwayland
-    (nerdfonts.override { fonts = [ "Hack" ]; })
-    spotify
-    bat
-    wl-clipboard
-    ripgrep
-    tree
-    filelight
-    czkawka
-    ark
-    lm_sensors
-    fd
-    xdg_utils
-    libreoffice
-    lf
-    borgbackup
-    vorta
-    prettyping
-    darktable
-    gitAndTools.git-open
-    git-extras
-    xournalpp
-    mendeley
-    signal-desktop
-    chromium
-    (import ./import-nef.nix pkgs)
-    thunderbird
-    slack
-    skypeforlinux
-    krb5 # for cl access
-    okular
-    vlc
-    inkscape
-    bitwarden
-    zoom-us
-    sccache
-    nextcloud-client
-    kubectx
-    just
-    file
-    todoist-electron
-
-    jq
-    texlab
-    anki
-
-    wally-cli
-
-    ferdi
-  ];
+  home.packages = guiPkgs ++ tuiPkgs;
 
   programs = {
     home-manager.enable = true;
 
-    alacritty = import ./alacritty.nix pkgs;
+    alacritty = if gui then (import ./alacritty.nix pkgs) else { };
 
     direnv = {
       enable = true;
@@ -124,17 +129,15 @@ in
 
     git = import ./git.nix pkgs;
 
-    firefox = import ./firefox.nix pkgs;
-
-    mako = import ./mako.nix;
+    firefox = if gui then (import ./firefox.nix pkgs) else { };
 
     taskwarrior = {
-      enable = true;
+      enable = gui;
     };
 
     tmux = import ./tmux.nix;
 
-    zathura = import ./zathura.nix;
+    zathura = if gui then (import ./zathura.nix) else { };
 
     zsh = import ./zsh.nix pkgs;
 
@@ -143,7 +146,7 @@ in
     nix-index.enable = true;
 
     vscode = {
-      enable = true;
+      enable = gui;
       package = pkgs.vscodium;
       extensions = with pkgs.vscode-extensions; [
         vscodevim.vim
@@ -154,11 +157,11 @@ in
 
   services = {
     nextcloud-client = {
-      enable = true;
+      enable = gui;
     };
 
     wlsunset = {
-      enable = true;
+      enable = gui;
       latitude = "51.5";
       longitude = "-0.1";
     };
