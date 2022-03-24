@@ -1,31 +1,30 @@
 { config, pkgs, ... }:
 
-let homeDirectory = "/home/andrew"; in
+let
+  username = "andrew";
+  homeDirectory = "/home/${username}";
+in
 
 {
   imports = [
-    (import ./aerc.nix pkgs)
-    # ./swaylock.nix
     ./xkb.nix
     (import ./latexmk.nix pkgs)
-    (import ./wofi.nix)
     (import ./neovim.nix pkgs)
-    # ./imv.nix
-    # ./dconf.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
 
   home = {
     inherit homeDirectory;
-    username = "andrew";
+    username = "${username}";
     sessionPath = [ "${homeDirectory}/.cargo/bin" ];
     sessionVariables = {
       MOZ_ENABLE_WAYLAND = 1;
-      # XDG_CURRENT_DESKTOP = "sway";
       XDG_SESSION_TYPE = "wayland";
       EDITOR = "vim";
     };
+
+    stateVersion = "21.11";
 
     file = {
       ".cargo/config".text = ''
@@ -164,14 +163,4 @@ let homeDirectory = "/home/andrew"; in
       longitude = "-0.1";
     };
   };
-
-  # This value determines the Home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new Home Manager release introduces backwards
-  # incompatible changes.
-  #
-  # You can update Home Manager without changing this value. See
-  # the Home Manager release notes for a list of state version
-  # changes in each release.
-  home.stateVersion = "21.03";
 }

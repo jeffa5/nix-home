@@ -14,31 +14,46 @@
       colemakdh = import packages/colemakdh nixpkgs;
       status-bar = import packages/status-bar nixpkgs;
       sway-scripts = import packages/sway-scripts nixpkgs;
+      username = "andrew";
+      system = "x86_64-linux";
       mkMachine =
         modules: nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
+          inherit system;
           modules = [
             (import ./nixos { inherit colemakdh nixpkgs; })
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.andrew = (import ./home);
+              home-manager.users.${username} = (import ./home);
             }
           ] ++ modules;
         };
     in
     {
+      # whole system configs
+      # nixos-rebuild switch --flake '<flake-uri>#andrew'
+      # to install
       nixosConfigurations = {
         carbide = mkMachine [ ./nixos/carbide ];
 
         xps-15 = mkMachine [ ./nixos/xps-15 ];
       };
 
-      devShell.x86_64-linux =
-        with nixpkgs.legacyPackages.x86_64-linux;
+      # standalone home environment
+      # home-manager switch --flake '<flake-uri>#andrew'
+      # to install
+      homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
+        configuration = import ./home;
+        inherit system username;
+        homeDirectory = "/home/${username}";
+        stateVersion = "21.11";
+      };
+
+      devShell.${system} =
+        with nixpkgs.legacyPackages.${system};
         pkgs.mkShell {
-          buildInputs = with pkgs; [ dconf2nix nixpkgs-fmt rnix-lsp ];
+          buildInputs = with pkgs; [ nixpkgs-fmt rnix-lsp ];
         };
     };
 }
