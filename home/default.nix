@@ -143,6 +143,10 @@ in
 
     fish = import ./fish.nix pkgs;
 
+    nushell = {
+      enable = true;
+    };
+
     nix-index.enable = true;
 
     vscode = {
