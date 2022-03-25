@@ -153,6 +153,7 @@ in
       extensions = with pkgs.vscode-extensions; [
         vscodevim.vim
         matklad.rust-analyzer
+        vadimcn.vscode-lldb
       ];
     };
   };
