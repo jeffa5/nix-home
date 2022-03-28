@@ -33,6 +33,6 @@ pkgs: {
 
     ${builtins.readFile ./gruvbox-fish.fish}
 
-    base16-gruvbox-dark-medium
+    base16-gruvbox-light-medium
   '';
 }
