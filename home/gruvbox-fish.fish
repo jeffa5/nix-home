@@ -127,50 +127,16 @@ function base16-gruvbox-light-medium -d "Gruvbox light, medium"
     set colorfg $color07 # Base 05 - White
     set colorbg $color00 # Base 00 - Black
 
-    if test -n "$TMUX"
-        # Tell tmux to pass the escape sequences through
-        # (Source: http://permalink.gmane.org/gmane.comp.terminal-emulators.tmux.user/1324)
-        function put_template
-            printf '\033Ptmux;\033\033]4;%d;rgb:%s\033\033\\\033\\' $argv
-        end
-        function put_template_var
-            printf '\033Ptmux;\033\033]%d;rgb:%s\033\033\\\033\\' $argv
-        end
-        function put_template_custom
-            printf '\033Ptmux;\033\033]%s%s\033\033\\\033\\' $argv
-        end
-    else if string match 'screen*' $TERM # [ "${TERM%%[-.]*}" = "screen" ]
-        # GNU screen (screen, screen-256color, screen-256color-bce)
-        function put_template
-            printf '\033P\033]4;%d;rgb:%s\007\033\\' $argv
-        end
-        function put_template_var
-            printf '\033P\033]%d;rgb:%s\007\033\\' $argv
-        end
-        function put_template_custom
-            printf '\033P\033]%s%s\007\033\\' $argv
-        end
-    else if string match 'linux*' $TERM # [ "${TERM%%-*}" = "linux" ]
-        function put_template
-            test $argv[1] -lt 16 && printf "\e]P%x%s" $argv[1] (echo $argv[2] | sed 's/\///g')
-        end
-        function put_template_var
-            true
-        end
-        function put_template_custom
-            true
-        end
-    else
-        function put_template
-            printf '\033]4;%d;rgb:%s\033\\' $argv
-        end
-        function put_template_var
-            printf '\033]%d;rgb:%s\033\\' $argv
-        end
-        function put_template_custom
-            printf '\033]%s%s\033\\' $argv
-        end
+    function put_template
+        printf '\033]4;%d;rgb:%s\033\\' $argv
     end
+    function put_template_var
+        printf '\033]%d;rgb:%s\033\\' $argv
+    end
+    function put_template_custom
+        printf '\033]%s%s\033\\' $argv
+    end
+
     # 16 color space
     put_template 0 $color00
     put_template 1 $color01
@@ -196,25 +162,11 @@ function base16-gruvbox-light-medium -d "Gruvbox light, medium"
     put_template 20 $color20
     put_template 21 $color21
     # foreground / background / cursor color
-    if test -n "$ITERM_SESSION_ID"
-        # iTerm2 proprietary escape codes
-        put_template_custom Pg 504945 # foreground
-        put_template_custom Ph fbf1c7 # background
-        put_template_custom Pi 504945 # bold color
-        put_template_custom Pj d5c4a1 # selection color
-        put_template_custom Pk 504945 # selected text color
-        put_template_custom Pl 504945 # cursor
-        put_template_custom Pm fbf1c7 # cursor text
-    else
-        put_template_var 10 $colorfg
-        if [ "$BASE16_SHELL_SET_BACKGROUND" != false ]
-            put_template_var 11 $colorbg
-            if string match 'rxvt*' $TERM # [ "${TERM%%-*}" = "rxvt" ]
-                put_template_var 708 $colorbg # internal border (rxvt)
-            end
-        end
-        put_template_custom 12 ";7" # cursor (reverse video)
+    put_template_var 10 $colorfg
+    if [ "$BASE16_SHELL_SET_BACKGROUND" != false ]
+        put_template_var 11 $colorbg
     end
+    put_template_custom 12 ";7" # cursor (reverse video)
     # set syntax highlighting colors
     set -U fish_color_autosuggestion d5c4a1
     set -U fish_color_cancel -r
