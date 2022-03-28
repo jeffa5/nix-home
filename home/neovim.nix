@@ -166,7 +166,7 @@ pkgs: {
       {
         plugin = gruvbox-community;
         config = ''
-          set background=dark
+          set background=light
           colorscheme gruvbox
         '';
       }
