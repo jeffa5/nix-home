@@ -167,6 +167,7 @@ pkgs: {
         plugin = gruvbox-community;
         config = ''
           set background=light
+          let g:gruvbox_contrast_light = 'hard'
           colorscheme gruvbox
         '';
       }
