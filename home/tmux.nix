@@ -48,7 +48,7 @@
     set -g bell-action none
 
     #  modes
-    setw -g clock-mode-colour blue
+    setw -g clock-mode-colour lightblue
     setw -g mode-style 'fg=colour1 bg=colour12 bold'
 
     # panes
@@ -60,7 +60,7 @@
     set -g status-justify left
     set -g status-style 'bg=#fcd744 fg=colour15'
     set -g status-left '#[bold][#S] '
-    set -g status-right ' #{?pane_synchronized,#[bg=blue]#[bold] Sync #[default],#[bg=#fce37e] Sync #[default]} #{?client_prefix,#[bg=blue]#[bold] Prefix #[default],#[bg=#fce37e] Prefix #[default]} #[bg=#fce37e,fg=colour15] %H:%M:%S %d/%m '
+    set -g status-right ' #{?pane_synchronized,#[bg=lightblue]#[bold] Sync #[default],#[bg=#fce37e] Sync #[default]} #{?client_prefix,#[bg=lightblue]#[bold] Prefix #[default],#[bg=#fce37e] Prefix #[default]} #[bg=#fce37e,fg=colour15] %H:%M:%S %d/%m '
     set -g status-right-length 50
     set -g status-left-length 20
     set -g status-interval 1
