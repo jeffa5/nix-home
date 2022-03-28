@@ -8,7 +8,7 @@
   terminal = "tmux-256color";
   secureSocket = true;
   extraConfig = ''
-    bind r source-file ~/.tmux.conf \; display-message "Config reloaded..."
+    bind r source-file ~/.config/tmux/tmux.conf \; display-message "Config reloaded..."
 
     # start new panes in current directory
     bind % split-window -h -c "#{pane_current_path}"
@@ -58,19 +58,19 @@
     # statusbar
     set -g status-position bottom
     set -g status-justify left
-    set -g status-style 'bg=#3a3a3a fg=colour15'
+    set -g status-style 'bg=#fcd744 fg=colour15'
     set -g status-left '#[bold][#S] '
-    set -g status-right ' #{?pane_synchronized,#[bg=blue]#[bold] Sync #[default],#[bg=#4e4e4e] Sync #[default]} #{?client_prefix,#[bg=blue]#[bold] Prefix #[default],#[bg=#4e4e4e] Prefix #[default]} #[bg=#4e4e4e,fg=colour15] %H:%M:%S %d/%m '
+    set -g status-right ' #{?pane_synchronized,#[bg=blue]#[bold] Sync #[default],#[bg=#fce37e] Sync #[default]} #{?client_prefix,#[bg=blue]#[bold] Prefix #[default],#[bg=#fce37e] Prefix #[default]} #[bg=#fce37e,fg=colour15] %H:%M:%S %d/%m '
     set -g status-right-length 50
     set -g status-left-length 20
     set -g status-interval 1
 
-    setw -g window-status-current-style 'fg=colour2 bg=#4e4e4e bold'
+    setw -g window-status-current-style 'fg=colour2 bg=#fce37e bold'
     setw -g window-status-current-format ' #I#[fg=colour15]:#[fg=colour15]#W#[fg=colour2]#F '
 
-    setw -g window-status-last-style 'fg=colour4 bg=#4e4e4e bold'
+    setw -g window-status-last-style 'fg=colour4 bg=#fce37e bold'
 
-    setw -g window-status-style 'fg=colour15 bg=#4e4e4e dim'
+    setw -g window-status-style 'fg=colour15 bg=#fce37e dim'
     setw -g window-status-format ' #I#[fg=colour15]:#[fg=colour15]#W#[fg=colour4]#F '
 
     setw -g window-status-bell-style 'fg=colour15 bg=colour1 bold'
