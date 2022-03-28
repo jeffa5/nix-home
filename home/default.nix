@@ -24,6 +24,7 @@ let
         mendeley
         nextcloud-client
         okular
+        plasma5Packages.kio-gdrive
         signal-desktop
         skypeforlinux
         slack
