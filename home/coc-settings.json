@@ -4,7 +4,13 @@
   "diagnostic.infoSign": "",
   "diagnostic.hintSign": "",
   "rust-analyzer.checkOnSave.command": "clippy",
-  "rust-analyzer.cargo.loadOutDirsFromCheck": true,
+  "rust-analyzer.cargo.allFeatures": true,
   "rust-analyzer.procMacro.enable": true,
-  "coc.preferences.formatOnSaveFiletypes": ["css", "json", "jsonc", "markdown", "rust"]
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "json",
+    "jsonc",
+    "markdown",
+    "rust"
+  ]
 }
