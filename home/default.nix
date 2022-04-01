@@ -44,7 +44,6 @@ let
 
   tuiPkgs = with pkgs; [
     (nerdfonts.override { fonts = [ "Hack" ]; })
-    bat
     fd
     file
     git-extras
@@ -95,6 +94,13 @@ in
   home.packages = guiPkgs ++ tuiPkgs;
 
   programs = {
+    bat = {
+      enable = true;
+      config = {
+        theme = "gruvbox-light";
+      };
+    };
+
     home-manager.enable = true;
 
     alacritty = if gui then (import ./alacritty.nix pkgs) else { };
