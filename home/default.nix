@@ -40,6 +40,7 @@ let
         xournalpp
         xwayland
         zoom-us
+        musescore
       ]) else [ ];
 
   tuiPkgs = with pkgs; [
