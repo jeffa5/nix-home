@@ -250,7 +250,7 @@ pkgs: {
                 \ },
                 \ 'component_function': {
                 \   'filename': 'LightlineFilename',
-                \   'gitbranch': 'fugitive#head',
+                \   'gitbranch': 'FugitiveHead',
                 \   'cocstatus': 'coc#status',
                 \   'currentfunction': 'CocCurrentFunction'
                 \ },
