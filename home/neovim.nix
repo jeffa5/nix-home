@@ -3,6 +3,24 @@ pkgs: {
     enable = true;
     vimAlias = true;
     vimdiffAlias = true;
+    coc.enable = true;
+    coc.settings = {
+      "diagnostic.errorSign" = "";
+      "diagnostic.warningSign" = "";
+      "diagnostic.infoSign" = "";
+      "diagnostic.hintSign" = "";
+      "rust-analyzer.cargo.runBuildScripts" = true;
+      "rust-analyzer.checkOnSave.command" = "clippy";
+      "rust-analyzer.cargo.allFeatures" = true;
+      "rust-analyzer.procMacro.enable" = true;
+      "coc.preferences.formatOnSaveFiletypes" = [
+        "css"
+        "json"
+        "jsonc"
+        "markdown"
+        "rust"
+      ];
+    };
     extraPackages = with pkgs; [ nodejs rustfmt ];
     extraConfig = ''
       let mapleader = " "
@@ -171,7 +189,6 @@ pkgs: {
           colorscheme gruvbox
         '';
       }
-      coc-nvim
       coc-rust-analyzer
       coc-yank
       coc-highlight
@@ -304,6 +321,4 @@ pkgs: {
       }
     ];
   };
-
-  xdg.configFile."nvim/coc-settings.json".source = ./coc-settings.json;
 }
