@@ -202,7 +202,8 @@ pkgs: {
       }
       coc-rust-analyzer
       coc-yank
-      coc-highlight
+      # gives 100% cpu usage...
+      # coc-highlight
       coc-json
       coc-yaml
       coc-go
