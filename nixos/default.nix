@@ -36,6 +36,9 @@ let
       }
     );
   };
+
+  gnome = true;
+  plasma = false;
 in
 {
   imports = [ borgbackupMonitor ];
@@ -150,8 +153,7 @@ in
       enable = true;
       extraPortals = with pkgs; [
         xdg-desktop-portal-wlr
-        xdg-desktop-portal-gtk
-      ];
+      ] ++ (if plasma then [ xdg-desktop-portal-gtk ] else [ ]);
       gtkUsePortal = true;
     };
   };
@@ -169,8 +171,12 @@ in
     };
 
     enable = true;
-    displayManager.sddm.enable = true;
-    desktopManager.plasma5.enable = true;
+
+    displayManager.sddm.enable = plasma;
+    desktopManager.plasma5.enable = plasma;
+
+    displayManager.gdm.enable = gnome;
+    desktopManager.gnome.enable = gnome;
   };
 
   programs = {
