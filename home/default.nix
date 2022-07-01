@@ -41,6 +41,8 @@ let
         xwayland
         zoom-us
         musescore
+        gnomeExtensions.dash-to-dock
+        gnomeExtensions.vitals
       ]) else [ ];
 
   tuiPkgs = with pkgs; [
