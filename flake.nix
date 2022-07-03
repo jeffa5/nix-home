@@ -66,7 +66,7 @@
       devShells.${system}.default =
         with nixpkgs.legacyPackages.${system};
         pkgs.mkShell {
-          buildInputs = with pkgs; [ nixpkgs-fmt rnix-lsp ];
+          buildInputs = with pkgs; [ nixpkgs-fmt rnix-lsp dconf2nix ];
         };
     };
 }
