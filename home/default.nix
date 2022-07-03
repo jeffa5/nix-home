@@ -69,6 +69,7 @@ in
     ./xkb.nix
     (import ./latexmk.nix pkgs)
     (import ./neovim.nix pkgs)
+    ./dconf.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
