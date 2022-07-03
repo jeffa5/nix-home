@@ -175,14 +175,15 @@ in
 
     "org/gnome/settings-daemon/plugins/power" = {
       idle-dim = false;
+      power-button-action = "suspend";
       sleep-inactive-ac-type = "suspend";
       sleep-inactive-battery-type = "suspend";
     };
 
     "org/gnome/shell" = {
-      disabled-extensions = [ "apps-menu@gnome-shell-extensions.gcampax.github.com", "native-window-placement@gnome-shell-extensions.gcampax.github.com", "drive-menu@gnome-shell-extensions.gcampax.github.com", "window-list@gnome-shell-extensions.gcampax.github.com", "auto-move-windows@gnome-shell-extensions.gcampax.github.com", "workspace-indicator@gnome-shell-extensions.gcampax.github.com" ];
-      enabled-extensions = [ "appindicatorsupport@rgcjonas.gmail.com", "x11gestures@joseexposito.github.io", "dash-to-dock@micxgx.gmail.com", "Vitals@CoreCoding.com" ];
-
+      disable-user-extensions = false;
+      disabled-extensions = [ "apps-menu@gnome-shell-extensions.gcampax.github.com" "native-window-placement@gnome-shell-extensions.gcampax.github.com" "drive-menu@gnome-shell-extensions.gcampax.github.com" "window-list@gnome-shell-extensions.gcampax.github.com" "auto-move-windows@gnome-shell-extensions.gcampax.github.com" "workspace-indicator@gnome-shell-extensions.gcampax.github.com" ];
+      enabled-extensions = [ "appindicatorsupport@rgcjonas.gmail.com" "x11gestures@joseexposito.github.io" "dash-to-dock@micxgx.gmail.com" "Vitals@CoreCoding.com" ];
       favorite-apps = [ "firefox.desktop" "Alacritty.desktop" "slack.desktop" "thunderbird.desktop" "spotify.desktop" ];
       had-bluetooth-devices-setup = true;
       welcome-dialog-last-shown-version = "40.1";
@@ -190,6 +191,34 @@ in
 
     "org/gnome/shell/extensions/auto-move-windows" = {
       application-list = [ "Alacritty.desktop:2" "firefox.desktop:1" "spotify.desktop:5" "slack.desktop:3" "thunderbird.desktop:4" ];
+    };
+
+    "org/gnome/shell/extensions/dash-to-dock" = {
+      apply-custom-theme = false;
+      background-opacity = 0.8;
+      custom-background-color = false;
+      custom-theme-shrink = true;
+      dash-max-icon-size = 48;
+      disable-overview-on-startup = false;
+      dock-position = "BOTTOM";
+      extend-height = false;
+      height-fraction = 0.9;
+      icon-size-fixed = false;
+      intellihide-mode = "FOCUS_APPLICATION_WINDOWS";
+      isolate-workspaces = false;
+      multi-monitor = true;
+      preferred-monitor = -2;
+      preferred-monitor-by-connector = "eDP-1";
+      preview-size-scale = 0.0;
+      require-pressure-to-show = false;
+      running-indicator-style = "DOTS";
+      show-mounts-network = false;
+      show-trash = true;
+    };
+
+    "org/gnome/shell/weather" = {
+      automatic-location = true;
+      locations = "@av []";
     };
 
     "org/gnome/shell/world-clocks" = {
@@ -217,6 +246,10 @@ in
       type-format = "category";
       window-position = mkTuple [ 26 23 ];
       window-size = mkTuple [ 1203 958 ];
+    };
+
+    "system/proxy" = {
+      mode = "none";
     };
 
   };
