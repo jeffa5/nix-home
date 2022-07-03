@@ -146,10 +146,10 @@ in
     "org/gnome/mutter" = {
       attach-modal-dialogs = true;
       center-new-windows = false;
-      dynamic-workspaces = false;
+      dynamic-workspaces = true;
       edge-tiling = true;
       focus-change-on-pointer-rest = true;
-      workspaces-only-on-primary = true;
+      workspaces-only-on-primary = false;
     };
 
     "org/gnome/nautilus/preferences" = {
