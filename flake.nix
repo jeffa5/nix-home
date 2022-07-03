@@ -63,7 +63,7 @@
       # to install
       homeConfigurations = mkHomes [ "andrew" "apj39" ];
 
-      devShell.${system} =
+      devShells.${system}.default =
         with nixpkgs.legacyPackages.${system};
         pkgs.mkShell {
           buildInputs = with pkgs; [ nixpkgs-fmt rnix-lsp ];
