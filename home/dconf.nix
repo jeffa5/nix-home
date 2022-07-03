@@ -180,8 +180,9 @@ in
     };
 
     "org/gnome/shell" = {
-      disabled-extensions = [ "apps-menu@gnome-shell-extensions.gcampax.github.com" "native-window-placement@gnome-shell-extensions.gcampax.github.com" "drive-menu@gnome-shell-extensions.gcampax.github.com" "window-list@gnome-shell-extensions.gcampax.github.com" ];
-      enabled-extensions = [ "auto-move-windows@gnome-shell-extensions.gcampax.github.com" "appindicatorsupport@rgcjonas.gmail.com" "workspace-indicator@gnome-shell-extensions.gcampax.github.com" "x11gestures@joseexposito.github.io" ];
+      disabled-extensions = [ "apps-menu@gnome-shell-extensions.gcampax.github.com", "native-window-placement@gnome-shell-extensions.gcampax.github.com", "drive-menu@gnome-shell-extensions.gcampax.github.com", "window-list@gnome-shell-extensions.gcampax.github.com", "auto-move-windows@gnome-shell-extensions.gcampax.github.com", "workspace-indicator@gnome-shell-extensions.gcampax.github.com" ];
+      enabled-extensions = [ "appindicatorsupport@rgcjonas.gmail.com", "x11gestures@joseexposito.github.io", "dash-to-dock@micxgx.gmail.com", "Vitals@CoreCoding.com" ];
+
       favorite-apps = [ "firefox.desktop" "Alacritty.desktop" "slack.desktop" "thunderbird.desktop" "spotify.desktop" ];
       had-bluetooth-devices-setup = true;
       welcome-dialog-last-shown-version = "40.1";
