@@ -18,6 +18,7 @@ let
         darktable
         ferdi
         filelight
+        evince
         gitAndTools.git-open
         inkscape
         libreoffice
