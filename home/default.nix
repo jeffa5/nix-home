@@ -10,22 +10,17 @@ let
         (import ./import-nef.nix pkgs)
         android-udev-rules
         anki
-        ark
         bitwarden
         borgbackup
         chromium
         czkawka
         darktable
-        ferdi
-        filelight
         evince
         gitAndTools.git-open
         inkscape
         libreoffice
         mendeley
         nextcloud-client
-        okular
-        plasma5Packages.kio-gdrive
         signal-desktop
         skypeforlinux
         slack
@@ -148,8 +143,6 @@ in
     };
 
     tmux = import ./tmux.nix;
-
-    zathura = if gui then (import ./zathura.nix) else { };
 
     zsh = import ./zsh.nix pkgs;
 
