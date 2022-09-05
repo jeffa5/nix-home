@@ -146,6 +146,8 @@ in
       enable = true;
       drivers = with pkgs; [ gutenprint hplip ];
     };
+
+    gnome.gnome-online-accounts.enable = gnome;
   };
 
   xdg = {
