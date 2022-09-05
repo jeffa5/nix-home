@@ -109,7 +109,7 @@ in
 
     home-manager.enable = true;
 
-    alacritty = if gui then (import ./alacritty.nix pkgs) else { };
+    # alacritty = if gui then (import ./alacritty.nix pkgs) else { };
 
     direnv = {
       enable = true;
