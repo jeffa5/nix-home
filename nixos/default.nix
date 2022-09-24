@@ -156,7 +156,6 @@ in
       extraPortals = with pkgs; [
         xdg-desktop-portal-wlr
       ] ++ (if plasma then [ xdg-desktop-portal-gtk ] else [ ]);
-      gtkUsePortal = true;
     };
   };
 
