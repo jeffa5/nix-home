@@ -84,7 +84,7 @@ in
 
     mouse = {
       hints = {
-        launcher = "${pkgs.xdg_utils}/bin/xdg-open";
+        launcher = "${pkgs.xdg-utils}/bin/xdg-open";
       };
     };
   };

@@ -32,7 +32,7 @@ let
         vorta
         wally-cli
         wl-clipboard
-        xdg_utils
+        xdg-utils
         xournalpp
         xwayland
         zoom-us
