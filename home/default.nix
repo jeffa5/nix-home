@@ -15,11 +15,15 @@ let
         chromium
         czkawka
         darktable
+        element-desktop
         evince
         gitAndTools.git-open
+        gnomeExtensions.dash-to-dock
+        gnomeExtensions.vitals
         inkscape
         libreoffice
         mendeley
+        musescore
         nextcloud-client
         signal-desktop
         skypeforlinux
@@ -36,9 +40,6 @@ let
         xournalpp
         xwayland
         zoom-us
-        musescore
-        gnomeExtensions.dash-to-dock
-        gnomeExtensions.vitals
       ]) else [ ];
 
   tuiPkgs = with pkgs; [
