@@ -18,6 +18,7 @@ let
         element-desktop
         evince
         gitAndTools.git-open
+        gnomeExtensions.caffeine
         gnomeExtensions.dash-to-dock
         gnomeExtensions.vitals
         inkscape
