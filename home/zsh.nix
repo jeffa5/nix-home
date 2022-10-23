@@ -1,5 +1,5 @@
 pkgs: {
-  enable = true;
+  enable = false;
   plugins = [
     {
       name = "zsh-autosuggestions";
