@@ -85,7 +85,7 @@
           mkdir $out
         '';
       deadnix = pkgs.runCommand "deadnix" {buildInputs = [pkgs.deadnix];} ''
-        deadnix ${./.}
+        deadnix --fail ${./.}
         mkdir $out
       '';
     };
