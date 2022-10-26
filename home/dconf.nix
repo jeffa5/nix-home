@@ -1,10 +1,7 @@
 # Generated via dconf2nix: https://github.com/gvolpe/dconf2nix
-{ lib, ... }:
-
-let
+{lib, ...}: let
   mkTuple = lib.hm.gvariant.mkTuple;
-in
-{
+in {
   dconf.settings = {
     "org/gnome/GWeather" = {
       temperature-unit = "centigrade";
@@ -18,8 +15,8 @@ in
 
     "org/gnome/Music" = {
       window-maximized = true;
-      window-position = [ 0 0 ];
-      window-size = [ 1920 1006 ];
+      window-position = [0 0];
+      window-size = [1920 1006];
     };
 
     "org/gnome/desktop/calendar" = {
@@ -29,8 +26,8 @@ in
     "org/gnome/desktop/input-sources" = {
       per-window = false;
       show-all-sources = false;
-      sources = [ (mkTuple [ "xkb" "uk-cdh" ]) (mkTuple [ "xkb" "gb" ]) ];
-      xkb-options = [ "terminate:ctrl_alt_bksp" "lv3:ralt_switch" ];
+      sources = [(mkTuple ["xkb" "uk-cdh"]) (mkTuple ["xkb" "gb"])];
+      xkb-options = ["terminate:ctrl_alt_bksp" "lv3:ralt_switch"];
     };
 
     "org/gnome/desktop/interface" = {
@@ -52,7 +49,7 @@ in
     };
 
     "org/gnome/desktop/notifications" = {
-      application-children = [ "thunderbird" "firefox" "zoom" "gnome-control-center" "org-gnome-tweaks" ];
+      application-children = ["thunderbird" "firefox" "zoom" "gnome-control-center" "org-gnome-tweaks"];
       show-in-lock-screen = false;
     };
 
@@ -97,7 +94,7 @@ in
     };
 
     "org/gnome/desktop/search-providers" = {
-      sort-order = [ "org.gnome.Contacts.desktop" "org.gnome.Documents.desktop" "org.gnome.Nautilus.desktop" ];
+      sort-order = ["org.gnome.Contacts.desktop" "org.gnome.Documents.desktop" "org.gnome.Nautilus.desktop"];
     };
 
     "org/gnome/desktop/session" = {
@@ -105,21 +102,21 @@ in
     };
 
     "org/gnome/desktop/wm/keybindings" = {
-      close = [ "<Super>q" ];
+      close = ["<Super>q"];
       switch-applications = "@as []";
       switch-applications-backward = "@as []";
-      switch-to-workspace-1 = [ "<Super>1" ];
-      switch-to-workspace-10 = [ "<Super>0" ];
-      switch-to-workspace-2 = [ "<Super>2" ];
-      switch-to-workspace-3 = [ "<Super>3" ];
-      switch-to-workspace-4 = [ "<Super>4" ];
-      switch-to-workspace-5 = [ "<Super>5" ];
-      switch-to-workspace-6 = [ "<Super>6" ];
-      switch-to-workspace-7 = [ "<Super>7" ];
-      switch-to-workspace-8 = [ "<Super>8" ];
-      switch-to-workspace-9 = [ "<Super>9" ];
-      switch-windows = [ "<Super>Tab" ];
-      switch-windows-backward = [ "<Shift><Super>Tab" ];
+      switch-to-workspace-1 = ["<Super>1"];
+      switch-to-workspace-10 = ["<Super>0"];
+      switch-to-workspace-2 = ["<Super>2"];
+      switch-to-workspace-3 = ["<Super>3"];
+      switch-to-workspace-4 = ["<Super>4"];
+      switch-to-workspace-5 = ["<Super>5"];
+      switch-to-workspace-6 = ["<Super>6"];
+      switch-to-workspace-7 = ["<Super>7"];
+      switch-to-workspace-8 = ["<Super>8"];
+      switch-to-workspace-9 = ["<Super>9"];
+      switch-windows = ["<Super>Tab"];
+      switch-windows-backward = ["<Shift><Super>Tab"];
     };
 
     "org/gnome/desktop/wm/preferences" = {
@@ -140,7 +137,7 @@ in
       show-dependencies = false;
       show-whose-processes = "user";
       solaris-mode = false;
-      window-state = mkTuple [ 1438 621 ];
+      window-state = mkTuple [1438 621];
     };
 
     "org/gnome/mutter" = {
@@ -170,7 +167,7 @@ in
     };
 
     "org/gnome/settings-daemon/plugins/media-keys" = {
-      screensaver = [ "<Alt><Super>l" ];
+      screensaver = ["<Alt><Super>l"];
     };
 
     "org/gnome/settings-daemon/plugins/power" = {
@@ -182,15 +179,15 @@ in
 
     "org/gnome/shell" = {
       disable-user-extensions = false;
-      disabled-extensions = [ "apps-menu@gnome-shell-extensions.gcampax.github.com" "native-window-placement@gnome-shell-extensions.gcampax.github.com" "drive-menu@gnome-shell-extensions.gcampax.github.com" "window-list@gnome-shell-extensions.gcampax.github.com" "auto-move-windows@gnome-shell-extensions.gcampax.github.com" "workspace-indicator@gnome-shell-extensions.gcampax.github.com" ];
-      enabled-extensions = [ "appindicatorsupport@rgcjonas.gmail.com" "x11gestures@joseexposito.github.io" "dash-to-dock@micxgx.gmail.com" "Vitals@CoreCoding.com" ];
-      favorite-apps = [ "firefox.desktop" "Console.desktop" "slack.desktop" "thunderbird.desktop" "todoist-electron.desktop" "spotify.desktop" ];
+      disabled-extensions = ["apps-menu@gnome-shell-extensions.gcampax.github.com" "native-window-placement@gnome-shell-extensions.gcampax.github.com" "drive-menu@gnome-shell-extensions.gcampax.github.com" "window-list@gnome-shell-extensions.gcampax.github.com" "auto-move-windows@gnome-shell-extensions.gcampax.github.com" "workspace-indicator@gnome-shell-extensions.gcampax.github.com"];
+      enabled-extensions = ["appindicatorsupport@rgcjonas.gmail.com" "x11gestures@joseexposito.github.io" "dash-to-dock@micxgx.gmail.com" "Vitals@CoreCoding.com"];
+      favorite-apps = ["firefox.desktop" "Console.desktop" "slack.desktop" "thunderbird.desktop" "todoist-electron.desktop" "spotify.desktop" "console.desktop" "signal.desktop"];
       had-bluetooth-devices-setup = true;
       welcome-dialog-last-shown-version = "40.1";
     };
 
     "org/gnome/shell/extensions/auto-move-windows" = {
-      application-list = [ "Alacritty.desktop:2" "firefox.desktop:1" "spotify.desktop:5" "slack.desktop:3" "thunderbird.desktop:4" ];
+      application-list = ["Alacritty.desktop:2" "firefox.desktop:1" "spotify.desktop:5" "slack.desktop:3" "thunderbird.desktop:4"];
     };
 
     "org/gnome/shell/extensions/dash-to-dock" = {
@@ -244,13 +241,12 @@ in
       sort-directories-first = false;
       sort-order = "descending";
       type-format = "category";
-      window-position = mkTuple [ 26 23 ];
-      window-size = mkTuple [ 1203 958 ];
+      window-position = mkTuple [26 23];
+      window-size = mkTuple [1203 958];
     };
 
     "system/proxy" = {
       mode = "none";
     };
-
   };
 }

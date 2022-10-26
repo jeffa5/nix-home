@@ -1,11 +1,16 @@
-{ gui, username }:
-{ config, pkgs, ... }:
-
-let
+{
+  gui,
+  username,
+}: {
+  config,
+  pkgs,
+  ...
+}: let
   homeDirectory = "/home/${username}";
 
   guiPkgs =
-    if gui then
+    if gui
+    then
       (with pkgs; [
         (import ./import-nef.nix pkgs)
         android-udev-rules
@@ -41,10 +46,11 @@ let
         xournalpp
         xwayland
         zoom-us
-      ]) else [ ];
+      ])
+    else [];
 
   tuiPkgs = with pkgs; [
-    (nerdfonts.override { fonts = [ "Hack" ]; })
+    (nerdfonts.override {fonts = ["Hack"];})
     fd
     file
     git-extras
@@ -60,9 +66,7 @@ let
     sccache
     tree
   ];
-in
-
-{
+in {
   imports = [
     ./xkb.nix
     (import ./latexmk.nix pkgs)
@@ -73,12 +77,12 @@ in
   nixpkgs.config.allowUnfree = true;
   nix.package = pkgs.nix;
   nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = ["nix-command" "flakes"];
   };
 
   home = {
     inherit homeDirectory username;
-    sessionPath = [ "${homeDirectory}/.cargo/bin" ];
+    sessionPath = ["${homeDirectory}/.cargo/bin"];
     sessionVariables = {
       MOZ_ENABLE_WAYLAND = 1;
       XDG_SESSION_TYPE = "wayland";
@@ -142,7 +146,10 @@ in
 
     git = import ./git.nix pkgs;
 
-    firefox = if gui then (import ./firefox.nix pkgs) else { };
+    firefox =
+      if gui
+      then (import ./firefox.nix pkgs)
+      else {};
 
     taskwarrior = {
       enable = gui;

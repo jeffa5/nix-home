@@ -1,6 +1,11 @@
-{ colemakdh, nixpkgs }:
-{ config, pkgs, ... }:
-let
+{
+  colemakdh,
+  nixpkgs,
+}: {
+  config,
+  pkgs,
+  ...
+}: let
   common-excludes = [
     ".cache"
     ".cargo" # rust
@@ -17,31 +22,39 @@ let
     ".kube" # kubernetes
   ];
 
-  borgbackupMonitor = { config, pkgs, lib, ... }: with lib; {
-    key = "borgbackupMonitor";
-    _file = "borgbackupMonitor";
-    config.systemd.services = {
-      "notify-problems@" = {
-        enable = true;
-        serviceConfig.User = "andrew";
-        environment.SERVICE = "%i";
-        script = ''
-          export $(cat /proc/$(${pkgs.procps}/bin/pgrep sway --oldest -u "$USER")/environ | grep -z '^DBUS_SESSION_BUS_ADDRESS=')
-          ${pkgs.libnotify}/bin/notify-send -u critical "$SERVICE FAILED!" "Run the below for details\njournalctl -u $SERVICE"
-        '';
-      };
-    } // flip mapAttrs' config.services.borgbackup.jobs (name: value:
-      nameValuePair "borgbackup-job-${name}" {
-        unitConfig.OnFailure = "notify-problems@%i.service";
-      }
-    );
-  };
+  borgbackupMonitor = {
+    config,
+    pkgs,
+    lib,
+    ...
+  }:
+    with lib; {
+      key = "borgbackupMonitor";
+      _file = "borgbackupMonitor";
+      config.systemd.services =
+        {
+          "notify-problems@" = {
+            enable = true;
+            serviceConfig.User = "andrew";
+            environment.SERVICE = "%i";
+            script = ''
+              export $(cat /proc/$(${pkgs.procps}/bin/pgrep sway --oldest -u "$USER")/environ | grep -z '^DBUS_SESSION_BUS_ADDRESS=')
+              ${pkgs.libnotify}/bin/notify-send -u critical "$SERVICE FAILED!" "Run the below for details\njournalctl -u $SERVICE"
+            '';
+          };
+        }
+        // flip mapAttrs' config.services.borgbackup.jobs (
+          name: value:
+            nameValuePair "borgbackup-job-${name}" {
+              unitConfig.OnFailure = "notify-problems@%i.service";
+            }
+        );
+    };
 
   gnome = true;
   plasma = false;
-in
-{
-  imports = [ borgbackupMonitor ];
+in {
+  imports = [borgbackupMonitor];
 
   time.timeZone = "Europe/London";
   nixpkgs.config.allowUnfree = true;
@@ -57,11 +70,11 @@ in
   };
 
   users = {
-    extraGroups.vboxusers.members = [ "andrew" ];
+    extraGroups.vboxusers.members = ["andrew"];
 
     users.andrew = {
       isNormalUser = true;
-      extraGroups = [ "wheel" "docker" "networkmanager" "plugdev" "adbusers" ];
+      extraGroups = ["wheel" "docker" "networkmanager" "plugdev" "adbusers"];
       shell = pkgs.fish;
     };
   };
@@ -97,7 +110,7 @@ in
     registry.nixpkgs.flake = nixpkgs;
   };
 
-  console.packages = [ colemakdh ];
+  console.packages = [colemakdh];
   console.keyMap = "iso-uk-colemak-dh";
   console.earlySetup = true;
 
@@ -144,7 +157,7 @@ in
 
     printing = {
       enable = true;
-      drivers = with pkgs; [ gutenprint hplip ];
+      drivers = with pkgs; [gutenprint hplip];
     };
 
     gnome.gnome-online-accounts.enable = gnome;
@@ -153,9 +166,15 @@ in
   xdg = {
     portal = {
       enable = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-wlr
-      ] ++ (if plasma then [ xdg-desktop-portal-gtk ] else [ ]);
+      extraPortals = with pkgs;
+        [
+          xdg-desktop-portal-wlr
+        ]
+        ++ (
+          if plasma
+          then [xdg-desktop-portal-gtk]
+          else []
+        );
     };
   };
 
@@ -167,7 +186,7 @@ in
 
     extraLayouts.uk-cdh = {
       description = "UK Colemak";
-      languages = [ "eng" ];
+      languages = ["eng"];
       symbolsFile = ./../packages/colemakdh/iso-uk-colemak-dh;
     };
 

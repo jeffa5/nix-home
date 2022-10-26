@@ -32,7 +32,7 @@ pkgs: {
         "rust"
       ];
     };
-    extraPackages = with pkgs; [ nodejs rustfmt ];
+    extraPackages = with pkgs; [nodejs rustfmt];
     extraConfig = ''
       let mapleader = " "
 

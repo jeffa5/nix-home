@@ -1,5 +1,4 @@
-pkgs:
-let
+pkgs: let
   wofi = "${pkgs.wofi}/bin/wofi";
   slurp = "${pkgs.slurp}/bin/slurp";
   grim = "${pkgs.grim}/bin/grim";
@@ -8,8 +7,7 @@ let
   wl-paste = "${pkgs.wl-clipboard}/bin/wl-paste";
   grimshot = "${pkgs.sway-contrib.grimshot}/bin/grimshot";
   convert = "${pkgs.imagemagick}/bin/convert";
-in
-''
+in ''
   #!${pkgs.stdenv.shell}
 
   # if wofi is running, kill it

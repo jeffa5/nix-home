@@ -1,5 +1,7 @@
-{ pkgs, sway-scripts }:
-let
+{
+  pkgs,
+  sway-scripts,
+}: let
   normal_bg = "#282828";
   normal_fg = "#ebdbb2";
   focus_bg = "#98971a";
@@ -52,8 +54,7 @@ let
       *) ;;
     esac
   '';
-in
-rec {
+in rec {
   enable = false;
   extraConfig = ''
     set $workspace1 1 
@@ -140,7 +141,7 @@ rec {
     };
 
     output = {
-      "*" = { bg = "#458588 solid_color"; };
+      "*" = {bg = "#458588 solid_color";};
       "eDP-1" = {
         position = "1080 2160";
       };

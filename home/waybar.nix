@@ -1,5 +1,7 @@
-{ pkgs, status-bar }:
-let
+{
+  pkgs,
+  status-bar,
+}: let
   productivity-timer = pkgs.writeScriptBin "productivity-timer" ''
     #!${pkgs.bash}/bin/bash
 
@@ -29,59 +31,57 @@ let
       *) ;;
     esac
   '';
-  productivity-timer-status =
-    pkgs.writeScriptBin "productivity-timer-status" ''
-      #!${pkgs.stdenv.shell}
+  productivity-timer-status = pkgs.writeScriptBin "productivity-timer-status" ''
+    #!${pkgs.stdenv.shell}
 
-      socket=/tmp/owork.sock
+    socket=/tmp/owork.sock
 
-      send_to_pomo() {
-          [ -e $socket ] && echo "$1" | nc -U $socket
-      }
+    send_to_pomo() {
+        [ -e $socket ] && echo "$1" | nc -U $socket
+    }
 
-      state=$(send_to_pomo "get/state")
-      time=$(send_to_pomo "get/time")
-      sessions_complete=$(send_to_pomo "get/completed")
-      paused=$(send_to_pomo "get/paused")
-      percent=$(send_to_pomo "get/percentage")
+    state=$(send_to_pomo "get/state")
+    time=$(send_to_pomo "get/time")
+    sessions_complete=$(send_to_pomo "get/completed")
+    paused=$(send_to_pomo "get/paused")
+    percent=$(send_to_pomo "get/percentage")
 
-      if [ -z "$state" ]; then
-          exit 1
-      fi
+    if [ -z "$state" ]; then
+        exit 1
+    fi
 
-      if [ $paused == "true" ]; then
-          if [ $state == "Idle" ]; then
-              pomo=" $state"
-          else
-              pomo=" $state $time $sessions_complete"
-          fi
-      else
-          pomo="$state $time $sessions_complete"
-          if [ $percent -ge 80 ]; then
-              pomo=" $pomo"
-              colour="#b8bb26"
-          elif [ $percent -ge 60 ]; then
-              pomo=" $pomo"
-              colour="#98971a"
-          elif [ $percent -ge 40 ]; then
-              pomo=" $pomo"
-              colour="#fabd2f"
-          elif [ $percent -ge 20 ]; then
-              pomo=" $pomo"
-              colour="#d79921"
-          elif [ $percent -ge 10 ]; then
-              pomo=" $pomo"
-              colour="#fb4934"
-          else
-              pomo=" $pomo"
-              colour="#cc241d"
-          fi
-      fi
+    if [ $paused == "true" ]; then
+        if [ $state == "Idle" ]; then
+            pomo=" $state"
+        else
+            pomo=" $state $time $sessions_complete"
+        fi
+    else
+        pomo="$state $time $sessions_complete"
+        if [ $percent -ge 80 ]; then
+            pomo=" $pomo"
+            colour="#b8bb26"
+        elif [ $percent -ge 60 ]; then
+            pomo=" $pomo"
+            colour="#98971a"
+        elif [ $percent -ge 40 ]; then
+            pomo=" $pomo"
+            colour="#fabd2f"
+        elif [ $percent -ge 20 ]; then
+            pomo=" $pomo"
+            colour="#d79921"
+        elif [ $percent -ge 10 ]; then
+            pomo=" $pomo"
+            colour="#fb4934"
+        else
+            pomo=" $pomo"
+            colour="#cc241d"
+        fi
+    fi
 
-      echo $pomo
-    '';
-in
-{
+    echo $pomo
+  '';
+in {
   enable = true;
   settings = [
     {
@@ -123,7 +123,7 @@ in
             phone = "";
             portable = "";
             car = "";
-            default = [ "" "" ];
+            default = ["" ""];
           };
           scroll-step = 5;
         };
@@ -158,7 +158,7 @@ in
         battery = {
           format = "{icon} {capacity}%";
           format-charging = " {capacity}%";
-          format-icons = [ "" "" "" "" "" ];
+          format-icons = ["" "" "" "" ""];
           states = {
             warning = 50;
             critical = 30;

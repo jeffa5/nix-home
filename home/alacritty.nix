@@ -1,5 +1,4 @@
-pkgs:
-let
+pkgs: let
   light = {
     # Colors (Gruvbox light)
     primary = {
@@ -7,7 +6,6 @@ let
       background = "#fbf1c7";
       # soft contrast: background = '#f2e5bc'
       foreground = "#3c3836";
-
     };
 
     normal = {
@@ -19,7 +17,6 @@ let
       magenta = "#b16286";
       cyan = "#689d6a";
       white = "#7c6f64";
-
     };
 
     bright = {
@@ -61,8 +58,7 @@ let
       white = "0xebdbb2";
     };
   };
-in
-{
+in {
   enable = true;
   settings = {
     font = {
