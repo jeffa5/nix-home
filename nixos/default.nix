@@ -6,22 +6,6 @@
   pkgs,
   ...
 }: let
-  common-excludes = [
-    ".cache"
-    ".cargo" # rust
-    "*/target" # rust
-    "*/_opam" # ocaml
-    "*/_build" # ocaml
-    ".npm/_cacache" # node
-    "*/node_modules" # node
-    "*/venv" # python
-    "*/.venv" # python
-    "go/pkg/mod/cache" # golang
-    ".config/Slack/Cache" # slack
-    ".config/Microsoft/Microsoft Teams/Cache" # ms teams
-    ".kube" # kubernetes
-  ];
-
   gnome = true;
   plasma = false;
 in {

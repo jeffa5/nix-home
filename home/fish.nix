@@ -1,4 +1,4 @@
-pkgs: {
+_pkgs: {
   enable = true;
 
   shellAbbrs = {
