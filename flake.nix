@@ -15,8 +15,6 @@
     nixpkgs,
   }: let
     colemakdh = import packages/colemakdh nixpkgs;
-    status-bar = import packages/status-bar nixpkgs;
-    sway-scripts = import packages/sway-scripts nixpkgs;
     username = "andrew";
     system = "x86_64-linux";
     stateVersion = "21.11";

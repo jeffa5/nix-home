@@ -22,39 +22,10 @@
     ".kube" # kubernetes
   ];
 
-  borgbackupMonitor = {
-    config,
-    pkgs,
-    lib,
-    ...
-  }:
-    with lib; {
-      key = "borgbackupMonitor";
-      _file = "borgbackupMonitor";
-      config.systemd.services =
-        {
-          "notify-problems@" = {
-            enable = true;
-            serviceConfig.User = "andrew";
-            environment.SERVICE = "%i";
-            script = ''
-              export $(cat /proc/$(${pkgs.procps}/bin/pgrep sway --oldest -u "$USER")/environ | grep -z '^DBUS_SESSION_BUS_ADDRESS=')
-              ${pkgs.libnotify}/bin/notify-send -u critical "$SERVICE FAILED!" "Run the below for details\njournalctl -u $SERVICE"
-            '';
-          };
-        }
-        // flip mapAttrs' config.services.borgbackup.jobs (
-          name: value:
-            nameValuePair "borgbackup-job-${name}" {
-              unitConfig.OnFailure = "notify-problems@%i.service";
-            }
-        );
-    };
-
   gnome = true;
   plasma = false;
 in {
-  imports = [borgbackupMonitor];
+  imports = [];
 
   time.timeZone = "Europe/London";
   nixpkgs.config.allowUnfree = true;
@@ -132,29 +103,6 @@ in {
 
     fstrim.enable = true;
 
-    borgbackup.jobs.home-andrew = rec {
-      paths = "/home/andrew";
-      exclude = map (x: paths + "/" + x) common-excludes;
-      encryption = {
-        mode = "none";
-      };
-      repo = "/backups/backups/${config.networking.hostName}/borg";
-      doInit = false;
-      compression = "auto,zstd,3";
-      startAt = "hourly";
-      extraCreateArgs = "--verbose --stats --list --filter=AME --checkpoint-interval 600";
-      extraPruneArgs = "--verbose --stats --list --save-space";
-      prune = {
-        keep = {
-          hourly = 24;
-          daily = 7;
-          weekly = 4;
-          monthly = -1;
-        };
-      };
-      removableDevice = true;
-    };
-
     printing = {
       enable = true;
       drivers = with pkgs; [gutenprint hplip];
@@ -200,8 +148,6 @@ in {
   };
 
   programs = {
-    sway.enable = false;
-
     steam.enable = true;
 
     adb.enable = true;
