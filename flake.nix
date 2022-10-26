@@ -77,11 +77,31 @@
     # to install
     homeConfigurations = mkHomes ["andrew" "apj39"];
 
+    packages.${system} = {
+      nixfmt =
+        pkgs.runCommand "nixfmt"
+        {
+          buildInputs = [pkgs.alejandra];
+        } ''
+          alejandra --check ${./.}
+          mkdir $out
+        '';
+      deadnix = pkgs.runCommand "deadnix" {buildInputs = [pkgs.deadnix];} ''
+        deadnix ${./.}
+        mkdir $out
+      '';
+    };
+
+    checks.${system} = {
+      nixfmt = self.packages.${system}.nixfmt;
+      deadnix = self.packages.${system}.deadnix;
+    };
+
     formatter.${system} = pkgs.alejandra;
 
     devShells.${system}.default = with pkgs;
       pkgs.mkShell {
-        buildInputs = with pkgs; [nixpkgs-fmt rnix-lsp dconf2nix];
+        buildInputs = with pkgs; [rnix-lsp dconf2nix];
       };
   };
 }
