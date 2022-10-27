@@ -182,13 +182,6 @@ pkgs: {
       nnoremap <leader>f <cmd>Telescope find_files<cr>
       nnoremap <leader>l <cmd>Telescope live_grep<cr>
       nnoremap <leader>/ <cmd>Telescope current_buffer_fuzzy_find<cr>
-
-      " goyo
-      nnoremap <silent><Leader>y :Goyo<CR>
-      let g:goyo_linenr = 1
-      let g:goyo_width = 100
-      autocmd! User GoyoEnter Limelight
-      autocmd! User GoyoLeave Limelight!
     '';
     plugins = with pkgs.vimPlugins; [
       {
@@ -313,13 +306,6 @@ pkgs: {
         plugin = vimspector;
         config = ''
           let g:vimspector_enable_mappings='HUMAN'
-        '';
-      }
-      goyo-vim
-      {
-        plugin = limelight-vim;
-        config = ''
-          let g:limelight_conceal_ctermfg = 'darkgray'
         '';
       }
       {
