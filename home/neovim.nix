@@ -177,12 +177,11 @@ pkgs: {
       nnoremap <Leader>gb :Git blame<CR>
       nnoremap <Leader>gr :GBrowse<CR>
 
-      " fzf
-      nnoremap <Leader>b :Buffers<CR>
-      nnoremap <Leader>f :Files<CR>
-      nnoremap <Leader>l :Lines<CR>
-      nnoremap <Leader>/ :BLines<CR>
-      nnoremap <Leader>t :Windows<CR>
+      " telescope
+      nnoremap <leader>b <cmd>Telescope buffers<cr>
+      nnoremap <leader>f <cmd>Telescope find_files<cr>
+      nnoremap <leader>l <cmd>Telescope live_grep<cr>
+      nnoremap <leader>/ <cmd>Telescope current_buffer_fuzzy_find<cr>
 
       " goyo
       nnoremap <silent><Leader>y :Goyo<CR>
@@ -260,7 +259,8 @@ pkgs: {
           endfunction
         '';
       }
-      fzf-vim
+      telescope-nvim
+      nvim-treesitter
       {
         plugin = indentLine;
         config = ''
