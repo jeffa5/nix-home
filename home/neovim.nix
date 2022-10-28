@@ -92,8 +92,6 @@ pkgs: {
           endfunction
         '';
       }
-      telescope-nvim
-      nvim-treesitter
       {
         plugin = indentLine;
         config = ''
@@ -155,6 +153,9 @@ pkgs: {
           let g:vim_markdown_conceal_code_blocks = 0
         '';
       }
+
+      telescope-nvim
+      nvim-treesitter
     ];
   };
 }
