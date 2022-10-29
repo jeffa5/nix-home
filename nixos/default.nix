@@ -92,6 +92,7 @@ in {
     };
 
     gnome.gnome-online-accounts.enable = gnome;
+    gnome.gnome-keyring.enable = gnome;
   };
 
   xdg = {
