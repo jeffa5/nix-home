@@ -74,13 +74,14 @@ in {
         "Vitals@CoreCoding.com"
       ];
       favorite-apps = [
+        "org.gnome.Nautilus.desktop"
         "firefox.desktop"
         "org.gnome.Console.desktop"
-        "slack.desktop"
         "thunderbird.desktop"
         "todoist-electron.desktop"
-        "spotify.desktop"
+        "slack.desktop"
         "signal-desktop.desktop"
+        "spotify.desktop"
       ];
       had-bluetooth-devices-setup = true;
       welcome-dialog-last-shown-version = "40.1";
