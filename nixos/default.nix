@@ -16,7 +16,6 @@ in {
 
   networking.networkmanager.enable = true;
   networking.networkmanager.enableStrongSwan = true;
-  networking.useDHCP = false;
 
   hardware = {
     bluetooth.enable = true;
