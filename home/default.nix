@@ -71,7 +71,7 @@ in {
     ./xkb.nix
     (import ./latexmk.nix pkgs)
     (import ./neovim.nix pkgs)
-    (import ./helix.nix pkgs)
+    (import ./helix.nix)
     ./dconf.nix
   ];
 
