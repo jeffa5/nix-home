@@ -32,6 +32,10 @@ in {
       toolbar-style = "text";
     };
 
+    "org/gnome/mutter" = {
+      edge-tiling = true;
+    };
+
     "org/gnome/desktop/peripherals/mouse" = {
       natural-scroll = false;
     };
