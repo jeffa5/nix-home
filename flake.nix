@@ -40,21 +40,23 @@
       };
     mkHomesForUser = username: {
       ${username} = home-manager.lib.homeManagerConfiguration {
-        configuration = import ./home {
-          inherit username;
-          gui = true;
-        };
-        inherit system username stateVersion;
-        homeDirectory = "/home/${username}";
+        inherit pkgs;
+        modules = [
+          (import ./home/default.nix {
+            inherit username;
+            gui = true;
+          })
+        ];
       };
 
       "${username}-tui" = home-manager.lib.homeManagerConfiguration {
-        configuration = import ./home {
-          inherit username;
-          gui = false;
-        };
-        inherit system username stateVersion;
-        homeDirectory = "/home/${username}";
+        inherit pkgs;
+        modules = [
+          (import ./home/default.nix {
+            inherit username;
+            gui = false;
+          })
+        ];
       };
     };
     mkHomes = users: (

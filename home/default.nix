@@ -67,13 +67,21 @@
     tree
   ];
 in {
-  imports = [
-    ./xkb.nix
-    (import ./latexmk.nix pkgs)
-    (import ./neovim.nix pkgs)
-    (import ./helix.nix)
-    ./dconf.nix
-  ];
+  imports =
+    [
+      ./xkb.nix
+      (import ./latexmk.nix pkgs)
+      (import ./neovim.nix pkgs)
+      (import ./helix.nix)
+      ./dconf.nix
+    ]
+    ++ (
+      if gui
+      then [
+        ./dconf.nix
+      ]
+      else []
+    );
 
   nixpkgs.config.allowUnfree = true;
   nix.settings = {
