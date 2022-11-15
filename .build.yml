@@ -1,0 +1,6 @@
+image: nixos
+sources:
+- https://git.sr.ht/~jeffas/nix-home
+tasks:
+- check: |
+    nix flake check
