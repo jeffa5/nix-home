@@ -1,4 +1,4 @@
-image: nixos
+image: nixos/latest
 sources:
 - https://git.sr.ht/~jeffas/nix-home
 tasks:
