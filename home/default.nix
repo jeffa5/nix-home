@@ -4,6 +4,7 @@
 }: {
   config,
   pkgs,
+  lib,
   ...
 }: let
   homeDirectory = "/home/${username}";
@@ -84,7 +85,7 @@ in {
     );
 
   nixpkgs.config.allowUnfree = true;
-  nix.package = pkgs.nix;
+  nix.package = lib.mkForce pkgs.nix;
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
   };
