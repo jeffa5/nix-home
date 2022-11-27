@@ -67,6 +67,7 @@
     ripgrep
     sccache
     tree
+    cachix
   ];
 in {
   imports =
