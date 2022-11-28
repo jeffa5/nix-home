@@ -1,8 +1,0 @@
-image: nixos/latest
-environment:
-  NIX_CONFIG: "experimental-features = nix-command flakes"
-sources:
-- https://git.sr.ht/~jeffas/nix-home
-tasks:
-- check: |
-    nix flake check
