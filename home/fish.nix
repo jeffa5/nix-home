@@ -28,7 +28,7 @@ _pkgs: {
   };
 
   shellAliases = {
-    weekly = "nvim ~/projects/weeklies/$(date +%Y)/$(date +%V)/apj39.md";
+    weekly = "mkdir -p ~/projects/weeklies/$(date +%Y)/$(date +%V) && nvim ~/projects/weeklies/$(date +%Y)/$(date +%V)/apj39.md";
   };
 
   interactiveShellInit = ''
