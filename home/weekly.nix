@@ -1,9 +1,19 @@
 {writeShellScriptBin}:
 writeShellScriptBin "weekly" ''
-  weekdir=~/projects/weeklies/$(date +%Y)/$(date +%V)
+  project=~/projects/weeklies
+  year=$(date +%Y)
+  week=$(date +%V)
+
+  weekdir=$project/$year/$week
+
+  branch=apj39-$year-$week
 
   mkdir -p $weekdir
   cd ~/projects/weeklies
+
+  git checkout $branch || git checkout master && git checkout -b $branch
+
   nvim $weekdir/apj39.md
+
   cd -
 ''
