@@ -51,24 +51,26 @@
       ])
     else [];
 
-  tuiPkgs = with pkgs; [
-    (nerdfonts.override {fonts = ["Hack"];})
-    fd
-    file
-    git-extras
-    htop
-    jq
-    just
-    krb5 # for cl access
-    kubectx
-    lf
-    lm_sensors
-    prettyping
-    ripgrep
-    sccache
-    tree
-    cachix
-  ];
+  tuiPkgs = with pkgs;
+    [
+      (nerdfonts.override {fonts = ["Hack"];})
+      fd
+      file
+      git-extras
+      htop
+      jq
+      just
+      krb5 # for cl access
+      kubectx
+      lf
+      lm_sensors
+      prettyping
+      ripgrep
+      sccache
+      tree
+      cachix
+    ]
+    ++ [(pkgs.callPackage ./weekly.nix {})];
 in {
   imports =
     [

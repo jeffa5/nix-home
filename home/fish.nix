@@ -27,10 +27,6 @@ _pkgs: {
     gstp = "git stash pop";
   };
 
-  shellAliases = {
-    weekly = "mkdir -p ~/projects/weeklies/$(date +%Y)/$(date +%V) && nvim ~/projects/weeklies/$(date +%Y)/$(date +%V)/apj39.md";
-  };
-
   interactiveShellInit = ''
     set -g fish_greeting # disable welcome message
     fish_vi_key_bindings
