@@ -181,11 +181,11 @@ in {
 
     vscode = {
       enable = gui;
-      package = pkgs.vscodium;
       extensions = with pkgs.vscode-extensions; [
         vscodevim.vim
         matklad.rust-analyzer
         vadimcn.vscode-lldb
+        ms-vscode-remote.remote-ssh
       ];
     };
   };
