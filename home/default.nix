@@ -186,7 +186,26 @@ in {
         matklad.rust-analyzer
         vadimcn.vscode-lldb
         ms-vscode-remote.remote-ssh
+        jdinhlife.gruvbox
       ];
+      keybindings = [
+        {
+          key = "ctrl+shift+k";
+          command = "workbench.action.showCommands";
+        }
+        {
+          key = "ctrl+shift+p";
+          command = "-workbench.action.showCommands";
+        }
+        {
+          key = "ctrl+shift+k";
+          command = "-editor.action.deleteLines";
+          when = "textInputFocus && !editorReadonly";
+        }
+      ];
+      userSettings = {
+        "workbench.colorTheme" = "Gruvbox Light Hard";
+      };
     };
   };
 
