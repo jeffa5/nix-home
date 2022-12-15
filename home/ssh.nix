@@ -22,5 +22,9 @@
     "caelum*" = {
       user = "apj39";
     };
+    "azure-dev" = {
+      user = "apj39";
+      hostname = "52.188.86.42";
+    };
   };
 }
