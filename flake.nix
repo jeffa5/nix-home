@@ -17,7 +17,6 @@
     colemakdh = import packages/colemakdh nixpkgs;
     username = "andrew";
     system = "x86_64-linux";
-    stateVersion = "21.11";
     pkgs = nixpkgs.legacyPackages.${system};
     lib = nixpkgs.lib;
     mkMachine = modules:
