@@ -206,6 +206,7 @@ in {
       ];
       userSettings = {
         "workbench.colorTheme" = "Gruvbox Light Hard";
+        "rust-analyzer.checkOnSave.command" = "clippy";
       };
     };
   };
