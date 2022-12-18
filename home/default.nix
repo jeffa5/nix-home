@@ -187,6 +187,7 @@ in {
         vadimcn.vscode-lldb
         ms-vscode-remote.remote-ssh
         jdinhlife.gruvbox
+        ms-python.python
       ];
       keybindings = [
         {
