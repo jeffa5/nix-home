@@ -7,12 +7,14 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hardware.url = "github:nixos/nixos-hardware";
   };
 
   outputs = {
     self,
     home-manager,
     nixpkgs,
+    hardware,
   }: let
     colemakdh = import packages/colemakdh nixpkgs;
     username = "andrew";
@@ -68,7 +70,7 @@
     nixosConfigurations = {
       carbide = mkMachine [./nixos/carbide];
 
-      xps-15 = mkMachine [./nixos/xps-15];
+      xps-15 = mkMachine [./nixos/xps-15 hardware.nixosModules.dell-xps-15-9560];
     };
 
     # standalone home environment
