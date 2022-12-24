@@ -36,8 +36,11 @@
     # enable mouse control
     set -g mouse on
 
-    # start windows and panes at 1
-    setw -g pane-base-index 1
+    # disable setting clipboard through xterm escape sequences
+    set-option -s set-clipboard off
+
+    # copy to clipboard
+    bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "wl-copy"
 
     set -g visual-activity off
     set -g visual-bell off
