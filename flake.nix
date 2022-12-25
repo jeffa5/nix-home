@@ -8,6 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hardware.url = "github:nixos/nixos-hardware";
+    papers.url = "github:jeffa5/papers";
   };
 
   outputs = {
@@ -15,18 +16,25 @@
     home-manager,
     nixpkgs,
     hardware,
+    papers,
   }: let
-    colemakdh = import packages/colemakdh nixpkgs;
     username = "andrew";
     system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
-    lib = nixpkgs.lib;
+    pkgs = import nixpkgs {
+      inherit system;
+      overlays = [papers.overlays.default];
+    };
+    colemakdh = import packages/colemakdh pkgs;
+    lib = pkgs.lib;
     mkMachine = modules:
       nixpkgs.lib.nixosSystem {
         inherit system;
         modules =
           [
-            (import ./nixos {inherit colemakdh nixpkgs;})
+            (import ./nixos {
+              inherit colemakdh nixpkgs;
+              overlays = [papers.overlays.default];
+            })
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;

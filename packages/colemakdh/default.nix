@@ -1,5 +1,5 @@
 pkgs:
-with pkgs.legacyPackages.x86_64-linux;
+with pkgs;
   derivation {
     name = "colemakdh";
     builder = "${bash}/bin/bash";

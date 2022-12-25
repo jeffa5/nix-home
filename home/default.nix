@@ -69,6 +69,7 @@
       sccache
       tree
       cachix
+      papers
     ]
     ++ [(pkgs.callPackage ./weekly.nix {})];
 in {
