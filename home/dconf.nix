@@ -76,6 +76,7 @@ in {
         "x11gestures@joseexposito.github.io"
         "dash-to-dock@micxgx.gmail.com"
         "Vitals@CoreCoding.com"
+        "caffeine@patapon.info"
       ];
       favorite-apps = [
         "org.gnome.Nautilus.desktop"
