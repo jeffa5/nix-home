@@ -27,6 +27,7 @@
         gnomeExtensions.caffeine
         gnomeExtensions.dash-to-dock
         gnomeExtensions.vitals
+        gnome-solanum
         inkscape
         libreoffice
         # https://github.com/NixOS/nixpkgs/issues/53079
