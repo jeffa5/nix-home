@@ -82,6 +82,7 @@ in {
         "org.gnome.Nautilus.desktop"
         "firefox.desktop"
         "org.gnome.Console.desktop"
+        "code.desktop"
         "thunderbird.desktop"
         "todoist-electron.desktop"
         "slack.desktop"
