@@ -79,6 +79,12 @@ pkgs: {
           vim.keymap.set('n', '<leader>b', builtin.buffers, {})
           vim.keymap.set('n', '<leader>/', builtin.current_buffer_fuzzy_find, {})
 
+          -- diagnostic mappings
+          -- see `:help vim.diagnostic.*` for docs
+          vim.keymap.set('n', '<leader>a', builtin.diagnostics, {})
+          vim.keymap.set('n', '<leader>d', vim.diagnostic.goto_next, {})
+          vim.keymap.set('n', '<leader>s', vim.diagnostic.goto_prev, {})
+
           local actions = require("telescope.actions")
           require("telescope").setup{
             defaults = {
@@ -114,11 +120,29 @@ pkgs: {
 
           local lspconfig = require('lspconfig')
 
+          -- Use an on_attach function to only map the following keys
+          -- after the language server attaches to the current buffer
+          local on_attach = function(client, bufnr)
+            -- Mappings.
+            -- See `:help vim.lsp.*` for documentation on any of the below functions
+            local bufopts = { noremap=true, silent=true, buffer=bufnr }
+            vim.keymap.set('n', '<localleader>D', vim.lsp.buf.declaration, bufopts)
+            vim.keymap.set('n', '<localleader>d', vim.lsp.buf.definition, bufopts)
+            vim.keymap.set('n', '<localleader>h', vim.lsp.buf.hover, bufopts)
+            vim.keymap.set('n', '<localleader>i', vim.lsp.buf.implementation, bufopts)
+            vim.keymap.set('n', '<localleader>s', vim.lsp.buf.signature_help, bufopts)
+            vim.keymap.set('n', '<localleader>t', vim.lsp.buf.type_definition, bufopts)
+            vim.keymap.set('n', '<localleader>r', vim.lsp.buf.rename, bufopts)
+            vim.keymap.set('n', '<localleader>a', vim.lsp.buf.code_action, bufopts)
+            vim.keymap.set('n', '<localleader>f', vim.lsp.buf.references, bufopts)
+            vim.keymap.set('n', '<localleader>e', function() vim.lsp.buf.format { async = true } end, bufopts)
+          end
+
           -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
           local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver' }
           for _, lsp in ipairs(servers) do
             lspconfig[lsp].setup {
-              -- on_attach = my_custom_on_attach,
+              on_attach = on_attach,
               capabilities = capabilities,
             }
           end
@@ -175,14 +199,19 @@ pkgs: {
         type = "lua";
         config = ''
           require('lualine').setup {
+            options = {
+              section_separators = { left = ' ', right = ' ' },
+              component_separators = { left = '|', right = '|' },
+            },
             sections = {
               lualine_a = {'mode'},
               lualine_b = {'branch', 'diff', 'diagnostics'},
-              lualine_c = {'filename', 'lsp_progress'},
+              lualine_c = {{'filename', path = 1}, 'lsp_progress'},
               lualine_x = {'encoding', 'fileformat', 'filetype'},
               lualine_y = {'progress'},
               lualine_z = {'location'}
             },
+            extensions = {'quickfix', 'fugitive'},
           }
           '';
       }
