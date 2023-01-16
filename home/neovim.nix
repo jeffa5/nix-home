@@ -3,25 +3,7 @@ pkgs: {
     enable = true;
     vimAlias = true;
     vimdiffAlias = true;
-    coc.enable = true;
-    coc.settings = {
-      "diagnostic.errorSign" = "";
-      "diagnostic.warningSign" = "";
-      "diagnostic.infoSign" = "";
-      "diagnostic.hintSign" = "";
-      "rust-analyzer.cargo.runBuildScripts" = true;
-      "rust-analyzer.checkOnSave.command" = "clippy";
-      "rust-analyzer.cargo.allFeatures" = true;
-      "rust-analyzer.procMacro.enable" = true;
-      "coc.preferences.formatOnSaveFiletypes" = [
-        "css"
-        "json"
-        "jsonc"
-        "markdown"
-        "rust"
-      ];
-    };
-    extraPackages = with pkgs; [nodejs rustfmt alejandra];
+    extraPackages = with pkgs; [];
     extraConfig = builtins.readFile ./init.vim;
     plugins = with pkgs.vimPlugins; [
       {
@@ -32,16 +14,6 @@ pkgs: {
           colorscheme gruvbox
         '';
       }
-      coc-rust-analyzer
-      coc-yank
-      coc-json
-      coc-yaml
-      coc-go
-      coc-vimtex
-      coc-texlab
-      coc-prettier
-      coc-pyright
-      coc-tsserver
       vim-fugitive
       vim-rhubarb
       {
@@ -61,17 +33,13 @@ pkgs: {
       {
         plugin = lightline-vim;
         config = ''
-          function! CocCurrentFunction()
-              return get(b:, 'coc_current_function', "")
-          endfunction
-
           let g:lightline = {
                 \ 'colorscheme': 'gruvbox',
                 \ 'active': {
                 \   'left': [ [ 'mode', 'paste' ],
                 \             [ 'gitbranch' ],
                 \             [ 'readonly', 'filename', 'modified' ] ],
-                \   'right': [ [ 'cocstatus', 'currentfunction' ],
+                \   'right': [ [ ],
                 \              [ 'percent', 'lineinfo' ],
                 \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
                 \ },
@@ -82,8 +50,6 @@ pkgs: {
                 \ 'component_function': {
                 \   'filename': 'LightlineFilename',
                 \   'gitbranch': 'FugitiveHead',
-                \   'cocstatus': 'coc#status',
-                \   'currentfunction': 'CocCurrentFunction'
                 \ },
                 \ }
 
@@ -113,30 +79,6 @@ pkgs: {
               \ ],
               \}
           let g:tex_flavor = 'latex'
-        '';
-      }
-      {
-        plugin = neoformat;
-        config = ''
-          nnoremap <Leader>e :Neoformat<CR>
-          augroup fmt
-              autocmd!
-              autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
-              autocmd BufWritePre * :Neoformat
-          augroup END
-          let g:neoformat_enabled_ruby = []
-          let g:neoformat_enabled_yaml = ['prettier']
-          let g:neoformat_enabled_python = ['black', 'isort']
-          let g:neoformat_go_gofmt = {
-              \ 'exe': 'gofmt',
-              \ 'args': ['-s'],
-              \ }
-          let g:neoformat_enabled_go = ['gofmt']
-          let g:neoformat_sh_shfmt = {
-              \ 'exe': 'shfmt',
-              \ 'args': ['-i 2', '-ci', '-bn', '-s'],
-              \ 'stdin': 1,
-              \ }
         '';
       }
       {
