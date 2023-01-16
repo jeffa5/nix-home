@@ -95,9 +95,3 @@ nnoremap <Leader>gp :Git push<CR>
 nnoremap <Leader>gf :Git fetch<CR>
 nnoremap <Leader>gb :Git blame<CR>
 nnoremap <Leader>gr :GBrowse<CR>
-
-" telescope
-nnoremap <leader>b <cmd>Telescope buffers<cr>
-nnoremap <leader>f <cmd>Telescope find_files<cr>
-nnoremap <leader>l <cmd>Telescope live_grep<cr>
-nnoremap <leader>/ <cmd>Telescope current_buffer_fuzzy_find<cr>
