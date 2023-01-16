@@ -97,10 +97,7 @@ pkgs: {
           nvim-lspconfig;
         type = "lua";
         config = ''
-
-          -- lspconfig
-          require('lspconfig')['rust_analyzer'].setup{
-          }
+          -- setup done in nvim-cmp loop below
         '';
       }
       cmp-nvim-lsp
