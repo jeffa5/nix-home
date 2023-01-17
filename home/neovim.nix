@@ -27,7 +27,6 @@ pkgs: {
       vim-commentary
       vim-unimpaired
       vim-surround
-      vim-dispatch
       vim-repeat
       lexima-vim
       {
