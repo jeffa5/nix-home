@@ -7,11 +7,12 @@ pkgs: {
     extraConfig = builtins.readFile ./init.vim;
     plugins = with pkgs.vimPlugins; [
       {
-        plugin = gruvbox-community;
+        plugin = gruvbox-nvim;
+        type = "lua";
         config = ''
-          set background=light
-          let g:gruvbox_contrast_light = 'hard'
-          colorscheme gruvbox
+          require("gruvbox").setup{}
+          vim.o.background = "light"
+          vim.cmd([[colorscheme gruvbox]])
         '';
       }
       vim-fugitive
