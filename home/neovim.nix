@@ -24,7 +24,14 @@ pkgs: {
         '';
       }
       vim-eunuch
-      vim-commentary
+      {
+        plugin = comment-nvim;
+        type = "lua";
+        config = ''
+          -- commentary
+          require("Comment").setup{}
+          '';
+      }
       vim-unimpaired
       vim-surround
       vim-repeat
