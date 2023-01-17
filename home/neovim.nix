@@ -95,7 +95,7 @@ pkgs: {
               },
             }
           }
-          '';
+        '';
       }
       nvim-treesitter
       {
@@ -135,13 +135,34 @@ pkgs: {
             },
             extensions = {'quickfix', 'fugitive'},
           }
-          '';
+        '';
       }
       {
         plugin = lualine-lsp-progress;
         type = "lua";
         config = ''
-          '';
+        '';
+      }
+      {
+        plugin = rust-tools-nvim;
+        type = "lua";
+        config = ''
+          local rt = require("rust-tools")
+
+          rt.setup({
+            server = {
+              on_attach = function(client, bufnr)
+                -- call the general bindings
+                on_attach(client, bufnr)
+                -- Hover actions
+                vim.keymap.set("n", "<localleader>h", rt.hover_actions.hover_actions, { buffer = bufnr })
+                -- Code action groups
+                vim.keymap.set("n", "<localleader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+              end,
+            },
+            hover_actions = nil,
+          })
+        '';
       }
     ];
   };
