@@ -101,6 +101,7 @@ lua << EOF
   vim.keymap.set('n', '<leader>gs', "<cmd>:Git<cr>", { desc = "Git status" })
   vim.keymap.set('n', '<leader>go', "<cmd>:Git! pull<cr>", { desc = "Git pull" })
   vim.keymap.set('n', '<leader>gp', "<cmd>:Git! push<cr>", { desc = "Git push" })
+  vim.keymap.set('n', '<leader>gu', "<cmd>:Git! push --set-upstream origin HEAD<cr>", { desc = "Git push new branch" })
   vim.keymap.set('n', '<leader>gf', "<cmd>:Git! fetch<cr>", { desc = "Git fetch" })
   vim.keymap.set('n', '<leader>gb', "<cmd>:Git blame<cr>", { desc = "Git blame" })
   vim.keymap.set('n', '<leader>gl', "<cmd>:Git log --oneline --graph<cr>", { desc = "Git log" })
