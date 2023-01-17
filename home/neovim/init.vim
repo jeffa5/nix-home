@@ -84,9 +84,9 @@ lua << EOF
 
   -- fugitive
   vim.keymap.set('n', '<leader>gs', "<cmd>:Git<cr>", { desc = "Git status" })
-  vim.keymap.set('n', '<leader>go', "<cmd>:Git pull<cr>", { desc = "Git pull" })
-  vim.keymap.set('n', '<leader>gp', "<cmd>:Git push<cr>", { desc = "Git push" })
-  vim.keymap.set('n', '<leader>gf', "<cmd>:Git fetch<cr>", { desc = "Git fetch" })
+  vim.keymap.set('n', '<leader>go', "<cmd>:Git! pull<cr>", { desc = "Git pull" })
+  vim.keymap.set('n', '<leader>gp', "<cmd>:Git! push<cr>", { desc = "Git push" })
+  vim.keymap.set('n', '<leader>gf', "<cmd>:Git! fetch<cr>", { desc = "Git fetch" })
   vim.keymap.set('n', '<leader>gb', "<cmd>:Git blame<cr>", { desc = "Git blame" })
   vim.keymap.set('n', '<leader>gl', "<cmd>:Git log --oneline --graph<cr>", { desc = "Git log" })
   vim.keymap.set('n', '<leader>gr', "<cmd>:GBrowse<cr>", { desc = "Git open" })
