@@ -3,7 +3,7 @@ pkgs: {
     enable = true;
     vimAlias = true;
     vimdiffAlias = true;
-    extraPackages = with pkgs; [rust-analyzer pyright sumneko-lua-language-server ltex-ls];
+    extraPackages = with pkgs; [rust-analyzer pyright sumneko-lua-language-server ltex-ls isort pylint black];
     extraConfig = builtins.readFile ./neovim/init.vim;
     plugins = with pkgs.vimPlugins; [
       {
@@ -67,6 +67,14 @@ pkgs: {
       }
       nvim-treesitter
       {
+        plugin = nvim-treesitter-context;
+        type = "lua";
+        config = ''
+          -- context
+          require("treesitter-context").setup{}
+          '';
+      }
+      {
         plugin = nvim-lspconfig;
         type = "lua";
         config = ''
@@ -76,6 +84,7 @@ pkgs: {
       cmp-nvim-lsp
       cmp-nvim-lsp-signature-help
       cmp-path
+      cmp-buffer
       cmp_luasnip
       luasnip
       {
@@ -84,14 +93,16 @@ pkgs: {
         config = builtins.readFile ./neovim/nvim-cmp.lua;
       }
       {
-        plugin = null_ls;
+        plugin = null-ls-nvim;
         type = "lua";
         config = ''
           -- null lsp
-          local null_ls = require("null_ls")
+          local null_ls = require("null-ls")
           null_ls.setup {
             sources = {
+              null_ls.builtins.diagnostics.pylint,
               null_ls.builtins.formatting.isort,
+              null_ls.builtins.formatting.black,
             }
           }
         '';
