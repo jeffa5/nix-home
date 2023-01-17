@@ -160,7 +160,6 @@ pkgs: {
                 vim.keymap.set("n", "<localleader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
               end,
             },
-            hover_actions = nil,
           })
         '';
       }
