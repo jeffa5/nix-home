@@ -74,16 +74,16 @@ pkgs: {
 
           -- telescope
           local builtin = require('telescope.builtin')
-          vim.keymap.set('n', '<leader>f', builtin.find_files, {})
-          vim.keymap.set('n', '<leader>l', builtin.live_grep, {})
-          vim.keymap.set('n', '<leader>b', builtin.buffers, {})
-          vim.keymap.set('n', '<leader>/', builtin.current_buffer_fuzzy_find, {})
+          vim.keymap.set('n', '<leader>f', builtin.find_files, { desc = "Find files" })
+          vim.keymap.set('n', '<leader>l', builtin.live_grep, { desc = "Find lines" })
+          vim.keymap.set('n', '<leader>b', builtin.buffers, { desc = "Buffers" })
+          vim.keymap.set('n', '<leader>/', builtin.current_buffer_fuzzy_find, { desc = "Buffer lines" })
 
           -- diagnostic mappings
           -- see `:help vim.diagnostic.*` for docs
-          vim.keymap.set('n', '<leader>a', builtin.diagnostics, {})
-          vim.keymap.set('n', '<leader>d', vim.diagnostic.goto_next, {})
-          vim.keymap.set('n', '<leader>s', vim.diagnostic.goto_prev, {})
+          vim.keymap.set('n', '<leader>a', builtin.diagnostics, { desc = "Diagnostics" })
+          vim.keymap.set('n', '<leader>d', vim.diagnostic.goto_next, { desc = "Next diagnostic" })
+          vim.keymap.set('n', '<leader>s', vim.diagnostic.goto_prev, { desc = "Prev diagnostic" })
 
           local actions = require("telescope.actions")
           require("telescope").setup{
@@ -155,13 +155,23 @@ pkgs: {
                 -- call the general bindings
                 on_attach(client, bufnr)
                 -- Hover actions
-                vim.keymap.set("n", "<localleader>h", rt.hover_actions.hover_actions, { buffer = bufnr })
+                vim.keymap.set("n", "<localleader>h", rt.hover_actions.hover_actions, { buffer = bufnr, desc = "Hover" })
                 -- Code action groups
-                vim.keymap.set("n", "<localleader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+                vim.keymap.set("n", "<localleader>a", rt.code_action_group.code_action_group, { buffer = bufnr, desc = "Code action" })
               end,
             },
           })
         '';
+      }
+
+      {
+        plugin = which-key-nvim;
+        type = "lua";
+        config = ''
+          vim.o.timeout = true
+          vim.o.timeoutlen = 300
+          require("which-key").setup {}
+          '';
       }
     ];
   };
