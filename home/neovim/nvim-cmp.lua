@@ -52,8 +52,12 @@ lspconfig['sumneko_lua'].setup {
             },
         },
     },
-
 }
+
+lspconfig['texlab'].setup{}
+lspconfig['gopls'].setup{}
+lspconfig['ltex'].setup{}
+
 
 -- luasnip setup
 local luasnip = require 'luasnip'

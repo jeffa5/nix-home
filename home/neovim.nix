@@ -3,7 +3,7 @@ pkgs: {
     enable = true;
     vimAlias = true;
     vimdiffAlias = true;
-    extraPackages = with pkgs; [rust-analyzer sumneko-lua-language-server];
+    extraPackages = with pkgs; [rust-analyzer sumneko-lua-language-server ltex-ls];
     extraConfig = builtins.readFile ./init.vim;
     plugins = with pkgs.vimPlugins; [
       {
@@ -28,7 +28,6 @@ pkgs: {
       vim-surround
       vim-dispatch
       vim-repeat
-      vim-gitgutter
       lexima-vim
       {
         plugin = vimtex;
@@ -173,6 +172,14 @@ pkgs: {
         config = ''
           -- indent blankline
           require("indent_blankline").setup {}
+        '';
+      }
+      {
+        plugin = gitsigns-nvim;
+        type = "lua";
+        config = ''
+          -- gitsigns
+          require('gitsigns').setup()
         '';
       }
     ];
