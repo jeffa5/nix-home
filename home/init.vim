@@ -55,6 +55,7 @@ set diffopt+=vertical
 
 set wildmenu
 set wildignorecase
+set wildmode=longest:full,full
 
 set number relativenumber
 
