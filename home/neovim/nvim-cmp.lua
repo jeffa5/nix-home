@@ -3,17 +3,19 @@
 local on_attach = function(client, bufnr)
     -- Mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local bufopts = { noremap = true, silent = true, buffer = bufnr }
-    vim.keymap.set('n', '<localleader>D', vim.lsp.buf.declaration, bufopts)
-    vim.keymap.set('n', '<localleader>d', vim.lsp.buf.definition, bufopts)
-    vim.keymap.set('n', '<localleader>h', vim.lsp.buf.hover, bufopts)
-    vim.keymap.set('n', '<localleader>i', vim.lsp.buf.implementation, bufopts)
-    vim.keymap.set('n', '<localleader>s', vim.lsp.buf.signature_help, bufopts)
-    vim.keymap.set('n', '<localleader>t', vim.lsp.buf.type_definition, bufopts)
-    vim.keymap.set('n', '<localleader>r', vim.lsp.buf.rename, bufopts)
-    vim.keymap.set('n', '<localleader>a', vim.lsp.buf.code_action, bufopts)
-    vim.keymap.set('n', '<localleader>f', vim.lsp.buf.references, bufopts)
-    vim.keymap.set('n', '<localleader>e', function() vim.lsp.buf.format { async = true } end, bufopts)
+    local bufopts = function(desc)
+        return { noremap = true, silent = true, buffer = bufnr, desc = desc}
+    end
+    vim.keymap.set('n', '<localleader>D', vim.lsp.buf.declaration, bufopts("Goto declaration"))
+    vim.keymap.set('n', '<localleader>d', vim.lsp.buf.definition, bufopts("Goto definition"))
+    vim.keymap.set('n', '<localleader>h', vim.lsp.buf.hover, bufopts("Hover"))
+    vim.keymap.set('n', '<localleader>i', vim.lsp.buf.implementation, bufopts("Goto implementation"))
+    vim.keymap.set('n', '<localleader>s', vim.lsp.buf.signature_help, bufopts("Signature help"))
+    vim.keymap.set('n', '<localleader>t', vim.lsp.buf.type_definition, bufopts("Goto type definition"))
+    vim.keymap.set('n', '<localleader>r', vim.lsp.buf.rename, bufopts("Rename"))
+    vim.keymap.set('n', '<localleader>a', vim.lsp.buf.code_action, bufopts("Code action"))
+    vim.keymap.set('n', '<localleader>f', vim.lsp.buf.references, bufopts("Show references"))
+    vim.keymap.set('n', '<localleader>e', function() vim.lsp.buf.format { async = true } end, bufopts("Format"))
 end
 
 -- Add additional capabilities supported by nvim-cmp
