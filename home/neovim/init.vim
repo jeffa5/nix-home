@@ -19,10 +19,6 @@ noremap <Leader>w g<C-g>
 
 nnoremap <Leader>o :only<CR>
 
-let &t_SI = '\<Esc>[6 q'
-let &t_SR = '\<Esc>[4 q'
-let &t_EI = '\<Esc>[2 q'
-
 filetype plugin indent on
 
 syntax on
@@ -67,16 +63,12 @@ autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
 autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
 augroup END
 
-set laststatus=2
-
 set noshowmode
 
 set incsearch
 set hlsearch
 set ignorecase
 set smartcase
-
-autocmd ColorScheme * highlight Comment cterm=italic
 
 fun! TrimWhitespace()
   let l:save = winsaveview()
@@ -86,18 +78,16 @@ endfun
 
 autocmd BufWritePre * :call TrimWhitespace()
 
-" fugitive
-nnoremap <Leader>gs :Git<CR>
-nnoremap <Leader>gc :Git commit -v -q<CR>
-nnoremap <Leader>ga :Git commit --amend -v -q<CR>
-nnoremap <Leader>go :Git pull<CR>
-nnoremap <Leader>gl :Glog<CR>
-nnoremap <Leader>gp :Git push<CR>
-nnoremap <Leader>gf :Git fetch<CR>
-nnoremap <Leader>gb :Git blame<CR>
-nnoremap <Leader>gr :GBrowse<CR>
-
 lua << EOF
   -- always show the sign column to prevent it moving
   vim.wo.signcolumn = "yes"
+
+  -- fugitive
+  vim.keymap.set('n', '<leader>gs', "<cmd>:Git<cr>", { desc = "Git status" })
+  vim.keymap.set('n', '<leader>go', "<cmd>:Git pull<cr>", { desc = "Git pull" })
+  vim.keymap.set('n', '<leader>gp', "<cmd>:Git push<cr>", { desc = "Git push" })
+  vim.keymap.set('n', '<leader>gf', "<cmd>:Git fetch<cr>", { desc = "Git fetch" })
+  vim.keymap.set('n', '<leader>gb', "<cmd>:Git blame<cr>", { desc = "Git blame" })
+  vim.keymap.set('n', '<leader>gl', "<cmd>:Git log --oneline --graph<cr>", { desc = "Git log" })
+  vim.keymap.set('n', '<leader>gr', "<cmd>:GBrowse<cr>", { desc = "Git open" })
 EOF
