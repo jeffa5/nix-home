@@ -36,6 +36,15 @@ lua << EOF
   -- always show the sign column to prevent it moving
   vim.wo.signcolumn = "yes"
 
+  -- ensure guicolors are set up
+  vim.o.termguicolors = true
+
+  -- search settings
+  vim.o.incsearch = true
+  vim.o.hlsearch = true
+  vim.o.ignorecase = true
+  vim.o.smartcase = true
+
 EOF
 
 nnoremap <Leader>c :nohlsearch<CR>
@@ -79,11 +88,6 @@ autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
 autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
 augroup END
 
-set incsearch
-set hlsearch
-set ignorecase
-set smartcase
-
 fun! TrimWhitespace()
   let l:save = winsaveview()
   keeppatterns %s/\s\+$//e
@@ -93,7 +97,6 @@ endfun
 autocmd BufWritePre * :call TrimWhitespace()
 
 lua << EOF
-
   -- fugitive
   vim.keymap.set('n', '<leader>gs', "<cmd>:Git<cr>", { desc = "Git status" })
   vim.keymap.set('n', '<leader>go', "<cmd>:Git! pull<cr>", { desc = "Git pull" })
