@@ -96,3 +96,8 @@ nnoremap <Leader>gp :Git push<CR>
 nnoremap <Leader>gf :Git fetch<CR>
 nnoremap <Leader>gb :Git blame<CR>
 nnoremap <Leader>gr :GBrowse<CR>
+
+lua << EOF
+  -- always show the sign column to prevent it moving
+  vim.wo.signcolumn = "yes"
+EOF
