@@ -31,12 +31,6 @@ pkgs: {
       vim-gitgutter
       lexima-vim
       {
-        plugin = indentLine;
-        config = ''
-          let g:indentLine_concealcursor = ""
-        '';
-      }
-      {
         plugin = vimtex;
         config = ''
           let g:vimtex_quickfix_open_on_warning = 0
@@ -171,7 +165,15 @@ pkgs: {
           vim.o.timeout = true
           vim.o.timeoutlen = 300
           require("which-key").setup {}
-          '';
+        '';
+      }
+      {
+        plugin = indent-blankline-nvim-lua;
+        type = "lua";
+        config = ''
+          -- indent blankline
+          require("indent_blankline").setup {}
+        '';
       }
     ];
   };
