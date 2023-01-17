@@ -1,4 +1,42 @@
-let mapleader = " "
+lua << EOF
+  -- keybind leaders
+  vim.g.mapleader = " "
+  vim.g.maplocalleader = "\\"
+
+  -- options
+
+  -- show where 80 chars is
+  vim.o.colorcolumn = 80
+
+  -- highlight line where the cursor is
+  vim.o.cursorline = true
+
+  -- enable mouse mode
+  vim.o.mouse = 'a'
+
+  -- decrease update time
+  vim.o.updatetime = 100
+
+  -- show commands in bottom right
+  vim.o.showcmd = true
+
+  -- don't show current mode, statusline will do that
+  vim.o.showmode = false
+
+  -- spacings
+  vim.o.tabstop = 8
+  vim.o.softtabstop = 4
+  vim.o.shiftwidth = 4
+  vim.o.expandtab = true
+
+  -- numbering
+  vim.o.number = true
+  vim.o.relativenumber = true
+
+  -- always show the sign column to prevent it moving
+  vim.wo.signcolumn = "yes"
+
+EOF
 
 nnoremap <Leader>c :nohlsearch<CR>
 
@@ -23,27 +61,6 @@ filetype plugin indent on
 
 syntax on
 
-set colorcolumn=80
-
-set mouse=a
-
-set shortmess+=c
-
-set hidden
-
-set updatetime=100
-
-set showcmd
-
-set cursorline
-
-set tabstop=8
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-
-set modelines=1
-
 set splitbelow
 set splitright
 
@@ -53,7 +70,6 @@ set wildmenu
 set wildignorecase
 set wildmode=longest:full,full
 
-set number relativenumber
 
 set spelllang=en_gb
 
@@ -62,8 +78,6 @@ autocmd!
 autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
 autocmd BufLeave,FocusLost,InsertEnter * set norelativenumber
 augroup END
-
-set noshowmode
 
 set incsearch
 set hlsearch
@@ -79,8 +93,6 @@ endfun
 autocmd BufWritePre * :call TrimWhitespace()
 
 lua << EOF
-  -- always show the sign column to prevent it moving
-  vim.wo.signcolumn = "yes"
 
   -- fugitive
   vim.keymap.set('n', '<leader>gs', "<cmd>:Git<cr>", { desc = "Git status" })
