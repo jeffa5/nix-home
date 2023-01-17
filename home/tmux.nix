@@ -42,6 +42,9 @@
     # copy to clipboard
     bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "wl-copy"
 
+    # enable true colors
+    set-option -sa terminal-overrides ',xterm-256color:RGB'
+
     set -g visual-activity off
     set -g visual-bell off
     set -g visual-silence off
