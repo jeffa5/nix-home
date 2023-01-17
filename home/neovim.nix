@@ -65,7 +65,7 @@ pkgs: {
         type = "lua";
         config = builtins.readFile ./neovim/telescope-nvim.lua;
       }
-      nvim-treesitter
+      nvim-treesitter.withAllGrammars
       {
         plugin = nvim-treesitter-context;
         type = "lua";
