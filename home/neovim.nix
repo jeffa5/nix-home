@@ -3,7 +3,7 @@ pkgs: {
     enable = true;
     vimAlias = true;
     vimdiffAlias = true;
-    extraPackages = with pkgs; [rust-analyzer pyright sumneko-lua-language-server ltex-ls isort pylint black];
+    extraPackages = with pkgs; [rust-analyzer pyright sumneko-lua-language-server isort pylint black];
     extraConfig = builtins.readFile ./neovim/init.vim;
     plugins = with pkgs.vimPlugins; [
       {
