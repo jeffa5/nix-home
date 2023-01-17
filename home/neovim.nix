@@ -30,7 +30,7 @@ pkgs: {
         config = ''
           -- commentary
           require("Comment").setup{}
-          '';
+        '';
       }
       vim-unimpaired
       vim-surround
