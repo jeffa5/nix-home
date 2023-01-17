@@ -67,8 +67,7 @@ pkgs: {
       }
       nvim-treesitter
       {
-        plugin =
-          nvim-lspconfig;
+        plugin = nvim-lspconfig;
         type = "lua";
         config = ''
           -- setup done in nvim-cmp loop below
@@ -83,6 +82,19 @@ pkgs: {
         plugin = nvim-cmp;
         type = "lua";
         config = builtins.readFile ./neovim/nvim-cmp.lua;
+      }
+      {
+        plugin = null_ls;
+        type = "lua";
+        config = ''
+          -- null lsp
+          local null_ls = require("null_ls")
+          null_ls.setup {
+            sources = {
+              null_ls.builtins.formatting.isort,
+            }
+          }
+        '';
       }
       {
         plugin = lualine-nvim;
