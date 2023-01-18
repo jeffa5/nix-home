@@ -114,6 +114,10 @@ in {
         [net]
         git-fetch-with-cli = true
       '';
+
+      ".config/papers/config.yaml".text = ''
+        default_repo: ${homeDirectory}/Cloud/papers
+      '';
     };
   };
 
