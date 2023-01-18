@@ -3,7 +3,15 @@ pkgs: {
     enable = true;
     vimAlias = true;
     vimdiffAlias = true;
-    extraPackages = with pkgs; [rust-analyzer pyright sumneko-lua-language-server isort pylint black];
+    extraPackages = with pkgs; [
+      rust-analyzer
+      pyright
+      sumneko-lua-language-server
+      isort
+      pylint
+      black
+      alejandra
+    ];
     extraConfig = builtins.readFile ./neovim/init.vim;
     plugins = with pkgs.vimPlugins; [
       {
@@ -110,6 +118,7 @@ pkgs: {
               null_ls.builtins.diagnostics.pylint,
               null_ls.builtins.formatting.isort,
               null_ls.builtins.formatting.black,
+              null_ls.builtins.formatting.alejandra,
             }
           }
         '';
