@@ -24,7 +24,7 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local lspconfig = require('lspconfig')
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver' }
+local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'nil_ls', 'gopls', 'texlab' }
 for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup {
         on_attach = on_attach,
@@ -34,6 +34,7 @@ end
 
 lspconfig['sumneko_lua'].setup {
     on_attach = on_attach,
+    capabilities = capabilities,
     settings = {
         Lua = {
             runtime = {
@@ -55,9 +56,6 @@ lspconfig['sumneko_lua'].setup {
         },
     },
 }
-
-lspconfig['texlab'].setup{}
-lspconfig['gopls'].setup{}
 
 -- luasnip setup
 local luasnip = require 'luasnip'

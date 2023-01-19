@@ -11,6 +11,7 @@ pkgs: {
       pylint
       black
       alejandra
+      nil
     ];
     extraConfig = builtins.readFile ./neovim/init.vim;
     plugins = with pkgs.vimPlugins; [
