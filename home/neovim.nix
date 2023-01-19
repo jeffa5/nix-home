@@ -76,6 +76,7 @@ pkgs: {
         '';
       }
 
+      telescope-fzf-native-nvim
       {
         plugin = telescope-nvim;
         type = "lua";

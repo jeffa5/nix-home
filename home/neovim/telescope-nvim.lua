@@ -21,3 +21,6 @@ require("telescope").setup {
         },
     }
 }
+
+-- use fzf filtering
+require("telescope").load_extension("fzf")
