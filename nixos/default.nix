@@ -2,6 +2,7 @@
   colemakdh,
   nixpkgs,
   overlays,
+  users,
 }: {
   config,
   pkgs,
@@ -26,7 +27,7 @@ in {
   };
 
   users = {
-    extraGroups.vboxusers.members = ["andrew"];
+    extraGroups.vboxusers.members = users;
 
     users.andrew = {
       isNormalUser = true;
@@ -53,6 +54,8 @@ in {
 
     settings = {
       auto-optimise-store = true;
+
+      trusted-users = ["root"] ++ users;
     };
 
     gc = {

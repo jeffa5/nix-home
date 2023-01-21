@@ -26,13 +26,16 @@
     };
     colemakdh = import packages/colemakdh pkgs;
     lib = pkgs.lib;
-    mkMachine = modules:
+    mkMachine = {
+      modules,
+      users,
+    }:
       nixpkgs.lib.nixosSystem {
         inherit system;
         modules =
           [
             (import ./nixos {
-              inherit colemakdh nixpkgs;
+              inherit colemakdh nixpkgs users;
               overlays = [papers.overlays.default];
             })
             home-manager.nixosModules.home-manager
@@ -76,9 +79,15 @@
     # nixos-rebuild switch --flake '<flake-uri>#xps-15'
     # to install
     nixosConfigurations = {
-      carbide = mkMachine [./nixos/carbide];
+      carbide = mkMachine {
+        modules = [./nixos/carbide];
+        users = ["andrew"];
+      };
 
-      xps-15 = mkMachine [./nixos/xps-15 hardware.nixosModules.dell-xps-15-9560];
+      xps-15 = mkMachine {
+        modules = [./nixos/xps-15 hardware.nixosModules.dell-xps-15-9560];
+        users = ["andrew"];
+      };
     };
 
     # standalone home environment
