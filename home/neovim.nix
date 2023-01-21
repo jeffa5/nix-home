@@ -12,6 +12,7 @@ pkgs: {
       black
       alejandra
       nil
+      marksman
     ];
     extraConfig = builtins.readFile ./neovim/init.vim;
     plugins = with pkgs.vimPlugins; [
