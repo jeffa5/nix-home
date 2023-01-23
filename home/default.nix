@@ -117,6 +117,9 @@ in {
 
       ".config/papers/config.yaml".text = ''
         default_repo: ${homeDirectory}/Cloud/papers
+        paper_defaults:
+          tags:
+            - '#new'
       '';
     };
   };
