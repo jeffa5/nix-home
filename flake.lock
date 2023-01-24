@@ -137,11 +137,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1674551549,
-        "narHash": "sha256-deDPTzoUzqqkwOPgFPPMeQIimHc9amc6gr85s79RVQg=",
+        "lastModified": 1674598898,
+        "narHash": "sha256-wopxCd7Bpz1wP1EGs2EPHQYzrGeAJeO1FuTGQumfD5I=",
         "owner": "jeffa5",
         "repo": "papers",
-        "rev": "baecd0e59bf4f985f024c4c44d81816b2544401a",
+        "rev": "55ea78014f0a6611449d587bb9dc80456bb6d5aa",
         "type": "github"
       },
       "original": {
