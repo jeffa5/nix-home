@@ -19,4 +19,4 @@ jobs:
         name: papers
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
 
-    - run: nixos-rebuild build --flake .
+    - run: nix build .#nixosConfigurations.xps-15.config.system.build.toplevel
