@@ -83,7 +83,7 @@ in {
       secrets = ["/var/lib/ipsec.secrets"];
       connections.CAM = {
         left = "%any";
-        leftid = "apj39+xps15@cam.ac.uk";
+        leftid = "apj39+xps15vpn@cam.ac.uk";
         leftauth = "eap";
         leftsourceip = "%config";
         leftfirewall = "yes";
