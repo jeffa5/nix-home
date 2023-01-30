@@ -6,7 +6,7 @@ dconf:
 
 .PHONY: diff
 diff:
-	nix profile diff-closures --profile /nix/var/nix/profiles/system > diff.txt
+	nix profile diff-closures --profile /nix/var/nix/profiles/system
 
 .PHONY: tree
 tree:
