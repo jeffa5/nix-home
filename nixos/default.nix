@@ -192,6 +192,12 @@ in {
   # boot.kernel.sysctl."fs.inotify.max_user_watches" = pkgs.lib.mkDefault 524288;
   boot.tmpOnTmpfs = true;
 
+  system.userActivationScripts.diff = ''
+    if [[ -e /run/current-system ]]; then
+      ${config.nix.package}/bin/nix store diff-closures /run/current-system "$systemConfig" || true
+    fi
+  '';
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
