@@ -10,6 +10,7 @@
 }: let
   gnome = true;
   plasma = false;
+  locale = "en_GB.UTF-8";
 in {
   imports = [];
 
@@ -71,6 +72,12 @@ in {
   console.packages = [colemakdh];
   console.keyMap = "iso-uk-colemak-dh";
   console.earlySetup = true;
+
+  i18n.defaultLocale = locale;
+  i18n.extraLocaleSettings = {
+    LANGUAGE = "en_GB";
+    LC_ALL = locale;
+  };
 
   security.rtkit.enable = true;
   services = {
