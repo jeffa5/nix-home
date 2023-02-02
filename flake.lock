@@ -84,11 +84,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1674928308,
-        "narHash": "sha256-elVU4NUZEl11BdT4gC+lrpLYM8Ccxqxs19Ix84HTI9o=",
+        "lastModified": 1675247113,
+        "narHash": "sha256-+YcXjfCP4hNu8A68b/UoXFCTDwKLuLV+x/7dQnM5U/o=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "08a778d80308353f4f65c9dcd3790b5da02d6306",
+        "rev": "782cb855b2f23c485011a196c593e2d7e4fce746",
         "type": "github"
       },
       "original": {
@@ -99,11 +99,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1674868155,
-        "narHash": "sha256-eFNm2h6fNbgD7ZpO4MHikCB5pSnCJ7DTmwPisjetmwc=",
+        "lastModified": 1675237434,
+        "narHash": "sha256-YoFR0vyEa1HXufLNIFgOGhIFMRnY6aZ0IepZF5cYemo=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "ce20e9ebe1903ea2ba1ab006ec63093020c761cb",
+        "rev": "285b3ff0660640575186a4086e1f8dc0df2874b5",
         "type": "github"
       },
       "original": {
@@ -137,11 +137,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1674598898,
-        "narHash": "sha256-wopxCd7Bpz1wP1EGs2EPHQYzrGeAJeO1FuTGQumfD5I=",
+        "lastModified": 1675116266,
+        "narHash": "sha256-GEb+KvV6qi8SKYDE/CKHEpaqrNkUzGQNL9kyUsGTv8c=",
         "owner": "jeffa5",
         "repo": "papers",
-        "rev": "55ea78014f0a6611449d587bb9dc80456bb6d5aa",
+        "rev": "c74c645580ee6f3112fab2f4d06521da28a633f4",
         "type": "github"
       },
       "original": {
