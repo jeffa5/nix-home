@@ -26,5 +26,9 @@
       user = "apj39";
       hostname = "52.188.86.42";
     };
+    "cerulean" = {
+      user = "azureuser";
+      hostname = "172.174.123.138";
+    };
   };
 }
