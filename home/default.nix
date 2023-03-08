@@ -70,6 +70,7 @@
       sccache
       tree
       cachix
+      ncdu
       papers
     ]
     ++ [(pkgs.callPackage ./weekly.nix {})];
