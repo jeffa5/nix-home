@@ -34,6 +34,7 @@
         # mendeley
         musescore
         nextcloud-client
+        obsidian
         signal-desktop
         skypeforlinux
         slack
