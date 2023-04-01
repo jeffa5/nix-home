@@ -39,7 +39,6 @@
         skypeforlinux
         slack
         spotify
-        texlab
         thunderbird
         todoist-electron
         vlc

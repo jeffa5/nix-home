@@ -4,15 +4,16 @@ pkgs: {
     vimAlias = true;
     vimdiffAlias = true;
     extraPackages = with pkgs; [
-      rust-analyzer
-      pyright
-      lua-language-server
-      isort
-      pylint
-      black
       alejandra
-      nil
+      black
+      isort
+      lua-language-server
       marksman
+      nil
+      pylint
+      pyright
+      rust-analyzer
+      texlab
     ];
     extraConfig = builtins.readFile ./neovim/init.vim;
     plugins = with pkgs.vimPlugins; [
