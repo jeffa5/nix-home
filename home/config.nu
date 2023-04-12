@@ -24,4 +24,8 @@ alias gstp = "git stash pop"
 
 let-env config = {
   edit_mode: vi
+  cursor_shape: {
+    vi_insert: line
+    vi_normal: block
+  }
 }
