@@ -194,9 +194,7 @@ in {
 
     fish = import ./fish.nix pkgs;
 
-    nushell = {
-      enable = true;
-    };
+    nushell = import ./nushell.nix;
 
     nix-index.enable = true;
 
