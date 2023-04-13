@@ -6,7 +6,7 @@ pkgs: {
     extraPackages = with pkgs; [
       rust-analyzer
       pyright
-      sumneko-lua-language-server
+      lua-language-server
       isort
       pylint
       black
