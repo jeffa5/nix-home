@@ -35,6 +35,7 @@
         musescore
         nextcloud-client
         obsidian
+        rnote
         signal-desktop
         skypeforlinux
         slack
