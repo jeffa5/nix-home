@@ -21,7 +21,8 @@
         chromium
         czkawka
         darktable
-        element-desktop
+        # element-desktop
+        fractal
         evince
         gitAndTools.git-open
         gnomeExtensions.caffeine
