@@ -90,7 +90,7 @@
       };
 
       xps-15 = mkMachine {
-        modules = [./nixos/xps-15 hardware.nixosModules.dell-xps-15-9560];
+        modules = [./nixos/xps-15 hardware.nixosModules.dell-xps-15-9560-intel];
         users = ["andrew"];
       };
     };
