@@ -190,7 +190,7 @@ in {
   };
 
   # boot.kernel.sysctl."fs.inotify.max_user_watches" = pkgs.lib.mkDefault 524288;
-  boot.tmpOnTmpfs = true;
+  boot.tmp.useTmpfs = true;
 
   system.userActivationScripts.diff = ''
     if [[ -e /run/current-system ]]; then
