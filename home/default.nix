@@ -42,7 +42,8 @@
         slack
         spotify
         thunderbird
-        todoist-electron
+        # broken due to electron
+        # todoist-electron
         vlc
         vorta
         wally-cli
