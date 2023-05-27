@@ -152,7 +152,6 @@ in {
   };
 
   virtualisation.docker.enable = true;
-  virtualisation.virtualbox.host.enable = true;
 
   services.xserver = {
     layout = "uk-cdh,gb";
