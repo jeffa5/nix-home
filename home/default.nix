@@ -31,8 +31,6 @@
         gnome.gnome-dictionary
         inkscape
         libreoffice
-        # https://github.com/NixOS/nixpkgs/issues/53079
-        # mendeley
         musescore
         nextcloud-client
         obsidian
