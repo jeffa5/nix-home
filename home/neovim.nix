@@ -14,6 +14,7 @@ pkgs: {
       pyright
       rust-analyzer
       texlab
+      typst-lsp
     ];
     extraConfig = builtins.readFile ./neovim/init.vim;
     plugins = with pkgs.vimPlugins; [
