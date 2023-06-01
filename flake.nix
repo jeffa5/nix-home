@@ -124,7 +124,7 @@
 
     devShells.${system}.default = with pkgs;
       pkgs.mkShell {
-        buildInputs = with pkgs; [rnix-lsp dconf2nix];
+        buildInputs = with pkgs; [dconf2nix];
       };
   };
 }
