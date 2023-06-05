@@ -41,7 +41,7 @@
         slack
         spotify
         thunderbird
-        elementary-planner
+        # todoist-electron
         vlc
         vorta
         wally-cli
