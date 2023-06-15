@@ -49,4 +49,4 @@ jobs:
       uses: thollander/actions-comment-pull-request@v2
       with:
         filePath: diff
-        pr_number: steps.update.outputs.pull-request-number
+        pr_number: ${{ steps.update.outputs.pull-request-number }}
