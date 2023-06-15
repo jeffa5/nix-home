@@ -29,6 +29,7 @@ jobs:
         echo "path=$path" >> $GITHUB_OUTPUT
 
     - name: Update flake.lock
+      id: update
       uses: DeterminateSystems/update-flake-lock@v16
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
@@ -41,4 +42,11 @@ jobs:
 
     - name: Diff closures
       run: |
-        nix store diff-closures ${{ steps.current.outputs.path }} ${{ steps.next.outputs.path }}
+        nix store diff-closures ${{ steps.current.outputs.path }} ${{ steps.next.outputs.path }} > diff 2> diff
+        nix run nixpkgs#nvd -- diff ${{ steps.current.outputs.path }} ${{ steps.next.outputs.path }} >> diff 2>> diff
+
+    - name: Comment diff
+      uses: thollander/actions-comment-pull-request@v2
+      with:
+        filePath: diff
+        pr_number: steps.update.outputs.pull-request-number
