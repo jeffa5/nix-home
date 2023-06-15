@@ -27,6 +27,10 @@ _pkgs: {
     gstp = "git stash pop";
   };
 
+  shellAliases = {
+    wiki = "cd ~/Cloud/Obsidian/Home && nvim && popd";
+  };
+
   interactiveShellInit = ''
     set -g fish_greeting # disable welcome message
     fish_vi_key_bindings
