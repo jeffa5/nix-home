@@ -50,6 +50,7 @@ jobs:
         echo "```" >> diff
         nix run nixpkgs#nvd -- diff ${{ steps.current.outputs.path }} ${{ steps.next.outputs.path }} >> diff
         echo "```" >> diff
+        cat diff
 
     - name: Comment diff
       uses: thollander/actions-comment-pull-request@v2
