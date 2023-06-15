@@ -42,10 +42,6 @@ jobs:
 
     - name: Diff closures
       run: |
-        echo '### diff-closures' > diff
-        echo '```' >> diff
-        nix store diff-closures ${{ steps.current.outputs.path }} ${{ steps.next.outputs.path }} >> diff
-        echo '```' >> diff
         echo '### nvd' >> diff
         echo '```' >> diff
         nix run nixpkgs#nvd -- diff ${{ steps.current.outputs.path }} ${{ steps.next.outputs.path }} >> diff
