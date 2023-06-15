@@ -42,8 +42,10 @@ jobs:
 
     - name: Diff closures
       run: |
-        nix store diff-closures ${{ steps.current.outputs.path }} ${{ steps.next.outputs.path }} > diff 2> diff
-        nix run nixpkgs#nvd -- diff ${{ steps.current.outputs.path }} ${{ steps.next.outputs.path }} >> diff 2>> diff
+        echo "diff-closures" > diff
+        nix store diff-closures ${{ steps.current.outputs.path }} ${{ steps.next.outputs.path }} >> diff
+        echo "nvd" >> diff
+        nix run nixpkgs#nvd -- diff ${{ steps.current.outputs.path }} ${{ steps.next.outputs.path }} >> diff
 
     - name: Comment diff
       uses: thollander/actions-comment-pull-request@v2
