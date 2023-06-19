@@ -22,7 +22,7 @@
         czkawka
         darktable
         # element-desktop
-        fractal
+        fractal-next
         evince
         gitAndTools.git-open
         gnomeExtensions.caffeine
