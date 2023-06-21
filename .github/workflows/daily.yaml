@@ -52,3 +52,4 @@ jobs:
       with:
         filePath: diff
         pr_number: ${{ steps.update.outputs.pull-request-number }}
+        comment_tag: nvd
