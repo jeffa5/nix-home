@@ -14,6 +14,8 @@
           select = "underline";
         };
 
+        rulers = [80];
+
         statusline = {
           right = [
             "diagnostics"
