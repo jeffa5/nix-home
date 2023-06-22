@@ -88,6 +88,7 @@ in {
         "org.gnome.Solanum.desktop"
         "slack.desktop"
         "signal-desktop.desktop"
+        "org.gnome.Fractal.desktop"
         "spotify.desktop"
       ];
       had-bluetooth-devices-setup = true;
