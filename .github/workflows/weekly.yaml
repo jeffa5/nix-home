@@ -3,7 +3,7 @@ name: Update flake lock
 on:
   workflow_dispatch: # manual trigger
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 0 */7 * *'
 
 jobs:
   update-lockfile:
