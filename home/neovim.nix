@@ -102,12 +102,12 @@ pkgs: {
         '';
       }
 
-      telescope-fzf-native-nvim
       {
-        plugin = telescope-nvim;
+        plugin = fzf-lua;
         type = "lua";
-        config = builtins.readFile ./neovim/telescope-nvim.lua;
+        config = builtins.readFile ./neovim/fzf-lua.lua;
       }
+
       nvim-treesitter.withAllGrammars
       {
         plugin = nvim-treesitter-context;
