@@ -51,6 +51,7 @@ pkgs: {
         '';
       }
       vim-fugitive
+      neogit
       vim-rhubarb
       {
         plugin = fugitive-gitlab-vim;
