@@ -107,6 +107,9 @@ lua << EOF
   vim.keymap.set('n', '<leader>gl', "<cmd>:Git log --oneline --graph<cr>", { desc = "Git log" })
   vim.keymap.set('n', '<leader>gr', "<cmd>:GBrowse<cr>", { desc = "Git open" })
 
+  -- neogit
+  vim.keymap.set('n', '<leader>gn', "<cmd>:Neogit<cr>", { desc = "Neogit" })
+
   -- Goyo
   vim.keymap.set('n', '<leader>y', "<cmd>:Goyo<cr>", { desc = "Goyo" })
 EOF
