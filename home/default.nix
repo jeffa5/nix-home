@@ -21,7 +21,6 @@
         chromium
         czkawka
         darktable
-        # element-desktop
         fractal-next
         evince
         gitAndTools.git-open
