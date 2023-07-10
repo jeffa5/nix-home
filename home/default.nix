@@ -73,7 +73,10 @@
       ncdu
       papers
     ]
-    ++ [(pkgs.callPackage ./weekly.nix {})];
+    ++ [
+      (pkgs.callPackage ./weekly.nix {})
+      (pkgs.callPackage ./daily.nix {})
+    ];
 in {
   imports =
     [
