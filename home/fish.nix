@@ -29,6 +29,7 @@ _pkgs: {
 
   shellAliases = {
     wiki = "cd ~/Cloud/Obsidian/Home && nvim && popd";
+    daily = "cd ~/Cloud/Obsidian/Home && nvim journal/daily/$(date +%F) && popd";
   };
 
   interactiveShellInit = ''
