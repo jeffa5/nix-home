@@ -40,7 +40,7 @@
         slack
         spotify
         thunderbird
-        # todoist-electron
+        todoist-electron
         vlc
         vorta
         wally-cli
