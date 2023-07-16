@@ -29,6 +29,7 @@
         gnomeExtensions.vitals
         gnome-solanum
         gnome.gnome-dictionary
+        gnome-network-displays
         inkscape
         libreoffice
         musescore
