@@ -50,13 +50,23 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local lspconfig = require('lspconfig')
 
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'nil_ls', 'gopls', 'texlab', 'marksman', 'typst_lsp' }
+local servers = { 'clangd', 'pyright', 'tsserver', 'nil_ls', 'gopls', 'texlab', 'marksman', 'typst_lsp' }
 for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup {
         on_attach = on_attach,
         capabilities = capabilities,
     }
 end
+
+lspconfig['rust_analyzer'].setup {
+    settings = {
+        ['rust-analyzer'] = {
+            check = {
+                command = "clippy";
+            }
+        }
+    }
+}
 
 lspconfig['lua_ls'].setup {
     on_attach = on_attach,
