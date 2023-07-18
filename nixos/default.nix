@@ -191,6 +191,10 @@ in {
   # boot.kernel.sysctl."fs.inotify.max_user_watches" = pkgs.lib.mkDefault 524288;
   boot.tmp.useTmpfs = true;
 
+  # register QEMU as a binfmt wrapper for the aarch64 architecture
+  # https://nixos.wiki/wiki/NixOS_on_ARM#Compiling_through_QEMU
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   system.userActivationScripts.diff = ''
     if [[ -e /run/current-system ]]; then
       ${config.nix.package}/bin/nix store diff-closures /run/current-system "$systemConfig" || true
