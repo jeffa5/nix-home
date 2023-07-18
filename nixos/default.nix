@@ -134,6 +134,8 @@ in {
 
     gnome.gnome-online-accounts.enable = gnome;
     gnome.gnome-keyring.enable = gnome;
+
+    tailscale.enable = true;
   };
 
   xdg = {
