@@ -30,5 +30,10 @@
       user = "apj39";
       hostname = "172.174.123.138";
     };
+
+    "rosebud" = {
+      user = "andrew";
+      hostname = "95.217.130.208";
+    };
   };
 }
