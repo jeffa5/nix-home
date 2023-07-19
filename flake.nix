@@ -34,13 +34,14 @@
     mkMachine = {
       modules,
       users,
+      gui,
     }:
       nixpkgs.lib.nixosSystem {
         inherit system;
         modules =
           [
             (import ./nixos {
-              inherit colemakdh nixpkgs users;
+              inherit colemakdh nixpkgs users gui;
               overlays = [papers.overlays.default];
             })
             home-manager.nixosModules.home-manager
@@ -48,7 +49,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.${username} = import ./home {
-                gui = true;
+                gui = gui;
                 username = "andrew";
               };
             }
@@ -87,16 +88,19 @@
       carbide = mkMachine {
         modules = [./nixos/carbide];
         users = ["andrew"];
+        gui = true;
       };
 
       xps-15 = mkMachine {
         modules = [./nixos/xps-15 hardware.nixosModules.dell-xps-15-9560-intel];
         users = ["andrew"];
+        gui = true;
       };
 
       rosebud = mkMachine {
         modules = [./nixos/rosebud];
         users = ["andrew"];
+        gui = false;
       };
     };
 

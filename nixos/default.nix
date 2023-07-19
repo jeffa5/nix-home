@@ -3,12 +3,13 @@
   nixpkgs,
   overlays,
   users,
+  gui,
 }: {
   config,
   pkgs,
   ...
 }: let
-  gnome = true;
+  gnome = gui;
   plasma = false;
   locale = "en_GB.UTF-8";
 in {
@@ -195,7 +196,7 @@ in {
 
   # register QEMU as a binfmt wrapper for the aarch64 architecture
   # https://nixos.wiki/wiki/NixOS_on_ARM#Compiling_through_QEMU
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
 
   system.userActivationScripts.diff = ''
     if [[ -e /run/current-system ]]; then
