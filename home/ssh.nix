@@ -32,7 +32,7 @@
     };
 
     "rosebud" = {
-      user = "andrew";
+      user = "root";
       hostname = "95.217.130.208";
     };
   };
