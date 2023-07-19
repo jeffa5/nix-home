@@ -4,7 +4,7 @@
     ./networking.nix # generated at runtime by nixos-infect
   ];
 
-  boot.cleanTmpDir = true;
+  boot.tmp.cleanOnBoot = true;
   zramSwap.enable = true;
   networking.hostName = "rosebud";
   networking.domain = "";
