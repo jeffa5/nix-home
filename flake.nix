@@ -97,10 +97,9 @@
         gui = true;
       };
 
-      rosebud = mkMachine {
+      rosebud = nixpkgs.lib.nixosSystem {
+        inherit system;
         modules = [./nixos/rosebud];
-        users = ["andrew"];
-        gui = false;
       };
     };
 
