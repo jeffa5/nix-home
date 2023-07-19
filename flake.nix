@@ -93,6 +93,11 @@
         modules = [./nixos/xps-15 hardware.nixosModules.dell-xps-15-9560-intel];
         users = ["andrew"];
       };
+
+      rosebud = mkMachine {
+        modules = [];
+        users = ["andrew"];
+      };
     };
 
     # standalone home environment
