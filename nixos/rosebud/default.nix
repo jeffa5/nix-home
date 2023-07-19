@@ -1,8 +1,10 @@
-{...}: {
+{pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
     ./networking.nix # generated at runtime by nixos-infect
   ];
+
+  services.tailscale.enable = true;
 
   boot.tmp.cleanOnBoot = true;
   zramSwap.enable = true;

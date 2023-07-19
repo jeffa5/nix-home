@@ -9,6 +9,7 @@
     };
     hardware.url = "github:nixos/nixos-hardware";
     papers.url = "github:jeffa5/papers";
+    tasknet.url = "github:jeffa5/tasknet";
   };
 
   nixConfig = {
@@ -22,12 +23,13 @@
     nixpkgs,
     hardware,
     papers,
+    tasknet,
   }: let
     username = "andrew";
     system = "x86_64-linux";
     pkgs = import nixpkgs {
       inherit system;
-      overlays = [papers.overlays.default];
+      overlays = [papers.overlays.default tasknet.overlays.default];
     };
     colemakdh = import packages/colemakdh pkgs;
     lib = pkgs.lib;
@@ -98,7 +100,7 @@
       };
 
       rosebud = nixpkgs.lib.nixosSystem {
-        inherit system;
+        inherit system pkgs;
         modules = [./nixos/rosebud];
       };
     };
