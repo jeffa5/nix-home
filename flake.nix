@@ -95,7 +95,7 @@
       };
 
       rosebud = mkMachine {
-        modules = [];
+        modules = [./nixos/rosebud];
         users = ["andrew"];
       };
     };
