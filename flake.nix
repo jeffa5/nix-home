@@ -101,7 +101,9 @@
 
       rosebud = nixpkgs.lib.nixosSystem {
         inherit system pkgs;
-        modules = [./nixos/rosebud];
+        modules = [
+          tasknet.nixosModules.${system}.tasknet-server
+          ./nixos/rosebud];
       };
     };
 

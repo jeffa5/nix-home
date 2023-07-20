@@ -1,10 +1,13 @@
-{pkgs, ...}: {
+{...}: {
   imports = [
     ./hardware-configuration.nix
     ./networking.nix # generated at runtime by nixos-infect
   ];
 
   services.tailscale.enable = true;
+
+  services.tasknet-server.enable = true;
+  networking.firewall.allowedTCPPorts = [80];
 
   boot.tmp.cleanOnBoot = true;
   zramSwap.enable = true;
