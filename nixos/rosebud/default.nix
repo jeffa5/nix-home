@@ -8,6 +8,14 @@
     git
   ];
 
+  nix = {
+    extraOptions = ''
+      experimental-features = nix-command flakes
+      keep-outputs = true
+      keep-derivations = true
+    '';
+  };
+
   services.tailscale.enable = true;
 
   services.tasknet-server.enable = true;
