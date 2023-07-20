@@ -19,6 +19,7 @@
   services.tailscale.enable = true;
 
   services.tasknet-server.enable = true;
+  services.tasknet-server.config.address = "127.0.0.1";
   # should work through tailscale
   # networking.firewall.allowedTCPPorts = [80];
 
