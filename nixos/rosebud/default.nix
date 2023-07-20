@@ -1,7 +1,11 @@
-{...}: {
+{pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
     ./networking.nix # generated at runtime by nixos-infect
+  ];
+
+  environment.systemPackages = with pkgs; [
+    git
   ];
 
   services.tailscale.enable = true;
