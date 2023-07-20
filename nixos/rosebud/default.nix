@@ -7,7 +7,8 @@
   services.tailscale.enable = true;
 
   services.tasknet-server.enable = true;
-  networking.firewall.allowedTCPPorts = [80];
+  # should work through tailscale
+  # networking.firewall.allowedTCPPorts = [80];
 
   boot.tmp.cleanOnBoot = true;
   zramSwap.enable = true;
