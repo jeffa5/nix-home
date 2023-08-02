@@ -92,7 +92,6 @@ in {
       enable = true;
       # Passwords set up as per https://help.uis.cam.ac.uk/service/network-services/remote-access/uis-vpn/ubuntu1604#password-file
       secrets = ["/var/lib/ipsec.secrets"];
-      # charondebug = "all";
 
       connections."%default" = {
         keyexchange = "ikev2";
