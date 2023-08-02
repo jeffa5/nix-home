@@ -10,6 +10,8 @@
       user = "apj39";
       extraOptions = {
         GSSAPIAuthentication = "yes";
+        # forward kerberos tickets, requires `kinit -f ...`
+        GSSAPIDelegateCredentials = "yes";
       };
     };
     "quoth" = {
@@ -17,6 +19,8 @@
       user = "apj39";
       extraOptions = {
         GSSAPIAuthentication = "yes";
+        # forward kerberos tickets, requires `kinit -f ...`
+        GSSAPIDelegateCredentials = "yes";
       };
     };
     "caelum*" = {
