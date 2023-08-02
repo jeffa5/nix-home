@@ -114,6 +114,8 @@ in {
         auto = "add";
       };
 
+      # Setup instructions: https://www.cst.cam.ac.uk/local/sys/vpn2/linux
+      # Password from https://vpnpassword.cl.cam.ac.uk/
       connections.CL = {
         reauth = "no";
         left = "%any";
