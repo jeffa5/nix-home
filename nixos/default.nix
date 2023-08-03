@@ -103,7 +103,7 @@ in {
 
       connections.CAM = {
         left = "%any";
-        leftid = "apj39+xps15vpn@cam.ac.uk";
+        leftid = "apj39+${config.networking.hostName}vpn@cam.ac.uk";
         leftauth = "eap";
         leftsourceip = "%config";
         leftfirewall = "yes";
@@ -120,7 +120,7 @@ in {
       connections.CL = {
         reauth = "no";
         left = "%any";
-        leftid = "apj39-xps15";
+        leftid = "apj39-${config.networking.hostName}";
         leftauth = "eap";
         leftsourceip = "%config4,%config6";
         leftfirewall = "yes";
