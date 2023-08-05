@@ -9,11 +9,21 @@
   pkgs,
   ...
 }: let
-  gnome = gui;
   plasma = false;
   locale = "en_GB.UTF-8";
 in {
-  imports = [./modules/vpn.nix];
+  imports =
+    [./modules/vpn.nix]
+    ++ (
+      if gui
+      then [./modules/gnome.nix]
+      else []
+    )
+    ++ (
+      if plasma
+      then [./modules/plasma.nix]
+      else []
+    );
 
   time.timeZone = "Europe/London";
   nixpkgs.config.allowUnfree = true;
@@ -101,25 +111,7 @@ in {
       drivers = with pkgs; [gutenprint hplip];
     };
 
-    gnome.gnome-online-accounts.enable = gnome;
-    gnome.gnome-keyring.enable = gnome;
-
     tailscale.enable = true;
-  };
-
-  xdg = {
-    portal = {
-      enable = true;
-      extraPortals = with pkgs;
-        [
-          xdg-desktop-portal-wlr
-        ]
-        ++ (
-          if plasma
-          then [xdg-desktop-portal-gtk]
-          else []
-        );
-    };
   };
 
   virtualisation.docker.enable = true;
@@ -134,20 +126,12 @@ in {
     };
 
     enable = true;
-
-    displayManager.sddm.enable = plasma;
-    desktopManager.plasma5.enable = plasma;
-
-    displayManager.gdm.enable = gnome;
-    desktopManager.gnome.enable = gnome;
   };
 
   programs = {
     steam.enable = true;
 
     adb.enable = true;
-
-    nm-applet.enable = true;
 
     fish = {
       enable = true;

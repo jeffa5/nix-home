@@ -103,7 +103,8 @@
         inherit system pkgs;
         modules = [
           tasknet.nixosModules.${system}.tasknet-server
-          ./nixos/rosebud];
+          ./nixos/rosebud
+        ];
       };
     };
 
