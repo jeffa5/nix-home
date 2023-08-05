@@ -1,4 +1,6 @@
-{
-  enable = true;
-  configFile.source = ./config.nu;
+{...}: {
+  programs.nushell = {
+    enable = true;
+    configFile.source = ./config.nu;
+  };
 }
