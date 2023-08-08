@@ -33,7 +33,7 @@
         right = "vpn.uis.cam.ac.uk";
         rightid = "\"CN=vpn.uis.cam.ac.uk\"";
         # from https://help.uis.cam.ac.uk/service/network-services/remote-access/uis-vpn/ubuntu1604
-        rightcert = toString ./cambridge-vpn-2022.crt;
+        rightcert = "${./cambridge-vpn-2022.crt}";
         rightsubnet = "0.0.0.0/0";
         auto = "add";
       };
@@ -56,7 +56,7 @@
 
       ca.CL = {
         auto = "add";
-        cacert = toString ./cambridge-cl-vpn-2023.pem;
+        cacert = "${./cambridge-cl-vpn-2023.pem}";
       };
     };
   };
