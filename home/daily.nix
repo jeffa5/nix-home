@@ -2,7 +2,7 @@
 writeShellScriptBin "daily" ''
   wiki="$HOME/Cloud/Obsidian/Home"
   daily_dir="journal/daily"
-  day=$(date +%F)
+  day=$(date +%F-%A)
 
   cd $wiki
   mkdir -p $daily_dir
