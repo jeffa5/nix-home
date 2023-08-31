@@ -44,7 +44,7 @@ in {
       ./modules/papers.nix
       ./ssh.nix
       ./git.nix
-      ./tmux.nix
+      (import ./tmux.nix {server = !gui;})
       ./zsh.nix
       ./fish.nix
       ./nushell.nix

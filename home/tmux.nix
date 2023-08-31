@@ -1,4 +1,4 @@
-{...}: {
+{server}: {...}: {
   programs.tmux = {
     enable = true;
     baseIndex = 1;
@@ -40,8 +40,14 @@
       # disable setting clipboard through xterm escape sequences
       set-option -s set-clipboard off
 
-      # copy to clipboard
-      bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "wl-copy"
+      ${
+        if server
+        then ''
+          # copy to clipboard
+          bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "wl-copy"
+        ''
+        else ""
+      }
 
       # enable true colors
       set-option -sa terminal-overrides ',xterm-256color:RGB'
