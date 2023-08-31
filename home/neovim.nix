@@ -13,6 +13,7 @@
       pylint
       pyright
       rust-analyzer
+      clang-tools
       texlab
       typst-lsp
     ];
