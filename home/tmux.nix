@@ -41,7 +41,7 @@
       set-option -s set-clipboard off
 
       ${
-        if server
+        if !server
         then ''
           # copy to clipboard
           bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "wl-copy"
