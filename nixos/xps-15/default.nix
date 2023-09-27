@@ -1,11 +1,11 @@
 {...}: {
   imports = [
     ./hardware-configuration.nix
+    ../systemd-boot.nix
   ];
 
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot";
-  boot.loader.systemd-boot.enable = true;
 
   networking.hostName = "xps-15";
   networking.interfaces.wlp2s0.useDHCP = true;
