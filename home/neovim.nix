@@ -219,6 +219,7 @@
           require('gitsigns').setup()
         '';
       }
+      typst-vim
     ];
   };
 }
