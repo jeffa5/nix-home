@@ -29,7 +29,6 @@
     obsidian
     rnote
     signal-desktop
-    skypeforlinux
     slack
     spotify
     thunderbird
