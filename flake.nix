@@ -93,6 +93,12 @@
         gui = true;
       };
 
+      rpi1 = mkMachine {
+        modules = [./nixos/rpi hardware.nixosModules.raspberry-pi.4];
+        users = ["andrew"];
+        gui = false;
+      };
+
       xps-15 = mkMachine {
         modules = [./nixos/xps-15 hardware.nixosModules.dell-xps-15-9560-intel];
         users = ["andrew"];
