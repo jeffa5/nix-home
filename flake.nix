@@ -93,10 +93,12 @@
         gui = true;
       };
 
-      rpi1 = mkMachine {
-        modules = [./nixos/rpi hardware.nixosModules.raspberry-pi.4];
-        users = ["andrew"];
-        gui = false;
+      rpi1 = nixpkgs.lib.nixosSystem {
+        inherit system pkgs;
+        modules = [
+          hardware.nixosModules.raspberry-pi.4
+          ./nixos/rpi
+        ];
       };
 
       xps-15 = mkMachine {
