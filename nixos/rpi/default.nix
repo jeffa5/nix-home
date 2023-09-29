@@ -9,4 +9,6 @@
     libraspberrypi
     raspberrypi-eeprom
   ];
+
+  system.stateVersion = "23.05";
 }
