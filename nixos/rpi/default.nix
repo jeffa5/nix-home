@@ -1,5 +1,7 @@
 {nixpkgs}: {pkgs, ...}: {
   imports = [
+    ./hardware-configuration.nix
+
     (import ../modules/nix.nix {
       inherit nixpkgs;
       users = [];
@@ -9,7 +11,7 @@
     ../modules/prometheus.nix
     ../modules/grafana.nix
     ../modules/nginx.nix
-    ./hardware-configuration.nix
+    ../modules/tailscale.nix
   ];
 
   networking.hostName = "rpi1";
