@@ -1,7 +1,10 @@
-{config, ...}: {
+{config, ...}: let
+  public_port = 9000;
+  private_port = 9090;
+in {
   services.prometheus = {
     enable = true;
-    port = 9090;
+    port = private_port;
 
     scrapeConfigs = [
       {
@@ -18,4 +21,22 @@
       }
     ];
   };
+
+  services.nginx.virtualHosts."prometheus.local" = {
+    # TODO: use DNS for this rather than relying on the ip
+    serverName = "192.168.0.52:${toString public_port}";
+    listen = [
+      {
+        port = public_port;
+        addr = "0.0.0.0";
+      }
+    ];
+    locations."/" = {
+      proxyPass = "http://127.0.0.1:${toString private_port}";
+      proxyWebsockets = true;
+    };
+  };
+
+  # TODO: specify default openings for nginx once we have DNS names
+  networking.firewall.allowedTCPPorts = [public_port];
 }
