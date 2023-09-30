@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   imports = [
+    ../modules/nix.nix
     ./hardware-configuration.nix
   ];
 
