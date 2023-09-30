@@ -13,3 +13,17 @@ nix run --extra-experimental-features "nix-command flakes" nixpkgs#home-manager 
 ```
 
 After installing a system, use `make nvd` to show the diff in an upgrade.
+
+## Deploying to remote system
+
+To deploy to a remote system (assuming password-less authentication):
+
+```sh
+nixos-rebuild switch .#<host> --build-host root@<ip> --target-host root@<ip>
+```
+
+## Raspberry Pi
+
+The guide is here: https://nix.dev/tutorials/nixos/installing-nixos-on-a-raspberry-pi
+
+In particular the updating firmware section is useful.
