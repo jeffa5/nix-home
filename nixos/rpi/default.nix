@@ -5,6 +5,7 @@
       users = [];
     })
     ../modules/openssh.nix
+    ../modules/node-exporter.nix
     ./hardware-configuration.nix
   ];
 
