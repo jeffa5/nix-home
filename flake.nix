@@ -93,18 +93,18 @@
         gui = true;
       };
 
+      xps-15 = mkMachine {
+        modules = [./nixos/xps-15 hardware.nixosModules.dell-xps-15-9560-intel];
+        users = ["andrew"];
+        gui = true;
+      };
+
       rpi1 = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         modules = [
           hardware.nixosModules.raspberry-pi-4
           ./nixos/rpi
         ];
-      };
-
-      xps-15 = mkMachine {
-        modules = [./nixos/xps-15 hardware.nixosModules.dell-xps-15-9560-intel];
-        users = ["andrew"];
-        gui = true;
       };
 
       rosebud = nixpkgs.lib.nixosSystem {
