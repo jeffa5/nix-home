@@ -94,7 +94,7 @@
       };
 
       rpi1 = nixpkgs.lib.nixosSystem {
-        inherit system pkgs;
+        system = "aarch64-linux";
         modules = [
           hardware.nixosModules.raspberry-pi-4
           ./nixos/rpi
