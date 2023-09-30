@@ -7,6 +7,7 @@
     ../modules/openssh.nix
     ../modules/node-exporter.nix
     ../modules/prometheus.nix
+    ../modules/grafana.nix
     ./hardware-configuration.nix
   ];
 
