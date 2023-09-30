@@ -30,7 +30,6 @@ in {
     );
 
   time.timeZone = "Europe/London";
-  nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = overlays;
 
   networking.networkmanager.enable = true;

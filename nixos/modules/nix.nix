@@ -27,4 +27,6 @@
     # make nix shell commands use same nixpkgs as system
     registry.nixpkgs.flake = nixpkgs;
   };
+
+  nixpkgs.config.allowUnfree = true;
 }
