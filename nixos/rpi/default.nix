@@ -1,6 +1,9 @@
-{pkgs, ...}: {
+{nixpkgs}: {pkgs, ...}: {
   imports = [
-    ../modules/nix.nix
+    (import ../modules/nix.nix {
+      inherit nixpkgs;
+      users = [];
+    })
     ../modules/openssh.nix
     ./hardware-configuration.nix
   ];
