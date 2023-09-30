@@ -6,6 +6,7 @@
     })
     ../modules/openssh.nix
     ../modules/node-exporter.nix
+    ../modules/prometheus.nix
     ./hardware-configuration.nix
   ];
 
