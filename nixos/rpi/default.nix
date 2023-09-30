@@ -8,6 +8,7 @@
     ../modules/node-exporter.nix
     ../modules/prometheus.nix
     ../modules/grafana.nix
+    ../modules/nginx.nix
     ./hardware-configuration.nix
   ];
 
