@@ -17,6 +17,9 @@
   environment.systemPackages = with pkgs; [
     libraspberrypi
     raspberrypi-eeprom
+
+    htop
+    iotop
   ];
 
   system.stateVersion = "23.05";
