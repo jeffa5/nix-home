@@ -16,6 +16,7 @@ in {
     [
       (import ./modules/nix.nix {inherit nixpkgs users;})
       ./modules/vpn.nix
+      ./modules/tailscale.nix
     ]
     ++ (
       if gui
@@ -87,8 +88,6 @@ in {
       enable = true;
       drivers = with pkgs; [gutenprint hplip];
     };
-
-    tailscale.enable = true;
   };
 
   virtualisation.docker.enable = true;
