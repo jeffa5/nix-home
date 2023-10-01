@@ -13,7 +13,6 @@
     ../modules/grafana.nix
     ../modules/nginx.nix
     ../modules/tailscale.nix
-    ../modules/glusterfs.nix
   ];
 
   networking.hostName = "rpi1";

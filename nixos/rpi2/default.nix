@@ -11,7 +11,6 @@
     ../modules/node-exporter.nix
     ../modules/nginx.nix
     # ../modules/tailscale.nix
-    ../modules/glusterfs.nix
   ];
 
   networking.hostName = "rpi2";
