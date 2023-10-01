@@ -9,7 +9,7 @@ in {
 
     scrapeConfigs = [
       {
-        job_name = "node-exporter";
+        job_name = "node";
         static_configs = [
           # this pi (rpi1)
           {targets = ["192.168.0.52:${toString ports.node-exporter.public}"];}
