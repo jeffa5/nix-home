@@ -5,7 +5,7 @@ in {
   services.prometheus.exporters.node = {
     enable = true;
     port = ports.private;
-    enabledCollectors = ["systemd" "textfile"];
+    enabledCollectors = ["systemd" "processes" "textfile"];
     extraFlags = [
       "--collector.textfile.directory=${textFilesDir}"
     ];
