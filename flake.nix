@@ -144,6 +144,8 @@
         deadnix --fail ${./.}
         mkdir $out
       '';
+
+      deploy = pkgs.callPackage ./deploy.nix {hosts = import ./hosts.nix;};
     };
 
     checks.${system} = {
