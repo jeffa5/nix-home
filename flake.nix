@@ -109,6 +109,14 @@
         ];
       };
 
+      rpi2 = stableNixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        modules = [
+          hardware.nixosModules.raspberry-pi-4
+          (import ./nixos/rpi2 {nixpkgs = stableNixpkgs;})
+        ];
+      };
+
       rosebud = nixpkgs.lib.nixosSystem {
         inherit system pkgs;
         modules = [
