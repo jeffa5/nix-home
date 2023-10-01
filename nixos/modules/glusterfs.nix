@@ -1,0 +1,5 @@
+{...}: {
+  services.glusterfs = {
+    enable = true;
+  };
+}
