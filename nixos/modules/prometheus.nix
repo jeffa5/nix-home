@@ -1,6 +1,7 @@
-{config, ...}: let
+{...}: let
   public_port = 9000;
   private_port = 9090;
+  ports = import ./ports.nix;
 in {
   services.prometheus = {
     enable = true;
@@ -10,13 +11,19 @@ in {
       {
         job_name = "node-exporter";
         static_configs = [
-          {targets = ["127.0.0.1:${toString config.services.prometheus.exporters.node.port}"];}
+          # this pi (rpi1)
+          {targets = ["192.168.0.52:${toString ports.node-exporter.public}"];}
+          # rpi2
+          {targets = ["192.168.0.99:${toString ports.node-exporter.public}"];}
         ];
       }
       {
         job_name = "nginx";
         static_configs = [
-          {targets = ["127.0.0.1:${toString config.services.prometheus.exporters.nginx.port}"];}
+          # this pi (rpi1)
+          {targets = ["192.168.0.52:${toString ports.nginx-exporter.public}"];}
+          # rpi2
+          {targets = ["192.168.0.99:${toString ports.nginx-exporter.public}"];}
         ];
       }
     ];

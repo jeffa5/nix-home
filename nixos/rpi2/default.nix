@@ -8,7 +8,8 @@
       inherit nixpkgs;
       users = [];
     })
-    # ../modules/node-exporter.nix
+    ../modules/node-exporter.nix
+    ../modules/nginx.nix
     # ../modules/tailscale.nix
     # ../modules/glusterfs.nix
   ];
