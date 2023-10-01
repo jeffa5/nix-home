@@ -16,6 +16,19 @@ in {
           type = "prometheus";
         }
       ];
+
+      dashboards.settings.providers = [
+        {
+          type = "file";
+          name = "node";
+          options.path = ./grafana/dashboard-node.json;
+        }
+        {
+          type = "file";
+          name = "nginx";
+          options.path = ./grafana/dashboard-nginx.json;
+        }
+      ];
     };
   };
 

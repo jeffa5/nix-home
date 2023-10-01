@@ -14,4 +14,4 @@ in
   writeShellScriptBin "deploy" ''
     set -x
     ${script}
-    ''
+  ''
