@@ -105,7 +105,7 @@
         system = "aarch64-linux";
         modules = [
           hardware.nixosModules.raspberry-pi-4
-          (import ./nixos/rpi {nixpkgs = stableNixpkgs;})
+          (import ./nixos/rpi1 {nixpkgs = stableNixpkgs;})
         ];
       };
 
