@@ -1,4 +1,4 @@
-{server}: {...}: {
+{server}: {pkgs, ...}: {
   programs.tmux = {
     enable = true;
     baseIndex = 1;
@@ -88,6 +88,8 @@
 
       # messages
       set -g message-style 'fg=colour15 bg=colour4 bold'
+
+      set -g default-shell ${pkgs.fish}/bin/fish
     '';
   };
 }
