@@ -25,6 +25,11 @@
     fsType = "ext4";
   };
 
+  fileSystems."/var/lib/prometheus2" = {
+    device = "/local/prometheus";
+    options = ["bind"];
+  };
+
   swapDevices = [];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
