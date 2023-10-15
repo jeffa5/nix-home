@@ -86,7 +86,7 @@
     );
   in {
     # whole system configs
-    # nixos-rebuild switch --flake '<flake-uri>#xps-15'
+    # nixos-rebuild switch --flake '<flake-uri>#xps15'
     # to install
     nixosConfigurations = {
       carbide = mkMachine {
@@ -95,8 +95,8 @@
         gui = true;
       };
 
-      xps-15 = mkMachine {
-        modules = [./nixos/xps-15 hardware.nixosModules.dell-xps-15-9560-intel];
+      xps15 = mkMachine {
+        modules = [./nixos/xps15 hardware.nixosModules.dell-xps-15-9560-intel];
         users = ["andrew"];
         gui = true;
       };

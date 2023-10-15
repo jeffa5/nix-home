@@ -7,7 +7,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot";
 
-  networking.hostName = "xps-15";
+  networking.hostName = "xps15";
   networking.interfaces.wlp2s0.useDHCP = true;
 
   services.printing = {
