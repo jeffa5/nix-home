@@ -32,6 +32,7 @@
     slack
     spotify
     thunderbird
+    betterbird
     todoist-electron
     vlc
     vorta
