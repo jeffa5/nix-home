@@ -27,6 +27,8 @@
     papers,
     tasknet,
   }: let
+    status-bar = import packages/status-bar pkgs;
+    sway-scripts = import packages/sway-scripts pkgs;
     username = "andrew";
     system = "x86_64-linux";
     pkgs = import nixpkgs {

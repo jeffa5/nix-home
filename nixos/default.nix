@@ -83,6 +83,29 @@ in {
 
     fstrim.enable = true;
 
+    borgbackup.jobs.home-andrew = rec {
+      paths = "/home/andrew";
+      exclude = map (x: paths + "/" + x) common-excludes;
+      encryption = {
+        mode = "none";
+      };
+      repo = "/backups/backups/${config.networking.hostName}/borg";
+      doInit = false;
+      compression = "auto,zstd,3";
+      startAt = "hourly";
+      extraCreateArgs = "--verbose --stats --list --filter=AME --checkpoint-interval 600";
+      extraPruneArgs = "--verbose --stats --list --save-space";
+      prune = {
+        keep = {
+          hourly = 24;
+          daily = 7;
+          weekly = 4;
+          monthly = -1;
+        };
+      };
+      removableDevice = true;
+    };
+
     printing = {
       enable = true;
       drivers = with pkgs; [gutenprint hplip];
@@ -104,6 +127,8 @@ in {
   };
 
   programs = {
+    sway.enable = false;
+
     steam.enable = true;
 
     adb.enable = true;
