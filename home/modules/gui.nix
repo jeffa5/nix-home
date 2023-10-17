@@ -3,6 +3,8 @@
     ./dconf.nix
     ./firefox.nix
     ../import-nef.nix
+    ./mbsync.nix
+    ./aerc.nix
   ];
 
   home.packages = with pkgs; [

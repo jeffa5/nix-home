@@ -1,30 +1,42 @@
-pkgs: {
+{pkgs, ...}: {
+  home.packages = [pkgs.aerc];
+
   xdg.configFile."aerc/aerc.conf".text = ''
     [ui]
-    index-format=%Z %D %-30.30n %s
+    index-columns = flags>4,date<*,name<30,subject<*
+    column-flags = {{.Flags | join ""}}
+    column-date = {{.DateAutoFormat .Date.Local}}
+    column-name = {{index (.From | names) 0}}
+    column-subject = {{.ThreadPrefix}}{{.Subject}}
+
     timestamp-format=15:04 Mon 02/01/2006
     sidebar-width=30
     sort=-r date
     stylesets-dirs=~/.config/aerc/stylesets
 
+    threading-enabled = true
+    mouse-enabled = true
+    tab-title-account = {{.Account}} {{if .Unread}}({{.Unread}}){{end}}
+    dirlist-tree = true
+    auto-mark-read = false
+
     [compose]
     address-book-cmd=khard email --remove-first-line --parsable '%s'
 
     [filters]
-    subject,~^\[PATCH=awk -f ${pkgs.aerc}/share/aerc/filters/hldiff
-    text/html=${pkgs.aerc}/share/aerc/filters/html
-    text/*=awk -f ${pkgs.aerc}/share/aerc/filters/plaintext
+    subject,~^\[PATCH=awk -f ${pkgs.aerc}/libexec/aerc/filters/hldiff
+    text/html=${pkgs.aerc}/libexec/aerc/filters/html
+    text/*=awk -f ${pkgs.aerc}/libexec/aerc/filters/plaintext
 
-    [triggers]
-    new-email=exec ${pkgs.libnotify}/bin/notify-send "New email from %n" "%s"
+    [hooks]
+    mail-received=exec ${pkgs.libnotify}/bin/notify-send "New email from $AERC_FROM_NAME" "$AERC_SUBJECT"
   '';
 
   xdg.configFile."aerc/binds.conf".text = ''
-    <C-p> = :prev-tab<Enter>
+    <C-h> = :prev-tab<Enter>
     <C-n> = :next-tab<Enter>
     <C-l> = :change-tab -<Enter>
     <C-t> = :term<Enter>
-    <C-r> = :term mailsync<Enter>
 
     [messages]
     q = :quit<Enter>
@@ -92,7 +104,7 @@ pkgs: {
     o = :open<Enter>
     a = :read<Enter>:archive flat<Enter>:close<Enter>
     d = :read<Enter>:move Deleted<Enter>
-    u = :pipe -p urlscan<Enter>
+    u = :pipe -p ${pkgs.urlscan}/bin/urlscan<Enter>
     J = :next-message<Enter>
     K = :prev-message<Enter>
 
