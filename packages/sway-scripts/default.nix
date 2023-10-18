@@ -113,4 +113,53 @@ pkgs: {
           ;;
       esac
     '';
+
+  productivity-timer = pkgs.writeShellScriptBin "productivity-timer" ''
+    pgrep wofi && pkill wofi && exit 0
+
+    inputs="Toggle pause\nReset timer\nRestart session\nSkip session"
+
+    send_to_server() {
+      echo "$1" | nc -U /tmp/owork.sock
+    }
+
+    selection=$(echo -e "$inputs" | ${pkgs.wofi}/bin/wofi --dmenu --prompt "Timer" --insensitive --lines 10)
+
+    case $selection in
+      "Toggle pause")
+        send_to_server "set/toggle"
+        ;;
+      "Reset timer")
+        send_to_server "set/reset"
+        ;;
+      "Restart session")
+        send_to_server "set/restart"
+        ;;
+      "Skip session")
+        send_to_server "set/skip"
+        ;;
+      *) ;;
+    esac
+  '';
+
+  productivity-timer-notify = pkgs.writeShellScriptBin "productivity-timer-notify" ''
+    pgrep waytext && pkill waytext
+
+    case "$1" in
+    "Idle")
+        text="Idle"
+        ;;
+    "Work")
+        text="Start work"
+        ;;
+    "Short")
+        text="Take a short break"
+        ;;
+    "Long")
+        text="Take a long break"
+        ;;
+    esac
+
+    ${pkgs.waytext} -t "$text"
+  '';
 }

@@ -5,33 +5,6 @@
   inactive_bg = "#282828";
   urgent_bg = "#cc241d";
 
-  productivity-timer = pkgs.writeShellScriptBin "productivity-timer" ''
-    pgrep wofi && pkill wofi && exit 0
-
-    inputs="Toggle pause\nReset timer\nRestart session\nSkip session"
-
-    send_to_server() {
-      echo "$1" | nc -U /tmp/owork.sock
-    }
-
-    selection=$(echo -e "$inputs" | ${pkgs.wofi}/bin/wofi --dmenu --cache-file "/tmp/wofi-owork-cache" --prompt "Timer" --insensitive --lines 5 && rm /tmp/wofi-owork-cache)
-
-    case $selection in
-      "Toggle pause")
-        send_to_server "set/toggle"
-        ;;
-      "Reset timer")
-        send_to_server "set/reset"
-        ;;
-      "Restart session")
-        send_to_server "set/restart"
-        ;;
-      "Skip session")
-        send_to_server "set/skip"
-        ;;
-      *) ;;
-    esac
-  '';
 in {
   imports = [
     ./swaylock.nix
@@ -169,7 +142,7 @@ in {
         "${config.modifier}+Shift+9" = "move container to workspace $workspace9";
         "${config.modifier}+Shift+0" = "move container to workspace $workspace10";
         "${config.modifier}+space" = "exec ${pkgs.sway-scripts.app-launcher}/bin/app-launcher";
-        "${config.modifier}+t" = "exec ${productivity-timer}/bin/productivity-timer";
+        "${config.modifier}+t" = "exec ${pkgs.sway-scripts.productivity-timer}/bin/productivity-timer";
         "${config.modifier}+Alt+f" = "exec --no-startup-id swaymsg 'workspace $workspace1; exec ${pkgs.firefox}/bin/firefox'";
         "${config.modifier}+Alt+m" = "exec --no-startup-id swaymsg 'workspace $workspace9; exec ${pkgs.thunderbird}/bin/thunderbird'";
         "${config.modifier}+Alt+s" = "exec --no-startup-id swaymsg 'workspace $workspace10; exec ${pkgs.spotify}/bin/spotify'";

@@ -8,6 +8,7 @@
     ./alacritty.nix
 
     ./sway.nix
+    ./owork.nix
   ];
 
   home.packages = with pkgs; [

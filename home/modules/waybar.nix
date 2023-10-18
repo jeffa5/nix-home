@@ -1,83 +1,4 @@
 {pkgs, ...}: let
-  productivity-timer = pkgs.writeScriptBin "productivity-timer" ''
-    #!${pkgs.bash}/bin/bash
-
-    pgrep wofi && pkill wofi && exit 0
-
-    inputs="Toggle pause\nReset timer\nRestart session\nSkip session"
-
-    send_to_server() {
-      echo "$1" | nc -U /tmp/owork.sock
-    }
-
-    selection=$(echo -e "$inputs" | ${pkgs.wofi}/bin/wofi --dmenu --cache-file "/tmp/wofi-owork-cache" --prompt "Timer" --insensitive --lines 5 && rm /tmp/wofi-owork-cache)
-
-    case $selection in
-      "Toggle pause")
-        send_to_server "set/toggle"
-        ;;
-      "Reset timer")
-        send_to_server "set/reset"
-        ;;
-      "Restart session")
-        send_to_server "set/restart"
-        ;;
-      "Skip session")
-        send_to_server "set/skip"
-        ;;
-      *) ;;
-    esac
-  '';
-  productivity-timer-status = pkgs.writeScriptBin "productivity-timer-status" ''
-    #!${pkgs.stdenv.shell}
-
-    socket=/tmp/owork.sock
-
-    send_to_pomo() {
-        [ -e $socket ] && echo "$1" | nc -U $socket
-    }
-
-    state=$(send_to_pomo "get/state")
-    time=$(send_to_pomo "get/time")
-    sessions_complete=$(send_to_pomo "get/completed")
-    paused=$(send_to_pomo "get/paused")
-    percent=$(send_to_pomo "get/percentage")
-
-    if [ -z "$state" ]; then
-        exit 1
-    fi
-
-    if [ $paused == "true" ]; then
-        if [ $state == "Idle" ]; then
-            pomo=" $state"
-        else
-            pomo=" $state $time $sessions_complete"
-        fi
-    else
-        pomo="$state $time $sessions_complete"
-        if [ $percent -ge 80 ]; then
-            pomo=" $pomo"
-            colour="#b8bb26"
-        elif [ $percent -ge 60 ]; then
-            pomo=" $pomo"
-            colour="#98971a"
-        elif [ $percent -ge 40 ]; then
-            pomo=" $pomo"
-            colour="#fabd2f"
-        elif [ $percent -ge 20 ]; then
-            pomo=" $pomo"
-            colour="#d79921"
-        elif [ $percent -ge 10 ]; then
-            pomo=" $pomo"
-            colour="#fb4934"
-        else
-            pomo=" $pomo"
-            colour="#cc241d"
-        fi
-    fi
-
-    echo $pomo
-  '';
   background = "#fbf1c7";
   background_light = "#ebdbb2";
   foreground = "#3c3836";
@@ -176,9 +97,9 @@ in {
           "custom/owork" = {
             format = "{}";
             interval = 1;
-            exec = "${productivity-timer-status}/bin/productivity-timer-status";
+            exec = "${pkgs.status-bar.productivity-timer-status}/bin/productivity-timer-status";
             exec-if = "pgrep owork";
-            on-click = "${productivity-timer}/bin/productivity-timer";
+            on-click = "${pkgs.sway-scripts.productivity-timer}/bin/productivity-timer";
           };
           "custom/spotify" = {
             format = "{}";

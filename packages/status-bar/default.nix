@@ -26,4 +26,45 @@ in {
 
     echo "$icon $title - $artist"
   '';
+
+  productivity-timer-status = pkgs.writeShellScriptBin "productivity-timer-status" ''
+    socket=/tmp/owork.sock
+
+    send_to_pomo() {
+        [ -e $socket ] && echo "$1" | nc -U $socket
+    }
+
+    state=$(send_to_pomo "get/state")
+    time=$(send_to_pomo "get/time")
+    sessions_complete=$(send_to_pomo "get/completed")
+    paused=$(send_to_pomo "get/paused")
+    percent=$(send_to_pomo "get/percentage")
+
+    if [ -z "$state" ]; then
+        exit 1
+    fi
+
+    pomo="⌛$state $time $sessions_complete"
+    if [ $paused == "true" ]; then
+        if [ $state == "Idle" ]; then
+            pomo="⌛ $state"
+        fi
+    else
+        if [ $percent -ge 80 ]; then
+            colour="#b8bb26"
+        elif [ $percent -ge 60 ]; then
+            colour="#98971a"
+        elif [ $percent -ge 40 ]; then
+            colour="#fabd2f"
+        elif [ $percent -ge 20 ]; then
+            colour="#d79921"
+        elif [ $percent -ge 10 ]; then
+            colour="#fb4934"
+        else
+            colour="#cc241d"
+        fi
+    fi
+
+    echo $pomo
+  '';
 }
