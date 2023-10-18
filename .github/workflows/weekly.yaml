@@ -25,7 +25,7 @@ jobs:
     - name: Build current config
       id: current
       run: |
-        path=$(nix build .#nixosConfigurations.xps-15.config.system.build.toplevel --json | jq -r '.[0].outputs.out')
+        path=$(nix build .#nixosConfigurations.xps15.config.system.build.toplevel --json | jq -r '.[0].outputs.out')
         echo "path=$path" >> $GITHUB_OUTPUT
 
     - name: Update flake.lock
@@ -37,7 +37,7 @@ jobs:
     - name: Build next config
       id: next
       run: |
-        path=$(nix build .#nixosConfigurations.xps-15.config.system.build.toplevel --json | jq -r '.[0].outputs.out')
+        path=$(nix build .#nixosConfigurations.xps15.config.system.build.toplevel --json | jq -r '.[0].outputs.out')
         echo "path=$path" >> $GITHUB_OUTPUT
 
     - name: Diff closures
