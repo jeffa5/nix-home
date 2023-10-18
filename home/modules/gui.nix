@@ -14,6 +14,7 @@
     android-udev-rules
     anki
     bitwarden
+    bitwarden-cli
     borgbackup
     calcurse
     chromium
