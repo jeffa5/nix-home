@@ -5,22 +5,6 @@
   inactive_bg = "#282828";
   urgent_bg = "#cc241d";
 
-  sway-lockscreen = pkgs.writeShellScriptBin "sway-lockscreen" ''
-    ${pkgs.swayidle}/bin/swayidle \
-      timeout 60 '${pkgs.sway}/bin/swaymsg "output * dpms off"' \
-      resume '${pkgs.sway}/bin/swaymsg "output * dpms on"' \
-      timeout 300 '${pkgs.systemd}/bin/systemctl suspend' \
-      after-resume '${pkgs.sway}/bin/swaymsg "output * dpms on"' &
-
-    pid=$!
-
-    ${pkgs.swaylock}/bin/swaylock
-
-    kill $pid
-  '';
-
-  sway-screenshot = pkgs.writeScriptBin "sway-screenshot" (import ../sway-screenshot.nix pkgs);
-
   productivity-timer = pkgs.writeShellScriptBin "productivity-timer" ''
     pgrep wofi && pkill wofi && exit 0
 
@@ -183,25 +167,25 @@ in {
         "${config.modifier}+Shift+8" = "move container to workspace $workspace8";
         "${config.modifier}+Shift+9" = "move container to workspace $workspace9";
         "${config.modifier}+Shift+0" = "move container to workspace $workspace10";
-        "${config.modifier}+space" = "exec ${pkgs.sway-scripts}/bin/app-launcher";
+        "${config.modifier}+space" = "exec ${pkgs.sway-scripts.app-launcher}/bin/app-launcher";
         "${config.modifier}+t" = "exec ${productivity-timer}/bin/productivity-timer";
         "${config.modifier}+Alt+f" = "exec --no-startup-id swaymsg 'workspace $workspace1; exec ${pkgs.firefox}/bin/firefox'";
         "${config.modifier}+Alt+m" = "exec --no-startup-id swaymsg 'workspace $workspace9; exec ${pkgs.thunderbird}/bin/thunderbird'";
         "${config.modifier}+Alt+s" = "exec --no-startup-id swaymsg 'workspace $workspace10; exec ${pkgs.spotify}/bin/spotify'";
-        "${config.modifier}+p" = "exec ${sway-screenshot}/bin/sway-screenshot";
+        "${config.modifier}+p" = "exec ${pkgs.sway-scripts.screenshot}/bin/sway-screenshot";
         "${config.modifier}+Shift+y" = "move workspace to output left";
         "${config.modifier}+Shift+u" = "move workspace to output down";
         "${config.modifier}+Shift+i" = "move workspace to output up";
         "${config.modifier}+Shift+o" = "move workspace to output right";
-        "${config.modifier}+Alt+l" = "exec '${sway-lockscreen}/bin/sway-lockscreen &'";
+        "${config.modifier}+Alt+l" = "exec '${pkgs.sway-scripts.lockscreen}/bin/sway-lockscreen &'";
         "${config.modifier}+Shift+e" = "mode $mode_system";
         "--locked XF86AudioRaiseVolume" = "exec --no-startup-id ${pkgs.pamixer}/bin/pamixer --increase 5";
         "--locked XF86AudioLowerVolume" = "exec --no-startup-id ${pkgs.pamixer}/bin/pamixer --decrease 5";
         "--locked XF86AudioMute" = "exec --no-startup-id ${pkgs.pamixer}/bin/pamixer --toggle-mute";
-        "--locked XF86AudioPlay" = "exec --no-startup-id ${pkgs.playerctl}/bin/playerctl --player spotify play-pause";
-        "--locked XF86AudioPause" = "exec --no-startup-id ${pkgs.playerctl}/bin/playerctl --player spotify play-pause";
-        "--locked XF86AudioNext" = "exec --no-startup-id ${pkgs.playerctl}/bin/playerctl --player spotify next";
-        "--locked XF86AudioPrev" = "exec --no-startup-id ${pkgs.playerctl}/bin/playerctl --player spotify previous";
+        "--locked XF86AudioPlay" = "exec --no-startup-id ${pkgs.playerctl}/bin/playerctl play-pause";
+        "--locked XF86AudioPause" = "exec --no-startup-id ${pkgs.playerctl}/bin/playerctl play-pause";
+        "--locked XF86AudioNext" = "exec --no-startup-id ${pkgs.playerctl}/bin/playerctl next";
+        "--locked XF86AudioPrev" = "exec --no-startup-id ${pkgs.playerctl}/bin/playerctl previous";
         "--locked XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl -q set +10%";
         "--locked XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl -q set 10%-";
       };
