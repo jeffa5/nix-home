@@ -1,6 +1,5 @@
 {
   pkgs,
-  status-bar,
 }: let
   productivity-timer = pkgs.writeScriptBin "productivity-timer" ''
     #!${pkgs.bash}/bin/bash
@@ -129,7 +128,7 @@ in {
         };
         backlight = {
           format = " {percent}%";
-          exec-if = "${status-bar}/bin/backlight";
+          exec-if = "${pkgs.status-bar}/bin/backlight";
         };
         memory = {
           format = " {}%";
@@ -182,7 +181,7 @@ in {
         "custom/spotify" = {
           format = "{}";
           interval = 1;
-          exec = "${status-bar}/bin/mediaplayer";
+          exec = "${pkgs.status-bar}/bin/mediaplayer";
           exec-if = "${pkgs.playerctl}/bin/playerctl --player spotify status &> /dev/null";
           escape = true;
           on-click = "${pkgs.playerctl}/bin/playerctl --player spotify play-pause";

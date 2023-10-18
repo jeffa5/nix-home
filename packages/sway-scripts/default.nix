@@ -1,5 +1,5 @@
 pkgs:
-with pkgs.legacyPackages.x86_64-linux;
+with pkgs;
   derivation {
     name = "sway-scripts";
     builder = "${bash}/bin/bash";

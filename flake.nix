@@ -22,13 +22,19 @@
     papers,
     tasknet,
   }: let
-    status-bar = import packages/status-bar pkgs;
-    sway-scripts = import packages/sway-scripts pkgs;
     username = "andrew";
     system = "x86_64-linux";
+    sway-overlay = _final:_prev: {
+      status-bar = import packages/status-bar pkgs;
+      sway-scripts = import packages/sway-scripts pkgs;
+    };
     pkgs = import nixpkgs {
       inherit system;
-      overlays = [papers.overlays.default tasknet.overlays.default];
+      overlays = [
+        papers.overlays.default
+        tasknet.overlays.default
+        sway-overlay
+      ];
     };
     colemakdh = import packages/colemakdh pkgs;
     lib = pkgs.lib;
@@ -43,14 +49,17 @@
           [
             (import ./nixos {
               inherit colemakdh nixpkgs users gui;
-              overlays = [papers.overlays.default];
+              overlays = [
+                papers.overlays.default
+                sway-overlay
+              ];
             })
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.${username} = import ./home {
-                gui = gui;
+                inherit gui;
                 username = "andrew";
               };
             }

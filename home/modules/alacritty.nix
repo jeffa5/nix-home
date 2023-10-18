@@ -63,16 +63,16 @@ in {
     enable = true;
     settings = {
       font = {
-        normal = {
-          family = "Hack Nerd Font";
-        };
-        bold = {
-          family = "Hack Nerd Font";
-        };
-        italic = {
-          family = "Hack Nerd Font";
-        };
-        size = 13.0;
+        # normal = {
+        #   family = "Hack Nerd Font";
+        # };
+        # bold = {
+        #   family = "Hack Nerd Font";
+        # };
+        # italic = {
+        #   family = "Hack Nerd Font";
+        # };
+        size = 12.0;
       };
 
       draw_bold_text_with_bright_colors = true;

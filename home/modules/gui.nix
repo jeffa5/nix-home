@@ -6,6 +6,8 @@
     ./mbsync.nix
     ./aerc.nix
     ./alacritty.nix
+
+    ./sway.nix
   ];
 
   home.packages = with pkgs; [
