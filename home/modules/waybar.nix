@@ -96,7 +96,7 @@ in {
           "backlight"
           "memory"
           "cpu"
-          "temperature"
+          # "temperature"
           "network"
           "battery"
           "sway/language"
@@ -112,16 +112,16 @@ in {
           };
           pulseaudio = {
             format = "{icon} {volume}%";
-            format-bluetooth = " {volume}%";
+            format-bluetooth = "BT {volume}%";
             format-muted = "🔇";
             format-icons = {
-              headphones = "";
-              handsfree = "";
-              headset = "";
-              phone = "";
-              portable = "";
-              car = "";
-              default = ["" ""];
+              headphones = "H";
+              handsfree = "H";
+              headset = "H";
+              phone = "P";
+              portable = "P";
+              car = "C";
+              default = ["Vol"];
             };
             scroll-step = 5;
           };
@@ -130,14 +130,14 @@ in {
             exec-if = "${pkgs.status-bar}/bin/backlight";
           };
           memory = {
-            format = " {}%";
+            format = "Mem {}%";
             states = {
               warning = 50;
               critical = 80;
             };
           };
           cpu = {
-            format = " {usage}%";
+            format = "Cpu {usage}%";
             states = {
               warning = 50;
               critical = 80;

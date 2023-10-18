@@ -57,6 +57,7 @@ in {
     ./mako.nix
     ./zathura.nix
     ./waybar.nix
+    ./wofi.nix
   ];
 
   wayland.windowManager.sway = rec {
@@ -185,7 +186,7 @@ in {
         "${config.modifier}+Shift+8" = "move container to workspace $workspace8";
         "${config.modifier}+Shift+9" = "move container to workspace $workspace9";
         "${config.modifier}+Shift+0" = "move container to workspace $workspace10";
-        "${config.modifier}+space" = "exec ${pkgs.sway-scripts}/bin/wofi";
+        "${config.modifier}+space" = "exec ${pkgs.sway-scripts}/bin/app-launcher";
         "${config.modifier}+t" = "exec ${productivity-timer}/bin/productivity-timer";
         "${config.modifier}+Alt+f" = "exec --no-startup-id swaymsg 'workspace $workspace1; exec ${pkgs.firefox}/bin/firefox'";
         "${config.modifier}+Alt+m" = "exec --no-startup-id swaymsg 'workspace $workspace9; exec ${pkgs.thunderbird}/bin/thunderbird'";

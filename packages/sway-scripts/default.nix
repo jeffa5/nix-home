@@ -1,5 +1,5 @@
 pkgs:
-pkgs.writeShellScriptBin "wofi" ''
+pkgs.writeShellScriptBin "app-launcher" ''
   #!${pkgs.bash}/bin/bash
 
   pgrep wofi && pkill wofi && exit 0

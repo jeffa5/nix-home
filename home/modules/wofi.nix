@@ -1,4 +1,4 @@
-{
+{...}: {
   xdg.configFile."wofi/style.css".text = ''
     * {
       color: #ebdbb2;
