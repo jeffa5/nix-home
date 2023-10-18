@@ -11,6 +11,7 @@
   ];
 
   home.packages = with pkgs; [
+    wob
     android-udev-rules
     anki
     bitwarden

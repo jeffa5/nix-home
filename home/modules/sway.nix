@@ -56,6 +56,7 @@ in {
     ./swaylock.nix
     ./mako.nix
     ./zathura.nix
+    ./waybar.nix
   ];
 
   wayland.windowManager.sway = rec {
