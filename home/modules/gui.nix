@@ -15,6 +15,7 @@
     anki
     bitwarden
     borgbackup
+    calcurse
     chromium
     czkawka
     darktable
