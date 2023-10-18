@@ -5,8 +5,7 @@
   inactive_bg = "#282828";
   urgent_bg = "#cc241d";
 
-  sway-lockscreen = pkgs.writeScriptBin "sway-lockscreen" ''
-    #!${pkgs.stdenv.shell}
+  sway-lockscreen = pkgs.writeShellScriptBin "sway-lockscreen" ''
     ${pkgs.swayidle}/bin/swayidle \
       timeout 60 '${pkgs.sway}/bin/swaymsg "output * dpms off"' \
       resume '${pkgs.sway}/bin/swaymsg "output * dpms on"' \
@@ -22,9 +21,7 @@
 
   sway-screenshot = pkgs.writeScriptBin "sway-screenshot" (import ../sway-screenshot.nix pkgs);
 
-  productivity-timer = pkgs.writeScriptBin "productivity-timer" ''
-    #!${pkgs.bash}/bin/bash
-
+  productivity-timer = pkgs.writeShellScriptBin "productivity-timer" ''
     pgrep wofi && pkill wofi && exit 0
 
     inputs="Toggle pause\nReset timer\nRestart session\nSkip session"
