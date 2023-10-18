@@ -13,11 +13,6 @@
     tasknet.url = "github:jeffa5/tasknet";
   };
 
-  nixConfig = {
-    extra-substituters = ["https://nix-home.cachix.org"];
-    extra-trusted-public-keys = ["nix-home.cachix.org-1:4pHmWLjAUItJFCCyESAls8vwyV7kL2BHwJbofhOaX8M="];
-  };
-
   outputs = {
     self,
     home-manager,
