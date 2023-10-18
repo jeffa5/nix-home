@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-pgrep wofi && pkill wofi && exit 0
-
-error=$(wofi --show run 2>&1)
-
-if [ -n "$error" ]; then
-    notify-send --urgency=critical "Wofi" "$error"
-fi

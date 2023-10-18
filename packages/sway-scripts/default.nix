@@ -1,10 +1,12 @@
 pkgs:
-with pkgs;
-  derivation {
-    name = "sway-scripts";
-    builder = "${bash}/bin/bash";
-    args = [./builder.sh];
-    inherit coreutils;
-    src = ./src;
-    system = "x86_64-linux";
-  }
+pkgs.writeShellScriptBin "wofi" ''
+  #!${pkgs.bash}/bin/bash
+
+  pgrep wofi && pkill wofi && exit 0
+
+  error=$(${pkgs.wofi}/bin/wofi --show run 2>&1)
+
+  if [ -n "$error" ]; then
+      ${pkgs.libnotify}/bin/notify-send --urgency=critical "Wofi" "$error"
+  fi
+''

@@ -61,16 +61,16 @@ in {
   wayland.windowManager.sway = rec {
     enable = true;
     extraConfig = ''
-      set $workspace1 1 
-      set $workspace2 2 
-      set $workspace3 3 
+      set $workspace1 1
+      set $workspace2 2
+      set $workspace3 3
       set $workspace4 4
       set $workspace5 5
       set $workspace6 6
       set $workspace7 7
-      set $workspace8 8 
-      set $workspace9 9 
-      set $workspace10 10 
+      set $workspace8 8
+      set $workspace9 9
+      set $workspace10 10
 
       set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (p) shutdown
       mode "$mode_system" {
@@ -93,7 +93,7 @@ in {
 
       bars = [
         {
-          # command = "${pkgs.waybar}/bin/waybar";
+          command = "${pkgs.waybar}/bin/waybar";
         }
       ];
 
