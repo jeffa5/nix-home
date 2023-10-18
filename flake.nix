@@ -11,6 +11,7 @@
     hardware.url = "github:nixos/nixos-hardware";
     papers.url = "github:jeffa5/papers";
     tasknet.url = "github:jeffa5/tasknet";
+    waytext.url = "github:jeffa5/waytext";
   };
 
   outputs = {
@@ -21,6 +22,7 @@
     hardware,
     papers,
     tasknet,
+    waytext,
   }: let
     username = "andrew";
     system = "x86_64-linux";
@@ -33,6 +35,7 @@
       overlays = [
         papers.overlays.default
         tasknet.overlays.default
+        waytext.overlays.default
         sway-overlay
       ];
     };
@@ -51,6 +54,7 @@
               inherit colemakdh nixpkgs users gui;
               overlays = [
                 papers.overlays.default
+                waytext.overlays.default
                 sway-overlay
               ];
             })

@@ -44,6 +44,7 @@
     vlc
     vorta
     wally-cli
+    waytext
     wl-clipboard
     xdg-utils
     xournalpp
