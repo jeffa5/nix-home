@@ -1,4 +1,4 @@
-pkgs: let
+{pkgs, ...}: let
   light = {
     # Colors (Gruvbox light)
     primary = {
@@ -59,28 +59,30 @@ pkgs: let
     };
   };
 in {
-  enable = true;
-  settings = {
-    font = {
-      normal = {
-        family = "Hack Nerd Font";
+  programs.alacritty = {
+    enable = true;
+    settings = {
+      font = {
+        normal = {
+          family = "Hack Nerd Font";
+        };
+        bold = {
+          family = "Hack Nerd Font";
+        };
+        italic = {
+          family = "Hack Nerd Font";
+        };
+        size = 13.0;
       };
-      bold = {
-        family = "Hack Nerd Font";
-      };
-      italic = {
-        family = "Hack Nerd Font";
-      };
-      size = 13.0;
-    };
 
-    draw_bold_text_with_bright_colors = true;
+      draw_bold_text_with_bright_colors = true;
 
-    colors = light;
+      colors = light;
 
-    mouse = {
-      hints = {
-        launcher = "${pkgs.xdg-utils}/bin/xdg-open";
+      mouse = {
+        hints = {
+          launcher = "${pkgs.xdg-utils}/bin/xdg-open";
+        };
       };
     };
   };

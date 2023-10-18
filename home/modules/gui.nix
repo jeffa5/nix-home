@@ -5,6 +5,7 @@
     ../import-nef.nix
     ./mbsync.nix
     ./aerc.nix
+    ./alacritty.nix
   ];
 
   home.packages = with pkgs; [
