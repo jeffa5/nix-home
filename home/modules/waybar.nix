@@ -1,4 +1,4 @@
-{pkgs,...}: let
+{pkgs, ...}: let
   productivity-timer = pkgs.writeScriptBin "productivity-timer" ''
     #!${pkgs.bash}/bin/bash
 
@@ -217,7 +217,8 @@ in {
         text-shadow: inherit;
       }
 
-      #workspaces button.focused {
+      #workspaces button.focused,
+      #battery.full {
         background: #98971a;
       }
 
@@ -225,12 +226,9 @@ in {
         background: #458588;
       }
 
-      #workspaces button.urgent {
-        background: #cc241d;
-      }
-
       #clock,
       #battery,
+      #battery.discharging,
       #language,
       #cpu,
       #temperature,
@@ -248,15 +246,9 @@ in {
         color: #ebdbb2;
       }
 
-      #battery {
-        background: #282828;
-      }
-
-      #battery.discharging {
-        background: #282828;
-      }
-
-      #battery.discharging.warning {
+      #battery.discharging.warning,
+      #cpu.warning,
+      #memory.warning {
         background: #d65d0e;
       }
 
@@ -269,68 +261,16 @@ in {
         animation-direction: alternate;
       }
 
-      #battery.full {
-        background: #98971a;
-      }
-
-      #language {
-        background: #282828;
-      }
-
-      #cpu {
-        background: #282828;
-      }
-
-      #cpu.warning {
-        background: #d65d0e;
-      }
-
-      #cpu.critical {
-        background: #cc241d;
-      }
-
-      #temperature {
-        background: #282828;
-      }
-
-      #temperature.critical {
-        background: #cc241d;
-      }
-
-      #memory {
-        background: #282828;
-      }
-
-      #memory.warning {
-        background: #d65d0e;
-      }
-
+      #cpu.critical,
+      #workspaces button.urgent,
+      #temperature.critical,
       #memory.critical {
         background: #cc241d;
-      }
-
-      #backlight {
-        background: #282828;
-      }
-
-      #network {
-        background: #282828;
       }
 
       #network.disconnected {
         background: #f53c3c;
       }
-
-      #pulseaudio {
-        background: #282828;
-      }
-
-      #custom-owork {
-        background: #282828;
-      }
-
-      #custom-spotify {
-        background: #282828;
-      }'';
+    '';
   };
 }
