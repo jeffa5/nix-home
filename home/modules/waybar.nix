@@ -130,7 +130,7 @@ in {
           };
           backlight = {
             format = "☼ {percent}%";
-            exec-if = "${pkgs.status-bar}/bin/backlight";
+            exec-if = "${pkgs.status-bar.backlight}/bin/bar-backlight";
           };
           memory = {
             format = "Mem {}%";
@@ -183,7 +183,7 @@ in {
           "custom/spotify" = {
             format = "{}";
             interval = 1;
-            exec = "${pkgs.status-bar}/bin/mediaplayer";
+            exec = "${pkgs.status-bar.mediaplayer}/bin/bar-mediaplayer";
             exec-if = "${pkgs.playerctl}/bin/playerctl --player spotify status &> /dev/null";
             escape = true;
             on-click = "${pkgs.playerctl}/bin/playerctl --player spotify play-pause";
