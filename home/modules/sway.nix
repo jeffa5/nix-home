@@ -157,6 +157,7 @@ in {
         "${config.modifier}+8" = "workspace $workspace8";
         "${config.modifier}+9" = "workspace $workspace9";
         "${config.modifier}+0" = "workspace $workspace10";
+        "${config.modifier}+minus" = "workspace back_and_forth";
         "${config.modifier}+Shift+1" = "move container to workspace $workspace1";
         "${config.modifier}+Shift+2" = "move container to workspace $workspace2";
         "${config.modifier}+Shift+3" = "move container to workspace $workspace3";
