@@ -78,6 +78,9 @@
 
     echo $pomo
   '';
+  background = "#fbf1c7";
+  background_light = "#ebdbb2";
+  foreground = "#3c3836";
 in {
   programs.waybar = {
     enable = true;
@@ -198,8 +201,8 @@ in {
       }
 
       window#waybar {
-        background: #1d2021;
-        color: #ebdbb2;
+        background: ${background};
+        color: ${foreground};
         transition-property: background, background-color;
         transition-duration: 0.5s;
       }
@@ -208,8 +211,8 @@ in {
       #workspaces button {
         padding: 0 5px;
         margin: 1px;
-        background: #282828;
-        color: #ebdbb2;
+        background: ${background_light};
+        color: ${foreground};
       }
 
       #workspaces button:hover {
@@ -242,8 +245,8 @@ in {
       #tray {
         padding: 0 5px;
         margin: 0 3px;
-        background: #282828;
-        color: #ebdbb2;
+        background: ${background_light};
+        color: ${foreground};
       }
 
       #battery.discharging.warning,
