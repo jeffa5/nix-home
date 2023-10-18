@@ -20,7 +20,10 @@ in {
     ]
     ++ (
       if gui
-      then [./modules/gnome.nix]
+      then [
+        ./modules/gnome.nix
+        ./modules/sway.nix
+      ]
       else []
     )
     ++ (
@@ -104,8 +107,6 @@ in {
   };
 
   programs = {
-    sway.enable = false;
-
     steam.enable = true;
 
     adb.enable = true;
