@@ -74,8 +74,8 @@ in {
           };
           network = {
             interval = 5;
-            format-ethernet = "↓ {bandwidthDownBits} ↑ {bandwidthUpBits}";
-            format-wifi = "🛜 {signalStrength}% ↓ {bandwidthDownBits} ↑ {bandwidthUpBits}";
+            format-ethernet = "Eth ↓ {bandwidthDownBits} ↑ {bandwidthUpBits}";
+            format-wifi = "🛜 {essid} ({signalStrength}%) ↓ {bandwidthDownBits} ↑ {bandwidthUpBits}";
           };
           battery = {
             format = "{icon} {capacity}%";
