@@ -3,11 +3,12 @@
     enable = true;
     backgroundColor = "#282828";
     borderSize = 4;
-    defaultTimeout = 5000;
+    defaultTimeout = 10000;
     font = "hack 12";
     height = 200;
     textColor = "#ebdbb2";
     width = 400;
+    format = "%a\\n<b>%s</b>\\n%b";
     extraConfig = ''
       [hidden]
       border-color=#83a598
