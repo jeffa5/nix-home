@@ -63,15 +63,15 @@ in {
     enable = true;
     settings = {
       font = {
-        # normal = {
-        #   family = "Hack Nerd Font";
-        # };
-        # bold = {
-        #   family = "Hack Nerd Font";
-        # };
-        # italic = {
-        #   family = "Hack Nerd Font";
-        # };
+        normal = {
+          family = "Hack Nerd Font";
+        };
+        bold = {
+          family = "Hack Nerd Font";
+        };
+        italic = {
+          family = "Hack Nerd Font";
+        };
         size = 12.0;
       };
 
