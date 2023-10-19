@@ -21,7 +21,7 @@ in {
     ++ (
       if gui
       then [
-        ./modules/gnome.nix
+        # ./modules/gnome.nix
         ./modules/sway.nix
       ]
       else []
