@@ -8,7 +8,7 @@
     height = 200;
     textColor = "#ebdbb2";
     width = 400;
-    format = "%a\\n<b>%s</b>\\n%b";
+    format = "<b><u>%a</u></b>\\n<b>%s</b>\\n%b";
     extraConfig = ''
       [hidden]
       border-color=#83a598
