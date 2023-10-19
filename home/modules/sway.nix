@@ -103,7 +103,7 @@ in {
       output = {
         "*" = {bg = "#458588 solid_color";};
         "eDP-1" = {
-          position = "1080 2160";
+          position = "320 1440";
         };
         "HDMI-A-1" = {
           position = "0 1080";
