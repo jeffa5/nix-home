@@ -33,7 +33,7 @@ in {
             disable-scroll = true;
           };
           "sway/language" = {
-            on-click = "${pkgs.sway}/bin/swaymsg -t command input '*' xkb_switch_layout next";
+            on-click = "${pkgs.sway}/bin/swaymsg -t command input type:keyboard xkb_switch_layout next";
           };
           pulseaudio = {
             format = "{icon} {volume}%";
