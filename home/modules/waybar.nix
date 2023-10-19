@@ -21,6 +21,7 @@ in {
           "memory"
           "cpu"
           # "temperature"
+          "bluetooth"
           "network"
           "battery"
           "sway/language"
@@ -76,6 +77,14 @@ in {
             interval = 5;
             format-ethernet = "Eth ↓ {bandwidthDownBits} ↑ {bandwidthUpBits}";
             format-wifi = "🛜 {essid} ({signalStrength}%) ↓ {bandwidthDownBits} ↑ {bandwidthUpBits}";
+          };
+          bluetooth = {
+            format = " {status}";
+            format-disabled = ""; # an empty format will hide the module
+            format-connected = " {num_connections} connected";
+            tooltip-format = "{controller_alias}\t{controller_address}";
+            tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
+            tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
           };
           battery = {
             format = "{icon} {capacity}%";
@@ -158,6 +167,7 @@ in {
       #temperature,
       #memory,
       #backlight,
+      #bluetooth,
       #network,
       #pulseaudio,
       #mode,
