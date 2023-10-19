@@ -46,6 +46,7 @@
     vorta
     wally-cli
     waytext
+    wdisplays
     wl-clipboard
     xdg-utils
     xournalpp
