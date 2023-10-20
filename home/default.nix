@@ -63,6 +63,22 @@ in {
     experimental-features = ["nix-command" "flakes"];
   };
 
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "application/pdf" = ["org.pwmt.zathura-pdf-mupdf.desktop"];
+      "image/svg+xml" = ["imv.desktop"];
+      "image/jpeg" = ["imv.desktop"];
+      "image/jpg" = ["imv.desktop"];
+      "image/png" = ["imv.desktop"];
+      "text/html" = ["firefox.desktop"];
+      "x-scheme-handler/http" = ["firefox.desktop"];
+      "x-scheme-handler/https" = ["firefox.desktop"];
+      "x-scheme-handler/about" = ["firefox.desktop"];
+      "x-scheme-handler/unknown" = ["firefox.desktop"];
+    };
+  };
+
   home = {
     inherit homeDirectory username;
     sessionPath = ["${homeDirectory}/.cargo/bin"];
