@@ -82,12 +82,12 @@ in {
             format = " {status}";
             format-disabled = ""; # an empty format will hide the module
             format-connected = " {device_alias}";
-            format-connected-battery = " {device_alias} {device_battery_percentage}";
+            format-connected-battery = " {device_alias} 🔋{device_battery_percentage}%";
             tooltip-format = "{controller_alias}\t{controller_address}";
             tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
             tooltip-format-connected-battery = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
             tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
-            tooltip-format-enumerate-connected-battery = "{device_alias}\t{device_battery_percentage}\t{device_address}";
+            tooltip-format-enumerate-connected-battery = "{device_alias}\t🔋{device_battery_percentage}%\t{device_address}";
           };
           battery = {
             format = "{icon} {capacity}%";

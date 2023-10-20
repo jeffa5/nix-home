@@ -39,6 +39,10 @@ in {
 
   hardware = {
     bluetooth.enable = true;
+    # experimental to get the battery status feature
+    bluetooth.package = pkgs.bluez5-experimental;
+    bluetooth.settings.General.Experimental = true;
+
     keyboard.zsa.enable = true;
     pulseaudio.enable = false;
   };
