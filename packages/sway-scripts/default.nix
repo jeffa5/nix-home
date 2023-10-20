@@ -160,6 +160,6 @@ pkgs: {
         ;;
     esac
 
-    ${pkgs.waytext} -t "$text"
+    ${pkgs.waytext}/bin/waytext -t "$text"
   '';
 }
