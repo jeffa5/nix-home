@@ -5,7 +5,7 @@ pkgs: {
     error=$(${pkgs.wofi}/bin/wofi --show run 2>&1)
 
     if [ -n "$error" ]; then
-        ${pkgs.libnotify}/bin/notify-send --urgency=critical "Wofi" "$error"
+        ${pkgs.libnotify}/bin/notify-send --urgency=critical --app-name app-launcher "Wofi" "$error"
     fi
   '';
 
@@ -109,7 +109,7 @@ pkgs: {
 
       "Colour Picker")
           colour=$(${grim} -g "$(${slurp} -p)" -t ppm - | ${convert} - -format '%[pixel:p{0,0}]' txt:- | sed -n 2p | awk '{ print $3 }')
-          ${notify-send} "Colour Picker" "$colour"
+          ${notify-send} --app-name screenshot "Colour Picker" "$colour"
           ;;
       esac
     '';

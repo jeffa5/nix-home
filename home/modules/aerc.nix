@@ -29,7 +29,7 @@
     text/*=awk -f ${pkgs.aerc}/libexec/aerc/filters/plaintext
 
     [hooks]
-    mail-received=exec ${pkgs.libnotify}/bin/notify-send "New email from $AERC_FROM_NAME" "$AERC_SUBJECT"
+    mail-received=exec ${pkgs.libnotify}/bin/notify-send --app-name aerc "New email from $AERC_FROM_NAME" "$AERC_SUBJECT"
   '';
 
   xdg.configFile."aerc/binds.conf".text = ''
