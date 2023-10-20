@@ -9,6 +9,7 @@
 
     ./sway.nix
     ./owork.nix
+    ./lf.nix
   ];
 
   home.packages = with pkgs; [
