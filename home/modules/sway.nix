@@ -10,6 +10,7 @@ in {
     ./swaylock.nix
     ./mako.nix
     ./zathura.nix
+    ./imv.nix
     ./waybar.nix
     ./wofi.nix
   ];
