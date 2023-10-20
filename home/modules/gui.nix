@@ -25,12 +25,6 @@
     fractal-next
     evince
     gitAndTools.git-open
-    gnomeExtensions.caffeine
-    gnomeExtensions.dash-to-dock
-    gnomeExtensions.vitals
-    gnome-solanum
-    gnome.gnome-dictionary
-    gnome-network-displays
     inkscape
     libreoffice
     musescore
