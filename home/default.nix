@@ -28,6 +28,7 @@
       tree
       cachix
       ncdu
+      powertop
     ]
     ++ [
       (pkgs.callPackage ./weekly.nix {})
