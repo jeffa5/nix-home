@@ -2,6 +2,7 @@
   imports = [
     ./hardware-configuration.nix
     ../systemd-boot.nix
+    ../modules/laptop.nix
   ];
 
   boot.loader.efi.canTouchEfiVariables = true;
@@ -13,22 +14,5 @@
   services.printing = {
     enable = true;
     clientConf = "ServerName cups-serv.cl.cam.ac.uk";
-  };
-
-  # power
-  powerManagement.enable = true;
-  services.thermald.enable = true;
-  # conflicts with auto-cpufreq
-  services.tlp.enable = false;
-  services.auto-cpufreq.enable = true;
-  services.auto-cpufreq.settings = {
-    battery = {
-      governor = "powersave";
-      turbo = "never";
-    };
-    charger = {
-      governor = "performance";
-      turbo = "auto";
-    };
   };
 }
