@@ -75,8 +75,10 @@ in {
           };
           network = {
             interval = 5;
+            format = "{ifname}";
             format-ethernet = "Eth ↓ {bandwidthDownBits} ↑ {bandwidthUpBits}";
             format-wifi = "🛜 {essid} ({signalStrength}%) ↓ {bandwidthDownBits} ↑ {bandwidthUpBits}";
+            format-disconnected = "Disconnected";
           };
           bluetooth = {
             format = " {status}";
