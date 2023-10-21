@@ -122,6 +122,7 @@ in {
             exec-if = "${pkgs.playerctl}/bin/playerctl --player spotify status &> /dev/null";
             escape = true;
             on-click = "${pkgs.playerctl}/bin/playerctl --player spotify play-pause";
+            max-length = 50;
           };
         };
       }
