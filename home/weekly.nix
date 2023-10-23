@@ -11,7 +11,7 @@ writeShellScriptBin "weekly" ''
   mkdir -p $weekdir
   cd ~/projects/weeklies
 
-  git checkout $branch || git checkout master && git checkout -b $branch
+  git checkout $branch || git checkout main && git checkout -b $branch
 
   nvim $weekdir/apj39.md
 
