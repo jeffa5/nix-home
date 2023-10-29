@@ -29,6 +29,7 @@
       cachix
       ncdu
       powertop
+      unzip
     ]
     ++ [
       (pkgs.callPackage ./weekly.nix {})
