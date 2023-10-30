@@ -94,6 +94,8 @@ in {
       enable = true;
       drivers = with pkgs; [gutenprint hplip];
     };
+
+    udisks2.enable = gui;
   };
 
   virtualisation.docker.enable = true;
