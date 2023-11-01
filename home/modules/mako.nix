@@ -21,6 +21,9 @@
 
       [urgency=high]
       border-color=#fb4934
+
+      [mode=dnd]
+      invisible=1
     '';
   };
 }
