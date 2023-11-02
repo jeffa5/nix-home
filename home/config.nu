@@ -22,7 +22,7 @@ alias gco = git checkout
 alias gcb = git checkout -b
 alias gstp = git stash pop
 
-let-env config = {
+$env.config = {
   edit_mode: vi
   cursor_shape: {
     vi_insert: line
