@@ -83,7 +83,6 @@ in {
         "firefox.desktop"
         "org.gnome.Console.desktop"
         "thunderbird.desktop"
-        "betterbird.desktop"
         "todoist-electron.desktop"
         "obsidian.desktop"
         "org.gnome.Solanum.desktop"
