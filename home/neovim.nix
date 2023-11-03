@@ -208,7 +208,7 @@
         type = "lua";
         config = ''
           -- indent blankline
-          require("indent_blankline").setup {}
+          require("ibl").setup {}
         '';
       }
       {
