@@ -21,7 +21,7 @@
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 30d";
+      options = "--delete-older-than 8d";
     };
 
     # make nix shell commands use same nixpkgs as system
