@@ -4,7 +4,6 @@
   focus_bg = "#98971a";
   inactive_bg = "#282828";
   urgent_bg = "#cc241d";
-
 in {
   imports = [
     ./swaylock.nix
@@ -17,6 +16,11 @@ in {
 
   wayland.windowManager.sway = rec {
     enable = true;
+    extraConfigEarly = ''
+      set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
+      exec rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | ${pkgs.wob}/bin/wob
+    '';
+
     extraConfig = ''
       set $workspace1 1
       set $workspace2 2
@@ -154,15 +158,20 @@ in {
         "${config.modifier}+Shift+o" = "move workspace to output right";
         "${config.modifier}+Alt+l" = "exec '${pkgs.sway-scripts.lockscreen}/bin/sway-lockscreen &'";
         "${config.modifier}+Shift+e" = "mode $mode_system";
-        "--locked XF86AudioRaiseVolume" = "exec --no-startup-id ${pkgs.pamixer}/bin/pamixer --increase 5";
-        "--locked XF86AudioLowerVolume" = "exec --no-startup-id ${pkgs.pamixer}/bin/pamixer --decrease 5";
-        "--locked XF86AudioMute" = "exec --no-startup-id ${pkgs.pamixer}/bin/pamixer --toggle-mute";
+        "--locked XF86AudioRaiseVolume" = "exec ${pkgs.pamixer}/bin/pamixer -ui 5 && ${pkgs.pamixer}/bin/pamixer --get-volume > $WOBSOCK";
+        "--locked XF86AudioLowerVolume" = "exec ${pkgs.pamixer}/bin/pamixer -ud 5 && ${pkgs.pamixer}/bin/pamixer --get-volume > $WOBSOCK";
+        "--locked XF86AudioMute" = "exec ${pkgs.pamixer}/bin/pamixer --toggle-mute && ( [ \"$(${pkgs.pamixer}/bin/pamixer --get-mute)\" = \"true\" ] && echo 0 > $WOBSOCK ) || ${pkgs.pamixer}/bin/pamixer --get-volume > $WOBSOCK";
+        # "--locked XF86AudioRaiseVolume" = "exec --no-startup-id ${pkgs.pamixer}/bin/pamixer --increase 5";
+        # "--locked XF86AudioLowerVolume" = "exec --no-startup-id ${pkgs.pamixer}/bin/pamixer --decrease 5";
+        # "--locked XF86AudioMute" = "exec --no-startup-id ${pkgs.pamixer}/bin/pamixer --toggle-mute";
         "--locked XF86AudioPlay" = "exec --no-startup-id ${pkgs.playerctl}/bin/playerctl play-pause";
         "--locked XF86AudioPause" = "exec --no-startup-id ${pkgs.playerctl}/bin/playerctl play-pause";
         "--locked XF86AudioNext" = "exec --no-startup-id ${pkgs.playerctl}/bin/playerctl next";
         "--locked XF86AudioPrev" = "exec --no-startup-id ${pkgs.playerctl}/bin/playerctl previous";
-        "--locked XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl -q set +10%";
-        "--locked XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl -q set 10%-";
+        "--locked XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set +10% | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $WOBSOCK";
+        "--locked XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl set 10%- | sed -En 's/.*\(([0-9]+)%\).*/\1/p' > $WOBSOCK";
+        # "--locked XF86MonBrightnessUp" = "exec ${pkgs.brightnessctl}/bin/brightnessctl -q set +10%";
+        # "--locked XF86MonBrightnessDown" = "exec ${pkgs.brightnessctl}/bin/brightnessctl -q set 10%-";
       };
 
       terminal = "${pkgs.alacritty}/bin/alacritty";
