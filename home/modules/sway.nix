@@ -179,4 +179,12 @@ in {
       terminal = "${pkgs.alacritty}/bin/alacritty";
     };
   };
+
+  xdg.configFile."wob/wob.ini".text = ''
+    anchor = center
+    output_mode = all
+    bar_color = fbf1c7
+    border_color = fbf1c7
+    background_color = 3c3836
+  '';
 }
