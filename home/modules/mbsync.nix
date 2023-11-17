@@ -1,5 +1,5 @@
-{pkgs, ...}: {
-  home.packages = [pkgs.isync];
+{...}: {
+  programs.mbsync.enable = true;
 
   services.mbsync = {
     enable = true;

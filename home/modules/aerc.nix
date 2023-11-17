@@ -1,36 +1,37 @@
 {pkgs, ...}: {
-  home.packages = [pkgs.aerc];
+  programs.aerc.enable = true;
+  programs.aerc.extraConfig.general.unsafe-accounts-conf = true;
+  programs.aerc.extraConfig = {
+    ui = {
+      index-columns = "flags>4,date<*,name<30,subject<*";
+      column-flags = "{{.Flags | join \" \"}}";
+      column-date = "{{.DateAutoFormat .Date.Local}}";
+      column-name = "{{index (.From | names) 0}}";
+      column-subject = "{{.ThreadPrefix}}{{.Subject}}";
 
-  xdg.configFile."aerc/aerc.conf".text = ''
-    [ui]
-    index-columns = flags>4,date<*,name<30,subject<*
-    column-flags = {{.Flags | join ""}}
-    column-date = {{.DateAutoFormat .Date.Local}}
-    column-name = {{index (.From | names) 0}}
-    column-subject = {{.ThreadPrefix}}{{.Subject}}
+      timestamp-format = "15:04 Mon 02/01/2006";
+      sidebar-width = 30;
+      sort = "-r date";
+      stylesets-dirs = "~/.config/aerc/stylesets";
 
-    timestamp-format=15:04 Mon 02/01/2006
-    sidebar-width=30
-    sort=-r date
-    stylesets-dirs=~/.config/aerc/stylesets
-
-    threading-enabled = true
-    mouse-enabled = true
-    tab-title-account = {{.Account}} {{if .Unread}}({{.Unread}}){{end}}
-    dirlist-tree = true
-    auto-mark-read = false
-
-    [compose]
-    address-book-cmd=khard email --remove-first-line --parsable '%s'
-
-    [filters]
-    subject,~^\[PATCH=awk -f ${pkgs.aerc}/libexec/aerc/filters/hldiff
-    text/html=${pkgs.aerc}/libexec/aerc/filters/html
-    text/*=awk -f ${pkgs.aerc}/libexec/aerc/filters/plaintext
-
-    [hooks]
-    mail-received=exec ${pkgs.libnotify}/bin/notify-send --app-name aerc "New email from $AERC_FROM_NAME" "$AERC_SUBJECT"
-  '';
+      threading-enabled = true;
+      mouse-enabled = true;
+      tab-title-account = "{{.Account}} {{if .Unread}}({{.Unread}}){{end}}";
+      dirlist-tree = true;
+      auto-mark-read = false;
+    };
+    compose = {
+      address-book-cmd = "khard email --remove-first-line --parsable '%s'";
+    };
+    filters = {
+      "subject,~^\\[PATCH" = "awk -f ${pkgs.aerc}/libexec/aerc/filters/hldiff";
+      "text/html" = "${pkgs.aerc}/libexec/aerc/filters/html";
+      "text/*" = "awk -f ${pkgs.aerc}/libexec/aerc/filters/plaintext";
+    };
+    hooks = {
+      mail-received = "exec ${pkgs.libnotify}/bin/notify-send --app-name aerc \"New email from $AERC_FROM_NAME\" \"$AERC_SUBJECT\"";
+    };
+  };
 
   xdg.configFile."aerc/binds.conf".text = ''
     <C-h> = :prev-tab<Enter>

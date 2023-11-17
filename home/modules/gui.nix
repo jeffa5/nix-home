@@ -5,6 +5,7 @@
     ../import-nef.nix
     ./mbsync.nix
     ./aerc.nix
+    ./email.nix
     ./alacritty.nix
 
     ./sway.nix
