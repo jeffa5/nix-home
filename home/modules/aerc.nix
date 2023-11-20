@@ -88,6 +88,8 @@
 
     A = :pipe khard add-email -H all<Enter>
 
+    s = :exec mu find --clearlinks --format=links --linksdir=~/mail/search/results<space>
+
     [view]
     q = :close<Enter>
     | = :pipe<space>

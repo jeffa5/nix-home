@@ -8,41 +8,59 @@
     (import ./email-accounts.nix);
 in {
   accounts.email.accounts =
-    pkgs.lib.attrsets.mapAttrs (name: value: {
-      inherit (value) address flavor imap smtp primary;
-      userName = value.address;
+    (pkgs.lib.attrsets.mapAttrs (name: value: {
+        inherit (value) address flavor imap smtp primary;
+        userName = value.address;
 
-      # create with `secret-tool store type email account ${value.address}`
-      passwordCommand = "${stl} type email account ${value.address}";
+        # create with `secret-tool store type email account ${value.address}`
+        passwordCommand = "${stl} type email account ${value.address}";
 
-      aerc.enable = true;
-      aerc.extraAccounts = {
-        source = "maildir://~/mail/${name}";
-      };
-      himalaya = {
-        enable = true;
-      };
-      imapnotify = {
-        enable = true;
-        boxes = ["Inbox"];
-        onNotify = "${pkgs.isync}/bin/mbsync ${name}";
-      };
-      maildir = {
-        path = "${name}";
-      };
-      mbsync = {
-        enable = true;
-        create = "both";
-        expunge = "both";
-        remove = "both";
-      };
-      mu.enable = true;
+        aerc.enable = true;
+        aerc.extraAccounts = {
+          source = "maildir://~/mail/${name}";
+        };
+        himalaya = {
+          enable = true;
+        };
+        imapnotify = {
+          enable = true;
+          boxes = ["Inbox"];
+          onNotify = "${pkgs.isync}/bin/mbsync ${name}";
+        };
+        maildir = {
+          path = "${name}";
+        };
+        mbsync = {
+          enable = true;
+          create = "both";
+          expunge = "both";
+          remove = "both";
+        };
+        mu.enable = true;
 
-      realName = "Andrew Jeffery";
+        realName = "Andrew Jeffery";
 
-      thunderbird.enable = true;
-    })
-    accounts;
+        thunderbird.enable = true;
+      })
+      accounts)
+    // {
+      search = {
+        maildir.path = "search";
+        realName = "Search Index";
+        address = "search@local";
+        aerc.enable = true;
+        aerc.extraAccounts = {
+          source = "maildir://~/mail/search";
+        };
+        aerc.extraConfig = {
+          ui = {
+          index-columns = "flags>4,date<*,to<30,name<30,subject<*";
+          column-to = "{{(index .To 0).Address}}";
+        };
+        };
+        himalaya.enable = true;
+      };
+    };
 
   accounts.email.maildirBasePath = "mail";
 
