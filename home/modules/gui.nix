@@ -23,8 +23,8 @@
     chromium
     czkawka
     darktable
-    fractal-next
     evince
+    fractal-next
     gitAndTools.git-open
     inkscape
     libreoffice
@@ -35,6 +35,8 @@
     signal-desktop
     slack
     spotify
+    tasksh
+    taskwarrior-tui
     thunderbird
     todoist-electron
     vlc
