@@ -30,6 +30,11 @@
     options = ["bind"];
   };
 
+  fileSystems."/var/lib/taskserver" = {
+    device = "/local/taskserver";
+    options = ["bind"];
+  };
+
   swapDevices = [];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

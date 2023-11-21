@@ -13,6 +13,7 @@
     ../modules/grafana.nix
     ../modules/nginx.nix
     ../modules/tailscale.nix
+    ../modules/taskserver.nix
   ];
 
   networking.hostName = "rpi1";
