@@ -9,6 +9,13 @@ in {
 
     scrapeConfigs = [
       {
+        job_name = "prometheus";
+        static_configs = [
+          # self scrape
+          {targets = ["127.0.0.1:${toString private_port}"];}
+        ];
+      }
+      {
         job_name = "node";
         static_configs = [
           # this pi (rpi1)
