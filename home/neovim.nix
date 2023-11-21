@@ -183,12 +183,6 @@
                 -- Code action groups
                 vim.keymap.set("n", "<localleader>a", rt.code_action_group.code_action_group, { buffer = bufnr, desc = "Code action" })
               end,
-              -- https://github.com/simrat39/rust-tools.nvim/issues/300
-              settings = {
-                ["rust-analyzer"] = {
-                  inlayHints = {locationLinks = false},
-                }
-              }
             },
           })
         '';

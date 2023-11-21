@@ -59,11 +59,11 @@ for _, lsp in ipairs(servers) do
 end
 
 lspconfig['rust_analyzer'].setup {
+    -- https://github.com/simrat39/rust-tools.nvim/issues/300
     settings = {
-        ['rust-analyzer'] = {
-            check = {
-                command = "clippy";
-            }
+        ["rust-analyzer"] = {
+            inlayHints = { locationLinks = false },
+            check = { command = "clippy" },
         }
     }
 }
