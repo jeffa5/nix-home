@@ -58,15 +58,7 @@ for _, lsp in ipairs(servers) do
     }
 end
 
-lspconfig['rust_analyzer'].setup {
-    -- https://github.com/simrat39/rust-tools.nvim/issues/300
-    settings = {
-        ["rust-analyzer"] = {
-            inlayHints = { locationLinks = false },
-            check = { command = "clippy" },
-        }
-    }
-}
+lspconfig['rust_analyzer'].setup {}
 
 lspconfig['lua_ls'].setup {
     on_attach = on_attach,
