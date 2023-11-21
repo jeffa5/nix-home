@@ -27,6 +27,10 @@ in {
         ];
       }
     ];
+
+    globalConfig = {
+      scrape_interval = "15s";
+    };
   };
 
   services.nginx.virtualHosts."prometheus.local" = {
