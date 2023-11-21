@@ -1,6 +1,7 @@
 {config, ...}: let
-  public_port = 3000;
-  private_port = 3001;
+  ports = import ./ports.nix;
+  public_port = ports.grafana.public;
+  private_port = ports.grafana.private;
 in {
   services.grafana = {
     enable = true;
