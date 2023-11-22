@@ -8,7 +8,7 @@
       inherit nixpkgs;
       users = [];
     })
-    ../modules/node-exporter.nix
+    (import ../modules/node-exporter.nix {openFirewall = true;})
     ../modules/prometheus.nix
     ../modules/grafana.nix
     ../modules/nginx.nix

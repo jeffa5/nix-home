@@ -1,4 +1,4 @@
-{...}: let
+{openFirewall}: {pkgs, ...}: let
   textFilesDir = "/var/lib/prometheus-node-exporter-text-files";
   ports = (import ./ports.nix).node-exporter;
 in {
@@ -41,5 +41,5 @@ in {
   };
 
   # TODO: specify default openings for nginx once we have DNS names
-  networking.firewall.allowedTCPPorts = [ports.public];
+  networking.firewall.allowedTCPPorts = pkgs.lib.optionals openFirewall [ports.public];
 }
