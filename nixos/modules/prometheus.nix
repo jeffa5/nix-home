@@ -27,6 +27,8 @@ in {
           {targets = ["192.168.0.52:${toString ports.node-exporter.public}"];}
           # rpi2
           {targets = ["192.168.0.99:${toString ports.node-exporter.public}"];}
+          # xps15, not running nginx
+          {targets = ["100.125.129.20:${toString ports.node-exporter.private}"];}
         ];
       }
       {

@@ -3,6 +3,7 @@
     ./hardware-configuration.nix
     ../systemd-boot.nix
     ../modules/laptop.nix
+    (import ../modules/node-exporter.nix {openFirewall = false;})
   ];
 
   boot.loader.efi.canTouchEfiVariables = true;
