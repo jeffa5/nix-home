@@ -6,6 +6,27 @@
     pkgs.lib.optionalAttrs
     (builtins.pathExists ./email-accounts.nix)
     (import ./email-accounts.nix);
+  search =
+    pkgs.lib.optionalAttrs
+    (builtins.pathExists ./email-accounts.nix)
+    {
+      search = {
+        maildir.path = "search";
+        realName = "Search Index";
+        address = "search@local";
+        aerc.enable = true;
+        aerc.extraAccounts = {
+          source = "maildir://~/mail/search";
+        };
+        aerc.extraConfig = {
+          ui = {
+            index-columns = "flags>4,date<*,to<30,name<30,subject<*";
+            column-to = "{{(index .To 0).Address}}";
+          };
+        };
+        himalaya.enable = true;
+      };
+    };
 in {
   accounts.email.accounts =
     (pkgs.lib.attrsets.mapAttrs (name: value: {
@@ -43,24 +64,7 @@ in {
         thunderbird.enable = true;
       })
       accounts)
-    // {
-      search = {
-        maildir.path = "search";
-        realName = "Search Index";
-        address = "search@local";
-        aerc.enable = true;
-        aerc.extraAccounts = {
-          source = "maildir://~/mail/search";
-        };
-        aerc.extraConfig = {
-          ui = {
-          index-columns = "flags>4,date<*,to<30,name<30,subject<*";
-          column-to = "{{(index .To 0).Address}}";
-        };
-        };
-        himalaya.enable = true;
-      };
-    };
+    // search;
 
   accounts.email.maildirBasePath = "mail";
 
