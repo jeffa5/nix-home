@@ -29,6 +29,11 @@ in {
           name = "nginx";
           options.path = ./grafana/dashboard-nginx.json;
         }
+        {
+          type = "file";
+          name = "battery";
+          options.path = ./grafana/dashboard-battery.json;
+        }
       ];
     };
   };
