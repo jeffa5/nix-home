@@ -2,6 +2,7 @@
   imports = [
     ./hardware-configuration.nix
     ../systemd-boot.nix
+    (import ../modules/node-exporter.nix {openFirewall = false;})
   ];
 
   boot.loader.efi.canTouchEfiVariables = true;
