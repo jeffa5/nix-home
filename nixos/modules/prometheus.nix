@@ -14,7 +14,8 @@ in {
           # self scrape
           {targets = ["127.0.0.1:${toString private_port}"];}
         ];
-      }{
+      }
+      {
         job_name = "grafana";
         static_configs = [
           {targets = ["127.0.0.1:${toString ports.grafana.private}"];}
