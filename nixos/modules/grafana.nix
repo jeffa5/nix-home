@@ -5,8 +5,13 @@
 in {
   services.grafana = {
     enable = true;
-    settings.server = {
-      http_port = private_port;
+    settings = {
+      users = {
+        default_theme = "system";
+      };
+      server = {
+        http_port = private_port;
+      };
     };
     provision = {
       enable = true;
