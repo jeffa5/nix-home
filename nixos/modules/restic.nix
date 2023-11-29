@@ -6,6 +6,9 @@
   passwordFileLocal = pkgs.writeText "restic-password-local" ''
     local
   '';
+  passwordFileHomelab = pkgs.writeText "restic-password-local" ''
+    homelab
+  '';
   excludes = [
     ".cache"
     ".bundle" # ruby
@@ -33,6 +36,16 @@ in {
       exclude = map (x: "/home/*/" + x) excludes;
       initialize = true;
       passwordFile = "${passwordFileLocal}";
+      extraBackupArgs = ["-vv"];
+    };
+
+    homelab = {
+      user = "andrew";
+      repository = "sftp:root@rpi1.tailc48ec.ts.net:/local/backups/${config.networking.hostName}/restic";
+      paths = ["/home/andrew"];
+      exclude = map (x: "/home/*/" + x) excludes;
+      initialize = true;
+      passwordFile = "${passwordFileHomelab}";
       extraBackupArgs = ["-vv"];
     };
   };
