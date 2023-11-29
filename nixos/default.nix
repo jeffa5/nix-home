@@ -17,6 +17,7 @@ in {
       (import ./modules/nix.nix {inherit nixpkgs users;})
       ./modules/vpn.nix
       ./modules/tailscale.nix
+      ./modules/restic.nix
     ]
     ++ (
       if gui
