@@ -30,6 +30,11 @@
     options = ["bind"];
   };
 
+  fileSystems."/var/lib/loki" = {
+    device = "/local/loki";
+    options = ["bind"];
+  };
+
   fileSystems."/var/lib/taskserver" = {
     device = "/local/taskserver";
     options = ["bind"];

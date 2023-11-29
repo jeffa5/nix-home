@@ -4,6 +4,7 @@
     ../systemd-boot.nix
     ../modules/laptop.nix
     (import ../modules/node-exporter.nix {openFirewall = false;})
+    ../modules/promtail.nix
   ];
 
   boot.loader.efi.canTouchEfiVariables = true;

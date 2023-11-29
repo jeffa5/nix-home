@@ -5,4 +5,6 @@
   nginx-exporter.private = 9113;
   grafana.public = 3000;
   grafana.private = 3001;
+  loki.public = 3100;
+  loki.private = 3101;
 }
