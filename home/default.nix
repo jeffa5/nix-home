@@ -115,7 +115,8 @@ in {
 
     eza = {
       enable = true;
-      enableAliases = true;
+      # doesn't work well with nushell as it doesn't output a table
+      enableAliases = false;
     };
 
     fzf = {
