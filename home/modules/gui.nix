@@ -11,6 +11,7 @@
     ./sway.nix
     ./owork.nix
     ./lf.nix
+    ./recoll.nix
   ];
 
   home.packages = with pkgs; [
