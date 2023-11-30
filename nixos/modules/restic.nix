@@ -15,13 +15,13 @@
     ".cargo" # rust
     ".rustup" # rust
     ".julia" # julia
-    "*/target" # rust
-    "*/_opam" # ocaml
-    "*/_build" # ocaml
-    ".npm/_cacache" # node
-    "*/node_modules" # node
-    "*/venv" # python
-    "*/.venv" # python
+    "target/" # rust
+    "_opam/" # ocaml
+    "_build/" # ocaml
+    ".npm" # node
+    "node_modules/" # node
+    "venv/" # python
+    ".venv/" # python
   ];
 in {
   environment.systemPackages = [
@@ -33,7 +33,7 @@ in {
       user = "andrew";
       repository = "/backups/${config.networking.hostName}/restic";
       paths = ["/home/andrew"];
-      exclude = map (x: "/home/*/" + x) excludes;
+      exclude = excludes;
       initialize = true;
       passwordFile = "${passwordFileLocal}";
       extraBackupArgs = ["-vv"];
@@ -43,7 +43,7 @@ in {
       user = "andrew";
       repository = "sftp:root@rpi1.tailc48ec.ts.net:/local/backups/${config.networking.hostName}/restic";
       paths = ["/home/andrew"];
-      exclude = map (x: "/home/*/" + x) excludes;
+      exclude = excludes;
       initialize = true;
       passwordFile = "${passwordFileHomelab}";
       extraBackupArgs = ["-vv"];
