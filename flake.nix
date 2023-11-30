@@ -12,7 +12,6 @@
     papers.url = "github:jeffa5/papers";
     tasknet.url = "github:jeffa5/tasknet";
     waytext.url = "github:jeffa5/waytext";
-    owork.url = "github:jeffa5/owork";
   };
 
   outputs = {
@@ -24,7 +23,6 @@
     papers,
     tasknet,
     waytext,
-    owork,
   }: let
     username = "andrew";
     system = "x86_64-linux";
@@ -38,7 +36,6 @@
         papers.overlays.default
         tasknet.overlays.default
         waytext.overlays.default
-        owork.overlays.default
         sway-overlay
       ];
     };
@@ -58,7 +55,6 @@
               overlays = [
                 papers.overlays.default
                 waytext.overlays.default
-                owork.overlays.default
                 sway-overlay
               ];
             })
