@@ -15,7 +15,7 @@ in {
         ];
         modules-right = [
           "custom/spotify"
-          "custom/owork"
+          "custom/pomo"
           "pulseaudio"
           "backlight"
           "memory"
@@ -108,12 +108,11 @@ in {
           tray = {
             spacing = 8;
           };
-          "custom/owork" = {
+          "custom/pomo" = {
             format = "{}";
             interval = 1;
-            exec = "${pkgs.status-bar.productivity-timer-status}/bin/productivity-timer-status";
-            exec-if = "pgrep owork";
-            on-click = "${pkgs.sway-scripts.productivity-timer}/bin/productivity-timer";
+            exec = "${pkgs.status-bar.pomo-status}/bin/pomo-status";
+            on-click = "${pkgs.sway-scripts.pomo-timer}/bin/pomo-timer";
           };
           "custom/spotify" = {
             format = "{}";
@@ -176,7 +175,7 @@ in {
       #network,
       #pulseaudio,
       #mode,
-      #custom-owork,
+      #custom-pomo,
       #custom-spotify,
       #tray {
         padding: 0 5px;
@@ -209,6 +208,13 @@ in {
 
       #network.disconnected {
         background: #f53c3c;
+      }
+
+      #custom-pomo.running {
+        background: #98971a;
+      }
+      #custom-pomo.finished {
+        background: #cc241d;
       }
     '';
   };

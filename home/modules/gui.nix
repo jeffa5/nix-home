@@ -9,9 +9,9 @@
     ./alacritty.nix
 
     ./sway.nix
-    ./owork.nix
     ./lf.nix
     ./recoll.nix
+    ./pomo.nix
   ];
 
   home.packages = with pkgs; [
