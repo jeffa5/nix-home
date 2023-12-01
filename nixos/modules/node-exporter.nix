@@ -25,9 +25,14 @@ in {
     )
   '';
 
+  services.nodeboard.services.node-exporter = {
+    name = "Node exporter";
+    url = "http://192.168.0.52:${toString ports.public}";
+  };
+
   services.nginx.virtualHosts."node-exporter.local" = {
     # TODO: use DNS for this rather than relying on the ip
-    # serverName = "...";
+    serverName = "192.168.0.52:${toString ports.public}";
     listen = [
       {
         port = ports.public;

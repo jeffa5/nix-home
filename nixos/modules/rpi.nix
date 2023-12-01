@@ -1,7 +1,11 @@
 {pkgs, ...}: {
   imports = [
     ./openssh.nix
+
+    ./nodeboard.nix
   ];
+
+  services.nodeboard.enable = true;
 
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;

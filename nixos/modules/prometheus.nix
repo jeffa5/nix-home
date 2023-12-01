@@ -50,6 +50,12 @@ in {
     };
   };
 
+  services.nodeboard.services.prometheus = {
+    name = "Prometheus";
+    url = "http://192.168.0.52:${toString public_port}";
+    useFavicon = true;
+  };
+
   services.nginx.virtualHosts."prometheus.local" = {
     # TODO: use DNS for this rather than relying on the ip
     serverName = "192.168.0.52:${toString public_port}";

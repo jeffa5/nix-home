@@ -15,9 +15,14 @@ in {
     port = ports.private;
   };
 
+  services.nodeboard.services.nginx-exporter = {
+    name = "Nginx exporter";
+    url = "http://192.168.0.52:${toString ports.public}";
+  };
+
   services.nginx.virtualHosts."nginx-exporter.local" = {
     # TODO: use DNS for this rather than relying on the ip
-    # serverName = "...";
+    serverName = "192.168.0.52:${toString ports.public}";
     listen = [
       {
         port = ports.public;

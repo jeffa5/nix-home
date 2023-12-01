@@ -48,6 +48,12 @@ in {
     };
   };
 
+  services.nodeboard.services.grafana = {
+    name = "Grafana";
+    url = "http://192.168.0.52:${toString public_port}";
+    icon = "http://192.168.0.52:${toString public_port}/public/img/apple-touch-icon.png";
+  };
+
   services.nginx.virtualHosts."grafana.local" = {
     # TODO: use DNS for this rather than relying on the ip
     serverName = "192.168.0.52:${toString public_port}";
