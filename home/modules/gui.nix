@@ -25,7 +25,7 @@
     czkawka
     darktable
     evince
-    fractal-next
+    fractal
     gitAndTools.git-open
     inkscape
     libreoffice

@@ -18,6 +18,8 @@ in {
       ./modules/vpn.nix
       ./modules/tailscale.nix
       ./modules/restic.nix
+
+      ./modules/nodeboard.nix
     ]
     ++ (
       if gui

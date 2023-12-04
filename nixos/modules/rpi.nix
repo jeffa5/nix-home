@@ -1,8 +1,6 @@
 {pkgs, ...}: {
   imports = [
     ./openssh.nix
-
-    ./nodeboard.nix
   ];
 
   services.nodeboard.enable = true;
