@@ -10,6 +10,14 @@ function save_state(){
   echo "current_cycle=$current_cycle" > $state_file
   echo "time_started=$time_started" >> $state_file
   echo "cycle_count=$cycle_count" >> $state_file
+  echo "notified_at=$notified_at" >> $state_file
+}
+
+function pomo_state() {
+  echo "current_cycle=$current_cycle"
+  echo "time_started=$time_started"
+  echo "cycle_count=$cycle_count"
+  echo "notified_at=$notified_at"
 }
 
 function next_cycle() {
@@ -92,13 +100,17 @@ function pomo_remaining() {
   n=$(now)
   remaining=$((time_finished - n))
   if [[ $remaining -lt 0 ]]; then
-    remaining=0
+    remaining=$((-remaining))
   fi
   if [[ -z $1 ]]; then
-    echo $remaining
+    r=$remaining
   else
-    date -d "@$remaining" $1
+    r=$(date -d "@$remaining" $1)
   fi
+  if [[ $time_finished -lt $n ]]; then
+    r="-$r"
+  fi
+  echo $r
 }
 
 function pomo_cycle() {
@@ -124,8 +136,18 @@ function pomo_config() {
   echo "num_work_cycles=$num_work_cycles"
 }
 
+function pomo_notify() {
+  if [[ $finished ]]; then
+    if [[ $notified_at -lt $time_started ]]; then
+      notified_at=$(now)
+      save_state
+      waytext -t "Pomo finished" &
+    fi
+  fi
+}
+
 function usage() {
-  echo "Usage: $0 <start|restart|skip|reset|remaining|cycle|count|percent>"
+  echo "Usage: $0 <start|restart|skip|reset|remaining|cycle|count|percent|notify|state>"
   exit 1
 }
 
@@ -143,6 +165,7 @@ num_work_cycles=4
 current_cycle=idle
 time_started=0
 cycle_count=0
+notified_at=0
 
 # Check if the timer state file exists
 if [ -f $state_file ]; then
@@ -156,6 +179,7 @@ if [ -f $state_file ]; then
     finished=true
   fi
   cycle_count=$(cat $state_file | grep 'cycle_count=' | cut -d '=' -f2 | tr -d ' ')
+  notified_at=$(cat $state_file | grep 'notified_at=' | cut -d '=' -f2 | tr -d ' ')
 fi
 
 if [[ -z $1 ]]; then

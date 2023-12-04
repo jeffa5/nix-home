@@ -28,6 +28,8 @@ in {
   '';
 
   pomo-status = pkgs.writeShellScriptBin "pomo-status" ''
+    pomo notify
+
     state=$(pomo cycle)
     time=$(pomo remaining +%M:%S)
     sessions_complete=$(pomo count)
@@ -43,13 +45,12 @@ in {
       text="⌛$state"
       class=idle
     else
-      if [[ $(pomo remaining) -eq 0 ]]; then
+      if [[ $(pomo remaining) -lt 0 ]]; then
         class=finished
       else
         class=running
       fi
     fi
-
 
     echo $text
     echo
