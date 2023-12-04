@@ -137,8 +137,12 @@ function pomo_config() {
 }
 
 function pomo_notify() {
-  if [[ $finished ]]; then
-    if [[ $notified_at -lt $time_started ]]; then
+  duration=${current_cycle}_duration
+  finished_at=$((time_started + duration))
+  if [[ $finished == "true" ]]; then
+    duration=${current_cycle}_duration
+    finished_at=$((time_started + duration))
+    if [[ $notified_at -lt $finished_at ]]; then
       notified_at=$(now)
       save_state
       waytext -t "Pomo finished" &
