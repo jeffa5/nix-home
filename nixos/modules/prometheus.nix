@@ -17,6 +17,12 @@ in {
         ];
       }
       {
+        job_name = "loki";
+        static_configs = [
+          {targets = ["${selfHost}:${toString ports.loki.public}"];}
+        ];
+      }
+      {
         job_name = "grafana";
         static_configs = [
           {targets = ["${selfHost}:${toString ports.grafana.public}"];}
