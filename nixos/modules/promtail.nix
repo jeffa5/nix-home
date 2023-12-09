@@ -3,7 +3,7 @@
   config,
   ...
 }: let
-  loki_address = "100.85.109.140";
+  loki_address = "rpi1";
   ports = import ./ports.nix;
 in {
   services.promtail = {
