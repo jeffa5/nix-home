@@ -1,4 +1,4 @@
-{...}: let
+{config, ...}: let
   ports = (import ./ports.nix).loki;
   public_port = ports.public;
   private_port = ports.private;
@@ -80,9 +80,13 @@ in {
     };
   };
 
+  services.nodeboard.services.loki = {
+    name = "Loki metrics";
+    url = "http://${config.networking.hostName}:${toString public_port}/metrics";
+  };
+
   services.nginx.virtualHosts."loki.local" = {
-    # TODO: use DNS for this rather than relying on the ip
-    serverName = "192.168.0.52:${toString public_port}";
+    serverName = "${config.networking.hostName}:${toString public_port}";
     listen = [
       {
         port = public_port;

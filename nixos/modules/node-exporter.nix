@@ -1,4 +1,8 @@
-{openFirewall}: {pkgs, ...}: let
+{openFirewall}: {
+  pkgs,
+  config,
+  ...
+}: let
   textFilesDir = "/var/lib/prometheus-node-exporter-text-files";
   ports = (import ./ports.nix).node-exporter;
 in {
@@ -27,12 +31,11 @@ in {
 
   services.nodeboard.services.node-exporter = {
     name = "Node exporter";
-    url = "http://192.168.0.52:${toString ports.public}";
+    url = "http://${config.networking.hostName}:${toString ports.public}";
   };
 
   services.nginx.virtualHosts."node-exporter.local" = {
-    # TODO: use DNS for this rather than relying on the ip
-    serverName = "192.168.0.52:${toString ports.public}";
+    serverName = "${config.networking.hostName}:${toString ports.public}";
     listen = [
       {
         port = ports.public;

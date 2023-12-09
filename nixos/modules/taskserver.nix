@@ -17,8 +17,7 @@ in {
   };
 
   # services.nginx.virtualHosts."taskserver.local" = {
-  #   # TODO: use DNS for this rather than relying on the ip
-  #   serverName = "192.168.0.52:${toString public_port}";
+  #   serverName = "${config.networking.hostName}:${toString public_port}";
   #   listen = [
   #     {
   #       port = public_port;

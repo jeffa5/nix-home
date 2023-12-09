@@ -79,8 +79,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     services.nginx.virtualHosts."nodeboard.local" = {
-      # TODO: use DNS for this rather than relying on the ip
-      serverName = "192.168.0.52:${toString 80}";
+      serverName = "${config.networking.hostName}:${toString 80}";
       listen = [
         {
           port = 80;

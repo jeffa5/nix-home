@@ -1,7 +1,8 @@
-{...}: let
+{config, ...}: let
   public_port = 9000;
   private_port = 9090;
   ports = import ./ports.nix;
+  selfHost = config.networking.hostName;
 in {
   services.prometheus = {
     enable = true;
@@ -12,35 +13,35 @@ in {
         job_name = "prometheus";
         static_configs = [
           # self scrape
-          {targets = ["127.0.0.1:${toString private_port}"];}
+          {targets = ["${selfHost}:${toString public_port}"];}
         ];
       }
       {
         job_name = "grafana";
         static_configs = [
-          {targets = ["127.0.0.1:${toString ports.grafana.private}"];}
+          {targets = ["${selfHost}:${toString ports.grafana.public}"];}
         ];
       }
       {
         job_name = "node";
         static_configs = [
           # this pi (rpi1)
-          {targets = ["192.168.0.52:${toString ports.node-exporter.public}"];}
+          {targets = ["${selfHost}:${toString ports.node-exporter.public}"];}
           # rpi2
-          {targets = ["192.168.0.99:${toString ports.node-exporter.public}"];}
+          {targets = ["rpi2:${toString ports.node-exporter.public}"];}
           # xps15, not running nginx
-          {targets = ["100.125.129.20:${toString ports.node-exporter.private}"];}
+          {targets = ["xps15:${toString ports.node-exporter.private}"];}
           # carbide, not running nginx
-          {targets = ["100.92.225.84:${toString ports.node-exporter.private}"];}
+          {targets = ["carbide:${toString ports.node-exporter.private}"];}
         ];
       }
       {
         job_name = "nginx";
         static_configs = [
           # this pi (rpi1)
-          {targets = ["192.168.0.52:${toString ports.nginx-exporter.public}"];}
+          {targets = ["${selfHost}:${toString ports.nginx-exporter.public}"];}
           # rpi2
-          {targets = ["192.168.0.99:${toString ports.nginx-exporter.public}"];}
+          {targets = ["rpi2:${toString ports.nginx-exporter.public}"];}
         ];
       }
     ];
@@ -52,13 +53,12 @@ in {
 
   services.nodeboard.services.prometheus = {
     name = "Prometheus";
-    url = "http://192.168.0.52:${toString public_port}";
+    url = "http://rpi1:${toString public_port}";
     useFavicon = true;
   };
 
   services.nginx.virtualHosts."prometheus.local" = {
-    # TODO: use DNS for this rather than relying on the ip
-    serverName = "192.168.0.52:${toString public_port}";
+    serverName = "${config.networking.hostName}:${toString public_port}";
     listen = [
       {
         port = public_port;
