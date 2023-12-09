@@ -42,6 +42,19 @@ in {
         ];
       }
       {
+        job_name = "promtail";
+        static_configs = [
+          # this pi (rpi1)
+          {targets = ["${selfHost}:${toString ports.promtail.public}"];}
+          # rpi2
+          {targets = ["rpi2:${toString ports.promtail.public}"];}
+          # xps15, not running nginx
+          {targets = ["xps15:${toString ports.promtail.private}"];}
+          # carbide, not running nginx
+          {targets = ["carbide:${toString ports.promtail.private}"];}
+        ];
+      }
+      {
         job_name = "nginx";
         static_configs = [
           # this pi (rpi1)

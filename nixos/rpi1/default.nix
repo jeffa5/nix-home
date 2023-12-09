@@ -15,7 +15,7 @@
     ../modules/grafana.nix
     # logging
     ../modules/loki.nix
-    ../modules/promtail.nix
+    (import ../modules/promtail.nix {openFirewall = true;})
     # serving
     ../modules/nginx.nix
     ../modules/tailscale.nix

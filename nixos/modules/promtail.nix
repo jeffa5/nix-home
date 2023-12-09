@@ -1,4 +1,8 @@
-{config, ...}: let
+{openFirewall}: {
+  pkgs,
+  config,
+  ...
+}: let
   loki_address = "100.85.109.140";
   ports = import ./ports.nix;
 in {
@@ -6,7 +10,8 @@ in {
     enable = true;
     configuration = {
       server = {
-        disable = true;
+        http_listen_port = ports.promtail.private;
+        grpc_listen_port = ports.promtail.private_grpc;
       };
       positions = {
         filename = "/tmp/positions.yaml";
@@ -36,4 +41,26 @@ in {
       ];
     };
   };
+
+  services.nodeboard.services.promtail = {
+    name = "Promtail";
+    url = "http://${config.networking.hostName}:${toString ports.promtail.public}";
+  };
+
+  services.nginx.virtualHosts."promtail.local" = {
+    serverName = "${config.networking.hostName}:${toString ports.promtail.public}";
+    listen = [
+      {
+        port = ports.promtail.public;
+        addr = "0.0.0.0";
+      }
+    ];
+    locations."/" = {
+      proxyPass = "http://127.0.0.1:${toString ports.promtail.private}";
+      proxyWebsockets = true;
+    };
+  };
+
+  # TODO: specify default openings for nginx once we have DNS names
+  networking.firewall.allowedTCPPorts = pkgs.lib.optionals openFirewall [ports.promtail.public];
 }

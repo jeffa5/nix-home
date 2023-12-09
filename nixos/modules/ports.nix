@@ -7,4 +7,7 @@
   grafana.private = 3001;
   loki.public = 3100;
   loki.private = 3101;
+  promtail.public = 9080;
+  promtail.private = 9081;
+  promtail.private_grpc = 9082;
 }
