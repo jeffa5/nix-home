@@ -65,6 +65,8 @@ in {
       }
     ];
 
+    retentionTime = "5y";
+
     globalConfig = {
       scrape_interval = "15s";
     };
