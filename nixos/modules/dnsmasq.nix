@@ -26,5 +26,6 @@ in {
   services.prometheus.exporters.dnsmasq = {
     enable = true;
     openFirewall = false;
+    leasesPath = "/var/lib/dnsmasq/dnsmasq.leases";
   };
 }
