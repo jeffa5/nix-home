@@ -63,6 +63,12 @@ in {
           {targets = ["rpi2:${toString ports.nginx-exporter.public}"];}
         ];
       }
+      {
+        job_name = "dnsmasq";
+        static_configs = [
+          {targets = ["${selfHost}:${toString config.services.prometheus.exporters.dnsmasq.port}"];}
+        ];
+      }
     ];
 
     retentionTime = "5y";

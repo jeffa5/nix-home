@@ -22,4 +22,9 @@ in {
     ${rpi1} grafana.jeffas.net
     ${rpi1} prometheus.jeffas.net
   '';
+
+  services.prometheus.exporters.dnsmasq = {
+    enable = true;
+    openFirewall = false;
+  };
 }
