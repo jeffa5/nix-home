@@ -25,7 +25,7 @@ in {
       {
         job_name = "grafana";
         static_configs = [
-          {targets = ["${selfHost}:${toString ports.grafana.public}"];}
+          {targets = ["grafana.jeffas.net"];}
         ];
       }
       {

@@ -1,7 +1,7 @@
 {config, ...}: let
   ports = import ./ports.nix;
-  public_port = ports.grafana.public;
   private_port = ports.grafana.private;
+  serverName = "grafana.jeffas.net";
 in {
   services.grafana = {
     enable = true;
@@ -50,24 +50,15 @@ in {
 
   services.nodeboard.services.grafana = {
     name = "Grafana";
-    url = "http://${config.networking.hostName}:${toString public_port}";
-    icon = "http://${config.networking.hostName}:${toString public_port}/public/img/apple-touch-icon.png";
+    url = "http://${serverName}";
+    icon = "http://${serverName}/public/img/apple-touch-icon.png";
   };
 
   services.nginx.virtualHosts."grafana.local" = {
-    serverName = "${config.networking.hostName}:${toString public_port}";
-    listen = [
-      {
-        port = public_port;
-        addr = "0.0.0.0";
-      }
-    ];
+    inherit serverName;
     locations."/" = {
       proxyPass = "http://127.0.0.1:${toString private_port}";
       proxyWebsockets = true;
     };
   };
-
-  # TODO: specify default openings for nginx once we have DNS names
-  networking.firewall.allowedTCPPorts = [public_port];
 }

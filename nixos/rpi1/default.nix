@@ -17,6 +17,7 @@
     ../modules/loki.nix
     (import ../modules/promtail.nix {openFirewall = true;})
     # serving
+    ../modules/dnsmasq.nix
     ../modules/nginx.nix
     ../modules/tailscale.nix
     # misc
