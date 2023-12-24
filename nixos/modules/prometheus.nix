@@ -1,8 +1,8 @@
 {config, ...}: let
-  public_port = 9000;
   private_port = 9090;
   ports = import ./ports.nix;
   selfHost = config.networking.hostName;
+  serverName = "prometheus.jeffas.net";
 in {
   services.prometheus = {
     enable = true;
@@ -13,7 +13,7 @@ in {
         job_name = "prometheus";
         static_configs = [
           # self scrape
-          {targets = ["${selfHost}:${toString public_port}"];}
+          {targets = ["${serverName}"];}
         ];
       }
       {
@@ -74,24 +74,15 @@ in {
 
   services.nodeboard.services.prometheus = {
     name = "Prometheus";
-    url = "http://rpi1:${toString public_port}";
+    url = "http://${serverName}";
     useFavicon = true;
   };
 
   services.nginx.virtualHosts."prometheus.local" = {
-    serverName = "${config.networking.hostName}:${toString public_port}";
-    listen = [
-      {
-        port = public_port;
-        addr = "0.0.0.0";
-      }
-    ];
+    inherit serverName;
     locations."/" = {
       proxyPass = "http://127.0.0.1:${toString private_port}";
       proxyWebsockets = true;
     };
   };
-
-  # TODO: specify default openings for nginx once we have DNS names
-  networking.firewall.allowedTCPPorts = [public_port];
 }
