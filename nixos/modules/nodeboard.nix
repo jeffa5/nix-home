@@ -79,18 +79,9 @@ in {
 
   config = lib.mkIf cfg.enable {
     services.nginx.virtualHosts."nodeboard.local" = {
-      serverName = "${config.networking.hostName}:${toString 80}";
-      listen = [
-        {
-          port = 80;
-          addr = "0.0.0.0";
-        }
-      ];
+      serverName = "${config.networking.hostName}.home.jeffas.net";
       root = root;
       default = true;
     };
-
-    # TODO: specify default openings for nginx once we have DNS names
-    networking.firewall.allowedTCPPorts = [80];
   };
 }

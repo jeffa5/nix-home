@@ -19,8 +19,9 @@ in {
   };
 
   networking.extraHosts = ''
-    ${rpi1} grafana.jeffas.net
-    ${rpi1} prometheus.jeffas.net
+    ${rpi1} grafana.home.jeffas.net
+    ${rpi1} prometheus.home.jeffas.net
+    ${rpi1} rpi1.home.jeffas.net
   '';
 
   services.prometheus.exporters.dnsmasq = {

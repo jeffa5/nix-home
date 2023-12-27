@@ -1,7 +1,7 @@
 {config, ...}: let
   ports = import ./ports.nix;
   private_port = ports.grafana.private;
-  serverName = "grafana.jeffas.net";
+  serverName = "grafana.home.jeffas.net";
 in {
   services.grafana = {
     enable = true;

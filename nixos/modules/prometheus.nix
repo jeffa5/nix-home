@@ -2,7 +2,7 @@
   private_port = 9090;
   ports = import ./ports.nix;
   selfHost = config.networking.hostName;
-  serverName = "prometheus.jeffas.net";
+  serverName = "prometheus.home.jeffas.net";
 in {
   services.prometheus = {
     enable = true;
@@ -25,7 +25,7 @@ in {
       {
         job_name = "grafana";
         static_configs = [
-          {targets = ["grafana.jeffas.net"];}
+          {targets = ["grafana.home.jeffas.net"];}
         ];
       }
       {
