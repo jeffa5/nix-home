@@ -1,5 +1,7 @@
 {...}: let
   rpi1 = "100.85.109.140";
+  xps15 = "100.125.129.20";
+  carbide = "100.92.225.84";
 in {
   services.dnsmasq = {
     enable = true;
@@ -19,6 +21,10 @@ in {
   };
 
   networking.extraHosts = ''
+    ${rpi1} rpi1.home.jeffas.net
+    ${xps15} xps15.home.jeffas.net
+    ${carbide} carbide.home.jeffas.net
+
     ${rpi1} grafana.home.jeffas.net
     ${rpi1} prometheus.home.jeffas.net
     ${rpi1} rpi1.home.jeffas.net
