@@ -44,11 +44,11 @@ in {
 
   services.nodeboard.services.promtail = {
     name = "Promtail";
-    url = "http://${config.networking.hostName}:${toString ports.promtail.public}";
+    url = "http://${config.networking.hostName}.home.jeffas.net:${toString ports.promtail.public}";
   };
 
   services.nginx.virtualHosts."promtail.local" = {
-    serverName = "${config.networking.hostName}:${toString ports.promtail.public}";
+    serverName = "${config.networking.hostName}.home.jeffas.net:${toString ports.promtail.public}";
     listen = [
       {
         port = ports.promtail.public;

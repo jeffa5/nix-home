@@ -82,11 +82,11 @@ in {
 
   services.nodeboard.services.loki = {
     name = "Loki metrics";
-    url = "http://${config.networking.hostName}:${toString public_port}/metrics";
+    url = "http://${config.networking.hostName}.home.jeffas.net:${toString public_port}/metrics";
   };
 
   services.nginx.virtualHosts."loki.local" = {
-    serverName = "${config.networking.hostName}:${toString public_port}";
+    serverName = "${config.networking.hostName}.home.jeffas.net:${toString public_port}";
     listen = [
       {
         port = public_port;

@@ -31,11 +31,11 @@ in {
 
   services.nodeboard.services.node-exporter = {
     name = "Node exporter";
-    url = "http://${config.networking.hostName}:${toString ports.public}";
+    url = "http://${config.networking.hostName}.home.jeffas.net:${toString ports.public}";
   };
 
   services.nginx.virtualHosts."node-exporter.local" = {
-    serverName = "${config.networking.hostName}:${toString ports.public}";
+    serverName = "${config.networking.hostName}.home.jeffas.net:${toString ports.public}";
     listen = [
       {
         port = ports.public;
