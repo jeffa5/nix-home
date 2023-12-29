@@ -18,6 +18,7 @@ in {
       ./modules/vpn.nix
       ./modules/tailscale.nix
       ./modules/restic.nix
+      ./modules/autoupgrade.nix
 
       ./modules/nodeboard.nix
     ]
