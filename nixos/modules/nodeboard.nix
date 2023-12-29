@@ -18,7 +18,7 @@
       then ''<img src="${icon}" width=50 height=50></img>''
       else "";
   in ''<tr><td>${iconImg}</td><td><a href="${service.url}">${service.name}</a></td></tr>'';
-  services = lib.concatStringsSep "\n" (lib.mapAttrsToList (name: value: formatService value) (cfg.services));
+  services = lib.concatStringsSep "\n" (lib.mapAttrsToList (_name: value: formatService value) (cfg.services));
 
   root = pkgs.writeTextDir "index.html" ''
     <!DOCTYPE html>

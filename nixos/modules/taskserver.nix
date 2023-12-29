@@ -1,6 +1,5 @@
 {...}: let
   public_port = 53589;
-  private_port = 53588;
 in {
   services.taskserver = {
     enable = true;
