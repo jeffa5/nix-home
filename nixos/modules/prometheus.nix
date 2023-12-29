@@ -1,8 +1,12 @@
 {config, ...}: let
   private_port = 9090;
   ports = import ./ports.nix;
-  selfHost = config.networking.hostName;
-  serverName = "prometheus.home.jeffas.net";
+  homeNet = "home.jeffas.net";
+  rpi1 = "rpi1.${homeNet}";
+  rpi2 = "rpi2.${homeNet}";
+  xps15 = "xps15.${homeNet}";
+  carbide = "carbide.${homeNet}";
+  serverName = "prometheus.${homeNet}";
 in {
   services.prometheus = {
     enable = true;
@@ -19,7 +23,7 @@ in {
       {
         job_name = "loki";
         static_configs = [
-          {targets = ["${selfHost}:${toString ports.loki.public}"];}
+          {targets = ["${rpi1}:${toString ports.loki.public}"];}
         ];
       }
       {
@@ -32,41 +36,41 @@ in {
         job_name = "node";
         static_configs = [
           # this pi (rpi1)
-          {targets = ["${selfHost}:${toString ports.node-exporter.public}"];}
+          {targets = ["${rpi1}:${toString ports.node-exporter.public}"];}
           # rpi2
-          {targets = ["rpi2:${toString ports.node-exporter.public}"];}
+          {targets = ["${rpi2}:${toString ports.node-exporter.public}"];}
           # xps15, not running nginx
-          {targets = ["xps15:${toString ports.node-exporter.private}"];}
+          {targets = ["${xps15}:${toString ports.node-exporter.private}"];}
           # carbide, not running nginx
-          {targets = ["carbide:${toString ports.node-exporter.private}"];}
+          {targets = ["${carbide}:${toString ports.node-exporter.private}"];}
         ];
       }
       {
         job_name = "promtail";
         static_configs = [
           # this pi (rpi1)
-          {targets = ["${selfHost}:${toString ports.promtail.public}"];}
+          {targets = ["${rpi1}:${toString ports.promtail.public}"];}
           # rpi2
-          {targets = ["rpi2:${toString ports.promtail.public}"];}
+          {targets = ["${rpi2}:${toString ports.promtail.public}"];}
           # xps15, not running nginx
-          {targets = ["xps15:${toString ports.promtail.private}"];}
+          {targets = ["${xps15}:${toString ports.promtail.private}"];}
           # carbide, not running nginx
-          {targets = ["carbide:${toString ports.promtail.private}"];}
+          {targets = ["${carbide}:${toString ports.promtail.private}"];}
         ];
       }
       {
         job_name = "nginx";
         static_configs = [
           # this pi (rpi1)
-          {targets = ["${selfHost}:${toString ports.nginx-exporter.public}"];}
+          {targets = ["${rpi1}:${toString ports.nginx-exporter.public}"];}
           # rpi2
-          {targets = ["rpi2:${toString ports.nginx-exporter.public}"];}
+          {targets = ["${rpi2}:${toString ports.nginx-exporter.public}"];}
         ];
       }
       {
         job_name = "dnsmasq";
         static_configs = [
-          {targets = ["${selfHost}:${toString config.services.prometheus.exporters.dnsmasq.port}"];}
+          {targets = ["${rpi1}:${toString config.services.prometheus.exporters.dnsmasq.port}"];}
         ];
       }
     ];
