@@ -20,34 +20,11 @@ jobs:
     - name: Magic Nix Cache
       uses: DeterminateSystems/magic-nix-cache-action@v2
 
-    - name: Build current config
-      id: current
-      run: |
-        path=$(nix build .#nixosConfigurations.xps15.config.system.build.toplevel --json | jq -r '.[0].outputs.out')
-        echo "path=$path" >> $GITHUB_OUTPUT
-
     - name: Update flake.lock
       id: update
       uses: DeterminateSystems/update-flake-lock@v16
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Build next config
-      id: next
-      run: |
-        path=$(nix build .#nixosConfigurations.xps15.config.system.build.toplevel --json | jq -r '.[0].outputs.out')
-        echo "path=$path" >> $GITHUB_OUTPUT
-
-    - name: Diff closures
-      run: |
-        echo '### nvd' >> diff
-        echo '```' >> diff
-        nix run nixpkgs#nvd -- diff ${{ steps.current.outputs.path }} ${{ steps.next.outputs.path }} >> diff
-        echo '```' >> diff
-
-    - name: Comment diff
-      uses: thollander/actions-comment-pull-request@v2
-      with:
-        filePath: diff
-        pr_number: ${{ steps.update.outputs.pull-request-number }}
-        comment_tag: nvd
+    - name: Check flake
+      run: nix flake check -L

@@ -18,4 +18,5 @@ jobs:
     - name: Magic Nix Cache
       uses: DeterminateSystems/magic-nix-cache-action@v2
 
-    - run: nix build .#nixosConfigurations.xps15.config.system.build.toplevel
+    - name: Check flake
+      run: nix flake check -L
