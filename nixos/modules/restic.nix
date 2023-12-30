@@ -41,7 +41,7 @@ in {
 
     homelab = {
       user = "andrew";
-      repository = "sftp:root@rpi1.tailc48ec.ts.net:/local/backups/${config.networking.hostName}/restic";
+      repository = "sftp:root@rpi1.home.jeffas.net:/local/backups/${config.networking.hostName}/restic";
       paths = ["/home/andrew"];
       exclude = excludes;
       initialize = true;
