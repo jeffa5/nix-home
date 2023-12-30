@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   imports = [
     ./openssh.nix
+    ./autoupgrade.nix
 
     ./nodeboard.nix
   ];
