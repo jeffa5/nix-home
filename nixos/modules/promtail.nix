@@ -3,7 +3,7 @@
   config,
   ...
 }: let
-  loki_address = "rpi1";
+  loki_address = "loki.home.jeffas.net";
   ports = import ./ports.nix;
 in {
   services.promtail = {
@@ -18,7 +18,7 @@ in {
       };
       clients = [
         {
-          url = "http://${loki_address}:${toString ports.loki.public}/loki/api/v1/push";
+          url = "http://${loki_address}/loki/api/v1/push";
         }
       ];
       scrape_configs = [

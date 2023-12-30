@@ -27,7 +27,7 @@ in {
 
     ${rpi1} grafana.home.jeffas.net
     ${rpi1} prometheus.home.jeffas.net
-    ${rpi1} rpi1.home.jeffas.net
+    ${rpi1} loki.home.jeffas.net
   '';
 
   services.prometheus.exporters.dnsmasq = {

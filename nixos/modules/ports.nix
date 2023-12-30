@@ -4,7 +4,6 @@
   nginx-exporter.public = 9114;
   nginx-exporter.private = 9113;
   grafana.private = 3001;
-  loki.public = 3100;
   loki.private = 3101;
   promtail.public = 9080;
   promtail.private = 9081;

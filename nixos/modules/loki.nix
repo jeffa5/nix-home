@@ -1,6 +1,6 @@
-{config, ...}: let
+{...}: let
   ports = (import ./ports.nix).loki;
-  public_port = ports.public;
+  serverName = "loki.home.jeffas.net";
   private_port = ports.private;
 in {
   services.loki = {
@@ -82,23 +82,14 @@ in {
 
   services.nodeboard.services.loki = {
     name = "Loki metrics";
-    url = "http://${config.networking.hostName}.home.jeffas.net:${toString public_port}/metrics";
+    url = "http://${serverName}/metrics";
   };
 
   services.nginx.virtualHosts."loki.local" = {
-    serverName = "${config.networking.hostName}.home.jeffas.net:${toString public_port}";
-    listen = [
-      {
-        port = public_port;
-        addr = "0.0.0.0";
-      }
-    ];
+    inherit serverName;
     locations."/" = {
       proxyPass = "http://127.0.0.1:${toString private_port}";
       proxyWebsockets = true;
     };
   };
-
-  # TODO: specify default openings for nginx once we have DNS names
-  networking.firewall.allowedTCPPorts = [public_port];
 }

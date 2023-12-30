@@ -1,4 +1,4 @@
-{config, ...}: let
+{...}: let
   ports = import ./ports.nix;
   private_port = ports.grafana.private;
   serverName = "grafana.home.jeffas.net";
@@ -18,12 +18,12 @@ in {
       datasources.settings.datasources = [
         {
           name = "Prometheus";
-          url = "http://127.0.0.1:${toString config.services.prometheus.port}";
+          url = "http://prometheus.home.jeffas.net";
           type = "prometheus";
         }
         {
           name = "Loki";
-          url = "http://127.0.0.1:${toString config.services.loki.configuration.server.http_listen_port}";
+          url = "http://loki.home.jeffas.net";
           type = "loki";
         }
       ];

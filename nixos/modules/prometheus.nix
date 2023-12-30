@@ -23,7 +23,7 @@ in {
       {
         job_name = "loki";
         static_configs = [
-          {targets = ["${rpi1}:${toString ports.loki.public}"];}
+          {targets = ["loki.home.jeffas.net"];}
         ];
       }
       {
