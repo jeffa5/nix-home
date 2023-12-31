@@ -2,23 +2,12 @@
   personal = {
     primary = true;
     address = "andrewjeffery97@gmail.com";
-    # host = "mail.google.com";
     flavor = "gmail.com";
-    imap = {
-      # host = "";
-      # port = 993;
-      # tls = {
-      #   enable = true;
-      # };
-    };
-    smtp = {
-      # host = value.host;
-      # port = 465;
-      # tls = {
-      #   enable = true;
-      #   useStartTls = true;
-      # };
-    };
+  };
+  general = {
+    primary = false;
+    address = "theaiaj.general@gmail.com";
+    flavor = "gmail.com";
   };
   jeffas = {
     primary = false;

@@ -68,7 +68,7 @@ in {
 
   accounts.email.maildirBasePath = "mail";
 
-  services.imapnotify.enable = false;
+  services.imapnotify.enable = true;
   programs.himalaya.enable = true;
   programs.mu.enable = true;
 }
