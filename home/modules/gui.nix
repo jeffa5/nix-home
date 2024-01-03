@@ -6,6 +6,7 @@
     ./mbsync.nix
     ./aerc.nix
     ./email.nix
+    ./contacts.nix
     ./alacritty.nix
 
     ./sway.nix
