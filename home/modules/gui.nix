@@ -7,6 +7,7 @@
     ./aerc.nix
     ./email.nix
     ./contacts.nix
+    ./calendar.nix
     ./alacritty.nix
 
     ./sway.nix
