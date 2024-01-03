@@ -1,4 +1,6 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  aerc-filters = "${pkgs.aerc}/libexec/aerc/filters";
+in {
   programs.aerc.enable = true;
   programs.aerc.extraConfig.general.unsafe-accounts-conf = true;
   programs.aerc.extraConfig = {
@@ -24,10 +26,10 @@
       address-book-cmd = "khard email --remove-first-line --parsable '%s'";
     };
     filters = {
-      "subject,~^\\[PATCH" = "${pkgs.aerc}/libexec/aerc/filters/hldiff";
-      "text/html" = "${pkgs.aerc}/libexec/aerc/filters/html";
-      "text/plain" = "${pkgs.aerc}/libexec/aerc/filters/plaintext";
-      "text/calendar" = "${pkgs.aerc}/libexec/aerc/filters/calendar";
+      "subject,~^\\[PATCH" = "${aerc-filters}/hldiff";
+      "text/html" = "${aerc-filters}/html";
+      "text/plain" = "${aerc-filters}/wrap | ${aerc-filters}/plaintext";
+      "text/calendar" = "${aerc-filters}/calendar";
     };
   };
 
