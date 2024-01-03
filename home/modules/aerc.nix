@@ -24,9 +24,10 @@
       address-book-cmd = "khard email --remove-first-line --parsable '%s'";
     };
     filters = {
-      "subject,~^\\[PATCH" = "awk -f ${pkgs.aerc}/libexec/aerc/filters/hldiff";
+      "subject,~^\\[PATCH" = "${pkgs.aerc}/libexec/aerc/filters/hldiff";
       "text/html" = "${pkgs.aerc}/libexec/aerc/filters/html";
-      "text/*" = "awk -f ${pkgs.aerc}/libexec/aerc/filters/plaintext";
+      "text/plain" = "${pkgs.aerc}/libexec/aerc/filters/plaintext";
+      "text/calendar" = "${pkgs.aerc}/libexec/aerc/filters/calendar";
     };
   };
 
