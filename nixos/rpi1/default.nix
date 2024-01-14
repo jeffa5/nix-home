@@ -10,12 +10,12 @@
     })
     # metrics
     (import ../modules/node-exporter.nix {openFirewall = true;})
+    (import ../modules/promtail.nix {openFirewall = true;})
     ../modules/prometheus.nix
     # visualization
     ../modules/grafana.nix
     # logging
     ../modules/loki.nix
-    (import ../modules/promtail.nix {openFirewall = true;})
     # serving
     ../modules/dnsmasq.nix
     ../modules/nginx.nix

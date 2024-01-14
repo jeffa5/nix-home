@@ -9,8 +9,9 @@
       users = [];
     })
     (import ../modules/node-exporter.nix {openFirewall = true;})
+    (import ../modules/promtail.nix {openFirewall = true;})
     ../modules/nginx.nix
-    # ../modules/tailscale.nix
+    ../modules/tailscale.nix
   ];
 
   networking.hostName = "rpi2";

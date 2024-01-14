@@ -1,5 +1,6 @@
 {...}: let
   rpi1 = "100.85.109.140";
+  rpi2 = "100.87.231.63";
   xps15 = "100.125.129.20";
   carbide = "100.92.225.84";
 in {
@@ -22,6 +23,7 @@ in {
 
   networking.extraHosts = ''
     ${rpi1} rpi1.home.jeffas.net
+    ${rpi2} rpi2.home.jeffas.net
     ${xps15} xps15.home.jeffas.net
     ${carbide} carbide.home.jeffas.net
 
