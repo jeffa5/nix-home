@@ -1,4 +1,7 @@
-{nixpkgs}: {pkgs, ...}: {
+{
+  nixpkgs,
+  configs,
+}: {pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
 
@@ -20,9 +23,12 @@
     ../modules/dnsmasq.nix
     ../modules/nginx.nix
     ../modules/tailscale.nix
+    (import ../modules/homeboard.nix {inherit configs;})
     # misc
     ../modules/taskserver.nix
   ];
+
+  services.homeboard.enable = true;
 
   networking.hostName = "rpi1";
 

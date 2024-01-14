@@ -115,7 +115,10 @@
         system = "aarch64-linux";
         modules = [
           hardware.nixosModules.raspberry-pi-4
-          (import ./nixos/rpi1 {nixpkgs = stableNixpkgs;})
+          (import ./nixos/rpi1 {
+            nixpkgs = stableNixpkgs;
+            configs = self.nixosConfigurations;
+          })
         ];
       };
 
@@ -127,13 +130,13 @@
         ];
       };
 
-      rosebud = nixpkgs.lib.nixosSystem {
-        inherit system pkgs;
-        modules = [
-          tasknet.nixosModules.${system}.tasknet-server
-          ./nixos/rosebud
-        ];
-      };
+      # rosebud = nixpkgs.lib.nixosSystem {
+      #   inherit system pkgs;
+      #   modules = [
+      #     tasknet.nixosModules.${system}.tasknet-server
+      #     ./nixos/rosebud
+      #   ];
+      # };
     };
 
     # standalone home environment
