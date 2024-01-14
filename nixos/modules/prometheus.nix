@@ -1,4 +1,4 @@
-{config, ...}: let
+{...}: let
   private_port = 9090;
   ports = import ./ports.nix;
   homeNet = "home.jeffas.net";
