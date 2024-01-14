@@ -29,12 +29,7 @@ in {
     )
   '';
 
-  services.nodeboard.services.node-exporter = {
-    name = "Node exporter";
-    url = "http://node-exporter.${config.networking.hostName}.home.jeffas.net";
-  };
-
-  services.nginx.virtualHosts."node-exporter.local" = {
+  services.nginx.virtualHosts."Node Exporter" = {
     serverName = "node-exporter.${config.networking.hostName}.home.jeffas.net";
     locations."/" = {
       proxyPass = "http://127.0.0.1:${toString ports.private}";

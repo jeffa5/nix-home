@@ -42,12 +42,7 @@ in {
     };
   };
 
-  services.nodeboard.services.promtail = {
-    name = "Promtail";
-    url = "http://promtail.${config.networking.hostName}.home.jeffas.net";
-  };
-
-  services.nginx.virtualHosts."promtail.local" = {
+  services.nginx.virtualHosts."Promtail" = {
     serverName = "promtail.${config.networking.hostName}.home.jeffas.net";
     locations."/" = {
       proxyPass = "http://127.0.0.1:${toString ports.promtail.private}";

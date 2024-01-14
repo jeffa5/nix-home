@@ -80,12 +80,7 @@ in {
     };
   };
 
-  services.nodeboard.services.loki = {
-    name = "Loki metrics";
-    url = "http://${serverName}/metrics";
-  };
-
-  services.nginx.virtualHosts."loki.local" = {
+  services.nginx.virtualHosts."Loki" = {
     inherit serverName;
     locations."/" = {
       proxyPass = "http://127.0.0.1:${toString private_port}";

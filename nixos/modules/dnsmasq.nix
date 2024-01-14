@@ -47,12 +47,7 @@ in {
     leasesPath = "/var/lib/dnsmasq/dnsmasq.leases";
   };
 
-  services.nodeboard.services.dnsmasq-exporter = {
-    name = "DNS Masq exporter";
-    url = "http://dnsmasq-exporter.${config.networking.hostName}.home.jeffas.net";
-  };
-
-  services.nginx.virtualHosts."dnsmasq.local" = {
+  services.nginx.virtualHosts."Dnsmasq Exporter" = {
     serverName = "dnsmasq-exporter.${config.networking.hostName}.home.jeffas.net";
     locations."/" = {
       proxyPass = "http://127.0.0.1:${toString config.services.prometheus.exporters.dnsmasq.port}";

@@ -15,12 +15,7 @@ in {
     port = ports.private;
   };
 
-  services.nodeboard.services.nginx-exporter = {
-    name = "Nginx exporter";
-    url = "http://nginx-exporter.${config.networking.hostName}.home.jeffas.net";
-  };
-
-  services.nginx.virtualHosts."nginx-exporter.local" = {
+  services.nginx.virtualHosts."Nginx Exporter" = {
     serverName = "nginx-exporter.${config.networking.hostName}.home.jeffas.net";
     locations."/" = {
       proxyPass = "http://127.0.0.1:${toString ports.private}";

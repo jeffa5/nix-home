@@ -44,7 +44,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    services.nginx.virtualHosts."nodeboard.local" = {
+    services.nginx.virtualHosts."Nodeboard" = {
       serverName = "${config.networking.hostName}.home.jeffas.net";
       root = root;
       default = true;

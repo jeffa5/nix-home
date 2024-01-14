@@ -48,13 +48,7 @@ in {
     };
   };
 
-  services.nodeboard.services.grafana = {
-    name = "Grafana";
-    url = "http://${serverName}";
-    icon = "http://${serverName}/public/img/apple-touch-icon.png";
-  };
-
-  services.nginx.virtualHosts."grafana.local" = {
+  services.nginx.virtualHosts."Grafana" = {
     inherit serverName;
     locations."/" = {
       proxyPass = "http://127.0.0.1:${toString private_port}";

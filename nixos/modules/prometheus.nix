@@ -82,13 +82,7 @@ in {
     };
   };
 
-  services.nodeboard.services.prometheus = {
-    name = "Prometheus";
-    url = "http://${serverName}";
-    useFavicon = true;
-  };
-
-  services.nginx.virtualHosts."prometheus.local" = {
+  services.nginx.virtualHosts."Prometheus" = {
     inherit serverName;
     locations."/" = {
       proxyPass = "http://127.0.0.1:${toString private_port}";

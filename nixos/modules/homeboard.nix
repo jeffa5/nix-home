@@ -60,7 +60,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    services.nginx.virtualHosts."homeboard.local" = {
+    services.nginx.virtualHosts."Homeboard" = {
       serverName = "home.jeffas.net";
       root = root;
     };
