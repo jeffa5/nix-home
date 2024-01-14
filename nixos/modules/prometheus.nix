@@ -40,9 +40,9 @@ in {
           # rpi2
           {targets = ["node-exporter.${rpi2}"];}
           # xps15, not running nginx
-          {targets = ["node-exporter.${xps15}"];}
+          {targets = ["${xps15}:${toString ports.node-exporter.private}"];}
           # carbide, not running nginx
-          {targets = ["node-exporter.${carbide}"];}
+          {targets = ["${carbide}:${toString ports.node-exporter.private}"];}
         ];
       }
       {
@@ -53,9 +53,9 @@ in {
           # rpi2
           {targets = ["promtail.${rpi2}"];}
           # xps15, not running nginx
-          {targets = ["promtail.${xps15}"];}
+          {targets = ["${xps15}:${toString ports.promtail.private}"];}
           # carbide, not running nginx
-          {targets = ["promtail.${carbide}"];}
+          {targets = ["${carbide}:${toString ports.promtail.private}"];}
         ];
       }
       {
