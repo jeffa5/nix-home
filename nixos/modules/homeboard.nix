@@ -11,22 +11,17 @@
     url = "http://${name}.home.jeffas.net";
   in ''<a href="${url}">${name}</a>'';
 
-  formatService = service: let
-    icon =
-      if service.icon != ""
-      then service.icon
-      else if service.useFavicon
-      then "${service.url}/favicon.ico"
-      else "";
-    iconImg =
-      if icon != ""
-      then ''<img src="${icon}" width=50 height=50></img>''
-      else "";
-  in ''<tr><td>${iconImg}</td><td><a href="${service.url}">${service.name}</a></td></tr>'';
+  formatService = name: service: let
+    url =
+      if service.serverName == null
+      then ""
+      else "http://${service.serverName}";
+  in ''<li><a href="${url}">${name}</a></li>'';
+
   servicesForNode = nodeConfig: let
-    nodeboard = nodeConfig.services.nodeboard;
+    nginxHosts = nodeConfig.services.nginx.virtualHosts;
   in
-    lib.concatStringsSep "\n" (lib.mapAttrsToList (_name: value: formatService value) (nodeboard.services));
+    lib.concatStringsSep "\n" (lib.mapAttrsToList (name: value: formatService name value) nginxHosts);
 
   links = lib.concatStringsSep "\n" (lib.mapAttrsToList (_name: value: let
       node = formatNode value.config;
