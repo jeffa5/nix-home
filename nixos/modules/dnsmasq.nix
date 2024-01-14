@@ -1,8 +1,21 @@
-{...}: let
-  rpi1 = "100.85.109.140";
-  rpi2 = "100.87.231.63";
-  xps15 = "100.125.129.20";
-  carbide = "100.92.225.84";
+{configs}: {
+  lib,
+  config,
+  ...
+}: let
+  hosts = import ../../hosts.nix;
+  nodeEntries =
+    lib.concatStringsSep "\n" (lib.mapAttrsToList (name: value: "${value} ${name}.home.jeffas.net") hosts);
+  serviceEntriesForNode = name: nodeConfig: let
+    services = nodeConfig.services.nginx.virtualHosts;
+    ip = hosts.${name};
+  in
+    lib.concatStringsSep "\n" (lib.mapAttrsToList (_name: value:
+      if value.serverName != null
+      then "${ip} ${value.serverName}"
+      else "")
+    services);
+  serviceEntries = lib.concatStringsSep "\n" (lib.mapAttrsToList (name: value: serviceEntriesForNode name value.config) configs);
 in {
   services.dnsmasq = {
     enable = true;
@@ -22,20 +35,27 @@ in {
   };
 
   networking.extraHosts = ''
-    ${rpi1} rpi1.home.jeffas.net
-    ${rpi2} rpi2.home.jeffas.net
-    ${xps15} xps15.home.jeffas.net
-    ${carbide} carbide.home.jeffas.net
+    # node entries
+    ${nodeEntries}
 
-    ${rpi1} grafana.home.jeffas.net
-    ${rpi1} prometheus.home.jeffas.net
-    ${rpi1} loki.home.jeffas.net
-    ${rpi1} home.jeffas.net
+    # service entries
+    ${serviceEntries}
   '';
 
   services.prometheus.exporters.dnsmasq = {
     enable = true;
-    openFirewall = false;
     leasesPath = "/var/lib/dnsmasq/dnsmasq.leases";
+  };
+
+  services.nodeboard.services.dnsmasq-exporter = {
+    name = "DNS Masq exporter";
+    url = "http://dnsmasq-exporter.${config.networking.hostName}.home.jeffas.net";
+  };
+
+  services.nginx.virtualHosts."dnsmasq.local" = {
+    serverName = "dnsmasq-exporter.${config.networking.hostName}.home.jeffas.net";
+    locations."/" = {
+      proxyPass = "http://127.0.0.1:${toString config.services.prometheus.exporters.dnsmasq.port}";
+    };
   };
 }

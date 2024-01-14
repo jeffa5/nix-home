@@ -31,23 +31,14 @@ in {
 
   services.nodeboard.services.node-exporter = {
     name = "Node exporter";
-    url = "http://${config.networking.hostName}.home.jeffas.net:${toString ports.public}";
+    url = "http://node-exporter.${config.networking.hostName}.home.jeffas.net";
   };
 
   services.nginx.virtualHosts."node-exporter.local" = {
-    serverName = "${config.networking.hostName}.home.jeffas.net:${toString ports.public}";
-    listen = [
-      {
-        port = ports.public;
-        addr = "0.0.0.0";
-      }
-    ];
+    serverName = "node-exporter.${config.networking.hostName}.home.jeffas.net";
     locations."/" = {
       proxyPass = "http://127.0.0.1:${toString ports.private}";
       proxyWebsockets = true;
     };
   };
-
-  # TODO: specify default openings for nginx once we have DNS names
-  networking.firewall.allowedTCPPorts = pkgs.lib.optionals openFirewall [ports.public];
 }

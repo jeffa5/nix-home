@@ -44,23 +44,14 @@ in {
 
   services.nodeboard.services.promtail = {
     name = "Promtail";
-    url = "http://${config.networking.hostName}.home.jeffas.net:${toString ports.promtail.public}";
+    url = "http://promtail.${config.networking.hostName}.home.jeffas.net";
   };
 
   services.nginx.virtualHosts."promtail.local" = {
-    serverName = "${config.networking.hostName}.home.jeffas.net:${toString ports.promtail.public}";
-    listen = [
-      {
-        port = ports.promtail.public;
-        addr = "0.0.0.0";
-      }
-    ];
+    serverName = "promtail.${config.networking.hostName}.home.jeffas.net";
     locations."/" = {
       proxyPass = "http://127.0.0.1:${toString ports.promtail.private}";
       proxyWebsockets = true;
     };
   };
-
-  # TODO: specify default openings for nginx once we have DNS names
-  networking.firewall.allowedTCPPorts = pkgs.lib.optionals openFirewall [ports.promtail.public];
 }

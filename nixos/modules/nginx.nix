@@ -17,23 +17,14 @@ in {
 
   services.nodeboard.services.nginx-exporter = {
     name = "Nginx exporter";
-    url = "http://${config.networking.hostName}.home.jeffas.net:${toString ports.public}";
+    url = "http://nginx-exporter.${config.networking.hostName}.home.jeffas.net";
   };
 
   services.nginx.virtualHosts."nginx-exporter.local" = {
-    serverName = "${config.networking.hostName}.home.jeffas.net:${toString ports.public}";
-    listen = [
-      {
-        port = ports.public;
-        addr = "0.0.0.0";
-      }
-    ];
+    serverName = "nginx-exporter.${config.networking.hostName}.home.jeffas.net";
     locations."/" = {
       proxyPass = "http://127.0.0.1:${toString ports.private}";
       proxyWebsockets = true;
     };
   };
-
-  # TODO: specify default openings for nginx once we have DNS names
-  networking.firewall.allowedTCPPorts = [ports.public];
 }

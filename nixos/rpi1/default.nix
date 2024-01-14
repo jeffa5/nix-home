@@ -20,7 +20,7 @@
     # logging
     ../modules/loki.nix
     # serving
-    ../modules/dnsmasq.nix
+    (import ../modules/dnsmasq.nix {inherit configs;})
     ../modules/nginx.nix
     ../modules/tailscale.nix
     (import ../modules/homeboard.nix {inherit configs;})

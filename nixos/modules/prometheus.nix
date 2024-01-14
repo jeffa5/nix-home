@@ -36,41 +36,41 @@ in {
         job_name = "node";
         static_configs = [
           # this pi (rpi1)
-          {targets = ["${rpi1}:${toString ports.node-exporter.public}"];}
+          {targets = ["node-exporter.${rpi1}"];}
           # rpi2
-          {targets = ["${rpi2}:${toString ports.node-exporter.public}"];}
+          {targets = ["node-exporter.${rpi2}"];}
           # xps15, not running nginx
-          {targets = ["${xps15}:${toString ports.node-exporter.private}"];}
+          {targets = ["node-exporter.${xps15}"];}
           # carbide, not running nginx
-          {targets = ["${carbide}:${toString ports.node-exporter.private}"];}
+          {targets = ["node-exporter.${carbide}"];}
         ];
       }
       {
         job_name = "promtail";
         static_configs = [
           # this pi (rpi1)
-          {targets = ["${rpi1}:${toString ports.promtail.public}"];}
+          {targets = ["promtail.${rpi1}"];}
           # rpi2
-          {targets = ["${rpi2}:${toString ports.promtail.public}"];}
+          {targets = ["promtail.${rpi2}"];}
           # xps15, not running nginx
-          {targets = ["${xps15}:${toString ports.promtail.private}"];}
+          {targets = ["promtail.${xps15}"];}
           # carbide, not running nginx
-          {targets = ["${carbide}:${toString ports.promtail.private}"];}
+          {targets = ["promtail.${carbide}"];}
         ];
       }
       {
         job_name = "nginx";
         static_configs = [
           # this pi (rpi1)
-          {targets = ["${rpi1}:${toString ports.nginx-exporter.public}"];}
+          {targets = ["nginx-exporter.${rpi1}"];}
           # rpi2
-          {targets = ["${rpi2}:${toString ports.nginx-exporter.public}"];}
+          {targets = ["nginx-exporter.${rpi2}"];}
         ];
       }
       {
         job_name = "dnsmasq";
         static_configs = [
-          {targets = ["${rpi1}:${toString config.services.prometheus.exporters.dnsmasq.port}"];}
+          {targets = ["dnsmasq-exporter.${rpi1}"];}
         ];
       }
     ];
