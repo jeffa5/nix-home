@@ -4,6 +4,7 @@
 {
   lib,
   modulesPath,
+  config,
   ...
 }: {
   imports = [
@@ -40,8 +41,13 @@
     options = ["bind"];
   };
 
-  fileSystems."/var/lib/zigbee2mqtt" = {
+  fileSystems."${config.services.zigbee2mqtt.dataDir}" = {
     device = "/local/zigbee2mqtt";
+    options = ["bind"];
+  };
+
+  fileSystems."${config.services.mosquitto.dataDir}" = {
+    device = "/local/mosquitto";
     options = ["bind"];
   };
 

@@ -26,6 +26,9 @@
     (import ../modules/homeboard.nix {inherit configs;})
     # misc
     ../modules/taskserver.nix
+    # smart home
+    ../modules/zigbee2mqtt.nix
+    ../modules/mosquitto.nix
   ];
 
   services.homeboard.enable = true;
