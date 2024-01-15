@@ -40,6 +40,11 @@
     options = ["bind"];
   };
 
+  fileSystems."/var/lib/zigbee2mqtt" = {
+    device = "/local/zigbee2mqtt";
+    options = ["bind"];
+  };
+
   swapDevices = [];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
