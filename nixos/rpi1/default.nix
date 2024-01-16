@@ -29,6 +29,7 @@
     # smart home
     ../modules/zigbee2mqtt.nix
     ../modules/mosquitto.nix
+    ../modules/influxdb.nix
   ];
 
   services.homeboard.enable = true;

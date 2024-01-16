@@ -51,6 +51,11 @@
     options = ["bind"];
   };
 
+  fileSystems."/var/lib/influxdb2" = {
+    device = "/local/influxdb2";
+    options = ["bind"];
+  };
+
   swapDevices = [];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
