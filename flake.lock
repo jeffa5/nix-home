@@ -267,7 +267,6 @@
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "papers": "papers",
-        "stableNixpkgs": "stableNixpkgs",
         "tasknet": "tasknet",
         "waytext": "waytext"
       }
@@ -319,22 +318,6 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "type": "github"
-      }
-    },
-    "stableNixpkgs": {
-      "locked": {
-        "lastModified": 1705183652,
-        "narHash": "sha256-rnfkyUH0x72oHfiSDhuCHDHg3gFgF+lF8zkkg5Zihsw=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "428544ae95eec077c7f823b422afae5f174dee4b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-23.11",
-        "repo": "nixpkgs",
         "type": "github"
       }
     },

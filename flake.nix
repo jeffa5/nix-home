@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
-    stableNixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,7 +17,6 @@
     self,
     home-manager,
     nixpkgs,
-    stableNixpkgs,
     hardware,
     papers,
     tasknet,
@@ -111,22 +109,22 @@
         gui = true;
       };
 
-      rpi1 = stableNixpkgs.lib.nixosSystem {
+      rpi1 = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         modules = [
           hardware.nixosModules.raspberry-pi-4
           (import ./nixos/rpi1 {
-            nixpkgs = stableNixpkgs;
+            inherit nixpkgs;
             configs = self.nixosConfigurations;
           })
         ];
       };
 
-      rpi2 = stableNixpkgs.lib.nixosSystem {
+      rpi2 = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         modules = [
           hardware.nixosModules.raspberry-pi-4
-          (import ./nixos/rpi2 {nixpkgs = stableNixpkgs;})
+          (import ./nixos/rpi2 {inherit nixpkgs;})
         ];
       };
 
