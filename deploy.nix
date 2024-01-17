@@ -29,5 +29,8 @@ in
       exit 1
     fi
 
-    ${script}
+    while [[ "$1" != "" ]]; do
+      ${script}
+      shift
+    done
   ''
