@@ -43,7 +43,6 @@ in {
       ./neovim.nix
       ./helix.nix
       ./modules/cargo.nix
-      ./modules/papers.nix
       ./ssh.nix
       ./git.nix
       (import ./tmux.nix {server = !gui;})
