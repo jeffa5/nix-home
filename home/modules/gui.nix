@@ -9,7 +9,7 @@
     ./contacts.nix
     ./calendar.nix
     ./alacritty.nix
-    ./modules/papers.nix
+    ./papers.nix
 
     ./sway.nix
     ./lf.nix
