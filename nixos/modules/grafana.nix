@@ -2,6 +2,7 @@
   ports = import ./ports.nix;
   private_port = ports.grafana.private;
   serverName = "grafana.home.jeffas.net";
+  influxdbAdminToken = "admintoken";
 in {
   services.grafana = {
     enable = true;
@@ -25,6 +26,18 @@ in {
           name = "Loki";
           url = "http://loki.home.jeffas.net";
           type = "loki";
+        }
+        {
+          name = "InfluxDB";
+          url = "http://influxdb.home.jeffas.net";
+          type = "influxdb";
+          jsonData = {
+            httpHeaderName1 = "Authorization";
+          };
+          secureJsonData = {
+            httpHeaderValue1 = "Token ${influxdbAdminToken}";
+          };
+          database = "zigbee";
         }
       ];
 
