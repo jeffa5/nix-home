@@ -17,6 +17,19 @@ in {
       # advanced = {
       #   network_key = "GENERATE";
       # };
+
+      devices = {
+        "0x9035eafffe0d82b3" = {
+          friendly_name = "bedroom/temp_hum";
+        };
+        "0x9035eafffe02bb4c" = {
+          friendly_name = "desk/temp_hum";
+        };
+        "0x9035eafffe02b57c" = {
+          friendly_name = "kitchen/temp_hum";
+        };
+      }
+      ;
     };
   };
 
