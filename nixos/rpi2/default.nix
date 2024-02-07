@@ -12,6 +12,7 @@
     (import ../modules/promtail.nix {openFirewall = true;})
     ../modules/nginx.nix
     ../modules/tailscale.nix
+    ../modules/nextcloudcmd.nix
   ];
 
   networking.hostName = "rpi2";
