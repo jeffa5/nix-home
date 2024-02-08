@@ -16,4 +16,12 @@ in {
     };
     wantedBy = ["multi-user.target"];
   };
+
+  systemd.timers.nextcloudcmd = {
+    wantedBy = ["timers.target"];
+    timerConfig = {
+      OnBootSec = "15m";
+      OnUnitActiveSec = "15m";
+    };
+  };
 }
