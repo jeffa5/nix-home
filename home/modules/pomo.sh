@@ -124,8 +124,12 @@ function pomo_count() {
 function pomo_percent() {
   remaining=$(pomo_remaining)
   duration=${current_cycle}_duration
-  frac=$((remaining * 100 / duration * 100))
-  perc=$((100 - frac / 100))
+  if [[ $duration -eq 0 ]]; then
+    perc=100
+  else
+    frac=$((remaining * 100 / duration * 100))
+    perc=$((100 - frac / 100))
+  fi
   echo $perc
 }
 
