@@ -22,15 +22,12 @@
     anki
     bitwarden
     bitwarden-cli
-    borgbackup
     calcurse
     chromium
     czkawka
     darktable
-    evince
     fractal
     gitAndTools.git-open
-    inkscape
     libreoffice
     musescore
     nextcloud-client
@@ -42,7 +39,6 @@
     tasksh
     taskwarrior-tui
     thunderbird
-    todoist-electron
     vlc
     vorta
     wally-cli
@@ -50,9 +46,7 @@
     wdisplays
     wl-clipboard
     xdg-utils
-    xournalpp
     xwayland
-    zoom-us
   ];
 
   fonts.fontconfig.enable = true;
