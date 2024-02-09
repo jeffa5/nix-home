@@ -112,17 +112,10 @@ in {
       output = {
         "*" = {bg = "#458588 solid_color";};
         "eDP-1" = {
-          position = "320 1440";
+          position = "10000 10000";
         };
-        "HDMI-A-1" = {
-          position = "0 1080";
-        };
-        "DP-1" = {
-          position = "0 0";
-          scale = "1.5";
-        };
-        "DP-2" = {
-          position = "1920 1080";
+        "Dell Inc. DELL P2417H CW6Y775Q66NB" = {
+          position = "10000 8920";
         };
       };
 
