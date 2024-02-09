@@ -165,10 +165,5 @@
     };
 
     formatter.${system} = pkgs.alejandra;
-
-    devShells.${system}.default = with pkgs;
-      pkgs.mkShell {
-        buildInputs = with pkgs; [dconf2nix];
-      };
   };
 }
