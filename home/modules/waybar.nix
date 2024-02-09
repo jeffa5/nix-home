@@ -14,7 +14,7 @@ in {
           "sway/mode"
         ];
         modules-right = [
-          "custom/spotify"
+          "custom/mediaplayer"
           "custom/pomo"
           "pulseaudio"
           "backlight"
@@ -114,13 +114,13 @@ in {
             exec = "${pkgs.status-bar.pomo-status}/bin/pomo-status";
             on-click = "${pkgs.sway-scripts.pomo-timer}/bin/pomo-timer";
           };
-          "custom/spotify" = {
+          "custom/mediaplayer" = {
             format = "{}";
             interval = 1;
             exec = "${pkgs.status-bar.mediaplayer}/bin/bar-mediaplayer";
-            exec-if = "${pkgs.playerctl}/bin/playerctl --player spotify status &> /dev/null";
+            exec-if = "${pkgs.playerctl}/bin/playerctl status &> /dev/null";
             escape = true;
-            on-click = "${pkgs.playerctl}/bin/playerctl --player spotify play-pause";
+            on-click = "${pkgs.playerctl}/bin/playerctl play-pause";
           };
         };
       }
@@ -176,7 +176,7 @@ in {
       #pulseaudio,
       #mode,
       #custom-pomo,
-      #custom-spotify,
+      #custom-mediaplayer,
       #tray {
         padding: 0 5px;
         margin: 0 3px;
