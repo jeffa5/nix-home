@@ -117,6 +117,10 @@ in {
         "Dell Inc. DELL P2417H CW6Y775Q66NB" = {
           position = "10000 8920";
         };
+        "Iiyama North America PL3288UH 1169600300533" = {
+          position = "9680 8560";
+          scale = "1.5";
+        };
       };
 
       keybindings = let
