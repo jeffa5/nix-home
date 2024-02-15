@@ -18,6 +18,7 @@
   ];
 
   home.packages = with pkgs; [
+    amberol
     android-udev-rules
     anki
     bitwarden
