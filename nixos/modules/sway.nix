@@ -3,6 +3,7 @@
     enable = true;
     # null so that we use the home-manager sway module
     package = null;
+    extraPackages = [];
     wrapperFeatures.gtk = true;
   };
 
