@@ -14,7 +14,7 @@
     imap = {};
     smtp = {};
   };
-  jeffas = {
+  jeffasio = {
     primary = false;
     address = "andrew@jeffas.io";
     flavor = "plain";
@@ -53,7 +53,7 @@
       };
     };
   };
-  dev = {
+  devio = {
     primary = false;
     address = "dev@jeffas.io";
     flavor = "plain";
