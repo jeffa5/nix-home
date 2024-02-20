@@ -39,7 +39,6 @@
 
     shellAliases = {
       cat = "bat";
-      ping = "prettyping --nolegend";
       gdm = "git diff master";
       wiki = "vim ~/wiki/index.md";
     };

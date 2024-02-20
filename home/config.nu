@@ -1,5 +1,4 @@
 alias cat = bat
-alias ping = prettyping --nolegend
 alias g = git
 alias ga = git add
 alias gc = git commit -v
