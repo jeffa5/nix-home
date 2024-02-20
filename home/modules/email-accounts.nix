@@ -34,6 +34,25 @@
       };
     };
   };
+  jeffasnet = {
+    primary = false;
+    address = "andrew@jeffas.net";
+    flavor = "plain";
+    imap = {
+      host = "imap.migadu.com";
+      port = 993;
+      tls = {
+        enable = true;
+      };
+    };
+    smtp = {
+      host = "smtp.migadu.com";
+      port = 465;
+      tls = {
+        enable = true;
+      };
+    };
+  };
   dev = {
     primary = false;
     address = "dev@jeffas.io";
