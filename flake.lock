@@ -225,11 +225,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1708418325,
-        "narHash": "sha256-T7Okq/TbV3DaJtUDRJdv1G2fa4C1h5lSGdqL/lU2SR0=",
+        "lastModified": 1708514427,
+        "narHash": "sha256-H7LAnkTgm2LiJ6NFVMA9zR3nfd9TdvGzerDF/56JKmY=",
         "owner": "jeffa5",
         "repo": "papers",
-        "rev": "2a9f66c3d3ea2fcddd513a5f6ec1019db2ac2029",
+        "rev": "37af890d40dbe14b2e4017481318550975e48f5b",
         "type": "github"
       },
       "original": {
