@@ -14,7 +14,6 @@
     ./sway.nix
     ./lf.nix
     ./recoll.nix
-    ./pomo.nix
   ];
 
   home.packages = with pkgs; [

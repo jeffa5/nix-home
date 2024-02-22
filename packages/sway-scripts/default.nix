@@ -1,4 +1,6 @@
-pkgs: {
+pkgs: let
+  pomo = pkgs.lib.getExe (import ../pomo {inherit pkgs;});
+in {
   app-launcher = pkgs.writeShellScriptBin "app-launcher" ''
     pgrep wofi && pkill wofi && exit 0
 
@@ -123,16 +125,16 @@ pkgs: {
 
     case $selection in
       "Start session")
-        pomo start
+        ${pomo} start
         ;;
       "Reset timer")
-        pomo reset
+        ${pomo} reset
         ;;
       "Restart session")
-        pomo restart
+        ${pomo} restart
         ;;
       "Skip session")
-        pomo skip
+        ${pomo} skip
         ;;
       *) ;;
     esac

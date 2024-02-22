@@ -1,5 +1,6 @@
 pkgs: let
   playerctl = "${pkgs.playerctl}/bin/playerctl";
+  pomo = pkgs.lib.getExe (import ../pomo {inherit pkgs;});
 in {
   backlight = pkgs.writeShellScriptBin "bar-backlight" ''
     [ "$1" -gt "0" ]
@@ -28,13 +29,13 @@ in {
   '';
 
   pomo-status = pkgs.writeShellScriptBin "pomo-status" ''
-    pomo notify
+    ${pomo} notify
 
-    state=$(pomo cycle)
-    time=$(pomo remaining +%M:%S)
-    sessions_complete=$(pomo count)
+    state=$(${pomo} cycle)
+    time=$(${pomo} remaining +%M:%S)
+    sessions_complete=$(${pomo} count)
     paused=false
-    percent=$(pomo percent)
+    percent=$(${pomo} percent)
 
     if [ -z "$state" ]; then
         exit 1
@@ -45,7 +46,7 @@ in {
       text="⌛$state"
       class=idle
     else
-      if [[ $(pomo remaining) -lt 0 ]]; then
+      if [[ $(${pomo} remaining) -lt 0 ]]; then
         class=finished
       else
         class=running
