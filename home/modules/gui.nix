@@ -31,6 +31,7 @@
     musescore
     nextcloud-client
     obsidian
+    rbw
     rnote
     signal-desktop
     slack
