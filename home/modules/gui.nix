@@ -14,6 +14,7 @@
     ./sway.nix
     ./lf.nix
     ./recoll.nix
+    ./rbw.nix
   ];
 
   home.packages = with pkgs; [
@@ -31,7 +32,6 @@
     musescore
     nextcloud-client
     obsidian
-    rbw
     rnote
     signal-desktop
     slack
