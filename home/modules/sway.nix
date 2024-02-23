@@ -152,6 +152,7 @@ in {
           "${mod}+Shift+0" = "move container to workspace $workspace10";
           "${mod}+space" = "exec ${pkgs.sway-scripts.app-launcher}/bin/app-launcher";
           "${mod}+t" = "exec ${pkgs.sway-scripts.pomo-timer}/bin/pomo-timer";
+          "${mod}+n" = "exec ${pkgs.lib.getExe pkgs.sway-scripts.bw-menu}";
           "${mod}+Alt+f" = "exec --no-startup-id swaymsg 'workspace $workspace1; exec ${pkgs.firefox}/bin/firefox'";
           "${mod}+Alt+m" = "exec --no-startup-id swaymsg 'workspace $workspace9; exec ${pkgs.thunderbird}/bin/thunderbird'";
           "${mod}+Alt+s" = "exec --no-startup-id swaymsg 'workspace $workspace10; exec ${pkgs.spotify}/bin/spotify'";

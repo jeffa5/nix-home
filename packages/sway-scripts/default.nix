@@ -160,4 +160,28 @@ in {
 
     ${pkgs.waytext}/bin/waytext -t "$text"
   '';
+
+  bw-menu = let
+    rbw = pkgs.lib.getExe' pkgs.rbw "rbw";
+    wofi = pkgs.lib.getExe pkgs.wofi;
+    wl-copy = pkgs.lib.getExe' pkgs.wl-clipboard "wl-copy";
+    notify-send = pkgs.lib.getExe' pkgs.libnotify "notify-send";
+  in
+    pkgs.writeShellScriptBin "bw-menu" ''
+      ${rbw} unlocked &> /dev/null || ${rbw} unlock
+
+      item=$(${rbw} list | ${wofi} --dmenu --matching fuzzy --insensitive --prompt "Select an entry")
+      if [[ -z "$item" ]]; then
+        exit 1
+      fi
+
+      field=$(echo -e "Username\nPassword" | ${wofi} --dmenu --matching fuzzy --insensitive --prompt "Select a field")
+      if [[ -z "$field" ]]; then
+        exit 1
+      fi
+
+      ${rbw} get "$item" --field "$field" | ${wl-copy}
+
+      ${notify-send} --app-name bw-menu "Copied $field to clipboard"
+    '';
 }
