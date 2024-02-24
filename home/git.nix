@@ -10,7 +10,7 @@
       features = "gruvbox-light";
     };
     lfs.enable = true;
-    userEmail = "dev@jeffas.io";
+    userEmail = "dev@jeffas.net";
     userName = "Andrew Jeffery";
     extraConfig = {
       init = {
