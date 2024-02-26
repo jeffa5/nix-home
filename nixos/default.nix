@@ -131,6 +131,8 @@ in {
         functions.enable = true;
       };
     };
+
+    fuse.userAllowOther = true;
   };
 
   # boot.kernel.sysctl."fs.inotify.max_user_watches" = pkgs.lib.mkDefault 524288;
