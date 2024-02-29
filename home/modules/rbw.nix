@@ -3,6 +3,6 @@
 
   xdg.configFile."rbw/config.json".text = builtins.toJSON {
     email = "andrewjeffery97@gmail.com";
-    pinentry = pkgs.lib.getExe pkgs.pinentry;
+    pinentry = pkgs.lib.getExe' "pinentry" pkgs.pinentry;
   };
 }
