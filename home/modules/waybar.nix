@@ -18,9 +18,6 @@ in {
           "custom/pomo"
           "pulseaudio"
           "backlight"
-          "memory"
-          "cpu"
-          # "temperature"
           "bluetooth"
           "network"
           "battery"
@@ -76,8 +73,8 @@ in {
           network = {
             interval = 5;
             format = "{ifname}";
-            format-ethernet = "Eth ↓ {bandwidthDownBits} ↑ {bandwidthUpBits}";
-            format-wifi = "🛜 {essid} ({signalStrength}%) ↓ {bandwidthDownBits} ↑ {bandwidthUpBits}";
+            format-ethernet = "Eth";
+            format-wifi = "🛜 {essid} ({signalStrength}%)";
             format-disconnected = "Disconnected";
           };
           bluetooth = {
