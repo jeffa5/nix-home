@@ -23,6 +23,7 @@
     bitwarden
     bitwarden-cli
     calcurse
+    calibre
     chromium
     czkawka
     darktable
