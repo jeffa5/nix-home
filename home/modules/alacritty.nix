@@ -1,4 +1,4 @@
-{pkgs, ...}: let
+{...}: let
   light = {
     # Colors (Gruvbox light)
     primary = {
@@ -47,15 +47,11 @@ in {
         size = 12.0;
       };
 
-      draw_bold_text_with_bright_colors = true;
-
-      colors = light;
-
-      mouse = {
-        hints = {
-          launcher = "${pkgs.xdg-utils}/bin/xdg-open";
+      colors =
+        light
+        // {
+          draw_bold_text_with_bright_colors = true;
         };
-      };
     };
   };
 }

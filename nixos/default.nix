@@ -107,9 +107,9 @@ in {
   virtualisation.docker.enable = true;
 
   services.xserver = {
-    layout = "uk-cdh,gb";
+    xkb.layout = "uk-cdh,gb";
 
-    extraLayouts.uk-cdh = {
+    xkb.extraLayouts.uk-cdh = {
       description = "UK Colemak";
       languages = ["eng"];
       symbolsFile = ./../packages/colemakdh/iso-uk-colemak-dh;
