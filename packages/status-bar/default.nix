@@ -6,17 +6,17 @@ in {
     [ "$1" -gt "0" ]
   '';
   mediaplayer = pkgs.writeShellScriptBin "bar-mediaplayer" ''
-    title=$(${playerctl} --player spotify metadata title)
+    title=$(${playerctl} metadata title)
     if [ $? != 0 ] || [ -z "$title" ]; then
       exit 0
     fi
 
-    artist=$(${playerctl} --player spotify metadata artist)
+    artist=$(${playerctl} metadata artist)
     if [ $? != 0 ]; then
       exit 0
     fi
 
-    status=$(${playerctl} --player spotify status)
+    status=$(${playerctl} status)
     if [ $status == "Paused" ]; then
       icon="⏸"
       class="paused"
