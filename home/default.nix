@@ -60,6 +60,9 @@ in {
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
   };
+  nix.extraOptions = ''
+    !include /home/${username}/.config/nix/extra.conf
+  '';
 
   xdg.mimeApps = {
     enable = true;
