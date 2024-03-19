@@ -168,7 +168,7 @@ in {
     notify-send = pkgs.lib.getExe' pkgs.libnotify "notify-send";
   in
     pkgs.writeShellScriptBin "bw-menu" ''
-      ${rbw} unlocked &> /dev/null || ${rbw} unlock
+      ${rbw} unlocked &> /dev/null || ${rbw} unlock || exit 1
 
       item=$(${rbw} list | ${wofi} --dmenu --matching fuzzy --insensitive --prompt "Select an entry")
       if [[ -z "$item" ]]; then
