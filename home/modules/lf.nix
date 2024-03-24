@@ -10,7 +10,13 @@ in {
       source = "${pkgs.ctpv}/bin/ctpv";
     };
     commands = {
-      mkdir = "mkdir $f";
+      mkdir = ''
+        %{{
+          IFS=" "
+          mkdir -p -- "$*"
+          ${lf} -remote "send $id select \"$*\""
+        }}
+      '';
       fzf_jump_dir = ''
         ''${{
             res="$(find . -type d | ${fzf} --reverse --header='Jump to location')"
@@ -60,6 +66,8 @@ in {
       fc = ":fzf_search";
       gr = "cd /";
       gc = "cd ~/Cloud";
+      D = ":delete";
+      a = "push :mkdir<space>";
     };
     extraConfig = ''
       &${pkgs.ctpv}/bin/ctpv -s $id
