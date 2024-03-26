@@ -28,8 +28,7 @@ in {
         "0x9035eafffe02b57c" = {
           friendly_name = "kitchen/temp_hum";
         };
-      }
-      ;
+      };
     };
   };
 
