@@ -12,8 +12,8 @@
       users = [];
     })
     # metrics
-    (import ../modules/node-exporter.nix {openFirewall = true;})
-    (import ../modules/promtail.nix {openFirewall = true;})
+    ../modules/node-exporter.nix
+    ../modules/promtail.nix
     ../modules/prometheus.nix
     # visualization
     ../modules/grafana.nix

@@ -8,7 +8,7 @@
 in {
   accounts.contact.accounts = (
     pkgs.lib.attrsets.mapAttrs (
-      name: value: {
+      _name: value: {
         local = {
           type = "filesystem";
           fileExt = ".vcf";

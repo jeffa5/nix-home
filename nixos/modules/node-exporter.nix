@@ -1,8 +1,4 @@
-{openFirewall}: {
-  pkgs,
-  config,
-  ...
-}: let
+{config, ...}: let
   textFilesDir = "/var/lib/prometheus-node-exporter-text-files";
   ports = (import ./ports.nix).node-exporter;
 in {

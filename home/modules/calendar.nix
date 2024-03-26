@@ -8,7 +8,7 @@
 in {
   accounts.calendar.accounts = (
     pkgs.lib.attrsets.mapAttrs (
-      name: value: {
+      _name: value: {
         khal = {
           enable = true;
           color = value.color;

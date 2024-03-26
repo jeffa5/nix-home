@@ -1,8 +1,4 @@
-{openFirewall}: {
-  pkgs,
-  config,
-  ...
-}: let
+{config, ...}: let
   loki_address = "loki.home.jeffas.net";
   ports = import ./ports.nix;
 in {
