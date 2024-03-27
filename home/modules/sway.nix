@@ -188,7 +188,7 @@ in {
     anchor = center
     output_mode = all
     bar_color = fbf1c7
-    border_color = fbf1c7
+    border_color = 3c3836
     background_color = 3c3836
   '';
 }
