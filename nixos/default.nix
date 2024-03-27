@@ -103,6 +103,8 @@ in {
     };
 
     udisks2.enable = gui;
+
+    fwupd.enable = true;
   };
 
   virtualisation.docker.enable = true;
