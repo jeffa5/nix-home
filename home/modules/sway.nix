@@ -15,7 +15,7 @@ in {
     ./zathura.nix
     ./imv.nix
     ./waybar.nix
-    ./wofi.nix
+    ./fuzzel.nix
   ];
 
   wayland.windowManager.sway = rec {
