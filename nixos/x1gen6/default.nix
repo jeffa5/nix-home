@@ -12,7 +12,6 @@
   boot.supportedFilesystems = ["btrfs"];
 
   networking.hostName = "x1gen6";
-  networking.interfaces.wlp2s0.useDHCP = true;
 
   services.printing = {
     enable = true;
