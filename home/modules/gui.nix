@@ -13,7 +13,6 @@
 
     ./sway.nix
     ./lf.nix
-    ./recoll.nix
     ./rbw.nix
   ];
 
