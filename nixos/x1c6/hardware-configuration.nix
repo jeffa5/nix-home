@@ -15,6 +15,10 @@
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
+  # enable hibernation
+  boot.resumeDevice = "/dev/disk/by-uuid/98cc9159-2cb8-4756-8971-b97c04638808";
+  boot.kernelParams = ["resume_offset=2630912"];
+  security.protectKernelImage = false;
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/98cc9159-2cb8-4756-8971-b97c04638808";
