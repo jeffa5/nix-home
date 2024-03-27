@@ -34,7 +34,7 @@
     nextcloud-client
     obsidian
     rnote
-    signal-desktop
+    signal-desktop-beta
     slack
     spotify
     tasksh
