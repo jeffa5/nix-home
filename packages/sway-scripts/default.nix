@@ -3,6 +3,7 @@
   lib,
 }: let
   pomo = pkgs.lib.getExe (import ../pomo {inherit pkgs;});
+  menu = "${lib.getExe pkgs.fuzzel} --dmenu";
 in {
   app-launcher = pkgs.writeShellScriptBin "app-launcher" ''
     pgrep fuzzel && pkill fuzzel && exit 0
@@ -25,7 +26,6 @@ in {
   '';
 
   screenshot = let
-    wofi = "${pkgs.wofi}/bin/wofi";
     slurp = "${pkgs.slurp}/bin/slurp";
     grim = "${pkgs.grim}/bin/grim";
     notify-send = "${pkgs.libnotify}/bin/notify-send";
@@ -33,18 +33,18 @@ in {
     convert = "${pkgs.imagemagick}/bin/convert";
   in
     pkgs.writeShellScriptBin "sway-screenshot" ''
-      # if wofi is running, kill it
-      pgrep wofi && pkill wofi && exit 0
+      # if fuzzel is running, kill it
+      pgrep fuzzel && pkill fuzzel && exit 0
 
       inputs=$(printf "Focused output\nAll outputs\nRegion\nFocused window\nWindow\nColour Picker")
 
-      selection=$(echo "''$inputs" | ${wofi} --dmenu -p "screenshot" -i)
+      selection=$(echo "''$inputs" | ${menu} -p "screenshot> ")
 
       PICTURE_DIR="$HOME/Pictures/screenshots/"
       PICTURE_FILE="$PICTURE_DIR$(date +'%Y-%m-%d-%H%M%S_screenshot.png')"
 
       destination() {
-          printf "File\nClipboard" | ${wofi} --dmenu -p "Destination" -i
+          printf "File\nClipboard" | ${menu} -p "destination> "
       }
 
       case "$selection" in
@@ -116,11 +116,11 @@ in {
     '';
 
   pomo-timer = pkgs.writeShellScriptBin "pomo-timer" ''
-    pgrep wofi && pkill wofi && exit 0
+    pgrep fuzzel && pkill fuzzel && exit 0
 
     inputs="Start session\nReset timer\nRestart session\nSkip session"
 
-    selection=$(echo -e "$inputs" | ${pkgs.wofi}/bin/wofi --dmenu --prompt "Timer" --insensitive --lines 10)
+    selection=$(echo -e "$inputs" | ${menu} --prompt "timer> ")
 
     case $selection in
       "Start session")
@@ -162,19 +162,18 @@ in {
 
   bw-menu = let
     rbw = pkgs.lib.getExe' pkgs.rbw "rbw";
-    wofi = pkgs.lib.getExe pkgs.wofi;
     wl-copy = pkgs.lib.getExe' pkgs.wl-clipboard "wl-copy";
     notify-send = pkgs.lib.getExe' pkgs.libnotify "notify-send";
   in
     pkgs.writeShellScriptBin "bw-menu" ''
       ${rbw} unlocked &> /dev/null || ${rbw} unlock || exit 1
 
-      item=$(${rbw} list | ${wofi} --dmenu --matching fuzzy --insensitive --prompt "Select an entry")
+      item=$(${rbw} list | ${menu} --prompt "entry> ")
       if [[ -z "$item" ]]; then
         exit 1
       fi
 
-      field=$(echo -e "Username\nPassword" | ${wofi} --dmenu --matching fuzzy --insensitive --prompt "Select a field")
+      field=$(echo -e "Username\nPassword" | ${menu} --prompt "field> ")
       if [[ -z "$field" ]]; then
         exit 1
       fi
