@@ -7,7 +7,7 @@
 }: {
   config,
   pkgs,
-lib,
+  lib,
   ...
 }: let
   plasma = false;
