@@ -107,6 +107,11 @@ in {
           tap = "enabled";
           natural_scroll = "enabled";
         };
+        "1739:0:Synaptics_TM3289-021" = {
+          middle_emulation = "enabled";
+          tap = "enabled";
+          natural_scroll = "enabled";
+        };
       };
 
       output = {
