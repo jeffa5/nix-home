@@ -1,11 +1,14 @@
-{pkgs, lib, ...}:
 {
+  pkgs,
+  lib,
+  ...
+}: {
   programs.fuzzel = {
     enable = true;
     settings = {
       main = {
-
-      terminal = "${lib.getExe pkgs.alacritty} -e";
+        terminal = "${lib.getExe pkgs.alacritty} -e";
+        inner-pad = 8;
       };
       colors = {
         background = "fbf1c7ff";
