@@ -15,6 +15,7 @@
     ./lf.nix
     ./recoll.nix
     ./rbw.nix
+    ./fuzzel.nix
   ];
 
   home.packages = with pkgs; [

@@ -26,7 +26,10 @@
     system = "x86_64-linux";
     sway-overlay = _final:_prev: {
       status-bar = import packages/status-bar pkgs;
-      sway-scripts = import packages/sway-scripts pkgs;
+      sway-scripts = import packages/sway-scripts {
+        inherit pkgs;
+        lib = pkgs.lib;
+      };
     };
     pkgs = import nixpkgs {
       inherit system;

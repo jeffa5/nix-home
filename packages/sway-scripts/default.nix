@@ -1,14 +1,13 @@
-pkgs: let
+{
+  pkgs,
+  lib,
+}: let
   pomo = pkgs.lib.getExe (import ../pomo {inherit pkgs;});
 in {
   app-launcher = pkgs.writeShellScriptBin "app-launcher" ''
-    pgrep wofi && pkill wofi && exit 0
+    pgrep fuzzel && pkill fuzzel && exit 0
 
-    error=$(${pkgs.wofi}/bin/wofi --show run 2>&1)
-
-    if [ -n "$error" ]; then
-        ${pkgs.libnotify}/bin/notify-send --urgency=critical --app-name app-launcher "Wofi" "$error"
-    fi
+    ${lib.getExe pkgs.fuzzel}
   '';
 
   lockscreen = pkgs.writeShellScriptBin "sway-lockscreen" ''
