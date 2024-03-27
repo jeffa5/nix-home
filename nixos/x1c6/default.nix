@@ -11,7 +11,7 @@
   boot.loader.efi.efiSysMountPoint = "/boot";
   boot.supportedFilesystems = ["btrfs"];
 
-  networking.hostName = "x1gen6";
+  networking.hostName = "x1c6";
 
   services.printing = {
     enable = true;

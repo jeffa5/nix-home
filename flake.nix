@@ -109,8 +109,8 @@
         gui = true;
       };
 
-      x1gen6 = mkMachine {
-        modules = [./nixos/x1gen6 hardware.nixosModules.lenovo-thinkpad-x1-6th-gen];
+      x1c6 = mkMachine {
+        modules = [./nixos/x1c6 hardware.nixosModules.lenovo-thinkpad-x1-6th-gen];
         users = ["andrew"];
         gui = true;
       };
