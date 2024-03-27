@@ -7,6 +7,7 @@
 }: {
   config,
   pkgs,
+lib,
   ...
 }: let
   plasma = false;
@@ -154,5 +155,5 @@ in {
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "20.09"; # Did you read the comment?
+  system.stateVersion = lib.mkDefault "20.09"; # Did you read the comment?
 }
