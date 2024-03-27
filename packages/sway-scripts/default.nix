@@ -15,7 +15,7 @@ in {
     ${pkgs.swayidle}/bin/swayidle \
       timeout 60 '${pkgs.sway}/bin/swaymsg "output * dpms off"' \
       resume '${pkgs.sway}/bin/swaymsg "output * dpms on"' \
-      timeout 300 '${pkgs.systemd}/bin/systemctl suspend' \
+      timeout 300 '${pkgs.systemd}/bin/systemctl hybrid-sleep' \
       after-resume '${pkgs.sway}/bin/swaymsg "output * dpms on"' &
 
     pid=$!
