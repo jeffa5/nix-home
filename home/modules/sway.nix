@@ -1,4 +1,4 @@
-{pkgs, ...}: let
+{pkgs, lib, ...}: let
   normal_bg = "#282828";
   normal_fg = "#ebdbb2";
   focus_bg = "#98971a";
@@ -8,6 +8,7 @@
   pamixer = "${pkgs.pamixer}/bin/pamixer";
   playerctl = "${pkgs.playerctl}/bin/playerctl";
   brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
+  wdisplays = lib.getExe pkgs.wdisplays;
 in {
   imports = [
     ./swaylock.nix
@@ -178,6 +179,11 @@ in {
           "--locked XF86AudioPrev" = "exec --no-startup-id ${playerctl} previous";
           "--locked XF86MonBrightnessUp" = "exec ${brightnessctl} set +10% | sed -En 's/.*\\(([0-9]+)%\\).*/\\1/p' > $WOBSOCK";
           "--locked XF86MonBrightnessDown" = "exec ${brightnessctl} set 10%- | sed -En 's/.*\\(([0-9]+)%\\).*/\\1/p' > $WOBSOCK";
+          # x1c6 lacks media controls
+          "--locked XF86Favorites" = "exec --no-startup-id ${playerctl} next";
+          "--locked XF86Keyboard" = "exec --no-startup-id ${playerctl} play-pause";
+          "--locked XF86Tools" = "exec --no-startup-id ${playerctl} previous";
+          "XF86Display" = "exec --no-startup-id ${wdisplays}";
         };
 
       terminal = "${pkgs.alacritty}/bin/alacritty";
