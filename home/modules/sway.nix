@@ -1,4 +1,8 @@
-{pkgs, lib, ...}: let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   normal_bg = "#282828";
   normal_fg = "#ebdbb2";
   focus_bg = "#98971a";
