@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{lls}: {pkgs, ...}: {
   programs.neovim = {
     enable = true;
     vimAlias = true;
@@ -16,6 +16,7 @@
       clang-tools
       texlab
       typst-lsp
+      lls
     ];
     extraConfig = builtins.readFile ./neovim/init.vim;
     plugins = with pkgs.vimPlugins; [
@@ -135,7 +136,15 @@
       {
         plugin = nvim-cmp;
         type = "lua";
-        config = builtins.readFile ./neovim/nvim-cmp.lua;
+        config =
+          (builtins.readFile ./neovim/nvim-cmp.lua)
+          + ''
+            require('lspconfig')['lls'].setup {
+                on_attach = on_attach,
+                capabilities = capabilities,
+                init_options = { wordnet = '${pkgs.wordnet}/dict' },
+            }
+          '';
       }
       {
         plugin = null-ls-nvim;

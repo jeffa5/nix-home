@@ -11,6 +11,7 @@
     papers.url = "github:jeffa5/papers";
     tasknet.url = "github:jeffa5/tasknet";
     waytext.url = "github:jeffa5/waytext";
+    lls.url = "github:jeffa5/lls";
   };
 
   outputs = {
@@ -21,6 +22,7 @@
     papers,
     tasknet,
     waytext,
+    lls,
   }: let
     username = "andrew";
     system = "x86_64-linux";
@@ -40,6 +42,7 @@
         sway-overlay
       ];
     };
+    llspkg = lls.packages.${system}.lls;
     colemakdh = import packages/colemakdh pkgs;
     lib = pkgs.lib;
     mkMachine = {
@@ -64,8 +67,9 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.${username} = import ./home {
-                inherit gui;
+                inherit gui ;
                 username = "andrew";
+                lls = llspkg;
               };
             }
           ]

@@ -1,6 +1,7 @@
 {
   gui,
   username,
+  lls,
 }: {
   config,
   pkgs,
@@ -37,7 +38,7 @@ in {
     [
       ./xkb.nix
       ./latexmk.nix
-      ./neovim.nix
+      (import ./neovim.nix {inherit lls;})
       ./helix.nix
       ./modules/cargo.nix
       ./ssh.nix

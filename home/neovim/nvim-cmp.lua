@@ -85,6 +85,16 @@ lspconfig['lua_ls'].setup {
     },
 }
 
+require('lspconfig.configs').lls = {
+    default_config = {
+        cmd = { 'lls', '--stdio' },
+        filetypes = { 'text', 'markdown' },
+        root_dir = function(_)
+            return '/'
+        end,
+    }
+}
+
 -- luasnip setup
 local luasnip = require 'luasnip'
 
