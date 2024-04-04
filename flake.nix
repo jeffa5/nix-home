@@ -67,7 +67,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.${username} = import ./home {
-                inherit gui ;
+                inherit gui;
                 username = "andrew";
                 lls = llspkg;
               };
@@ -79,9 +79,10 @@
       ${username} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
-          (import ./home/default.nix {
+          (import ./home {
             inherit username;
             gui = true;
+            lls = llspkg;
           })
         ];
       };
@@ -89,9 +90,10 @@
       "${username}-tui" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
-          (import ./home/default.nix {
+          (import ./home {
             inherit username;
             gui = false;
+            lls = llspkg;
           })
         ];
       };
