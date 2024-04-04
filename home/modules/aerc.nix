@@ -83,7 +83,7 @@ in {
 
     t = :read -t<Enter>
 
-    <space> = :mark -t<Enter>
+    <space> = :mark -t<Enter>:next<Enter>
     ma = :mark -at<Enter>
 
     A = :pipe khard add-email -H all<Enter>
