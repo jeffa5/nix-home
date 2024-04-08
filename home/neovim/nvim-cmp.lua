@@ -88,7 +88,7 @@ lspconfig['lua_ls'].setup {
 require('lspconfig.configs').lls = {
     default_config = {
         cmd = { 'lls', '--stdio' },
-        filetypes = { 'text', 'markdown' },
+        filetypes = { 'text', 'markdown', 'typst' },
         root_dir = function(_)
             return '/'
         end,
