@@ -43,6 +43,8 @@ in {
       PICTURE_DIR="$HOME/Pictures/screenshots/"
       PICTURE_FILE="$PICTURE_DIR$(date +'%Y-%m-%d-%H%M%S_screenshot.png')"
 
+      mkdir -p $PICTURE_DIR
+
       destination() {
           printf "File\nClipboard" | ${menu} -p "destination> "
       }
