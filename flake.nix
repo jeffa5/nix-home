@@ -11,7 +11,7 @@
     papers.url = "github:jeffa5/papers";
     tasknet.url = "github:jeffa5/tasknet";
     waytext.url = "github:jeffa5/waytext";
-    lls.url = "github:jeffa5/lls";
+    wordnet-ls.url = "github:jeffa5/wordnet-ls";
   };
 
   outputs = {
@@ -22,7 +22,7 @@
     papers,
     tasknet,
     waytext,
-    lls,
+    wordnet-ls,
   }: let
     username = "andrew";
     system = "x86_64-linux";
@@ -42,7 +42,7 @@
         sway-overlay
       ];
     };
-    llspkg = lls.packages.${system}.lls;
+    wordnet-lspkg = wordnet-ls.packages.${system}.wordnet-ls;
     colemakdh = import packages/colemakdh pkgs;
     lib = pkgs.lib;
     mkMachine = {
@@ -69,7 +69,7 @@
               home-manager.users.${username} = import ./home {
                 inherit gui;
                 username = "andrew";
-                lls = llspkg;
+                wordnet-ls = wordnet-lspkg;
               };
             }
           ]
@@ -82,7 +82,7 @@
           (import ./home {
             inherit username;
             gui = true;
-            lls = llspkg;
+            wordnet-ls = wordnet-lspkg;
           })
         ];
       };
@@ -93,7 +93,7 @@
           (import ./home {
             inherit username;
             gui = false;
-            lls = llspkg;
+            wordnet-ls = wordnet-lspkg;
           })
         ];
       };

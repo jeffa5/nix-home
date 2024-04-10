@@ -85,9 +85,9 @@ lspconfig['lua_ls'].setup {
     },
 }
 
-require('lspconfig.configs').lls = {
+require('lspconfig.configs')['wordnet'] = {
     default_config = {
-        cmd = { 'lls', '--stdio' },
+        cmd = { 'wordnet-ls', '--stdio' },
         filetypes = { 'text', 'markdown', 'typst' },
         root_dir = function(_)
             return '/'

@@ -1,4 +1,4 @@
-{lls}: {pkgs, ...}: {
+{wordnet-ls}: {pkgs, ...}: {
   programs.neovim = {
     enable = true;
     vimAlias = true;
@@ -16,7 +16,7 @@
       clang-tools
       texlab
       typst-lsp
-      lls
+      wordnet-ls
     ];
     extraConfig = builtins.readFile ./neovim/init.vim;
     plugins = with pkgs.vimPlugins; [
@@ -139,7 +139,7 @@
         config =
           (builtins.readFile ./neovim/nvim-cmp.lua)
           + ''
-            require('lspconfig')['lls'].setup {
+            require('lspconfig')['wordnet'].setup {
                 on_attach = on_attach,
                 capabilities = capabilities,
                 init_options = { wordnet = '${pkgs.wordnet}/dict' },
