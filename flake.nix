@@ -172,6 +172,11 @@
       '';
 
       deploy = pkgs.callPackage ./deploy.nix {hosts = import ./hosts.nix;};
+
+      nvd = pkgs.writeShellScriptBin "nvd" ''
+        nixos-rebuild build --flake . # get the to-be-installed closure
+        nix run nixpkgs#nvd -- diff /run/current-system ./result # diff that with the current system
+      '';
     };
 
     checks.${system} = {
