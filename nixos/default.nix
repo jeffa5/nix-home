@@ -119,6 +119,8 @@ in {
     };
 
     enable = true;
+
+    excludePackages = [pkgs.xterm];
   };
 
   programs = {
