@@ -107,6 +107,11 @@ in {
     fwupd.enable = true;
   };
 
+  # udev 250 doesn't reliably reinitialize devices after restart
+  # https://github.com/NixOS/nixpkgs/issues/180175
+  systemd.services.systemd-udevd.restartIfChanged = false;
+  systemd.services.NetworkManager-wait-online.enable = false;
+
   virtualisation.docker.enable = true;
 
   services.xserver = {
