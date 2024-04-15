@@ -1,6 +1,7 @@
 {pkgs, ...}: let
   s = "${pkgs.libsecret}/bin/secret-tool";
   stl = "${s} lookup";
+  mbsync = "${pkgs.isync}/bin/mbsync";
   # optionally use config from email-accounts.nix if it exists, otherwise no email accounts will be set up
   accounts =
     pkgs.lib.optionalAttrs
@@ -39,6 +40,7 @@ in {
         aerc.enable = true;
         aerc.extraAccounts = {
           source = "maildir://~/mail/${name}";
+          check-mail-cmd = "${mbsync} ${name}";
         };
         himalaya = {
           enable = true;
@@ -46,7 +48,7 @@ in {
         imapnotify = {
           enable = true;
           boxes = ["Inbox"];
-          onNotify = "${pkgs.isync}/bin/mbsync ${name}";
+          onNotify = "${mbsync} ${name}";
         };
         maildir = {
           path = "${name}";
