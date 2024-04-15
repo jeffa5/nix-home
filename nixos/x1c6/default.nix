@@ -5,6 +5,7 @@
     ../modules/laptop.nix
     ../modules/node-exporter.nix
     ../modules/promtail.nix
+    ../modules/printing.nix
   ];
 
   boot.loader.efi.canTouchEfiVariables = true;
@@ -12,11 +13,6 @@
   boot.supportedFilesystems = ["btrfs"];
 
   networking.hostName = "x1c6";
-
-  services.printing = {
-    enable = true;
-    clientConf = "ServerName cups-serv.cl.cam.ac.uk";
-  };
 
   system.stateVersion = "23.11";
 }

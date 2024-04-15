@@ -5,6 +5,7 @@
     ../modules/laptop.nix
     ../modules/node-exporter.nix
     ../modules/promtail.nix
+    ../modules/printing.nix
   ];
 
   boot.loader.efi.canTouchEfiVariables = true;
@@ -12,9 +13,4 @@
 
   networking.hostName = "xps15";
   networking.interfaces.wlp2s0.useDHCP = true;
-
-  services.printing = {
-    enable = true;
-    clientConf = "ServerName cups-serv.cl.cam.ac.uk";
-  };
 }
