@@ -1,4 +1,4 @@
-{...}: {
+{lib,...}: {
   # power
   powerManagement.enable = true;
   services.thermald.enable = true;
@@ -11,7 +11,7 @@
       turbo = "never";
     };
     charger = {
-      governor = "powersave";
+      governor = lib.mkDefault "powersave";
       turbo = "auto";
     };
   };
