@@ -8,6 +8,9 @@
     ../modules/printing.nix
   ];
 
+  # override to use performance profile when charging
+  services.auto-cpufreq.settings.charger.governor = "performance";
+
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot";
   boot.supportedFilesystems = ["btrfs"];
