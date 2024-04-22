@@ -1,6 +1,7 @@
 pkgs: let
   playerctl = "${pkgs.playerctl}/bin/playerctl";
   pomo = pkgs.lib.getExe (import ../pomo {inherit pkgs;});
+  makoctl = "${pkgs.mako}/bin/makoctl";
 in {
   backlight = pkgs.writeShellScriptBin "bar-backlight" ''
     [ "$1" -gt "0" ]
@@ -56,5 +57,21 @@ in {
     echo $text
     echo
     echo $class
+  '';
+
+  notifications = pkgs.writeShellScriptBin "bar-notifications" ''
+    if ${makoctl} mode | grep dnd > /dev/null 2>&1; then
+      echo '{"text":"🔕","tooltip":"Do not disturb"}'
+    else
+      echo '{"text":"🔔","tooltip":"Disturb"}'
+    fi
+  '';
+
+  toggle-dnd = pkgs.writeShellScriptBin "bar-toggle-dnd" ''
+    if ${makoctl} mode | grep dnd > /dev/null 2>&1; then
+      ${makoctl} mode -r dnd
+    else
+      ${makoctl} mode -a dnd
+    fi
   '';
 }

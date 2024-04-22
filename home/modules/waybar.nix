@@ -22,6 +22,7 @@ in {
           "network"
           "battery"
           "sway/language"
+          "custom/notifications"
           "clock"
           "tray"
         ];
@@ -119,6 +120,13 @@ in {
             escape = true;
             on-click = "${pkgs.playerctl}/bin/playerctl play-pause";
           };
+          "custom/notifications" = {
+            format = "{}";
+            return-type = "json";
+            interval = 1;
+            exec = "${pkgs.status-bar.notifications}/bin/bar-notifications";
+            on-click = "${pkgs.status-bar.toggle-dnd}/bin/bar-toggle-dnd";
+          };
         };
       }
     ];
@@ -174,6 +182,7 @@ in {
       #mode,
       #custom-pomo,
       #custom-mediaplayer,
+      #custom-notifications,
       #tray {
         padding: 0 5px;
         margin: 0 3px;
