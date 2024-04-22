@@ -37,7 +37,6 @@ in {
       else []
     );
 
-  time.timeZone = "Europe/London";
   nixpkgs.overlays = overlays;
   nixpkgs.config.permittedInsecurePackages =
     pkgs.lib.optional (pkgs.obsidian.version == "1.4.16") "electron-25.9.0";
@@ -105,6 +104,8 @@ in {
     udisks2.enable = gui;
 
     fwupd.enable = true;
+
+    automatic-timezoned.enable = true;
   };
 
   # udev 250 doesn't reliably reinitialize devices after restart
