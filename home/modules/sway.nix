@@ -25,6 +25,10 @@ in {
 
   wayland.windowManager.sway = rec {
     enable = true;
+    # disable checking config as setting custom xkb_layout breaks it
+    # https://github.com/nix-community/home-manager/issues/5311
+    checkConfig = false;
+
     extraConfigEarly = ''
       set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
       exec rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | ${pkgs.wob}/bin/wob
