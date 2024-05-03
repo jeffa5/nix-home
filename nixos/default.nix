@@ -130,8 +130,6 @@ in {
   };
 
   programs = {
-    steam.enable = true;
-
     adb.enable = true;
 
     fish = {

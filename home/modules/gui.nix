@@ -32,7 +32,6 @@
     musescore
     nextcloud-client
     obsidian
-    rnote
     signal-desktop-beta
     slack
     spotify
@@ -40,7 +39,6 @@
     taskwarrior-tui
     thunderbird
     vlc
-    vorta
     wally-cli
     waytext
     wdisplays
