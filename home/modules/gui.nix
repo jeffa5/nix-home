@@ -29,6 +29,7 @@
     fractal
     gitAndTools.git-open
     libreoffice
+    loupe
     musescore
     nextcloud-client
     obsidian
