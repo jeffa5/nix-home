@@ -309,11 +309,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1714942002,
-        "narHash": "sha256-zLfN/cpG7TeQh/mYXuvEbP8HjX4dafcUlmHbFPHE0P0=",
+        "lastModified": 1720096960,
+        "narHash": "sha256-LAqJ/mRruBCiyEOTrBfX75qc4PkpLESMItFh6CRYrPI=",
         "owner": "jeffa5",
         "repo": "wordnet-ls",
-        "rev": "d8705ba4b9262512556acfede4726aa41c099b38",
+        "rev": "9d1a77fcf96d90c98fcb62ae6d9c655442511ab7",
         "type": "github"
       },
       "original": {
