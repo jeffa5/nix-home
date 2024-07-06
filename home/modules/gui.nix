@@ -33,7 +33,7 @@
     musescore
     nextcloud-client
     obsidian
-    signal-desktop-beta
+    signal-desktop
     slack
     spotify
     tasksh
