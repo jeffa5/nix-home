@@ -62,6 +62,11 @@ in {
           name = "sensors";
           options.path = ./grafana/dashboard-sensors.json;
         }
+        {
+          type = "file";
+          name = "loki";
+          options.path = ./grafana/dashboard-loki.json;
+        }
       ];
     };
   };
