@@ -57,6 +57,11 @@ in {
           name = "battery";
           options.path = ./grafana/dashboard-battery.json;
         }
+        {
+          type = "file";
+          name = "sensors";
+          options.path = ./grafana/dashboard-sensors.json;
+        }
       ];
     };
   };
