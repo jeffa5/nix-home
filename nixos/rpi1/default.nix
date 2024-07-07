@@ -18,7 +18,7 @@
     # visualization
     ../modules/grafana.nix
     # logging
-    # ../modules/loki.nix
+    ../modules/loki.nix
     # serving
     (import ../modules/dnsmasq.nix {inherit configs;})
     ../modules/nginx.nix
