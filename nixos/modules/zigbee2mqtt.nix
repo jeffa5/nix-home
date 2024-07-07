@@ -14,9 +14,10 @@ in {
       frontend = {
         port = port;
       };
-      # advanced = {
-      #   network_key = "GENERATE";
-      # };
+      advanced = {
+        last_seen = "ISO_8601";
+        #   network_key = "GENERATE";
+      };
 
       devices = {
         "0x9035eafffe0d82b3" = {
