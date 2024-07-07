@@ -5,6 +5,7 @@
   rpi1 = "rpi1.${homeNet}";
   rpi2 = "rpi2.${homeNet}";
   xps15 = "xps15.${homeNet}";
+  x1c6 = "x1c6.${homeNet}";
   carbide = "carbide.${homeNet}";
   serverName = "prometheus.${homeNet}";
 in {
@@ -41,6 +42,8 @@ in {
           {targets = ["node-exporter.${rpi2}"];}
           # xps15, not running nginx
           {targets = ["${xps15}:${toString ports.node-exporter.private}"];}
+          # x1c6, not running nginx
+          {targets = ["${x1c6}:${toString ports.node-exporter.private}"];}
           # carbide, not running nginx
           {targets = ["${carbide}:${toString ports.node-exporter.private}"];}
         ];
@@ -54,6 +57,8 @@ in {
           {targets = ["promtail.${rpi2}"];}
           # xps15, not running nginx
           {targets = ["${xps15}:${toString ports.promtail.private}"];}
+          # x1c6, not running nginx
+          {targets = ["${x1c6}:${toString ports.promtail.private}"];}
           # carbide, not running nginx
           {targets = ["${carbide}:${toString ports.promtail.private}"];}
         ];
