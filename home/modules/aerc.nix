@@ -5,12 +5,6 @@ in {
   programs.aerc.extraConfig.general.unsafe-accounts-conf = true;
   programs.aerc.extraConfig = {
     ui = {
-      index-columns = "flags>4,date<20,name<20,subject<*";
-      column-flags = "{{.Flags | join \" \"}}";
-      column-date = "{{.DateAutoFormat .Date.Local}}";
-      column-name = "{{index (.From | names) 0}}";
-      column-subject = "{{.ThreadPrefix}}{{.Subject}}";
-
       timestamp-format = "15:04 Mon 02/01/2006";
       sidebar-width = 30;
       sort = "-r date";
@@ -82,6 +76,7 @@ in {
     N = :prev-result<Enter>
 
     t = :read -t<Enter>
+    f = :fold -t<Enter>
 
     <space> = :mark -t<Enter>:next<Enter>
     ma = :mark -at<Enter>
