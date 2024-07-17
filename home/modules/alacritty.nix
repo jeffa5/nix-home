@@ -52,6 +52,10 @@ in {
         // {
           draw_bold_text_with_bright_colors = true;
         };
+
+      env = {
+        EDITOR = "nvim";
+      };
     };
   };
 }
