@@ -42,6 +42,10 @@ in {
     pkgs.lib.optional (pkgs.obsidian.version == "1.4.16") "electron-25.9.0";
 
   networking.networkmanager.enable = true;
+  networking.nameservers = [
+    "1.1.1.1"
+    "8.8.8.8"
+  ];
 
   hardware = {
     bluetooth.enable = true;
