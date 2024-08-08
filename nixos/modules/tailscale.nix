@@ -1,5 +1,7 @@
 {...}: {
   services.tailscale.enable = true;
 
-  networking.nameservers = ["100.85.109.140"];
+  networking.resolvconf.extraConfig = ''
+    name_servers='100.106.84.46'
+  '';
 }
