@@ -23,6 +23,10 @@ in {
     ./fuzzel.nix
   ];
 
+  home.sessionVariables = {
+    XDG_CURRENT_DESKTOP = "sway";
+  };
+
   wayland.windowManager.sway = rec {
     enable = true;
     # disable checking config as setting custom xkb_layout breaks it
