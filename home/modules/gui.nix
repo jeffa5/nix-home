@@ -44,6 +44,7 @@
     waytext
     wdisplays
     wl-clipboard
+    wl-mirror
     xdg-utils
     xwayland
   ];
