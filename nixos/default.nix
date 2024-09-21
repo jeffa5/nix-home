@@ -136,6 +136,8 @@ in {
   programs = {
     adb.enable = true;
 
+    nm-applet.enable = true;
+
     fish = {
       enable = true;
       vendor = {
