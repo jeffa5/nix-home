@@ -100,11 +100,6 @@ in {
 
     fstrim.enable = true;
 
-    printing = {
-      enable = true;
-      drivers = with pkgs; [gutenprint hplip];
-    };
-
     udisks2.enable = gui;
 
     fwupd.enable = true;
