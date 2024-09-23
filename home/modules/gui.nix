@@ -28,6 +28,7 @@
     darktable
     fractal
     gitAndTools.git-open
+    gramps
     libreoffice
     loupe
     musescore
