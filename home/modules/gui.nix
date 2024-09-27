@@ -65,6 +65,8 @@
       enable = true;
     };
 
+    udiskie.enable = true;
+
     wlsunset = {
       enable = true;
       latitude = "51.5";

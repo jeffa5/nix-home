@@ -102,8 +102,6 @@ in {
 
     udisks2.enable = gui;
 
-    udiskie.enable = gui;
-
     fwupd.enable = true;
 
     automatic-timezoned.enable = true;
