@@ -38,6 +38,7 @@
 
   environment.systemPackages = with pkgs; [
     htop
+    iftop
     iotop
   ];
 

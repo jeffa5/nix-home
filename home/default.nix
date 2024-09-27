@@ -17,6 +17,7 @@
       file
       git-extras
       htop
+      iftop
       jq
       krb5 # for cl access
       lf
