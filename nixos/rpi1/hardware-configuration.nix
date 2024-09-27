@@ -22,10 +22,10 @@
   };
 
   fileSystems."/local" = {
-    # usb 2.5 1TB drive
-    device = "/dev/disk/by-uuid/d2be85aa-1f3b-41c3-a7e4-9d6ea348e24d";
+    # # usb 2.5 1TB drive
+    # device = "/dev/disk/by-uuid/d2be85aa-1f3b-41c3-a7e4-9d6ea348e24d";
     # usb 3.5 4TB drive
-    # device = "/dev/disk/by-uuid/7634a7da-f73b-4280-9691-933584483f20";
+    device = "/dev/disk/by-uuid/7634a7da-f73b-4280-9691-933584483f20";
     fsType = "ext4";
     options = ["nofail"];
   };
