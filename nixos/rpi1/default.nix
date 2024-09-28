@@ -13,19 +13,19 @@
     })
     # metrics
     ../modules/node-exporter.nix
-    ../modules/promtail.nix
     ../modules/prometheus.nix
     # visualization
     ../modules/grafana.nix
     # logging
     ../modules/loki.nix
+    ../modules/promtail.nix
     # serving
     (import ../modules/dnsmasq.nix {inherit configs;})
     ../modules/nginx.nix
     ../modules/tailscale.nix
     (import ../modules/homeboard.nix {inherit configs;})
     # misc
-    ../modules/taskserver.nix
+    # ../modules/taskserver.nix
     # smart home
     ../modules/zigbee2mqtt.nix
     ../modules/mosquitto.nix
