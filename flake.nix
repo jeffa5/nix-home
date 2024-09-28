@@ -101,6 +101,23 @@
     mkHomes = users: (
       lib.foldl (a: b: a // b) {} (map mkHomesForUser users)
     );
+    piSSH = hostname:
+      nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        modules = [
+          hardware.nixosModules.raspberry-pi-4
+          ./nixos/modules/openssh.nix
+          {
+            networking.hostName = hostname;
+            system.stateVersion = "23.05";
+
+            fileSystems."/" = {
+              device = "/dev/disk/by-uuid/44444444-4444-4444-8888-888888888888";
+              fsType = "ext4";
+            };
+          }
+        ];
+      };
   in {
     # whole system configs
     # nixos-rebuild switch --flake '<flake-uri>#xps15'
@@ -135,6 +152,8 @@
         ];
       };
 
+      rpi1ssh = piSSH "rpi1";
+
       rpi2 = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         modules = [
@@ -142,6 +161,8 @@
           (import ./nixos/rpi2 {inherit nixpkgs;})
         ];
       };
+
+      rpi2ssh = piSSH "rpi2";
 
       # rosebud = nixpkgs.lib.nixosSystem {
       #   inherit system pkgs;
