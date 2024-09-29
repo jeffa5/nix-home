@@ -7,7 +7,7 @@ in {
     enable = true;
     description = "Sync nextcloud files";
     script = ''
-      user=admin
+      user=Admin
       password=$(cat /var/lib/nextcloudcmd/password)
       ${nc}/bin/nextcloudcmd --non-interactive ${sourcedir} https://$user:$password@${cloudurl}
     '';
