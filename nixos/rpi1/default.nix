@@ -30,6 +30,8 @@
     ../modules/zigbee2mqtt.nix
     ../modules/mosquitto.nix
     ../modules/influxdb.nix
+    # data
+    ../modules/nextcloudcmd.nix
   ];
 
   services.homeboard.enable = true;
