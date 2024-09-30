@@ -41,7 +41,10 @@
       settings = {
         screencast = let
           green = "00ff0055";
+          makoctl = lib.getExe' pkgs.mako "makoctl";
         in {
+          exec_before = "${makoctl} mode -a dnd";
+          exec_after = "${makoctl} mode -r dnd";
           chooser_cmd = "${lib.getExe pkgs.slurp} -f %o -or -s ${green}";
           chooser_type = "simple";
         };
