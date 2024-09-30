@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   programs.sway = {
     enable = true;
     # null so that we use the home-manager sway module
@@ -32,7 +36,18 @@
 
   xdg.portal = {
     enable = true;
-    wlr.enable = true;
+    wlr = {
+      enable = true;
+      settings = {
+        screencast = let
+          green = "00ff0055";
+        in {
+          chooser_cmd = "${lib.getExe pkgs.slurp} -f %o -or -s ${green}";
+          chooser_type = "simple";
+        };
+      };
+    };
+
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
     ];
