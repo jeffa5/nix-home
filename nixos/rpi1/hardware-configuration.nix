@@ -30,6 +30,11 @@
     options = ["nofail"];
   };
 
+  fileSystems."/var/lib/taskchampion-sync-server" = {
+    device = "/local/taskchampion-sync-server";
+    options = ["bind"];
+  };
+
   fileSystems."/var/lib/prometheus2" = {
     device = "/local/prometheus";
     options = ["bind"];
