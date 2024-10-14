@@ -137,6 +137,22 @@
           "target": [
             "sun_altitude"
           ]
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "temperature_celsius",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "legendFormat": "{{location}}",
+          "range": true,
+          "refId": "C",
+          "useBackend": false
         }
       ],
       "title": "Temperature",
@@ -259,6 +275,22 @@
           "target": [
             "sun_altitude"
           ]
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "humidity_percentage",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "legendFormat": "{{location}}",
+          "range": true,
+          "refId": "C",
+          "useBackend": false
         }
       ],
       "title": "Humidity",
@@ -762,19 +794,20 @@
       "type": "timeseries"
     }
   ],
+  "refresh": "",
   "schemaVersion": 39,
   "tags": [],
   "templating": {
     "list": []
   },
   "time": {
-    "from": "now-7d",
+    "from": "now-24h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "Sensors",
   "uid": "fdr13s64y7sw0f",
-  "version": 5,
+  "version": 1,
   "weekStart": ""
 }
