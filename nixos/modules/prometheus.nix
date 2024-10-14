@@ -78,6 +78,21 @@ in {
           {targets = ["dnsmasq-exporter.${rpi1}"];}
         ];
       }
+      {
+        job_name = "wttr_in_cambridge";
+        static_configs = [
+          {
+            targets = ["wttr.in"];
+            labels = {location = "cambridge";};
+          }
+        ];
+        metrics_path = "/Cambridge";
+        params = {
+          format = ["p1"];
+        };
+        scrape_interval = "1h";
+        scheme = "https";
+      }
     ];
 
     retentionTime = "5y";
