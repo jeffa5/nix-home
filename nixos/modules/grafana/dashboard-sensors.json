@@ -17,14 +17,13 @@
   },
   "editable": true,
   "fiscalYearStartMonth": 0,
-  "graphTooltip": 0,
-  "id": 4,
+  "graphTooltip": 1,
   "links": [],
   "panels": [
     {
       "datasource": {
-        "type": "influxdb",
-        "uid": "P951FEA4DE68E13C5"
+        "type": "datasource",
+        "uid": "-- Mixed --"
       },
       "fieldConfig": {
         "defaults": {
@@ -127,6 +126,17 @@
             ]
           ],
           "tags": []
+        },
+        {
+          "datasource": {
+            "type": "fetzerch-sunandmoon-datasource",
+            "uid": "fe0tu50o8q134d"
+          },
+          "hide": false,
+          "refId": "B",
+          "target": [
+            "sun_altitude"
+          ]
         }
       ],
       "title": "Temperature",
@@ -134,8 +144,8 @@
     },
     {
       "datasource": {
-        "type": "influxdb",
-        "uid": "P951FEA4DE68E13C5"
+        "type": "datasource",
+        "uid": "-- Mixed --"
       },
       "fieldConfig": {
         "defaults": {
@@ -238,6 +248,17 @@
             ]
           ],
           "tags": []
+        },
+        {
+          "datasource": {
+            "type": "fetzerch-sunandmoon-datasource",
+            "uid": "fe0tu50o8q134d"
+          },
+          "hide": false,
+          "refId": "B",
+          "target": [
+            "sun_altitude"
+          ]
         }
       ],
       "title": "Humidity",
@@ -747,13 +768,13 @@
     "list": []
   },
   "time": {
-    "from": "now-24h",
+    "from": "now-7d",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "Sensors",
   "uid": "fdr13s64y7sw0f",
-  "version": 3,
+  "version": 5,
   "weekStart": ""
 }
