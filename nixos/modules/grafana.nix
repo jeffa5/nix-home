@@ -67,6 +67,11 @@ in {
           name = "loki";
           options.path = ./grafana/dashboard-loki.json;
         }
+        {
+          type = "file";
+          name = "dnsmasq";
+          options.path = ./grafana/dashboard-dnsmasq.json;
+        }
       ];
     };
   };
