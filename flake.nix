@@ -2,7 +2,8 @@
   description = "NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    stableNixpkgs.url = "github:nixos/nixpkgs?ref=nixos-24.05";
     home-manager = {
       url = "github:nix-community/home-manager?ref=release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,6 +19,7 @@
     self,
     home-manager,
     nixpkgs,
+    stableNixpkgs,
     hardware,
     papers,
     tasknet,
@@ -50,12 +52,13 @@
       users,
       gui,
     }:
-      nixpkgs.lib.nixosSystem {
+      stableNixpkgs.lib.nixosSystem {
         inherit system;
         modules =
           [
             (import ./nixos {
-              inherit colemakdh nixpkgs users gui;
+              inherit colemakdh users gui;
+              nixpkgs =stableNixpkgs;
               overlays = [
                 papers.overlays.default
                 waytext.overlays.default
@@ -102,7 +105,7 @@
       lib.foldl (a: b: a // b) {} (map mkHomesForUser users)
     );
     piSSH = hostname:
-      nixpkgs.lib.nixosSystem {
+      stableNixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         modules = [
           hardware.nixosModules.raspberry-pi-4
@@ -141,12 +144,12 @@
         gui = true;
       };
 
-      rpi1 = nixpkgs.lib.nixosSystem {
+      rpi1 = stableNixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         modules = [
           hardware.nixosModules.raspberry-pi-4
           (import ./nixos/rpi1 {
-            inherit nixpkgs;
+            nixpkgs=stableNixpkgs;
             configs = self.nixosConfigurations;
           })
         ];
@@ -154,11 +157,11 @@
 
       rpi1ssh = piSSH "rpi1";
 
-      rpi2 = nixpkgs.lib.nixosSystem {
+      rpi2 = stableNixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         modules = [
           hardware.nixosModules.raspberry-pi-4
-          (import ./nixos/rpi2 {inherit nixpkgs;})
+          (import ./nixos/rpi2 {nixpkgs = stableNixpkgs;})
         ];
       };
 
