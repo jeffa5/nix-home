@@ -21,7 +21,10 @@ in {
   programs.aerc.extraConfig.general.unsafe-accounts-conf = true;
   programs.aerc.extraConfig = {
     ui = {
-      timestamp-format = "15:04 Mon 02/01/2006";
+      timestamp-format = "02 Jan 2006";
+      this-day-time-format = "15:04";
+      this-week-time-format = "02 Jan";
+      this-year-time-format = "02 Jan";
       sidebar-width = 30;
       sort = "-r date";
       styleset-name = "home";
