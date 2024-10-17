@@ -18,6 +18,36 @@ in {
       "header.default" = true;
     };
   };
+  programs.aerc.templates = {
+    my_quoted_reply = ''
+      X-Mailer: aerc {{version}}
+
+      On {{dateFormat (.OriginalDate | toLocal) "Mon Jan 2, 2006 at 3:04 PM MST"}}, {{.OriginalFrom | names | join ", "}} wrote:
+      {{if eq .OriginalMIMEType "text/html"}}
+      {{exec `${pkgs.aerc}/libexec/aerc/filters/html` .OriginalText | quote}}
+      {{else}}
+      {{trimSignature .OriginalText | quote}}
+      {{end}}
+      {{- with .Signature }}
+
+      {{.}}
+      {{- end }}
+    '';
+    my_forward_as_body = ''
+      X-Mailer: aerc {{version}}
+
+      Forwarded message from {{.OriginalFrom | names | join ", "}}  on {{dateFormat .OriginalDate "Mon Jan 2, 2006 at 3:04 PM"}}:
+      {{if eq .OriginalMIMEType "text/html"}}
+      {{exec `${pkgs.aerc}/libexec/aerc/filters/html` .OriginalText}}
+      {{else}}
+      {{trimSignature .OriginalText}}
+      {{end}}
+      {{- with .Signature }}
+
+      {{.}}
+      {{- end }}
+    '';
+  };
   programs.aerc.extraConfig.general.unsafe-accounts-conf = true;
   programs.aerc.extraConfig = {
     ui = {
@@ -46,6 +76,10 @@ in {
       "text/html" = "${aerc-filters}/html";
       "text/plain" = "${aerc-filters}/wrap | ${aerc-filters}/plaintext";
       "text/calendar" = "${aerc-filters}/calendar";
+    };
+    templates = {
+      quoted-reply = "my_quoted_reply";
+      forwards = "my_forward_as_body";
     };
   };
 
