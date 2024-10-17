@@ -64,7 +64,7 @@ lspconfig['nil_ls'].setup {
     settings = {
         ['nil'] = {
             formatting = {
-                command = { "nixfmt" },
+                command = { "alejandra" },
             },
         }
     }
