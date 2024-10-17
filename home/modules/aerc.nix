@@ -48,8 +48,8 @@ in {
       {{- end }}
     '';
   };
-  programs.aerc.extraConfig.general.unsafe-accounts-conf = true;
   programs.aerc.extraConfig = {
+    general.unsafe-accounts-conf = true;
     ui = {
       timestamp-format = "02 Jan 2006";
       this-day-time-format = "15:04";
