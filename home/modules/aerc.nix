@@ -2,13 +2,29 @@
   aerc-filters = "${pkgs.aerc}/libexec/aerc/filters";
 in {
   programs.aerc.enable = true;
+  programs.aerc.stylesets = {
+    home = let
+      gray = 8;
+    in {
+      "*.selected.bg" = gray;
+      "statusline_*.dim" = false;
+      "msglist_read.selected.bold" = false;
+      "border.fg" = gray;
+      "title.bg" = gray;
+      "msglist_pill.bg" = gray;
+      "part_mimetype.default" = true;
+      "part_mimetype.bold" = true;
+      "selector_focused.fg" = gray;
+      "header.default" = true;
+    };
+  };
   programs.aerc.extraConfig.general.unsafe-accounts-conf = true;
   programs.aerc.extraConfig = {
     ui = {
       timestamp-format = "15:04 Mon 02/01/2006";
       sidebar-width = 30;
       sort = "-r date";
-      stylesets-dirs = "~/.config/aerc/stylesets";
+      styleset-name = "home";
 
       threading-enabled = true;
       mouse-enabled = true;
@@ -18,6 +34,9 @@ in {
     };
     compose = {
       address-book-cmd = "khard email --remove-first-line --parsable '%s'";
+      edit-headers = true;
+      empty-subject-warning = true;
+      no-attachment-warning = "^[^>]*attach(ed|ment)";
     };
     filters = {
       "subject,~^\\[PATCH" = "${aerc-filters}/hldiff";

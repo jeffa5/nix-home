@@ -5,7 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     stableNixpkgs.url = "github:nixos/nixpkgs?ref=nixos-24.05";
     home-manager = {
-      url = "github:nix-community/home-manager?ref=release-24.05";
+      url = "github:nix-community/home-manager?ref=master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hardware.url = "github:nixos/nixos-hardware";
@@ -52,13 +52,13 @@
       users,
       gui,
     }:
-      stableNixpkgs.lib.nixosSystem {
+      nixpkgs.lib.nixosSystem {
         inherit system;
         modules =
           [
             (import ./nixos {
               inherit colemakdh users gui;
-              nixpkgs =stableNixpkgs;
+              nixpkgs = nixpkgs;
               overlays = [
                 papers.overlays.default
                 waytext.overlays.default
@@ -149,7 +149,7 @@
         modules = [
           hardware.nixosModules.raspberry-pi-4
           (import ./nixos/rpi1 {
-            nixpkgs=stableNixpkgs;
+            nixpkgs = stableNixpkgs;
             configs = self.nixosConfigurations;
           })
         ];

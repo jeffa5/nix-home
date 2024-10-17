@@ -6,7 +6,7 @@ lua << EOF
   -- options
 
   -- show where 80 chars is
-  vim.o.colorcolumn = 80
+  vim.o.colorcolumn = "80"
 
   -- highlight line where the cursor is
   vim.o.cursorline = true

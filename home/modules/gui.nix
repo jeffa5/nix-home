@@ -18,11 +18,11 @@
 
   home.packages = with pkgs; [
     amberol
-    anki
-    bitwarden
-    bitwarden-cli
+    # anki
+    # bitwarden
+    # bitwarden-cli
     calcurse
-    calibre
+    # calibre
     chromium
     czkawka
     darktable
