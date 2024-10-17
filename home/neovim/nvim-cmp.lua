@@ -100,7 +100,7 @@ lspconfig['lua_ls'].setup {
 require('lspconfig.configs')['wordnet'] = {
     default_config = {
         cmd = { 'wordnet-ls', '--stdio' },
-        filetypes = { 'text', 'markdown', 'typst' },
+        filetypes = { 'text', 'markdown', 'typst', 'mail' },
         root_dir = function(_)
             return '/'
         end,
