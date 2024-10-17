@@ -1,6 +1,10 @@
-{...}: {
+{pkgs, ...}: {
   programs.ssh = {
     enable = true;
+    package = pkgs.openssh.override {
+      # for the CL connections
+      withKerberos = true;
+    };
     matchBlocks = {
       "github.com" = {
         hostname = "ssh.github.com";
