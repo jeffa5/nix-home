@@ -97,10 +97,20 @@ lspconfig['lua_ls'].setup {
     },
 }
 
+require('lspconfig.configs')['maills'] = {
+    default_config = {
+        cmd = { 'maills', '--stdio' },
+        filetypes = { 'mail' },
+        root_dir = function(_)
+            return '/'
+        end,
+    }
+}
+
 require('lspconfig.configs')['wordnet'] = {
     default_config = {
         cmd = { 'wordnet-ls', '--stdio' },
-        filetypes = { 'text', 'markdown', 'typst', 'mail' },
+        filetypes = { 'text', 'markdown', 'typst' },
         root_dir = function(_)
             return '/'
         end,

@@ -13,6 +13,7 @@
     tasknet.url = "github:jeffa5/tasknet";
     waytext.url = "github:jeffa5/waytext";
     wordnet-ls.url = "github:jeffa5/wordnet-ls";
+    maills.url = "github:jeffa5/maills";
   };
 
   outputs = {
@@ -25,6 +26,7 @@
     tasknet,
     waytext,
     wordnet-ls,
+    maills,
   }: let
     username = "andrew";
     system = "x86_64-linux";
@@ -45,6 +47,7 @@
       ];
     };
     wordnet-lspkg = wordnet-ls.packages.${system}.wordnet-ls;
+    maillsPkg = maills.packages.${system}.maills;
     colemakdh = import packages/colemakdh pkgs;
     lib = pkgs.lib;
     mkMachine = {
@@ -73,6 +76,7 @@
                 inherit gui;
                 username = "andrew";
                 wordnet-ls = wordnet-lspkg;
+                maills = maillsPkg;
               };
             }
           ]
@@ -86,6 +90,7 @@
             inherit username;
             gui = true;
             wordnet-ls = wordnet-lspkg;
+            maills = maillsPkg;
           })
         ];
       };
@@ -97,6 +102,7 @@
             inherit username;
             gui = false;
             wordnet-ls = wordnet-lspkg;
+            maills = maillsPkg;
           })
         ];
       };

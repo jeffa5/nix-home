@@ -2,6 +2,7 @@
   gui,
   username,
   wordnet-ls,
+  maills,
 }: {
   config,
   pkgs,
@@ -39,7 +40,7 @@ in {
     [
       ./xkb.nix
       ./latexmk.nix
-      (import ./neovim.nix {inherit wordnet-ls;})
+      (import ./neovim.nix {inherit wordnet-ls maills;})
       ./helix.nix
       ./modules/cargo.nix
       ./ssh.nix

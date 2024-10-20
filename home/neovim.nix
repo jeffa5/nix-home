@@ -1,4 +1,4 @@
-{wordnet-ls}: {pkgs, ...}: {
+{wordnet-ls, maills}: {pkgs, ...}: {
   programs.neovim = {
     enable = true;
     vimAlias = true;
@@ -17,6 +17,7 @@
       texlab
       typst-lsp
       wordnet-ls
+      maills
     ];
     extraConfig = builtins.readFile ./neovim/init.vim;
     plugins = with pkgs.vimPlugins; [
@@ -143,6 +144,12 @@
                 on_attach = on_attach,
                 capabilities = capabilities,
                 init_options = { wordnet = '${pkgs.wordnet}/dict' },
+            }
+
+            require('lspconfig')['maills'].setup {
+                on_attach = on_attach,
+                capabilities = capabilities,
+                init_options = { vcard_dir = '~/contacts/jeffas' },
             }
           '';
       }
