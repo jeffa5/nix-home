@@ -115,6 +115,26 @@
         "type": "github"
       }
     },
+    "maills": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1729442381,
+        "narHash": "sha256-kYQNw5uaAqDfZmJ1oVTIPV2HUKwsVCsuAfd8d29tZ2Q=",
+        "owner": "jeffa5",
+        "repo": "maills",
+        "rev": "d30e070d5ed9be55dba4b89b02a2f83f97512e78",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jeffa5",
+        "repo": "maills",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1728888510,
@@ -179,22 +199,6 @@
         "type": "github"
       }
     },
-    "nixpkgs_5": {
-      "locked": {
-        "lastModified": 1712026416,
-        "narHash": "sha256-N/3VR/9e1NlN49p7kCiATiEY6Tzdo+CbrAG8kqCQKcI=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "080a4a27f206d07724b88da096e27ef63401a504",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "papers": {
       "inputs": {
         "nixpkgs": "nixpkgs_2"
@@ -217,6 +221,7 @@
       "inputs": {
         "hardware": "hardware",
         "home-manager": "home-manager",
+        "maills": "maills",
         "nixpkgs": "nixpkgs",
         "papers": "papers",
         "stableNixpkgs": "stableNixpkgs",
@@ -323,7 +328,9 @@
     },
     "wordnet-ls": {
       "inputs": {
-        "nixpkgs": "nixpkgs_5"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1720096960,
