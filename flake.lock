@@ -122,11 +122,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1729496573,
-        "narHash": "sha256-3PTbBI3U9a6elzfo4Wk9h2lP1q9Alk4IDhQKpkBQnRw=",
+        "lastModified": 1729496850,
+        "narHash": "sha256-yUagaE08Ky45sdSMQnRL8RiIRTGK/41akZgMkiP4lsw=",
         "owner": "jeffa5",
         "repo": "maills",
-        "rev": "129bbd2ef59fc9c92ea67f651d16236a2e32e753",
+        "rev": "348f604d9ccd41b42de553816a1fbb86fd187daa",
         "type": "github"
       },
       "original": {
