@@ -1,4 +1,7 @@
-{wordnet-ls, maills}: {pkgs, ...}: {
+{
+  wordnet-ls,
+  maills,
+}: {pkgs, ...}: {
   programs.neovim = {
     enable = true;
     vimAlias = true;
