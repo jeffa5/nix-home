@@ -152,7 +152,7 @@
             require('lspconfig')['maills'].setup {
                 on_attach = on_attach,
                 capabilities = capabilities,
-                init_options = { vcard_dir = '~/contacts/jeffas' },
+                init_options = { vcard_dir = '~/contacts/jeffas', contact_list_file = '~/contacts/list' },
             }
           '';
       }
