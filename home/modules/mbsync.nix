@@ -3,6 +3,6 @@
 
   services.mbsync = {
     enable = true;
-    postExec = "${pkgs.mu}/bin/mu index";
+    postExec = "${pkgs.mu}/bin/mu index && ${pkgs.mu}/bin/mu cfind > ~/contacts/list";
   };
 }
