@@ -139,7 +139,7 @@ in {
 
     A = :pipe khard add-email -H all<Enter>
 
-    s = :prompt "Search query: " :exec mu find --clearlinks --format=links --linksdir=~/mail/search/results<Enter>
+    s = :exec mu find --clearlinks --format=links --linksdir=~/mail/search/results<space>
 
     [view]
     q = :close<Enter>
