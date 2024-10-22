@@ -103,27 +103,27 @@ end
 
 function base16-gruvbox-light-medium -d "Gruvbox light, medium"
     set color00 fb/f1/c7 # Base 00 - Black
-    set color01 9d/00/06 # Base 08 - Red
-    set color02 79/74/0e # Base 0B - Green
-    set color03 b5/76/14 # Base 0A - Yellow
-    set color04 07/66/78 # Base 0D - Blue
-    set color05 8f/3f/71 # Base 0E - Magenta
-    set color06 42/7b/58 # Base 0C - Cyan
-    set color07 50/49/45 # Base 05 - White
-    set color08 bd/ae/93 # Base 03 - Bright Black
-    set color09 $color01 # Base 08 - Bright Red
-    set color10 $color02 # Base 0B - Bright Green
-    set color11 $color03 # Base 0A - Bright Yellow
-    set color12 $color04 # Base 0D - Bright Blue
-    set color13 $color05 # Base 0E - Bright Magenta
-    set color14 $color06 # Base 0C - Bright Cyan
-    set color15 28/28/28 # Base 07 - Bright White
-    set color16 af/3a/03 # Base 09
-    set color17 d6/5d/0e # Base 0F
-    set color18 eb/db/b2 # Base 01
-    set color19 d5/c4/a1 # Base 02
-    set color20 66/5c/54 # Base 04
-    set color21 3c/38/36 # Base 06
+    set color01 cc/24/1d # Base 08 - Red
+    set color02 98/97/1a # Base 0B - Green
+    set color03 d7/99/21 # Base 0A - Yellow
+    set color04 45/85/88 # Base 0D - Blue
+    set color05 b1/62/86 # Base 0E - Magenta
+    set color06 68/9d/6a # Base 0C - Cyan
+    set color07 7c/6f/64 # Base 05 - White
+    set color08 92/83/74 # Base 03 - Bright Black
+    set color09 9d/00/06 # Base 08 - Bright Red
+    set color10 79/74/0e # Base 0B - Bright Green
+    set color11 b5/76/14 # Base 0A - Bright Yellow
+    set color12 07/66/78 # Base 0D - Bright Blue
+    set color13 8f/3f/71 # Base 0E - Bright Magenta
+    set color14 42/7b/58 # Base 0C - Bright Cyan
+    set color15 3c/38/36 # Base 07 - Bright White
+    set color16 af/3a/03 # Base 09 - bright orange
+    set color17 d6/5d/0e # Base 0F - orange
+    set color18 eb/db/b2 # Base 01 - bg1
+    set color19 d5/c4/a1 # Base 02 - bg2
+    set color20 66/5c/54 # Base 04 - fg3
+    set color21 3c/38/36 # Base 06 - fg1
     set colorfg $color07 # Base 05 - White
     set colorbg $color00 # Base 00 - Black
 
@@ -155,12 +155,12 @@ function base16-gruvbox-light-medium -d "Gruvbox light, medium"
     put_template 14 $color14
     put_template 15 $color15
     # 256 color space
-    put_template 16 $color16
-    put_template 17 $color17
-    put_template 18 $color18
-    put_template 19 $color19
-    put_template 20 $color20
-    put_template 21 $color21
+    # put_template 16 $color16
+    # put_template 17 $color17
+    # put_template 18 $color18
+    # put_template 19 $color19
+    # put_template 20 $color20
+    # put_template 21 $color21
     # foreground / background / cursor color
     put_template_var 10 $colorfg
     if [ "$BASE16_SHELL_SET_BACKGROUND" != false ]
