@@ -1,7 +1,7 @@
-{...}: {
+{pkgs, ...}: {
   programs.git = {
     enable = true;
-    # package = pkgs.gitAndTools.gitFull;
+    package = pkgs.gitAndTools.gitFull;
     delta.enable = true;
     delta.options = {
       gruvbox-light = {

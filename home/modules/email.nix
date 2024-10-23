@@ -59,6 +59,7 @@ in {
           expunge = "both";
           remove = "both";
         };
+        msmtp.enable = true;
         mu.enable = true;
 
         realName = "Andrew Jeffery";
@@ -73,4 +74,5 @@ in {
   services.imapnotify.enable = true;
   programs.himalaya.enable = true;
   programs.mu.enable = true;
+  programs.msmtp.enable = true;
 }
