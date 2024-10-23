@@ -64,6 +64,7 @@ in {
       tab-title-account = "{{.Account}} {{if .Unread}}({{.Unread}}){{end}}";
       dirlist-tree = true;
       auto-mark-read = false;
+      fuzzy-complete = true;
     };
     compose = {
       address-book-cmd = "khard email --remove-first-line --parsable '%s'";
