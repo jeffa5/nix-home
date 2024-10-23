@@ -24,9 +24,9 @@ in {
 
       On {{dateFormat (.OriginalDate | toLocal) "Mon Jan 2, 2006 at 3:04 PM MST"}}, {{.OriginalFrom | names | join ", "}} wrote:
       {{if eq .OriginalMIMEType "text/html"}}
-      {{exec `${pkgs.aerc}/libexec/aerc/filters/html` .OriginalText | quote}}
+      {{exec `${pkgs.aerc}/libexec/aerc/filters/html` .OriginalText | wrap 72 | quote}}
       {{else}}
-      {{trimSignature .OriginalText | quote}}
+      {{trimSignature .OriginalText | wrap 72 | quote}}
       {{end}}
       {{- with .Signature }}
 
