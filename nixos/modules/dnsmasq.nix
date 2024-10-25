@@ -31,6 +31,7 @@ in {
         "8.8.4.4"
       ];
       cache-size = 1024;
+      log-queries = "extra";
     };
   };
 
