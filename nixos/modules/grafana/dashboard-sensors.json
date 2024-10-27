@@ -406,7 +406,13 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [
+            {
+              "key": "device::tag",
+              "operator": "=~",
+              "value": "/temp_hum/"
+            }
+          ]
         }
       ],
       "title": "Battery",
@@ -518,7 +524,13 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [
+            {
+              "key": "device::tag",
+              "operator": "=~",
+              "value": "/temp_hum/"
+            }
+          ]
         }
       ],
       "title": "Link quality",
@@ -645,7 +657,13 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [
+            {
+              "key": "device::tag",
+              "operator": "=~",
+              "value": "/temp_hum/"
+            }
+          ]
         },
         {
           "alias": "humidity $tag_device",
@@ -693,7 +711,13 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [
+            {
+              "key": "device::tag",
+              "operator": "=~",
+              "value": "/temp_hum/"
+            }
+          ]
         },
         {
           "alias": "linkquality $tag_device",
@@ -741,7 +765,13 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [
+            {
+              "key": "device::tag",
+              "operator": "=~",
+              "value": "/temp_hum/"
+            }
+          ]
         },
         {
           "alias": "temperature $tag_device",
@@ -789,7 +819,13 @@
               }
             ]
           ],
-          "tags": []
+          "tags": [
+            {
+              "key": "device::tag",
+              "operator": "=~",
+              "value": "/temp_hum/"
+            }
+          ]
         }
       ],
       "title": "Update volume",
@@ -810,6 +846,6 @@
   "timezone": "browser",
   "title": "Sensors",
   "uid": "fdr13s64y7sw0f",
-  "version": 1,
+  "version": 9,
   "weekStart": ""
 }
