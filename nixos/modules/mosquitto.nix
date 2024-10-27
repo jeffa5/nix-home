@@ -12,4 +12,10 @@ in {
       }
     ];
   };
+
+  # wait for storage
+  systemd.services.mosquitto = {
+    after = ["local.mount"];
+    requires = ["local.mount"];
+  };
 }

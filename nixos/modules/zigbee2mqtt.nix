@@ -33,6 +33,12 @@ in {
     };
   };
 
+  # wait for storage
+  systemd.services.zigbee2mqtt = {
+    after = ["local.mount"];
+    requires = ["local.mount"];
+  };
+
   services.nginx.virtualHosts."Zigbee2MQTT" = {
     serverName = "zigbee2mqtt.home.jeffas.net";
     locations."/" = {

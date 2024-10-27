@@ -102,6 +102,12 @@ in {
     };
   };
 
+  # wait for storage
+  systemd.services.prometheus = {
+    after = ["local.mount"];
+    requires = ["local.mount"];
+  };
+
   services.nginx.virtualHosts."Prometheus" = {
     inherit serverName;
     locations."/" = {

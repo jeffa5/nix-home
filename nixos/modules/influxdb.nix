@@ -73,6 +73,12 @@ in {
   #   enable = true;
   # };
 
+  # wait for storage
+  systemd.services.influxdb2 = {
+    after = ["local.mount"];
+    requires = ["local.mount"];
+  };
+
   services.nginx.virtualHosts."Influxdb" = {
     serverName = "influxdb.home.jeffas.net";
     locations."/" = {

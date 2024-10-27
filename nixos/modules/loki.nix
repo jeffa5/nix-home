@@ -46,6 +46,12 @@ in {
     };
   };
 
+  # wait for storage
+  systemd.services.loki = {
+    after = ["local.mount"];
+    requires = ["local.mount"];
+  };
+
   services.nginx.virtualHosts."Loki" = {
     inherit serverName;
     locations."/" = {
