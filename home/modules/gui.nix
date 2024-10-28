@@ -28,6 +28,7 @@
     darktable
     fractal
     gitAndTools.git-open
+    gnome-maps
     gramps
     libreoffice
     loupe
