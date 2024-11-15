@@ -417,11 +417,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1731577772,
-        "narHash": "sha256-ILE/4Utf90W3cmVKqtGppYce2Tv7RhVrri1JR8y3zwc=",
+        "lastModified": 1731677402,
+        "narHash": "sha256-biaBundtCZ+lf0GywhX8GRsAFYB0KszHLajJWu3K64I=",
         "owner": "jeffa5",
         "repo": "wordnet-ls",
-        "rev": "15e8a59a89f806e6f367f563087abf8c2eaac2c2",
+        "rev": "406b482f1808b9393e480d7031209b3dc1577174",
         "type": "github"
       },
       "original": {
