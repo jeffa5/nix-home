@@ -14,6 +14,8 @@
   tuiPkgs = with pkgs;
     [
       (nerdfonts.override {fonts = ["Hack"];})
+      noto-fonts-cjk-serif
+      noto-fonts-cjk-sans
       fd
       file
       git-extras
