@@ -18,7 +18,7 @@
 
   home.packages = with pkgs; [
     amberol
-    # anki
+    anki
     # bitwarden
     # bitwarden-cli
     calcurse
