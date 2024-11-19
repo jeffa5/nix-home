@@ -3,6 +3,7 @@
   username,
   wordnet-ls,
   maills,
+  nixSearch,
 }: {
   config,
   pkgs,
@@ -32,6 +33,7 @@
       ncdu
       powertop
       unzip
+      nixSearch
     ]
     ++ [
       (pkgs.callPackage ./weekly.nix {})

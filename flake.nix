@@ -20,6 +20,7 @@
       url = "github:jeffa5/maills";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixSearch.url = "github:diamondburned/nix-search";
   };
 
   outputs = {
@@ -33,6 +34,7 @@
     waytext,
     wordnet-ls,
     maills,
+    nixSearch,
   }: let
     username = "andrew";
     system = "x86_64-linux";
@@ -54,6 +56,7 @@
     };
     wordnet-lspkg = wordnet-ls.packages.${system}.wordnet-ls;
     maillsPkg = maills.packages.${system}.maills;
+    nixSearchPkg = nixSearch.packages.${system}.default;
     colemakdh = import packages/colemakdh pkgs;
     lib = pkgs.lib;
     mkMachine = {
@@ -83,6 +86,7 @@
                 username = "andrew";
                 wordnet-ls = wordnet-lspkg;
                 maills = maillsPkg;
+                nixSearch = nixSearchPkg;
               };
             }
           ]
@@ -97,6 +101,7 @@
             gui = true;
             wordnet-ls = wordnet-lspkg;
             maills = maillsPkg;
+            nixSearch = nixSearchPkg;
           })
         ];
       };
@@ -109,6 +114,7 @@
             gui = false;
             wordnet-ls = wordnet-lspkg;
             maills = maillsPkg;
+            nixSearch = nixSearchPkg;
           })
         ];
       };
