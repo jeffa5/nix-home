@@ -40,4 +40,13 @@ in {
   services.vdirsyncer.enable = true;
   programs.vdirsyncer.enable = true;
   programs.khal.enable = true;
+  programs.khal.settings = {
+    keybindings = {
+      delete = "x";
+      export = "ctrl e";
+      external_edit = "e";
+      duplicate = "d";
+      save = "ctrl s";
+    };
+  };
 }
