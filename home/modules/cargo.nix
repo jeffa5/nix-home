@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   home.file = {
-    ".cargo/config".text = ''
+    ".cargo/config.toml".text = ''
       [build]
       rustc-wrapper = "${pkgs.sccache}/bin/sccache"
       [net]
