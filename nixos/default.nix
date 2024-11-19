@@ -105,6 +105,10 @@ in {
     fwupd.enable = true;
 
     automatic-timezoned.enable = true;
+    # mozilla's service is deprecated
+    geoclue2.geoProviderUrl = "https://beacondb.net/v1/geolocate";
+
+    tzupdate.enable = true;
   };
 
   # udev 250 doesn't reliably reinitialize devices after restart
