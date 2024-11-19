@@ -36,6 +36,7 @@
     nextcloud-client
     obsidian
     signal-desktop
+    flare-signal
     slack
     spotify
     tasksh
