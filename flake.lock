@@ -154,11 +154,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1731754885,
-        "narHash": "sha256-oJv/kukHyxgL4ofkslTrffN1XHCuvVjxXeHT8q24mTw=",
+        "lastModified": 1732046349,
+        "narHash": "sha256-UP3kIrGEgZpFn/RfthgCkmETB24ja3llPFMc8pXJ36Y=",
         "owner": "jeffa5",
         "repo": "maills",
-        "rev": "f200ecbc434b81d289901a8a2710f93efa422576",
+        "rev": "af48df17de47aac7868465e1bb9b9e813bf61622",
         "type": "github"
       },
       "original": {
@@ -417,11 +417,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1731754815,
-        "narHash": "sha256-lMBOm5so08kt0tA/3+wbP/SwgW5E5cam2aV7ag8LLis=",
+        "lastModified": 1732046305,
+        "narHash": "sha256-ettRKkatTQadg0TqNqf1pzi2+emWzacMnyXNrUzHoKM=",
         "owner": "jeffa5",
         "repo": "wordnet-ls",
-        "rev": "889811e226b2e89af011c0f5b1e096d9370fc21a",
+        "rev": "b9c8cc90065b61b944c5328d28276ca718170ee2",
         "type": "github"
       },
       "original": {
