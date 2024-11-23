@@ -1,0 +1,22 @@
+From bf34b4903d8c6d35c025b901149de352fb7576b6 Mon Sep 17 00:00:00 2001
+From: Andrew Jeffery <dev@jeffas.net>
+Date: Sat, 23 Nov 2024 21:46:02 +0000
+Subject: [PATCH] Set external_edit extension to .ics
+
+---
+ khal/ui/__init__.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/khal/ui/__init__.py b/khal/ui/__init__.py
+index f3ea06de0..ab78d5cdf 100644
+--- a/khal/ui/__init__.py
++++ b/khal/ui/__init__.py
+@@ -754,7 +754,7 @@ def update_colors(new_start: dt.date, new_end: dt.date, everything: bool=False):
+         assert not self.editor
+         if external_edit:
+             self.pane.window.loop.stop()
+-            ics = click.edit(event.raw)
++            ics = click.edit(event.raw, extension=".ics")
+             self.pane.window.loop.start()
+             if ics is None:
+                 return
