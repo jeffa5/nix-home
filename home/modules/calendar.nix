@@ -46,7 +46,10 @@ in {
       (finalAttrs: previousAttrs: {
         patches = [../../khal-ext.patch];
       });
-    locale.timeformat = "%H:%M";
+    locale = {
+      timeformat = "%H:%M";
+      weeknumbers = "left";
+    };
     settings = {
       keybindings = {
         delete = "x";
