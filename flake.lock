@@ -147,6 +147,26 @@
         "type": "github"
       }
     },
+    "icalls": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1732813952,
+        "narHash": "sha256-Ofqqbx5dZlQX/A0ZxEWB9LhM4nXIPNyCIwUXPV83y1k=",
+        "owner": "jeffa5",
+        "repo": "icalls",
+        "rev": "18f7c3c677d0fb9e8739df769b2e46e4b530344b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jeffa5",
+        "repo": "icalls",
+        "type": "github"
+      }
+    },
     "maills": {
       "inputs": {
         "nixpkgs": [
@@ -289,6 +309,7 @@
       "inputs": {
         "hardware": "hardware",
         "home-manager": "home-manager",
+        "icalls": "icalls",
         "maills": "maills",
         "nixSearch": "nixSearch",
         "nixpkgs": "nixpkgs_2",

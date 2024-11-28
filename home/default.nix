@@ -3,6 +3,7 @@
   username,
   wordnet-ls,
   maills,
+  icalls,
   nixSearch,
 }: {
   config,
@@ -44,7 +45,7 @@ in {
     [
       ./xkb.nix
       ./latexmk.nix
-      (import ./neovim.nix {inherit wordnet-ls maills;})
+      (import ./neovim.nix {inherit wordnet-ls maills icalls;})
       ./helix.nix
       ./modules/cargo.nix
       ./ssh.nix

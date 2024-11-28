@@ -1,6 +1,7 @@
 {
   wordnet-ls,
   maills,
+  icalls,
 }: {pkgs, ...}: {
   programs.neovim = {
     enable = true;
@@ -21,6 +22,7 @@
       typst-lsp
       wordnet-ls
       maills
+      icalls
     ];
     extraConfig = builtins.readFile ./neovim/init.vim;
     plugins = with pkgs.vimPlugins; [
@@ -153,6 +155,12 @@
                 on_attach = on_attach,
                 capabilities = capabilities,
                 init_options = { vcard_dir = '~/contacts/jeffas', contact_list_file = '~/contacts/list' },
+            }
+
+            require('lspconfig')['icalls'].setup {
+                on_attach = on_attach,
+                capabilities = capabilities,
+                init_options = {},
             }
           '';
       }
