@@ -39,19 +39,22 @@ in {
 
   services.vdirsyncer.enable = true;
   programs.vdirsyncer.enable = true;
-  programs.khal.enable = true;
-  programs.khal.package =
-    pkgs.khal.overrideAttrs
-    (finalAttrs: previousAttrs: {
-      patches = [../../khal-ext.patch];
-    });
-  programs.khal.settings = {
-    keybindings = {
-      delete = "x";
-      export = "ctrl e";
-      external_edit = "e";
-      duplicate = "d";
-      save = "ctrl s";
+  programs.khal = {
+    enable = true;
+    package =
+      pkgs.khal.overrideAttrs
+      (finalAttrs: previousAttrs: {
+        patches = [../../khal-ext.patch];
+      });
+    locale.timeformat = "%H:%M";
+    settings = {
+      keybindings = {
+        delete = "x";
+        export = "ctrl e";
+        external_edit = "e";
+        duplicate = "d";
+        save = "ctrl s";
+      };
     };
   };
 }
