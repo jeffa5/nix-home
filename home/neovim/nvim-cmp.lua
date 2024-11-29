@@ -107,6 +107,16 @@ require('lspconfig.configs')['maills'] = {
     }
 }
 
+require('lspconfig.configs')['icalls'] = {
+    default_config = {
+        cmd = { 'icalls', '--stdio' },
+        filetypes = { 'icalendar' },
+        root_dir = function(_)
+            return '/'
+        end,
+    }
+}
+
 require('lspconfig.configs')['wordnet'] = {
     default_config = {
         cmd = { 'wordnet-ls', '--stdio' },
