@@ -43,7 +43,7 @@ in {
     enable = true;
     package =
       pkgs.khal.overrideAttrs
-      (finalAttrs: previousAttrs: {
+      (_finalAttrs: _previousAttrs: {
         patches = [../../khal-ext.patch];
       });
     locale = {
