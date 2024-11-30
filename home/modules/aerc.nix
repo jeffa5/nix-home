@@ -1,5 +1,15 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   aerc-filters = "${pkgs.aerc}/libexec/aerc/filters";
+  sd = lib.getExe pkgs.sd;
+  aerc-opener-html = pkgs.writeShellScriptBin "aerc-opener-html" ''
+    ${sd} -f i ' src' ' _src' "$1"
+    ${sd} -f i '<script(.|\n)*?\/script>' ''' "$1"
+    xdg-open "$1"
+  '';
 in {
   programs.aerc.enable = true;
   programs.aerc.stylesets = {
@@ -81,6 +91,9 @@ in {
     templates = {
       quoted-reply = "my_quoted_reply";
       forwards = "my_forward_as_body";
+    };
+    openers = {
+      "text/html" = lib.getExe aerc-opener-html;
     };
   };
 
