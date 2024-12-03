@@ -15,7 +15,7 @@
 
   tuiPkgs = with pkgs;
     [
-      (nerdfonts.override {fonts = ["Hack"];})
+      nerd-fonts.hack
       noto-fonts-cjk-serif
       noto-fonts-cjk-sans
       fd
