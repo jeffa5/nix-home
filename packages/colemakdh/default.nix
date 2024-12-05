@@ -1,10 +1,11 @@
-pkgs:
-with pkgs;
+pkgs: let
+  lib = pkgs.lib;
+in
   derivation {
     name = "colemakdh";
-    builder = "${bash}/bin/bash";
+    builder = lib.getExe pkgs.bash;
     args = [./builder.sh];
-    inherit coreutils gzip;
+    inherit (pkgs) coreutils gzip;
     src = ./.;
     system = "x86_64-linux";
   }

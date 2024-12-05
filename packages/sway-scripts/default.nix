@@ -4,6 +4,7 @@
 }: let
   pomo = pkgs.lib.getExe (import ../pomo {inherit pkgs;});
   menu = "${lib.getExe pkgs.fuzzel} --dmenu";
+  swaymsg = lib.getExe' pkgs.sway "swaymsg";
 in {
   app-launcher = pkgs.writeShellScriptBin "app-launcher" ''
     pgrep fuzzel && pkill fuzzel && exit 0
@@ -12,25 +13,25 @@ in {
   '';
 
   lockscreen = pkgs.writeShellScriptBin "sway-lockscreen" ''
-    ${pkgs.swayidle}/bin/swayidle \
-      timeout 60 '${pkgs.sway}/bin/swaymsg "output * dpms off"' \
-      resume '${pkgs.sway}/bin/swaymsg "output * dpms on"' \
-      timeout 300 '${pkgs.systemd}/bin/systemctl hybrid-sleep' \
-      after-resume '${pkgs.sway}/bin/swaymsg "output * dpms on"' &
+    ${lib.getExe pkgs.swayidle} \
+      timeout 60 '${swaymsg} "output * dpms off"' \
+      resume '${swaymsg} "output * dpms on"' \
+      timeout 300 '${lib.getExe' pkgs.systemd "systemctl"} hybrid-sleep' \
+      after-resume '${swaymsg} "output * dpms on"' &
 
     pid=$!
 
-    ${pkgs.swaylock}/bin/swaylock
+    ${lib.getExe pkgs.swaylock}
 
     kill $pid
   '';
 
   screenshot = let
-    slurp = "${pkgs.slurp}/bin/slurp";
-    grim = "${pkgs.grim}/bin/grim";
-    notify-send = "${pkgs.libnotify}/bin/notify-send";
-    grimshot = "${pkgs.sway-contrib.grimshot}/bin/grimshot";
-    convert = "${pkgs.imagemagick}/bin/convert";
+    slurp = lib.getExe pkgs.slurp;
+    grim = lib.getExe pkgs.grim;
+    notify-send = lib.getExe' pkgs.libnotify "notify-send";
+    grimshot = lib.getExe pkgs.sway-contrib.grimshot;
+    convert = lib.getExe' pkgs.imagemagick "convert";
   in
     pkgs.writeShellScriptBin "sway-screenshot" ''
       # if fuzzel is running, kill it
@@ -159,7 +160,7 @@ in {
         ;;
     esac
 
-    ${pkgs.waytext}/bin/waytext -t "$text"
+    ${lib.getExe pkgs.waytext} -t "$text"
   '';
 
   bw-menu = let

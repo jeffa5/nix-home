@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   background = "#fbf1c7";
   background_light = "#ebdbb2";
   foreground = "#3c3836";
@@ -31,7 +35,7 @@ in {
             disable-scroll = true;
           };
           "sway/language" = {
-            on-click = "${pkgs.sway}/bin/swaymsg -t command input type:keyboard xkb_switch_layout next";
+            on-click = "${lib.getExe' pkgs.sway "swaymsg"} -t command input type:keyboard xkb_switch_layout next";
           };
           pulseaudio = {
             format = "{icon} {volume}%";
@@ -116,9 +120,9 @@ in {
             format = "{}";
             interval = 1;
             exec = "${pkgs.status-bar.mediaplayer}/bin/bar-mediaplayer";
-            exec-if = "${pkgs.playerctl}/bin/playerctl status &> /dev/null";
+            exec-if = "${lib.getExe pkgs.playerctl} status &> /dev/null";
             escape = true;
-            on-click = "${pkgs.playerctl}/bin/playerctl play-pause";
+            on-click = "${lib.getExe pkgs.playerctl} play-pause";
           };
           "custom/notifications" = {
             format = "{}";

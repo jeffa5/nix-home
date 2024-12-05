@@ -1,7 +1,8 @@
 pkgs: let
-  playerctl = "${pkgs.playerctl}/bin/playerctl";
-  pomo = pkgs.lib.getExe (import ../pomo {inherit pkgs;});
-  makoctl = "${pkgs.mako}/bin/makoctl";
+  lib = pkgs.lib;
+  playerctl = lib.getExe pkgs.playerctl;
+  pomo = lib.getExe (import ../pomo {inherit pkgs;});
+  makoctl = lib.getExe' pkgs.mako "makoctl";
 in {
   backlight = pkgs.writeShellScriptBin "bar-backlight" ''
     [ "$1" -gt "0" ]

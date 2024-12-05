@@ -9,10 +9,11 @@
   inactive_bg = "#282828";
   urgent_bg = "#cc241d";
 
-  pamixer = "${pkgs.pamixer}/bin/pamixer";
-  playerctl = "${pkgs.playerctl}/bin/playerctl";
-  brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
+  pamixer = lib.getExe pkgs.pamixer;
+  playerctl = lib.getExe pkgs.playerctl;
+  brightnessctl = lib.getExe pkgs.brightnessctl;
   wdisplays = lib.getExe pkgs.wdisplays;
+  sctl = lib.getExe' pkgs.systemd "systemctl";
 in {
   imports = [
     ./swaylock.nix
@@ -35,7 +36,7 @@ in {
 
     extraConfigEarly = ''
       set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
-      exec rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | ${pkgs.wob}/bin/wob
+      exec rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | ${lib.getExe pkgs.wob}
     '';
 
     extraConfig = ''
@@ -54,11 +55,11 @@ in {
       mode "$mode_system" {
           bindsym l exec --no-startup-id $locker, mode "default"
           bindsym e exit, mode "default"
-          bindsym s exec --no-startup-id $locker && ${pkgs.systemd}/bin/systemctl suspend, mode "default"
-          bindsym h exec --no-startup-id $locker && ${pkgs.systemd}/bin/systemctl hibernate, mode "default"
-          bindsym b exec --no-startup-id $locker && ${pkgs.systemd}/bin/systemctl hybrid-sleep, mode "default"
-          bindsym r exec --no-startup-id ${pkgs.systemd}/bin/systemctl reboot, mode "default"
-          bindsym p exec --no-startup-id ${pkgs.systemd}/bin/systemctl poweroff -i, mode "default"
+          bindsym s exec --no-startup-id $locker && ${sctl} suspend, mode "default"
+          bindsym h exec --no-startup-id $locker && ${sctl} hibernate, mode "default"
+          bindsym b exec --no-startup-id $locker && ${sctl} hybrid-sleep, mode "default"
+          bindsym r exec --no-startup-id ${sctl} reboot, mode "default"
+          bindsym p exec --no-startup-id ${sctl} poweroff -i, mode "default"
           bindsym Return mode "default"
           bindsym Escape mode "default"
       }
@@ -72,7 +73,7 @@ in {
 
       bars = [
         {
-          command = "${pkgs.waybar}/bin/waybar";
+          command = lib.getExe pkgs.waybar;
         }
       ];
 
@@ -169,12 +170,12 @@ in {
           "${mod}+Shift+8" = "move container to workspace $workspace8";
           "${mod}+Shift+9" = "move container to workspace $workspace9";
           "${mod}+Shift+0" = "move container to workspace $workspace10";
-          "${mod}+space" = "exec ${pkgs.sway-scripts.app-launcher}/bin/app-launcher";
-          "${mod}+t" = "exec ${pkgs.sway-scripts.pomo-timer}/bin/pomo-timer";
+          "${mod}+space" = "exec ${lib.getExe pkgs.sway-scripts.app-launcher}";
+          "${mod}+t" = "exec ${lib.getExe pkgs.sway-scripts.pomo-timer}";
           "${mod}+n" = "exec ${pkgs.lib.getExe pkgs.sway-scripts.bw-menu}";
-          "${mod}+Alt+f" = "exec --no-startup-id swaymsg 'workspace $workspace1; exec ${pkgs.firefox}/bin/firefox'";
-          "${mod}+Alt+m" = "exec --no-startup-id swaymsg 'workspace $workspace9; exec ${pkgs.thunderbird}/bin/thunderbird'";
-          "${mod}+Alt+s" = "exec --no-startup-id swaymsg 'workspace $workspace10; exec ${pkgs.spotify}/bin/spotify'";
+          "${mod}+Alt+f" = "exec --no-startup-id swaymsg 'workspace $workspace1; exec ${lib.getExe pkgs.firefox}";
+          "${mod}+Alt+m" = "exec --no-startup-id swaymsg 'workspace $workspace9; exec ${lib.getExe pkgs.thunderbird}";
+          "${mod}+Alt+s" = "exec --no-startup-id swaymsg 'workspace $workspace10; exec ${lib.getExe pkgs.spotify}";
           "${mod}+p" = "exec ${pkgs.sway-scripts.screenshot}/bin/sway-screenshot";
           "${mod}+Shift+y" = "move workspace to output left";
           "${mod}+Shift+u" = "move workspace to output down";
@@ -198,7 +199,7 @@ in {
           "XF86Display" = "exec --no-startup-id ${wdisplays}";
         };
 
-      terminal = "${pkgs.alacritty}/bin/alacritty";
+      terminal = lib.getExe pkgs.alacritty;
     };
   };
 

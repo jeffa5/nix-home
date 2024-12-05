@@ -172,7 +172,7 @@ in {
     o = :open<Enter>
     a = :read<Enter>:archive flat<Enter>:close<Enter>
     d = :read<Enter>:move Deleted<Enter>
-    u = :pipe -p ${pkgs.urlscan}/bin/urlscan<Enter>
+    u = :pipe -p ${lib.getExe pkgs.urlscan}<Enter>
     c = :pipe -p ${lib.getExe pkgs.khal} import --batch<Enter>
     J = :next-message<Enter>
     K = :prev-message<Enter>
