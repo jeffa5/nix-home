@@ -19,7 +19,7 @@
       rust-analyzer
       clang-tools
       texlab
-      typst-lsp
+      tinymist
       wordnet-ls
       maills
       icalls
