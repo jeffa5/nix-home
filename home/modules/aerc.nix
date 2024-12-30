@@ -8,7 +8,7 @@
   aerc-opener-html = pkgs.writeShellScriptBin "aerc-opener-html" ''
     ${sd} -f i ' src' ' _src' "$1"
     ${sd} -f i '<script(.|\n)*?\/script>' ''' "$1"
-    xdg-open "$1"
+    firefox --new-window "$1"
   '';
 in {
   xdg.mimeApps.defaultApplications."x-scheme-handler/mailto" = ["aerc.desktop"];
