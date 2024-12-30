@@ -29,11 +29,11 @@
       {
         plugin = goyo-vim;
         config = ''
+          let g:goyo_linenr = 1
           function! s:goyo_enter()
             set noshowmode
             set noshowcmd
             set scrolloff=999
-            " Limelight
             lua require('lualine').hide()
           endfunction
 
@@ -41,7 +41,6 @@
             set showmode
             set showcmd
             set scrolloff=5
-            " Limelight!
             lua require('lualine').hide({unhide=true})
           endfunction
 
