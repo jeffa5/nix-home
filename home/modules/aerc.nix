@@ -11,6 +11,7 @@
     xdg-open "$1"
   '';
 in {
+  xdg.mimeApps.defaultApplications."x-scheme-handler/mailto" = ["aerc.desktop"];
   programs.aerc.enable = true;
   programs.aerc.stylesets = {
     home = let

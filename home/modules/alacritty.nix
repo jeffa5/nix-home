@@ -31,6 +31,7 @@
     };
   };
 in {
+  xdg.mimeApps.defaultApplications."x-scheme-handler/terminal" = ["Alacritty.desktop"];
   programs.alacritty = {
     enable = true;
     settings = {
