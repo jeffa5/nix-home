@@ -50,6 +50,7 @@ in {
       ./modules/cargo.nix
       ./ssh.nix
       ./git.nix
+      ./jujutsu.nix
       (import ./tmux.nix {server = !gui;})
       ./zsh.nix
       ./fish.nix
