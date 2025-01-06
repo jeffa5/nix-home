@@ -174,9 +174,9 @@ in {
           "${mod}+space" = "exec ${lib.getExe pkgs.sway-scripts.app-launcher}";
           "${mod}+t" = "exec ${lib.getExe pkgs.sway-scripts.pomo-timer}";
           "${mod}+n" = "exec ${pkgs.lib.getExe pkgs.sway-scripts.bw-menu}";
-          "${mod}+Alt+f" = "exec --no-startup-id ${swaymsg} 'workspace $workspace1; exec ${lib.getExe pkgs.firefox}";
-          "${mod}+Alt+m" = "exec --no-startup-id ${swaymsg} 'workspace $workspace9; exec ${lib.getExe pkgs.thunderbird}";
-          "${mod}+Alt+s" = "exec --no-startup-id ${swaymsg} 'workspace $workspace10; exec ${lib.getExe pkgs.spotify}";
+          "${mod}+Alt+f" = "exec --no-startup-id ${swaymsg} 'workspace $workspace1; exec ${lib.getExe pkgs.firefox}'";
+          "${mod}+Alt+m" = "exec --no-startup-id ${swaymsg} 'workspace $workspace9; exec ${lib.getExe pkgs.thunderbird}'";
+          "${mod}+Alt+s" = "exec --no-startup-id ${swaymsg} 'workspace $workspace10; exec ${lib.getExe pkgs.spotify}'";
           "${mod}+Alt+l" = "exec '${pkgs.sway-scripts.lockscreen}/bin/sway-lockscreen &'";
           "${mod}+p" = "exec ${pkgs.sway-scripts.screenshot}/bin/sway-screenshot";
           "${mod}+Shift+y" = "move workspace to output left";
