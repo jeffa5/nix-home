@@ -121,6 +121,8 @@ in {
     g = :select 0<Enter>
     G = :select -1<Enter>
 
+    <C-r> = :check-mail<Enter>
+
     J = :next-folder<Enter>
     K = :prev-folder<Enter>
 
