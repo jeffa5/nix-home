@@ -54,7 +54,6 @@ in {
     bluetooth.settings.General.Experimental = true;
 
     keyboard.zsa.enable = true;
-    pulseaudio.enable = false;
   };
 
   users = {
@@ -109,6 +108,8 @@ in {
     geoclue2.geoProviderUrl = "https://beacondb.net/v1/geolocate";
 
     tzupdate.enable = true;
+
+    pulseaudio.enable = false;
   };
 
   # udev 250 doesn't reliably reinitialize devices after restart
