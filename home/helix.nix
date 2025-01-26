@@ -1,6 +1,10 @@
-{...}: {
+{pkgs, ...}: {
   programs.helix = {
     enable = true;
+    extraPackages = [
+      pkgs.nil
+      pkgs.rust-analyzer
+    ];
     settings = {
       theme = "gruvbox-light";
       editor = {
