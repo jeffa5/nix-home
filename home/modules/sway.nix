@@ -160,7 +160,6 @@ in {
           "${mod}+8" = "workspace $workspace8";
           "${mod}+9" = "workspace $workspace9";
           "${mod}+0" = "workspace $workspace10";
-          "${mod}+minus" = "workspace back_and_forth";
           "${mod}+Shift+1" = "move container to workspace $workspace1";
           "${mod}+Shift+2" = "move container to workspace $workspace2";
           "${mod}+Shift+3" = "move container to workspace $workspace3";
