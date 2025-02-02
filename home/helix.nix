@@ -2,6 +2,7 @@
   programs.helix = {
     enable = true;
     extraPackages = [
+      pkgs.marksman
       pkgs.nil
       pkgs.rust-analyzer
     ];
