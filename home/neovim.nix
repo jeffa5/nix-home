@@ -10,6 +10,7 @@
     extraPackages = with pkgs; [
       alejandra
       black
+      clang-tools
       isort
       lua-language-server
       marksman
@@ -18,9 +19,10 @@
       pylint
       pyright
       rust-analyzer
-      clang-tools
       texlab
       tinymist
+
+      # my language servers
       wordnet-ls
       maills
       icalls
