@@ -14,6 +14,7 @@
       lua-language-server
       marksman
       nil
+      nodePackages.prettier
       pylint
       pyright
       rust-analyzer
@@ -164,10 +165,10 @@
           '';
       }
       {
-        plugin = null-ls-nvim;
+        plugin = none-ls-nvim;
         type = "lua";
         config = ''
-          -- null lsp
+          -- none lsp
           local null_ls = require("null-ls")
           null_ls.setup {
             sources = {
@@ -175,6 +176,7 @@
               null_ls.builtins.formatting.isort,
               null_ls.builtins.formatting.black,
               null_ls.builtins.formatting.alejandra,
+              null_ls.builtins.formatting.prettier,
             }
           }
         '';
