@@ -66,6 +66,7 @@ in {
       fc = ":fzf_search";
       gr = "cd /";
       gc = "cd ~/Cloud";
+      gm = "cd /run/media/andrew";
       D = ":delete";
       a = "push :mkdir<space>";
     };
