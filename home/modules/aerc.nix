@@ -83,6 +83,10 @@ in {
       empty-subject-warning = true;
       no-attachment-warning = "^[^>]*attach(ed|ment)";
     };
+    viewer = {
+      header-layout = "From,To,Cc,Bc,Date,Subject";
+      always-show-mime = true;
+    };
     filters = {
       "subject,~^\\[PATCH" = "${aerc-filters}/hldiff";
       "text/html" = "${aerc-filters}/html";
