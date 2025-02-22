@@ -266,6 +266,21 @@
           vim.keymap.set("n", "<localleader>o", "<cmd>AerialToggle!<CR>", {desc = "Outline"})
         '';
       }
+
+      {
+        plugin = img-clip-nvim;
+        type = "lua";
+        config = ''
+          -- img-clip
+          require("img-clip").setup({
+            default = {
+              dir_path = "",
+              relative_to_current_file = true,
+            }
+          })
+          vim.keymap.set("n", "<leader>p", "<cmd>PasteImage<CR>", {desc = "Paste image"})
+        '';
+      }
     ];
   };
 }
