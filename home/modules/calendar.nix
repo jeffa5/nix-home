@@ -44,13 +44,21 @@ in {
     package =
       pkgs.khal.overrideAttrs
       (_finalAttrs: _previousAttrs: {
-        patches = [../../khal-ext.patch];
+        src = pkgs.fetchFromGitHub {
+          owner = "jeffa5";
+          repo = "khal";
+          rev = "35665e6c5a942621d686c55e809c9805d3c48c73"; # branch "myfeatures"
+          sha256 = "sha256-MsNtyFAoNhqgD2cr1+KSD9U8JFHBklrSiTH1jh79sF8=";
+        };
       });
     locale = {
       timeformat = "%H:%M";
       weeknumbers = "left";
     };
     settings = {
+      default = {
+        default_organizer = "andrew@jeffas.net";
+      };
       keybindings = {
         delete = "x";
         export = "ctrl e";
