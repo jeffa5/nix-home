@@ -274,7 +274,7 @@
           -- img-clip
           require("img-clip").setup({
             default = {
-              dir_path = "",
+              dir_path = ".",
               relative_to_current_file = true,
             }
           })
