@@ -15,8 +15,6 @@
     '';
 
     settings = {
-      auto-optimise-store = true;
-
       trusted-users = ["root"] ++ users;
     };
 
@@ -24,6 +22,10 @@
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 8d";
+    };
+
+    optimise = {
+      automatic = true;
     };
 
     # make nix shell commands use same nixpkgs as system
