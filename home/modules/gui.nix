@@ -27,16 +27,16 @@
     czkawka
     darktable
     fractal
+    flare-signal
     gitAndTools.git-open
-    gnome-maps
     gramps
     libreoffice
     loupe
     musescore
     nextcloud-client
     obsidian
+    organicmaps
     signal-desktop
-    flare-signal
     slack
     spotify
     tasksh
