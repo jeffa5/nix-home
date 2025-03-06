@@ -48,6 +48,7 @@ in {
       (import ./neovim.nix {inherit wordnet-ls maills icalls;})
       ./helix.nix
       ./modules/cargo.nix
+      ./modules/nix.nix
       ./ssh.nix
       ./git.nix
       ./jujutsu.nix
