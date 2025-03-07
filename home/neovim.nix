@@ -10,6 +10,7 @@
     extraPackages = with pkgs; [
       alejandra
       black
+      beancount-language-server
       clang-tools
       isort
       lua-language-server
@@ -280,6 +281,9 @@
           })
           vim.keymap.set("n", "<leader>p", "<cmd>PasteImage<CR>", {desc = "Paste image"})
         '';
+      }
+      {
+        plugin = vim-beancount;
       }
     ];
   };
