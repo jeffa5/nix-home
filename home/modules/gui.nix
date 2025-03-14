@@ -49,6 +49,7 @@
     wl-mirror
     xdg-utils
     xwayland
+    timewarrior
   ];
 
   fonts.fontconfig.enable = true;
