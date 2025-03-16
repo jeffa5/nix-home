@@ -21,6 +21,7 @@
       fd
       file
       git-extras
+      wget
       htop
       iftop
       jq
