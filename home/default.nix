@@ -66,7 +66,6 @@ in {
       else []
     );
 
-  nixpkgs.config.allowUnfree = true;
   nix.package = lib.mkForce pkgs.nix;
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
