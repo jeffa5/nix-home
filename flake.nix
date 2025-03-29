@@ -88,8 +88,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.${username} = import ./home {
-                inherit gui;
-                username = "andrew";
+                inherit gui username;
                 wordnet-ls = wordnet-lspkg;
                 maills = maillsPkg;
                 icalls = icallsPkg;
