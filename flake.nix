@@ -227,7 +227,7 @@
 
       nvd = pkgs.writeShellScriptBin "nvd" ''
         nixos-rebuild build --flake . # get the to-be-installed closure
-        nix run nixpkgs#nvd -- diff /run/current-system ./result # diff that with the current system
+        ${pkgs.lib.getExe pkgs.nvd} diff /run/current-system ./result # diff that with the current system
       '';
     };
 
