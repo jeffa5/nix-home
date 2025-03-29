@@ -12,18 +12,9 @@
     papers.url = "github:jeffa5/papers";
     tasknet.url = "github:jeffa5/tasknet";
     waytext.url = "github:jeffa5/waytext";
-    wordnet-ls = {
-      url = "github:jeffa5/wordnet-ls";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    maills = {
-      url = "github:jeffa5/maills";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    icalls = {
-      url = "github:jeffa5/icalls";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    wordnet-ls.url = "github:jeffa5/wordnet-ls";
+    maills.url = "github:jeffa5/maills";
+    icalls.url = "github:jeffa5/icalls";
     nixSearch.url = "github:diamondburned/nix-search";
   };
 
