@@ -171,6 +171,7 @@ in {
           "${mod}+Shift+9" = "move container to workspace $workspace9";
           "${mod}+Shift+0" = "move container to workspace $workspace10";
           "${mod}+space" = "exec ${lib.getExe pkgs.sway-scripts.app-launcher}";
+          "${mod}+o" = "exec ${lib.getExe pkgs.sway-scripts.file-launcher}";
           "${mod}+t" = "exec ${lib.getExe pkgs.sway-scripts.pomo-timer}";
           "${mod}+n" = "exec ${pkgs.lib.getExe pkgs.sway-scripts.bw-menu}";
           "${mod}+Alt+f" = "exec --no-startup-id ${swaymsg} 'workspace $workspace1; exec ${lib.getExe pkgs.firefox}'";

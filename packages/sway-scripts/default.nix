@@ -12,6 +12,12 @@ in {
     ${lib.getExe pkgs.fuzzel}
   '';
 
+  file-launcher = pkgs.writeShellScriptBin "file-launcher" ''
+    pgrep fuzzel && pkill fuzzel && exit 0
+
+    ${lib.getExe' pkgs.findutils "find"} Cloud Downloads Pictures -type f | ${lib.getExe pkgs.fuzzel} --dmenu | ${lib.getExe' pkgs.coreutils "tr"} '\n' '\0' | ${lib.getExe' pkgs.findutils "xargs"} --no-run-if-empty --null ${lib.getExe' pkgs.xdg-utils "xdg-open"}
+  '';
+
   lockscreen = pkgs.writeShellScriptBin "sway-lockscreen" ''
     ${lib.getExe pkgs.swayidle} \
       timeout 60 '${swaymsg} "output * dpms off"' \
