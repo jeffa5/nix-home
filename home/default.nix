@@ -25,7 +25,6 @@
       pkgs.htop
       pkgs.iftop
       pkgs.jq
-      pkgs.krb5 # for cl access
       pkgs.lf
       pkgs.lm_sensors
       pkgs.ripgrep
