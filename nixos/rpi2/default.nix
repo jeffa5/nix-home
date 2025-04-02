@@ -17,10 +17,10 @@
 
   networking.hostName = "rpi2";
 
-  environment.systemPackages = with pkgs; [
-    htop
-    iftop
-    iotop
+  environment.systemPackages = [
+    pkgs.htop
+    pkgs.iftop
+    pkgs.iotop
   ];
 
   system.stateVersion = "23.05";

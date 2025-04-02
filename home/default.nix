@@ -13,28 +13,28 @@
 }: let
   homeDirectory = "/home/${username}";
 
-  tuiPkgs = with pkgs;
+  tuiPkgs =
     [
-      nerd-fonts.hack
-      noto-fonts-cjk-serif
-      noto-fonts-cjk-sans
-      fd
-      file
-      git-extras
-      wget
-      htop
-      iftop
-      jq
-      krb5 # for cl access
-      lf
-      lm_sensors
-      ripgrep
-      sccache
-      tree
-      cachix
-      ncdu
-      powertop
-      unzip
+      pkgs.nerd-fonts.hack
+      pkgs.noto-fonts-cjk-serif
+      pkgs.noto-fonts-cjk-sans
+      pkgs.fd
+      pkgs.file
+      pkgs.git-extras
+      pkgs.wget
+      pkgs.htop
+      pkgs.iftop
+      pkgs.jq
+      pkgs.krb5 # for cl access
+      pkgs.lf
+      pkgs.lm_sensors
+      pkgs.ripgrep
+      pkgs.sccache
+      pkgs.tree
+      pkgs.cachix
+      pkgs.ncdu
+      pkgs.powertop
+      pkgs.unzip
       nixSearch
     ]
     ++ [

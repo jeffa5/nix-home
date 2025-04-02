@@ -4,8 +4,8 @@
     ./networking.nix # generated at runtime by nixos-infect
   ];
 
-  environment.systemPackages = with pkgs; [
-    git
+  environment.systemPackages = [
+    pkgs.git
   ];
 
   nix = {

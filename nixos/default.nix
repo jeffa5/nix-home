@@ -65,9 +65,9 @@ in {
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    zsh
-    fish
+  environment.systemPackages = [
+    pkgs.zsh
+    pkgs.fish
   ];
 
   console.packages = [colemakdh];

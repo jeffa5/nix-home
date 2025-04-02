@@ -1,10 +1,10 @@
 {pkgs, ...}: {
-  home.packages = with pkgs; [
-    gnomeExtensions.caffeine
-    gnomeExtensions.dash-to-dock
-    gnomeExtensions.vitals
-    gnome-solanum
-    gnome.gnome-dictionary
-    gnome-network-displays
+  home.packages = [
+    pkgs.gnomeExtensions.caffeine
+    pkgs.gnomeExtensions.dash-to-dock
+    pkgs.gnomeExtensions.vitals
+    pkgs.gnome-solanum
+    pkgs.gnome.gnome-dictionary
+    pkgs.gnome-network-displays
   ];
 }

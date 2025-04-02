@@ -2,26 +2,28 @@
   wordnet-ls,
   maills,
   icalls,
-}: {pkgs, ...}: {
+}: {pkgs, ...}: let
+  vimPkgs = pkgs.vimPlugins;
+in {
   programs.neovim = {
     enable = true;
     vimAlias = true;
     vimdiffAlias = true;
-    extraPackages = with pkgs; [
-      alejandra
-      black
-      beancount-language-server
-      clang-tools
-      isort
-      lua-language-server
-      marksman
-      nil
-      nodePackages.prettier
-      pylint
-      pyright
-      rust-analyzer
-      texlab
-      tinymist
+    extraPackages = [
+      pkgs.alejandra
+      pkgs.black
+      pkgs.beancount-language-server
+      pkgs.clang-tools
+      pkgs.isort
+      pkgs.lua-language-server
+      pkgs.marksman
+      pkgs.nil
+      pkgs.nodePackages.prettier
+      pkgs.pylint
+      pkgs.pyright
+      pkgs.rust-analyzer
+      pkgs.texlab
+      pkgs.tinymist
 
       # my language servers
       wordnet-ls
@@ -29,9 +31,9 @@
       icalls
     ];
     extraConfig = builtins.readFile ./neovim/init.vim;
-    plugins = with pkgs.vimPlugins; [
+    plugins = [
       {
-        plugin = goyo-vim;
+        plugin = vimPkgs.goyo-vim;
         config = ''
           let g:goyo_linenr = 1
           function! s:goyo_enter()
@@ -53,7 +55,7 @@
         '';
       }
       {
-        plugin = gruvbox-nvim;
+        plugin = vimPkgs.gruvbox-nvim;
         type = "lua";
         config = ''
           require("gruvbox").setup{}
@@ -61,25 +63,25 @@
           vim.cmd([[colorscheme gruvbox]])
         '';
       }
-      vim-fugitive
-      neogit
-      vim-rhubarb
-      fugitive-gitlab-vim
-      vim-eunuch
+      vimPkgs.vim-fugitive
+      vimPkgs.neogit
+      vimPkgs.vim-rhubarb
+      vimPkgs.fugitive-gitlab-vim
+      vimPkgs.vim-eunuch
       {
-        plugin = comment-nvim;
+        plugin = vimPkgs.comment-nvim;
         type = "lua";
         config = ''
           -- commentary
           require("Comment").setup{}
         '';
       }
-      vim-unimpaired
-      vim-surround
-      vim-repeat
-      lexima-vim
+      vimPkgs.vim-unimpaired
+      vimPkgs.vim-surround
+      vimPkgs.vim-repeat
+      vimPkgs.lexima-vim
       {
-        plugin = vimtex;
+        plugin = vimPkgs.vimtex;
         config = ''
           let g:vimtex_quickfix_open_on_warning = 0
           let g:vimtex_compiler_latexmk = {
@@ -96,13 +98,13 @@
         '';
       }
       {
-        plugin = vimspector;
+        plugin = vimPkgs.vimspector;
         config = ''
           let g:vimspector_enable_mappings='HUMAN'
         '';
       }
       {
-        plugin = vim-polyglot;
+        plugin = vimPkgs.vim-polyglot;
         config = ''
           let g:vim_markdown_conceal = 0
           let g:vim_markdown_conceal_code_blocks = 0
@@ -110,14 +112,14 @@
       }
 
       {
-        plugin = fzf-lua;
+        plugin = vimPkgs.fzf-lua;
         type = "lua";
         config = builtins.readFile ./neovim/fzf-lua.lua;
       }
 
-      nvim-treesitter.withAllGrammars
+      vimPkgs.nvim-treesitter.withAllGrammars
       {
-        plugin = nvim-treesitter-context;
+        plugin = vimPkgs.nvim-treesitter-context;
         type = "lua";
         config = ''
           -- context
@@ -125,20 +127,20 @@
         '';
       }
       {
-        plugin = nvim-lspconfig;
+        plugin = vimPkgs.nvim-lspconfig;
         type = "lua";
         config = ''
           -- setup done in nvim-cmp loop below
         '';
       }
-      cmp-nvim-lsp
-      cmp-nvim-lsp-signature-help
-      cmp-path
-      cmp-buffer
-      cmp_luasnip
-      luasnip
+      vimPkgs.cmp-nvim-lsp
+      vimPkgs.cmp-nvim-lsp-signature-help
+      vimPkgs.cmp-path
+      vimPkgs.cmp-buffer
+      vimPkgs.cmp_luasnip
+      vimPkgs.luasnip
       {
-        plugin = nvim-cmp;
+        plugin = vimPkgs.nvim-cmp;
         type = "lua";
         config =
           (builtins.readFile ./neovim/nvim-cmp.lua)
@@ -163,7 +165,7 @@
           '';
       }
       {
-        plugin = none-ls-nvim;
+        plugin = vimPkgs.none-ls-nvim;
         type = "lua";
         config = ''
           -- none lsp
@@ -180,13 +182,13 @@
         '';
       }
       {
-        plugin = lualine-nvim;
+        plugin = vimPkgs.lualine-nvim;
         type = "lua";
         config = builtins.readFile ./neovim/lualine.lua;
       }
       {
         # lsp progress text
-        plugin = fidget-nvim;
+        plugin = vimPkgs.fidget-nvim;
         type = "lua";
         config = ''
           -- fidget-nvim
@@ -194,7 +196,7 @@
         '';
       }
       {
-        plugin = rust-tools-nvim;
+        plugin = vimPkgs.rust-tools-nvim;
         type = "lua";
         config = ''
           local rt = require("rust-tools")
@@ -221,7 +223,7 @@
       }
 
       {
-        plugin = which-key-nvim;
+        plugin = vimPkgs.which-key-nvim;
         type = "lua";
         config = ''
           vim.o.timeout = true
@@ -230,7 +232,7 @@
         '';
       }
       {
-        plugin = indent-blankline-nvim-lua;
+        plugin = vimPkgs.indent-blankline-nvim-lua;
         type = "lua";
         config = ''
           -- indent blankline
@@ -238,17 +240,17 @@
         '';
       }
       {
-        plugin = gitsigns-nvim;
+        plugin = vimPkgs.gitsigns-nvim;
         type = "lua";
         config = ''
           -- gitsigns
           require('gitsigns').setup()
         '';
       }
-      typst-vim
+      vimPkgs.typst-vim
 
       {
-        plugin = aerial-nvim;
+        plugin = vimPkgs.aerial-nvim;
         type = "lua";
         config = ''
           -- aerial
@@ -264,7 +266,7 @@
       }
 
       {
-        plugin = img-clip-nvim;
+        plugin = vimPkgs.img-clip-nvim;
         type = "lua";
         config = ''
           -- img-clip
@@ -277,9 +279,7 @@
           vim.keymap.set("n", "<leader>p", "<cmd>PasteImage<CR>", {desc = "Paste image"})
         '';
       }
-      {
-        plugin = vim-beancount;
-      }
+      vimPkgs.vim-beancount
     ];
   };
 }

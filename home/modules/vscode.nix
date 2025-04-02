@@ -1,13 +1,15 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  vscodePkgs = pkgs.vscode-extensions;
+in {
   programs.vscode = {
     enable = true;
-    extensions = with pkgs.vscode-extensions; [
-      vscodevim.vim
-      matklad.rust-analyzer
-      vadimcn.vscode-lldb
-      ms-vscode-remote.remote-ssh
-      jdinhlife.gruvbox
-      ms-python.python
+    extensions = [
+      vscodePkgs.vscodevim.vim
+      vscodePkgs.matklad.rust-analyzer
+      vscodePkgs.vadimcn.vscode-lldb
+      vscodePkgs.ms-vscode-remote.remote-ssh
+      vscodePkgs.jdinhlife.gruvbox
+      vscodePkgs.ms-python.python
     ];
     keybindings = [
       {

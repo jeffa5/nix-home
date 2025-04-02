@@ -16,40 +16,40 @@
     ./rbw.nix
   ];
 
-  home.packages = with pkgs; [
-    anki
+  home.packages = [
+    pkgs.anki
     # bitwarden
     # bitwarden-cli
-    calcurse
-    calibre
-    chromium
-    czkawka
-    darktable
-    fractal
-    flare-signal
-    gitAndTools.git-open
-    gramps
-    libreoffice
-    loupe
-    musescore
-    nextcloud-client
-    obsidian
-    organicmaps
-    signal-desktop
-    slack
-    spotify
-    tasksh
-    taskwarrior-tui
-    thunderbird
-    vlc
-    wally-cli
-    waytext
-    wdisplays
-    wl-clipboard
-    wl-mirror
-    xdg-utils
-    xwayland
-    timewarrior
+    pkgs.calcurse
+    pkgs.calibre
+    pkgs.chromium
+    pkgs.czkawka
+    pkgs.darktable
+    pkgs.fractal
+    pkgs.flare-signal
+    pkgs.gitAndTools.git-open
+    pkgs.gramps
+    pkgs.libreoffice
+    pkgs.loupe
+    pkgs.musescore
+    pkgs.nextcloud-client
+    pkgs.obsidian
+    pkgs.organicmaps
+    pkgs.signal-desktop
+    pkgs.slack
+    pkgs.spotify
+    pkgs.tasksh
+    pkgs.taskwarrior-tui
+    pkgs.thunderbird
+    pkgs.vlc
+    pkgs.wally-cli
+    pkgs.waytext
+    pkgs.wdisplays
+    pkgs.wl-clipboard
+    pkgs.wl-mirror
+    pkgs.xdg-utils
+    pkgs.xwayland
+    pkgs.timewarrior
   ];
 
   fonts.fontconfig.enable = true;
