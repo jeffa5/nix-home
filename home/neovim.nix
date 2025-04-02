@@ -64,12 +64,7 @@
       vim-fugitive
       neogit
       vim-rhubarb
-      {
-        plugin = fugitive-gitlab-vim;
-        config = ''
-          let g:fugitive_gitlab_domains = ['https://gitlab.developers.cam.ac.uk/']
-        '';
-      }
+      fugitive-gitlab-vim
       vim-eunuch
       {
         plugin = comment-nvim;
