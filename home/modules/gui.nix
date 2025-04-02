@@ -17,16 +17,16 @@
   ];
 
   home.packages = [
-    pkgs.anki
     # bitwarden
     # bitwarden-cli
+    pkgs.anki
     pkgs.calcurse
     pkgs.calibre
     pkgs.chromium
     pkgs.czkawka
     pkgs.darktable
-    pkgs.fractal
     pkgs.flare-signal
+    pkgs.fractal
     pkgs.gitAndTools.git-open
     pkgs.gramps
     pkgs.libreoffice
@@ -41,6 +41,7 @@
     pkgs.tasksh
     pkgs.taskwarrior-tui
     pkgs.thunderbird
+    pkgs.timewarrior
     pkgs.vlc
     pkgs.wally-cli
     pkgs.waytext
@@ -49,7 +50,6 @@
     pkgs.wl-mirror
     pkgs.xdg-utils
     pkgs.xwayland
-    pkgs.timewarrior
   ];
 
   fonts.fontconfig.enable = true;

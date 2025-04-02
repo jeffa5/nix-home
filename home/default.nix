@@ -15,26 +15,26 @@
 
   tuiPkgs =
     [
-      pkgs.nerd-fonts.hack
-      pkgs.noto-fonts-cjk-serif
-      pkgs.noto-fonts-cjk-sans
+      nixSearch
+      pkgs.cachix
       pkgs.fd
       pkgs.file
       pkgs.git-extras
-      pkgs.wget
       pkgs.htop
       pkgs.iftop
       pkgs.jq
       pkgs.lf
       pkgs.lm_sensors
+      pkgs.ncdu
+      pkgs.nerd-fonts.hack
+      pkgs.noto-fonts-cjk-sans
+      pkgs.noto-fonts-cjk-serif
+      pkgs.powertop
       pkgs.ripgrep
       pkgs.sccache
       pkgs.tree
-      pkgs.cachix
-      pkgs.ncdu
-      pkgs.powertop
       pkgs.unzip
-      nixSearch
+      pkgs.wget
     ]
     ++ [
       (pkgs.callPackage ./weekly.nix {})
