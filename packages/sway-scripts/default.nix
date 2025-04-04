@@ -15,7 +15,7 @@ in {
   file-launcher = pkgs.writeShellScriptBin "file-launcher" ''
     pgrep fuzzel && pkill fuzzel && exit 0
 
-    ${lib.getExe' pkgs.findutils "find"} Cloud Downloads Pictures -type f | ${lib.getExe pkgs.fuzzel} --width 100 --dmenu | ${lib.getExe' pkgs.coreutils "tr"} '\n' '\0' | ${lib.getExe' pkgs.findutils "xargs"} --no-run-if-empty --null ${lib.getExe' pkgs.xdg-utils "xdg-open"}
+    ${lib.getExe' pkgs.findutils "find"} Cloud Downloads Pictures -type f | ${menu} --width 100 | ${lib.getExe' pkgs.coreutils "tr"} '\n' '\0' | ${lib.getExe' pkgs.findutils "xargs"} --no-run-if-empty --null ${lib.getExe' pkgs.xdg-utils "xdg-open"}
   '';
 
   lockscreen = pkgs.writeShellScriptBin "sway-lockscreen" ''
@@ -45,7 +45,7 @@ in {
 
       inputs=$(printf "Focused output\nAll outputs\nRegion\nFocused window\nWindow\nColour Picker")
 
-      selection=$(echo "''$inputs" | ${menu} -p "screenshot> ")
+      selection=$(echo "''$inputs" | ${menu} --lines 6 --prompt "screenshot> ")
 
       PICTURE_DIR="$HOME/Pictures/screenshots/"
       PICTURE_FILE="$PICTURE_DIR$(date +'%Y-%m-%d-%H%M%S_screenshot.png')"
@@ -53,7 +53,7 @@ in {
       mkdir -p $PICTURE_DIR
 
       destination() {
-          printf "File\nClipboard" | ${menu} -p "destination> "
+          printf "File\nClipboard" | ${menu} --lines 2 --prompt "destination> "
       }
 
       case "$selection" in
@@ -129,7 +129,7 @@ in {
 
     inputs="Start session\nReset timer\nRestart session\nSkip session"
 
-    selection=$(echo -e "$inputs" | ${menu} --prompt "timer> ")
+    selection=$(echo -e "$inputs" | ${menu} --lines 4 --prompt "timer> ")
 
     case $selection in
       "Start session")
