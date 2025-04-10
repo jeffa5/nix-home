@@ -11,7 +11,7 @@
     extraConfig = ''
       bind r source-file ~/.config/tmux/tmux.conf \; display-message "Config reloaded..."
 
-      bind £ rename-session "#{b:pane_current_path}"
+      bind @ rename-session "#{b:pane_current_path}"
 
       # start new panes in current directory
       bind % split-window -h -c "#{pane_current_path}"
