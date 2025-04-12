@@ -199,8 +199,6 @@ in {
           "--locked XF86Tools" = "exec --no-startup-id ${playerctl} previous";
           "XF86Display" = "exec --no-startup-id ${wdisplays}";
         };
-
-      terminal = lib.getExe pkgs.alacritty;
     };
   };
 

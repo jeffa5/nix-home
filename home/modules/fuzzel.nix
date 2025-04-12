@@ -1,14 +1,10 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
+{...}: {
   programs.fuzzel = {
     enable = true;
     settings = {
       main = {
-        terminal = "${lib.getExe pkgs.alacritty} -e";
         inner-pad = 8;
+        dpi-aware = true;
       };
       colors = {
         background = "fbf1c7ff";

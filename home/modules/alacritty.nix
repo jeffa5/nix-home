@@ -1,4 +1,8 @@
-{...}: let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   light = {
     # Colors (Gruvbox light)
     primary = {
@@ -59,4 +63,7 @@ in {
       };
     };
   };
+
+  programs.fuzzel.settings.main.terminal = "${lib.getExe pkgs.alacritty} -e";
+  wayland.windowManager.sway.config.terminal = lib.getExe pkgs.alacritty;
 }

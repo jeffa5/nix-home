@@ -8,7 +8,7 @@
     ./email.nix
     ./contacts.nix
     ./calendar.nix
-    ./alacritty.nix
+    ./foot.nix
     ./papers.nix
 
     ./sway.nix
