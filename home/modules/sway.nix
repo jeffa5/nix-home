@@ -51,15 +51,25 @@ in {
       set $workspace9 9
       set $workspace10 10
 
-      set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (b) both, (r) reboot, (p) shutdown
+      set $mode_system (l) lock, (e) logout, (s) suspend, (h) hibernate, (b) both, (r) reboot, (p) shutdown
       mode "$mode_system" {
           bindsym l exec --no-startup-id $locker, mode "default"
-          bindsym e exit, mode "default"
           bindsym s exec --no-startup-id $locker && ${sctl} suspend, mode "default"
           bindsym h exec --no-startup-id $locker && ${sctl} hibernate, mode "default"
           bindsym b exec --no-startup-id $locker && ${sctl} hybrid-sleep, mode "default"
           bindsym r exec --no-startup-id ${sctl} reboot, mode "default"
           bindsym p exec --no-startup-id ${sctl} poweroff -i, mode "default"
+          bindsym e exit, mode "default"
+          bindsym Return mode "default"
+          bindsym Escape mode "default"
+      }
+
+      set $mode_media (Space) play/pause, (n) next, (p) previous
+      mode "$mode_media" {
+          bindsym Space exec --no-startup-id ${playerctl} play-pause, mode "default"
+          bindsym n exec --no-startup-id ${playerctl} next, mode "default"
+          bindsym p exec --no-startup-id ${playerctl} previous, mode "default"
+          bindsym e exit, mode "default"
           bindsym Return mode "default"
           bindsym Escape mode "default"
       }
@@ -184,6 +194,7 @@ in {
           "${mod}+Shift+i" = "move workspace to output up";
           "${mod}+Shift+o" = "move workspace to output right";
           "${mod}+Shift+e" = "mode $mode_system";
+          "${mod}+Shift+m" = "mode $mode_media";
           "--locked XF86AudioRaiseVolume" = "exec --no-startup-id ${pamixer} --increase 5 && ${pamixer} --get-volume > $WOBSOCK";
           "--locked XF86AudioLowerVolume" = "exec --no-startup-id ${pamixer} --decrease 5 && ${pamixer} --get-volume > $WOBSOCK";
           "--locked XF86AudioMute" = "exec --no-startup-id ${pamixer} --toggle-mute && ( [ \"$(${pamixer} --get-mute)\" = \"true\" ] && echo 0 > $WOBSOCK ) || ${pamixer} --get-volume > $WOBSOCK";
