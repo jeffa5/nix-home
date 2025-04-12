@@ -14,6 +14,7 @@
     ./sway.nix
     ./lf.nix
     ./rbw.nix
+    ./newsboat.nix
   ];
 
   home.packages = [
