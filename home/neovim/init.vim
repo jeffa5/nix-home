@@ -1,7 +1,7 @@
 lua << EOF
   -- keybind leaders
   vim.g.mapleader = " "
-  vim.g.maplocalleader = "\\"
+  vim.g.maplocalleader = ","
 
   -- options
 
