@@ -72,8 +72,8 @@
 
     wlsunset = {
       enable = true;
-      latitude = "51.5";
-      longitude = "-0.1";
+      latitude = 51.5;
+      longitude = 0.1;
     };
   };
 }
