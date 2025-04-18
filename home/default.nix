@@ -16,7 +16,6 @@
   tuiPkgs =
     [
       nixSearch
-      pkgs.cachix
       pkgs.fd
       pkgs.file
       pkgs.git-extras
