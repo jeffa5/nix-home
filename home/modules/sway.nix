@@ -22,6 +22,7 @@ in {
     ./imv.nix
     ./waybar.nix
     ./fuzzel.nix
+    ./applets.nix
   ];
 
   home.sessionVariables = {
