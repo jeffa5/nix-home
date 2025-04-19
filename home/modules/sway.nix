@@ -224,4 +224,9 @@ in {
 
     border_size = 0
   '';
+
+  gtk.iconTheme = {
+    package = pkgs.adwaita-icon-theme;
+    name = "adwaita-icon-theme";
+  };
 }
