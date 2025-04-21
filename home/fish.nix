@@ -32,7 +32,7 @@
     };
 
     shellAliases = {
-      wiki = "cd ~/Cloud/Obsidian/Home && nvim && popd";
+      wiki = "pushd ~/Cloud/Obsidian/Home && nvim && popd";
     };
 
     interactiveShellInit = ''
