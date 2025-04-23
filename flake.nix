@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    stableNixpkgs.url = "github:nixos/nixpkgs?ref=nixos-24.05";
+    stableNixpkgs.url = "github:nixos/nixpkgs?ref=nixos-24.11";
     home-manager = {
       url = "github:nix-community/home-manager?ref=master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -34,7 +34,7 @@
   }: let
     username = "andrew";
     system = "x86_64-linux";
-    sway-overlay = _final:_prev: {
+    sway-overlay = _final: _prev: {
       status-bar = import packages/status-bar pkgs;
       sway-scripts = import packages/sway-scripts {
         inherit pkgs;
@@ -161,6 +161,17 @@
         modules = [./nixos/x1c6 hardware.nixosModules.lenovo-thinkpad-x1-6th-gen];
         users = ["andrew"];
         gui = true;
+      };
+
+      rpi0 = stableNixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        modules = [
+          hardware.nixosModules.raspberry-pi-4
+          (import ./nixos/rpi0 {
+            nixpkgs = stableNixpkgs;
+            configs = self.nixosConfigurations;
+          })
+        ];
       };
 
       rpi1 = stableNixpkgs.lib.nixosSystem {
