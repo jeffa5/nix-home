@@ -4,7 +4,6 @@
     settings = {
       main = {
         inner-pad = 8;
-        dpi-aware = true;
       };
       colors = {
         background = "fbf1c7ff";

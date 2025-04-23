@@ -8,8 +8,7 @@
     enable = true;
     settings = {
       main = {
-        font = "Hack Nerd Font";
-        dpi-aware = true;
+        font = "Hack Nerd Font:size=12";
       };
       colors = {
         # Colors (Gruvbox light)
