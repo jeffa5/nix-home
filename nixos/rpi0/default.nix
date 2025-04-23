@@ -11,6 +11,7 @@
       inherit nixpkgs;
       users = [];
     })
+    ../modules/tailscale.nix
   ];
 
   networking.hostName = "rpi0";
