@@ -1,9 +1,6 @@
-{nixpkgs, ...}: {
+{...}: {
   imports = [
-    (import ../modules/nix.nix {
-      inherit nixpkgs;
-      users = [];
-    })
+    ./nix.nix
     ./node-exporter.nix
     ./tailscale.nix
   ];
