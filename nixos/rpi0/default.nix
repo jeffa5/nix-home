@@ -4,6 +4,10 @@
 
     ../modules/rpi.nix
 
+    ../modules/zigbee2mqtt.nix
+    ../modules/mosquitto.nix
+    ../modules/influxdb.nix
+
     (import ../modules/kubenode.nix {inherit nixpkgs;})
   ];
 
