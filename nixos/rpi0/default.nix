@@ -4,6 +4,7 @@
 
     ../modules/rpi.nix
 
+    ../modules/nginx.nix
     ../modules/zigbee2mqtt.nix
     ../modules/mosquitto.nix
     ../modules/influxdb.nix
