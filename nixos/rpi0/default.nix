@@ -1,10 +1,10 @@
-{pkgs, ...}: {
+{nixpkgs}: {pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
 
     ../modules/rpi.nix
 
-    ../modules/kubenode.nix
+    (import ../modules/kubenode.nix {inherit nixpkgs;})
   ];
 
   networking.hostName = "rpi0";

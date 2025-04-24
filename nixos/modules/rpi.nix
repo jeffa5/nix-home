@@ -3,10 +3,10 @@
     ./openssh.nix
     # ./autoupgrade.nix
 
-    ./nodeboard.nix
+    # ./nodeboard.nix
   ];
 
-  services.nodeboard.enable = true;
+  # services.nodeboard.enable = true;
 
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
