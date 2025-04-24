@@ -7,11 +7,7 @@
 
     ../modules/rpi.nix
 
-    (import ../modules/nix.nix {
-      inherit nixpkgs;
-      users = [];
-    })
-    ../modules/tailscale.nix
+    ../modules/kubenode.nix
   ];
 
   networking.hostName = "rpi0";
