@@ -1,8 +1,10 @@
-{nixpkgs}: {pkgs, ...}: {
+{nixpkgs, configs}: {pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
 
     ../modules/rpi.nix
+
+    (import ../modules/dnsmasq.nix {inherit configs;})
 
     ../modules/nginx.nix
     ../modules/zigbee2mqtt.nix
