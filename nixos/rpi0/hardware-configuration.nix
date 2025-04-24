@@ -18,6 +18,28 @@
     fsType = "ext4";
   };
 
+  fileSystems."/local" = {
+    # usb 3.5 4TB drive
+    device = "/dev/disk/by-uuid/7634a7da-f73b-4280-9691-933584483f20";
+    fsType = "ext4";
+    options = ["nofail"];
+  };
+
+  fileSystems."${config.services.zigbee2mqtt.dataDir}" = {
+    device = "/local/zigbee2mqtt";
+    options = ["bind"];
+  };
+
+  fileSystems."${config.services.mosquitto.dataDir}" = {
+    device = "/local/mosquitto";
+    options = ["bind"];
+  };
+
+  fileSystems."/var/lib/influxdb2" = {
+    device = "/local/influxdb2";
+    options = ["bind"];
+  };
+
   swapDevices = [];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
