@@ -121,6 +121,18 @@
     mkHomes = users: (
       lib.foldl (a: b: a // b) {} (map mkHomesForUser users)
     );
+    piSystem = hostname:
+      stableNixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        modules = [
+          hardware.nixosModules.raspberry-pi-4
+          (import ./nixos
+            + hostname {
+              nixpkgs = stableNixpkgs;
+              configs = self.nixosConfigurations;
+            })
+        ];
+      };
     piSSH = hostname:
       stableNixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
@@ -174,36 +186,13 @@
         ];
       };
 
-      rpi1 = stableNixpkgs.lib.nixosSystem {
-        system = "aarch64-linux";
-        modules = [
-          hardware.nixosModules.raspberry-pi-4
-          (import ./nixos/rpi1 {
-            nixpkgs = stableNixpkgs;
-            configs = self.nixosConfigurations;
-          })
-        ];
-      };
+      rpi1 = piSystem "rpi1";
 
       rpi1ssh = piSSH "rpi1";
 
-      rpi2 = stableNixpkgs.lib.nixosSystem {
-        system = "aarch64-linux";
-        modules = [
-          hardware.nixosModules.raspberry-pi-4
-          (import ./nixos/rpi2 {nixpkgs = stableNixpkgs;})
-        ];
-      };
+      rpi2 = piSystem "rpi2";
 
       rpi2ssh = piSSH "rpi2";
-
-      # rosebud = nixpkgs.lib.nixosSystem {
-      #   inherit system pkgs;
-      #   modules = [
-      #     tasknet.nixosModules.${system}.tasknet-server
-      #     ./nixos/rosebud
-      #   ];
-      # };
     };
 
     # standalone home environment

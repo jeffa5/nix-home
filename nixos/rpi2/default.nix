@@ -1,4 +1,7 @@
-{nixpkgs}: {pkgs, ...}: {
+{
+  nixpkgs,
+  configs,
+}: {pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
 

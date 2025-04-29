@@ -60,7 +60,7 @@ in {
 
     users.andrew = {
       isNormalUser = true;
-      extraGroups = ["wheel" "docker" "networkmanager" "plugdev" "adbusers"];
+      extraGroups = ["wheel" "docker" "networkmanager" "plugdev" "adbusers" "libvirtd"];
       shell = pkgs.fish;
     };
   };
@@ -68,6 +68,7 @@ in {
   environment.systemPackages = [
     pkgs.zsh
     pkgs.fish
+    pkgs.qemu
   ];
 
   console.packages = [colemakdh];
@@ -115,6 +116,7 @@ in {
   systemd.services.NetworkManager-wait-online.enable = false;
 
   virtualisation.docker.enable = true;
+  virtualisation.libvirtd.enable = true;
 
   services.xserver = {
     xkb.layout = "uk-cdh,gb";
