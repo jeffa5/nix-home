@@ -11,8 +11,6 @@
   lib,
   ...
 }: let
-  homeDirectory = "/home/${username}";
-
   tuiPkgs =
     [
       nixSearch
@@ -42,6 +40,7 @@
 in {
   imports =
     [
+      ./modules/home.nix
       ./xkb.nix
       ./latexmk.nix
       (import ./neovim.nix {inherit wordnet-ls maills icalls;})
@@ -89,18 +88,6 @@ in {
       "application/vnd.oasis.opendocument.text" = ["writer.desktop"];
       "application/vnd.oasis.opendocument.spreadsheet" = ["calc.desktop"];
     };
-  };
-
-  home = {
-    inherit homeDirectory username;
-    sessionPath = ["${homeDirectory}/.cargo/bin"];
-    sessionVariables = {
-      MOZ_ENABLE_WAYLAND = 1;
-      XDG_SESSION_TYPE = "wayland";
-      EDITOR = "nvim";
-    };
-
-    stateVersion = "21.11";
   };
 
   home.packages = tuiPkgs;
