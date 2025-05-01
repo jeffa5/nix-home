@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   imports = [
+    ./xdg.nix
     ./dconf.nix
     ./firefox.nix
     ../import-nef.nix

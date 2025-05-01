@@ -126,11 +126,10 @@
         system = "aarch64-linux";
         modules = [
           hardware.nixosModules.raspberry-pi-4
-          (import ./nixos
-            + hostname {
-              nixpkgs = stableNixpkgs;
-              configs = self.nixosConfigurations;
-            })
+          (import "${./nixos}/${hostname}" {
+            nixpkgs = stableNixpkgs;
+            configs = self.nixosConfigurations;
+          })
         ];
       };
     piSSH = hostname:
@@ -214,7 +213,7 @@
         mkdir $out
       '';
 
-      deploy = pkgs.callPackage ./deploy.nix {hosts = import ./hosts.nix;};
+      deploy = pkgs.callPackage ./deploy.nix {hosts = import ./nixos/hosts.nix;};
 
       nvd = pkgs.writeShellScriptBin "nvd" ''
         nixos-rebuild build --flake . # get the to-be-installed closure

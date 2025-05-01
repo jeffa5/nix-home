@@ -3,7 +3,7 @@
   config,
   ...
 }: let
-  hosts = import ../../hosts.nix;
+  hosts = import ../hosts.nix;
   nodeEntries =
     lib.concatStringsSep "\n" (lib.mapAttrsToList (name: value: "${value} ${name}.home.jeffas.net") hosts);
   serviceEntriesForNode = name: nodeConfig: let
