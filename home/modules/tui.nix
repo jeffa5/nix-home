@@ -1,6 +1,4 @@
-{
-  gui,
-}: {pkgs, ...}: {
+{gui}: {pkgs, ...}: {
   imports = [
     ./bat.nix
     ./direnv.nix
@@ -41,4 +39,12 @@
       (pkgs.callPackage ./weekly.nix {})
       (pkgs.callPackage ./daily.nix {})
     ];
+
+  programs.readline = {
+    enable = true;
+    variables = {
+      editing-mode = "vi";
+      keymap = "vi-command";
+    };
+  };
 }
