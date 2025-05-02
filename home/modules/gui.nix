@@ -16,6 +16,7 @@
     ./lf.nix
     ./rbw.nix
     ./newsboat.nix
+    ./taskwarrior.nix
   ];
 
   home.packages = [
@@ -40,8 +41,6 @@
     pkgs.signal-desktop
     pkgs.slack
     pkgs.spotify
-    pkgs.tasksh
-    pkgs.taskwarrior-tui
     pkgs.thunderbird
     pkgs.timewarrior
     pkgs.vlc
@@ -55,14 +54,6 @@
   ];
 
   fonts.fontconfig.enable = true;
-
-  programs = {
-    taskwarrior = {
-      enable = true;
-      package = pkgs.taskwarrior3;
-      colorTheme = "light-256";
-    };
-  };
 
   services = {
     nextcloud-client = {
