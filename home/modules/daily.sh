@@ -22,6 +22,8 @@ if ! test -f "$note_path"; then
 [Last one]($last)
 [Next one]()
 
+## Initial plan
+
 ## Tickets
 
 ## Notes

@@ -1,18 +1,14 @@
 {
   gui,
   username,
-  wordnet-ls,
-  maills,
-  icalls,
-  nixSearch,
 }: {...}: {
   imports =
     [
       (import ./modules/home.nix {inherit username;})
-      (import ./modules/tui.nix {inherit gui nixSearch;})
+      (import ./modules/tui.nix {inherit gui;})
       ./xkb.nix
       ./latexmk.nix
-      (import ./neovim.nix {inherit wordnet-ls maills icalls;})
+      ./neovim.nix
       ./helix.nix
       ./modules/cargo.nix
       (import ./modules/nix.nix {inherit username;})

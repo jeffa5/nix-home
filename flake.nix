@@ -41,6 +41,12 @@
         lib = pkgs.lib;
       };
     };
+    custom-overlay = _final: _prev: {
+      nix-search = nixSearch.packages.${system}.default;
+      wordnet-ls = wordnet-ls.packages.${system}.wordnet-ls;
+      maills = maills.packages.${system}.maills;
+      icalls = icalls.packages.${system}.icalls;
+    };
     pkgs = import nixpkgs {
       inherit system;
       overlays = [
@@ -48,12 +54,9 @@
         tasknet.overlays.default
         waytext.overlays.default
         sway-overlay
+        custom-overlay
       ];
     };
-    wordnet-lspkg = wordnet-ls.packages.${system}.wordnet-ls;
-    maillsPkg = maills.packages.${system}.maills;
-    icallsPkg = icalls.packages.${system}.icalls;
-    nixSearchPkg = nixSearch.packages.${system}.default;
     colemakdh = import packages/colemakdh pkgs;
     lib = pkgs.lib;
     mkMachine = {
@@ -80,10 +83,6 @@
               home-manager.useUserPackages = true;
               home-manager.users.${username} = import ./home {
                 inherit gui username;
-                wordnet-ls = wordnet-lspkg;
-                maills = maillsPkg;
-                icalls = icallsPkg;
-                nixSearch = nixSearchPkg;
               };
             }
           ]
@@ -96,10 +95,6 @@
           (import ./home {
             inherit username;
             gui = true;
-            wordnet-ls = wordnet-lspkg;
-            maills = maillsPkg;
-            icalls = icallsPkg;
-            nixSearch = nixSearchPkg;
           })
         ];
       };
@@ -110,10 +105,6 @@
           (import ./home {
             inherit username;
             gui = false;
-            wordnet-ls = wordnet-lspkg;
-            maills = maillsPkg;
-            icalls = icallsPkg;
-            nixSearch = nixSearchPkg;
           })
         ];
       };
@@ -197,7 +188,14 @@
     # standalone home environment
     # home-manager switch --flake '<flake-uri>#andrew'
     # to install
-    homeConfigurations = mkHomes ["andrew" "apj39"];
+    homeConfigurations =
+      (mkHomes ["andrew" "apj39"])
+      // {
+        ajeffery = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [./home/cloudflare];
+        };
+      };
 
     packages.${system} = {
       nixfmt =

@@ -1,35 +1,34 @@
 {
-  wordnet-ls,
-  maills,
-  icalls,
-}: {pkgs, ...}: let
+  pkgs,
+  lib,
+  ...
+}: let
   vimPkgs = pkgs.vimPlugins;
 in {
   programs.neovim = {
     enable = true;
     vimAlias = true;
     vimdiffAlias = true;
-    extraPackages = [
-      pkgs.alejandra
-      pkgs.black
-      pkgs.beancount-language-server
-      pkgs.clang-tools
-      pkgs.isort
-      pkgs.lua-language-server
-      pkgs.marksman
-      pkgs.nil
-      pkgs.nodePackages.prettier
-      pkgs.pylint
-      pkgs.pyright
-      pkgs.rust-analyzer
-      pkgs.texlab
-      pkgs.tinymist
-
-      # my language servers
-      wordnet-ls
-      maills
-      icalls
-    ];
+    extraPackages =
+      [
+        pkgs.alejandra
+        pkgs.black
+        pkgs.beancount-language-server
+        pkgs.clang-tools
+        pkgs.isort
+        pkgs.lua-language-server
+        pkgs.marksman
+        pkgs.nil
+        pkgs.nodePackages.prettier
+        pkgs.pylint
+        pkgs.pyright
+        pkgs.rust-analyzer
+        pkgs.texlab
+        pkgs.tinymist
+      ]
+      ++ lib.optional (pkgs ? wordnet-ls) pkgs.wordnet-ls
+      ++ lib.optional (pkgs ? maills) pkgs.maills
+      ++ lib.optional (pkgs ? icalls) pkgs.icalls;
     extraConfig = builtins.readFile ./neovim/init.vim;
     plugins = [
       {
@@ -144,19 +143,21 @@ in {
         type = "lua";
         config =
           (builtins.readFile ./neovim/nvim-cmp.lua)
-          + ''
+          + lib.optionalString (pkgs ? wordnet-ls) ''
             require('lspconfig')['wordnet'].setup {
                 on_attach = on_attach,
                 capabilities = capabilities,
                 init_options = { wordnet = '${pkgs.wordnet}/dict' },
             }
-
+          ''
+          + lib.optionalString (pkgs ? maills) ''
             require('lspconfig')['maills'].setup {
                 on_attach = on_attach,
                 capabilities = capabilities,
                 init_options = { vcard_dir = '~/contacts/jeffas', contact_list_file = '~/contacts/list' },
             }
-
+          ''
+          + lib.optionalString (pkgs ? icalls) ''
             require('lspconfig')['icalls'].setup {
                 on_attach = on_attach,
                 capabilities = capabilities,

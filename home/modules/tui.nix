@@ -1,6 +1,5 @@
 {
   gui,
-  nixSearch,
 }: {pkgs, ...}: {
   imports = [
     ./bat.nix
@@ -18,7 +17,7 @@
   ];
   home.packages =
     [
-      nixSearch
+      pkgs.nix-search
       pkgs.fd
       pkgs.file
       pkgs.git-extras
