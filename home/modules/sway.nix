@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  config,
   ...
 }: let
   normal_bg = "#282828";
@@ -29,7 +30,7 @@ in {
     XDG_CURRENT_DESKTOP = "sway";
   };
 
-  wayland.windowManager.sway = rec {
+  wayland.windowManager.sway = {
     enable = true;
     # disable checking config as setting custom xkb_layout breaks it
     # https://github.com/nix-community/home-manager/issues/5311
@@ -155,7 +156,7 @@ in {
       };
 
       keybindings = let
-        mod = config.modifier;
+        mod = config.wayland.windowManager.sway.config.modifier;
         swaymsg = lib.getExe' pkgs.sway "swaymsg";
       in
         pkgs.lib.mkOptionDefault {
