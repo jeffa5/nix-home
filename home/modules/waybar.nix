@@ -228,4 +228,9 @@ in {
       }
     '';
   };
+  wayland.windowManager.sway.config.bars = [
+    {
+      command = lib.getExe pkgs.waybar;
+    }
+  ];
 }

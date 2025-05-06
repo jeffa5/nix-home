@@ -22,6 +22,7 @@ in {
     ./zathura.nix
     ./imv.nix
     ./waybar.nix
+    ./i3status.nix
     ./fuzzel.nix
     ./applets.nix
   ];
@@ -82,12 +83,6 @@ in {
 
     config = {
       modifier = "Mod4";
-
-      bars = [
-        {
-          command = lib.getExe pkgs.waybar;
-        }
-      ];
 
       colors = {
         focused = {
