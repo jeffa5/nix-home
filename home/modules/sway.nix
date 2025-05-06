@@ -22,7 +22,6 @@ in {
     ./zathura.nix
     ./imv.nix
     ./waybar.nix
-    ./i3status.nix
     ./fuzzel.nix
     ./applets.nix
   ];
