@@ -2,12 +2,12 @@
   services.mako = {
     enable = true;
     settings = {
-      backgroundColor = "#282828";
-      borderSize = 4;
-      defaultTimeout = 10000;
+      background-color = "#282828";
+      border-size = 4;
+      default-timeout = 10000;
       font = "hack 12";
       height = 200;
-      textColor = "#ebdbb2";
+      text-color = "#ebdbb2";
       width = 400;
       format = "<b><u>%a</u></b>\\n<b>%s</b>\\n%b";
     };
