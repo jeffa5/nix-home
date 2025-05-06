@@ -8,5 +8,18 @@ vim.keymap.set('n', '<leader>/', fzflua.lines, { desc = "Buffer lines" })
 -- diagnostic mappings
 -- see `:help vim.diagnostic.*` for docs
 vim.keymap.set('n', '<leader>a', fzflua.diagnostics_workspace, { desc = "Diagnostics" })
-vim.keymap.set('n', '<leader>d', vim.diagnostic.goto_next, { desc = "Next diagnostic" })
-vim.keymap.set('n', '<leader>s', vim.diagnostic.goto_prev, { desc = "Prev diagnostic" })
+vim.keymap.set('n', '<leader>d', function() vim.diagnostic.jump({count=1, float=true}) end, { desc = "Next diagnostic" })
+vim.keymap.set('n', '<leader>s', function() vim.diagnostic.jump({count=-1, float=true}) end, { desc = "Prev diagnostic" })
+vim.keymap.set('n', ']d', function() vim.diagnostic.jump({count=1, float=true}) end, { desc = "Next diagnostic" })
+vim.keymap.set('n', '[d', function() vim.diagnostic.jump({count=-1, float=true}) end, { desc = "Prev diagnostic" })
+
+fzflua.setup({
+    keymap = {
+        fzf = {
+            true,
+            -- Use <c-q> to select all items and add them to the quickfix list
+            ["ctrl-q"] = "select-all+accept",
+        }
+    }
+})
+
