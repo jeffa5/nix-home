@@ -41,11 +41,21 @@
         lib = pkgs.lib;
       };
     };
-    custom-overlay = _final: _prev: {
+    custom-overlay = _final: prev: {
       nix-search = nixSearch.packages.${system}.default;
       wordnet-ls = wordnet-ls.packages.${system}.wordnet-ls;
       maills = maills.packages.${system}.maills;
       icalls = icalls.packages.${system}.icalls;
+      khal =
+        prev.khal.overrideAttrs
+        (_finalAttrs: _previousAttrs: {
+          src = prev.fetchFromGitHub {
+            owner = "jeffa5";
+            repo = "khal";
+            rev = "35665e6c5a942621d686c55e809c9805d3c48c73"; # branch "myfeatures"
+            sha256 = "sha256-MsNtyFAoNhqgD2cr1+KSD9U8JFHBklrSiTH1jh79sF8=";
+          };
+        });
     };
     pkgs = import nixpkgs {
       inherit system;
