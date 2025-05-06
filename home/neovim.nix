@@ -281,6 +281,14 @@ in {
         '';
       }
       vimPkgs.vim-beancount
+      {
+        plugin = vimPkgs.vim-slime;
+        config = ''
+          " vim-slime
+          let g:slime_target = "tmux"
+          let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
+        '';
+      }
     ];
   };
 }
