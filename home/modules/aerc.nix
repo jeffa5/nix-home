@@ -72,7 +72,7 @@ in {
 
       threading-enabled = true;
       mouse-enabled = true;
-      tab-title-account = "{{.Account}} {{if .Unread}}({{.Unread}}){{end}}";
+      tab-title-account = "{{.Account}} {{if .Unread \"Inbox\"}}({{.Unread \"Inbox\"}}){{end}}";
       dirlist-tree = true;
       auto-mark-read = false;
       fuzzy-complete = true;
