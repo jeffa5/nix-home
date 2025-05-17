@@ -224,6 +224,7 @@
       deploy = pkgs.callPackage ./deploy.nix {hosts = import ./nixos/hosts.nix;};
 
       nvd = pkgs.writeShellScriptBin "nvd" ''
+        set -e
         nixos-rebuild build --flake . # get the to-be-installed closure
         ${pkgs.lib.getExe pkgs.nvd} diff /run/current-system ./result # diff that with the current system
       '';
