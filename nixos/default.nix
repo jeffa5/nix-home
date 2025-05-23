@@ -16,7 +16,7 @@ in {
   imports =
     [
       (import ./modules/nix.nix {inherit nixpkgs users;})
-      ./modules/tailscale.nix
+      # ./modules/tailscale.nix
       ./modules/restic.nix
       ./modules/autoupgrade.nix
 

@@ -11,7 +11,7 @@
     ../modules/node-exporter.nix
     ../modules/promtail.nix
     ../modules/nginx.nix
-    ../modules/tailscale.nix
+    # ../modules/tailscale.nix
     ../modules/nextcloudcmd.nix
   ];
 

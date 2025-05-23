@@ -22,7 +22,7 @@
     # serving
     (import ../modules/dnsmasq.nix {inherit configs;})
     ../modules/nginx.nix
-    ../modules/tailscale.nix
+    # ../modules/tailscale.nix
     (import ../modules/homeboard.nix {inherit configs;})
     # misc
     # ../modules/taskserver.nix
