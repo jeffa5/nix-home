@@ -25,6 +25,8 @@
   environment.systemPackages = [
     pkgs.vim
     pkgs.wget
+    pkgs.htop
+    pkgs.lm_sensors
   ];
 
   # This option defines the first version of NixOS you have installed on this particular machine,
