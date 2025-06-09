@@ -175,6 +175,13 @@
         gui = true;
       };
 
+      cubenas = stableNixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./nixos/cubenas
+        ];
+      };
+
       rpi0 = stableNixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         modules = [

@@ -23,7 +23,6 @@
   script = lib.concatStringsSep "\n" lines;
 in
   writeShellScriptBin "deploy" ''
-
     if [[ "$1" == "" ]]; then
       echo "Please pass the host to deploy to"
       exit 1
