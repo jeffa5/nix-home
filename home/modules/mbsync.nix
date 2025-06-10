@@ -6,7 +6,7 @@
   mu = lib.getExe pkgs.mu;
   muUpdate = pkgs.writeShellScriptBin "mu-update" ''
     ${mu} index
-    ${pkgs.lib.getExe pkgs.maildir-rank-addr} --maildir ~/mail --outputpath ~/contacts/list --template '{{.Name}} {{.Address}}'
+    ${mu} cfind > ~/contacts/list
   '';
 in {
   programs.mbsync.enable = true;
