@@ -57,15 +57,15 @@
           };
         });
     };
+    overlays = [
+      papers.overlays.default
+      tasknet.overlays.default
+      waytext.overlays.default
+      sway-overlay
+      custom-overlay
+    ];
     pkgs = import nixpkgs {
-      inherit system;
-      overlays = [
-        papers.overlays.default
-        tasknet.overlays.default
-        waytext.overlays.default
-        sway-overlay
-        custom-overlay
-      ];
+      inherit system overlays;
     };
     colemakdh = import packages/colemakdh pkgs;
     lib = pkgs.lib;
@@ -79,13 +79,7 @@
         modules =
           [
             (import ./nixos {
-              inherit colemakdh users gui;
-              nixpkgs = nixpkgs;
-              overlays = [
-                papers.overlays.default
-                waytext.overlays.default
-                sway-overlay
-              ];
+              inherit colemakdh users gui nixpkgs overlays;
             })
             home-manager.nixosModules.home-manager
             {
