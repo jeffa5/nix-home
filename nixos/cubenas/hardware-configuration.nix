@@ -34,6 +34,28 @@
     fsType = "btrfs";
   };
 
+  # local binds
+  fileSystems."/var/lib/${config.services.prometheus.stateDir}" = {
+    device = "/local/prometheus";
+    options = ["bind"];
+  };
+  fileSystems."${config.services.loki.dataDir}" = {
+    device = "/local/loki";
+    options = ["bind"];
+  };
+  fileSystems."${config.services.zigbee2mqtt.dataDir}" = {
+    device = "/local/zigbee2mqtt";
+    options = ["bind"];
+  };
+  fileSystems."${config.services.mosquitto.dataDir}" = {
+    device = "/local/mosquitto";
+    options = ["bind"];
+  };
+  fileSystems."/var/lib/influxdb2" = {
+    device = "/local/influxdb2";
+    options = ["bind"];
+  };
+
   swapDevices = [];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

@@ -172,7 +172,7 @@
       cubenas = stableNixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          ./nixos/cubenas
+          (import ./nixos/cubenas {configs = self.nixosConfigurations;})
         ];
       };
 

@@ -1,13 +1,30 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-{pkgs, ...}: {
+{configs}: {pkgs, ...}: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../modules/openssh.nix
     ../modules/tailscale.nix
+
+    # monitoring
+    ../modules/node-exporter.nix
+    ../modules/prometheus.nix
+    ../modules/grafana.nix
+    ../modules/loki.nix
+    ../modules/promtail.nix
+
+    ../modules/nginx.nix
+
+    ../modules/nodeboard.nix
+    (import ../modules/homeboard.nix {inherit configs;})
+
+    (import ../modules/dnsmasq.nix {inherit configs;})
   ];
+
+  services.nodeboard.enable = true;
+  services.homeboard.enable = true;
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;

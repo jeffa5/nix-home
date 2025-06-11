@@ -1,6 +1,10 @@
-{...}: {
+{...}: let
+  ns = "100.121.99.93";
+in {
   services.tailscale.enable = true;
 
-  networking.resolvconf.extraConfig = "";
-  networking.nameservers = ["100.106.58.97"];
+  networking.resolvconf.extraConfig = "
+    name_servers='${ns}'
+  ";
+  networking.nameservers = [ns];
 }

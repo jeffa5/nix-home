@@ -2,6 +2,7 @@
   private_port = 9090;
   ports = import ./ports.nix;
   homeNet = "home.jeffas.net";
+  cubenas = "cubenas.${homeNet}";
   rpi1 = "rpi1.${homeNet}";
   rpi2 = "rpi2.${homeNet}";
   xps15 = "xps15.${homeNet}";
@@ -36,9 +37,8 @@ in {
       {
         job_name = "node";
         static_configs = [
-          # this pi (rpi1)
+          {targets = ["node-exporter.${cubenas}"];}
           {targets = ["node-exporter.${rpi1}"];}
-          # rpi2
           {targets = ["node-exporter.${rpi2}"];}
           # xps15, not running nginx
           {targets = ["${xps15}:${toString ports.node-exporter.private}"];}
@@ -51,9 +51,8 @@ in {
       {
         job_name = "promtail";
         static_configs = [
-          # this pi (rpi1)
+          {targets = ["promtail.${cubenas}"];}
           {targets = ["promtail.${rpi1}"];}
-          # rpi2
           {targets = ["promtail.${rpi2}"];}
           # xps15, not running nginx
           {targets = ["${xps15}:${toString ports.promtail.private}"];}
@@ -66,27 +65,26 @@ in {
       {
         job_name = "nginx";
         static_configs = [
-          # this pi (rpi1)
+          {targets = ["nginx-exporter.${cubenas}"];}
           {targets = ["nginx-exporter.${rpi1}"];}
-          # rpi2
           {targets = ["nginx-exporter.${rpi2}"];}
         ];
       }
       {
         job_name = "dnsmasq";
         static_configs = [
-          {targets = ["dnsmasq-exporter.${rpi1}"];}
+          {targets = ["dnsmasq-exporter.${cubenas}"];}
         ];
       }
       {
-        job_name = "wttr_in_cambridge";
+        job_name = "wttr_in_london";
         static_configs = [
           {
             targets = ["wttr.in"];
-            labels = {location = "cambridge";};
+            labels = {location = "london";};
           }
         ];
-        metrics_path = "/Cambridge";
+        metrics_path = "/London";
         params = {
           format = ["p1"];
         };
@@ -98,7 +96,7 @@ in {
     retentionTime = "5y";
 
     globalConfig = {
-      scrape_interval = "15s";
+      scrape_interval = "30s";
     };
   };
 
