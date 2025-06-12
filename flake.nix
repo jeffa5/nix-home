@@ -172,28 +172,31 @@
       cubenas = stableNixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          (import ./nixos/cubenas {configs = self.nixosConfigurations;})
-        ];
-      };
-
-      rpi0 = stableNixpkgs.lib.nixosSystem {
-        system = "aarch64-linux";
-        modules = [
-          hardware.nixosModules.raspberry-pi-4
-          (import ./nixos/rpi0 {
-            nixpkgs = stableNixpkgs;
+          (import ./nixos/cubenas {
+            inherit nixpkgs;
             configs = self.nixosConfigurations;
           })
         ];
       };
 
-      rpi1 = piSystem "rpi1";
-
-      rpi1ssh = piSSH "rpi1";
-
-      rpi2 = piSystem "rpi2";
-
-      rpi2ssh = piSSH "rpi2";
+      # rpi0 = stableNixpkgs.lib.nixosSystem {
+      #   system = "aarch64-linux";
+      #   modules = [
+      #     hardware.nixosModules.raspberry-pi-4
+      #     (import ./nixos/rpi0 {
+      #       nixpkgs = stableNixpkgs;
+      #       configs = self.nixosConfigurations;
+      #     })
+      #   ];
+      # };
+      #
+      # rpi1 = piSystem "rpi1";
+      #
+      # rpi1ssh = piSSH "rpi1";
+      #
+      # rpi2 = piSystem "rpi2";
+      #
+      # rpi2ssh = piSSH "rpi2";
     };
 
     # standalone home environment
