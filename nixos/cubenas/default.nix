@@ -1,10 +1,15 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-{configs}: {pkgs, ...}: {
+{nixpkgs, configs}: {pkgs, ...}: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    # (import ../modules/nix.nix {
+    #   inherit nixpkgs;
+    #   users = [];
+    # })
+
     ../modules/openssh.nix
     ../modules/tailscale.nix
 
@@ -21,6 +26,11 @@
     (import ../modules/homeboard.nix {inherit configs;})
 
     (import ../modules/dnsmasq.nix {inherit configs;})
+
+    # smart home
+    ../modules/zigbee2mqtt.nix
+    ../modules/mosquitto.nix
+    ../modules/influxdb.nix
   ];
 
   services.nodeboard.enable = true;
@@ -44,6 +54,7 @@
     pkgs.wget
     pkgs.htop
     pkgs.lm_sensors
+    pkgs.dnsutils
   ];
 
   # This option defines the first version of NixOS you have installed on this particular machine,
