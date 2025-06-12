@@ -10,8 +10,4 @@
   nix.extraOptions = ''
     !include /home/${username}/.config/nix/extra.conf
   '';
-  nix.gc = {
-    automatic = true;
-    frequency = "daily";
-  };
 }
