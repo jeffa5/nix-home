@@ -20,29 +20,29 @@ in {
       };
 
       devices = {
+        "0x00158d000ab704e1" = {
+          friendly_name = "kitchen/washing_machine/vibration";
+        };
         "0x9035eafffe0d82b3" = {
           friendly_name = "bedroom/temp_hum";
         };
         "0x9035eafffe02bb4c" = {
-          friendly_name = "desk/temp_hum";
+          friendly_name = "lounge/temp_hum";
         };
         "0x9035eafffe02b57c" = {
           friendly_name = "kitchen/temp_hum";
-        };
-        "0x00158d000ab75716" = {
-          friendly_name = "boiler/vibration";
         };
         "0xa4c1380101c477a3" = {
           friendly_name = "desk/homelab/power";
         };
         "0xa4c1384f889e5eed" = {
-          friendly_name = "desk/charger/power";
+          friendly_name = "kitchen/fridge/power";
         };
         "0xa4c13890038bb6fc" = {
-          friendly_name = "desk/router/power";
+          friendly_name = "bedroom/lamps/power";
         };
         "0xa4c1384d69014eec" = {
-          friendly_name = "kitchen/ap/power";
+          friendly_name = "lounge/ap/power";
         };
       };
     };
