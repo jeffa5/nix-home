@@ -16,16 +16,6 @@
       trusted-users = ["root"] ++ users;
     };
 
-    gc = {
-      automatic = true;
-      dates = "daily";
-      options = "--delete-older-than 8d";
-    };
-
-    optimise = {
-      automatic = true;
-    };
-
     # make nix shell commands use same nixpkgs as system
     registry.nixpkgs.flake = nixpkgs;
   };
