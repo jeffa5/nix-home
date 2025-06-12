@@ -3,8 +3,8 @@
 in {
   services.tailscale.enable = true;
 
-  networking.resolvconf.extraConfig = "
-    name_servers='${ns}'
-  ";
+  # networking.resolvconf.extraConfig = ''
+  #   name_servers='${ns}'
+  # '';
   networking.nameservers = [ns];
 }
