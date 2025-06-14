@@ -15854,7 +15854,7 @@
               },
               {
                 "matcher": {
-                  "id": "byRegexp",
+                  "id": "byRegexp",
                   "options": "/.*sda2_.*/"
                 },
                 "properties": [
