@@ -36,7 +36,7 @@ in {
       exclude = excludes;
       initialize = true;
       passwordFile = "${passwordFileLocal}";
-      extraBackupArgs = ["-vv"];
+      # extraBackupArgs = ["-vv"];
     };
 
     homelab = {
@@ -46,7 +46,7 @@ in {
       exclude = excludes;
       initialize = true;
       passwordFile = "${passwordFileHomelab}";
-      extraBackupArgs = ["-vv"];
+      # extraBackupArgs = ["-vv"];
     };
   };
 }
