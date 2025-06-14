@@ -72,6 +72,11 @@ in {
           name = "dnsmasq";
           options.path = ./grafana/dashboard-dnsmasq.json;
         }
+        {
+          type = "file";
+          name = "restic";
+          options.path = ./grafana/dashboard-restic.json;
+        }
       ];
     };
   };
