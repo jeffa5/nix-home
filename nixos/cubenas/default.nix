@@ -1,7 +1,10 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-{nixpkgs, configs}: {pkgs, ...}: {
+{
+  nixpkgs,
+  configs,
+}: {pkgs, ...}: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -35,6 +38,14 @@
 
   services.nodeboard.enable = true;
   services.homeboard.enable = true;
+
+  services.snapper = {
+    configs."local" = {
+      SUBVOLUME = "/local";
+      TIMELINE_CREATE = true;
+      TIMELINE_CLEANUP = true;
+    };
+  };
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
