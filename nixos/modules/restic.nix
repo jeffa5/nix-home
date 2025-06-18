@@ -36,7 +36,7 @@ in {
       exclude = excludes;
       initialize = true;
       passwordFile = "${passwordFileLocal}";
-      # extraBackupArgs = ["-vv"];
+      extraBackupArgs = ["-vv"];
     };
 
     homelab = {
@@ -45,8 +45,11 @@ in {
       paths = ["/home/andrew"];
       exclude = excludes;
       initialize = true;
+      timerConfig = {
+        OnCalendar = "hourly";
+      };
       passwordFile = "${passwordFileHomelab}";
-      # extraBackupArgs = ["-vv"];
+      extraBackupArgs = ["-vv"];
     };
   };
 }
