@@ -34,6 +34,8 @@
     ../modules/zigbee2mqtt.nix
     ../modules/mosquitto.nix
     ../modules/influxdb.nix
+
+    ../modules/nextcloudcmd.nix
   ];
 
   services.nodeboard.enable = true;

@@ -1,6 +1,6 @@
 {pkgs, ...}: let
   nc = pkgs.nextcloud-client;
-  sourcedir = "/local/Cloud";
+  sourcedir = "/local/nextcloud-sync";
   cloudurl = "cloud.jeffas.net";
 in {
   systemd.services.nextcloudcmd = {
