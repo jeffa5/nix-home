@@ -8,6 +8,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ../modules/btrfs.nix
     # (import ../modules/nix.nix {
     #   inherit nixpkgs;
     #   users = [];
