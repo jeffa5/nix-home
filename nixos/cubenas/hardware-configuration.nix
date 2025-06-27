@@ -55,6 +55,14 @@
     device = "/local/influxdb2";
     options = ["bind"];
   };
+  fileSystems."/var/lib/${config.services.jellyfin.dataDir}" = {
+    device = "/local/jellyfin/data";
+    options = ["bind"];
+  };
+  fileSystems."/var/lib/${config.services.jellyfin.cacheDir}" = {
+    device = "/local/jellyfin/cache";
+    options = ["bind"];
+  };
 
   swapDevices = [];
 

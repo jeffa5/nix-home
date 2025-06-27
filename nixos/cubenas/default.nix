@@ -37,6 +37,7 @@
     ../modules/influxdb.nix
 
     ../modules/nextcloudcmd.nix
+    ../modules/jellyfin.nix
   ];
 
   services.nodeboard.enable = true;
