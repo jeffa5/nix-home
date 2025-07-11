@@ -296,6 +296,13 @@ in {
           require("oil").setup()
         '';
       }
+      {
+        plugin = vimPkgs.hardtime-nvim;
+        type = "lua";
+        config = ''
+          require("hardtime").setup()
+        '';
+      }
     ];
   };
 }
