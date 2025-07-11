@@ -10,8 +10,6 @@
       text-color = "#ebdbb2";
       width = 400;
       format = "<b><u>%a</u></b>\\n<b>%s</b>\\n%b";
-    };
-    criteria = {
       "hidden" = {
         border-color = "#83a598";
       };
