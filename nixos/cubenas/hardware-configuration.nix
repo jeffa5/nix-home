@@ -63,6 +63,10 @@
     device = "/local/jellyfin/cache";
     options = ["bind"];
   };
+  fileSystems."/var/lib/git-server" = {
+    device = "/local/git";
+    options = ["bind"];
+  };
 
   swapDevices = [];
 

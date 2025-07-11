@@ -38,6 +38,8 @@
 
     ../modules/nextcloudcmd.nix
     ../modules/jellyfin.nix
+    ../modules/git-server.nix
+    ../modules/stagit.nix
   ];
 
   services.nodeboard.enable = true;
