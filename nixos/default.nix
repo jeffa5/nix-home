@@ -115,9 +115,6 @@ in {
   systemd.services.systemd-udevd.restartIfChanged = false;
   systemd.services.NetworkManager-wait-online.enable = false;
 
-  virtualisation.docker.enable = true;
-  virtualisation.libvirtd.enable = true;
-
   services.xserver = {
     xkb.layout = "uk-cdh,gb";
 
@@ -133,8 +130,6 @@ in {
   };
 
   programs = {
-    adb.enable = true;
-
     fish = {
       enable = true;
       vendor = {
