@@ -3,7 +3,7 @@
   lib,
   ...
 }: let
-  gitProjDir = "/local/git";
+  gitProjDir = "/local/git/public";
   gitWebDir = "/local/git-www";
   stagit = lib.getExe' pkgs.stagit "stagit";
   stagit-index = lib.getExe' pkgs.stagit "stagit-index";
