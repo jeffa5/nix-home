@@ -5,18 +5,18 @@
 }: let
   gitProjDir = "/local/git/public";
   gitWebDir = "/local/git-www";
-  stagit = lib.getExe' pkgs.stagit "stagit";
-  stagit-index = lib.getExe' pkgs.stagit "stagit-index";
+  stagix-repo = lib.getExe' pkgs.stagix "stagix-repo";
+  stagix-index = lib.getExe' pkgs.stagix "stagix-index";
 in {
-  systemd.services.stagit-index = {
+  systemd.services.stagix-index = {
     enable = true;
-    description = "Generate stagit repos";
+    description = "Generate stagix repos";
     script = ''
       set -ex
 
-      cp ${pkgs.stagit}/share/doc/stagit/style.css ${gitWebDir}/style.css
-      cp ${pkgs.stagit}/share/doc/stagit/logo.png ${gitWebDir}/logo.png
-      cp ${pkgs.stagit}/share/doc/stagit/favicon.png ${gitWebDir}/favicon.png
+      cp ${pkgs.stagix}/share/doc/stagix/style.css ${gitWebDir}/style.css
+      cp ${pkgs.stagix}/share/doc/stagix/logo.png ${gitWebDir}/logo.png
+      cp ${pkgs.stagix}/share/doc/stagix/favicon.png ${gitWebDir}/favicon.png
 
       # for dir in ${gitProjDir}/*; do
       #   base=$(basename $dir)
@@ -28,14 +28,14 @@ in {
       #   fi
       #   mkdir -p ${gitWebDir}/$base
       #   cd ${gitWebDir}/$base
-      #   ${stagit} ${gitProjDir}/$base
+      #   ${stagix-repo} ${gitProjDir}/$base
       #   ln -sf log.html index.html
       #   ln -sf ../style.css style.css
       #   ln -sf ../logo.png logo.png
       #   ln -sf ../favicon.png favicon.png
       # done
       # cd ${gitWebDir}
-      # ${stagit-index} ${gitProjDir}/* > index.html
+      # ${stagix-index} ${gitProjDir}/* > index.html
 
       cd ${gitWebDir}
 
@@ -60,7 +60,7 @@ in {
       curdir="${gitWebDir}"
 
       # make index.
-      ${stagit-index} "''${reposdir}/"*/ > "''${curdir}/index.html"
+      ${stagix-index} "''${reposdir}/"*/ --out-dir "''${curdir}"
 
       # make files per repo.
       for dir in "''${reposdir}/"*/; do
@@ -71,7 +71,8 @@ in {
 
       	mkdir -p "''${curdir}/''${d}"
       	cd "''${curdir}/''${d}" || continue
-      	${stagit} -c ".cache" -u "https://git.home.jeffas.net/$d/" "''${reposdir}/''${r}"
+        # ${stagix-repo} -c ".cache" -u "https://git.home.jeffas.net/$d/" "''${reposdir}/''${r}"
+      	${stagix-repo} "''${reposdir}/''${r}"
 
       	# symlinks
       	ln -sf log.html index.html
@@ -90,7 +91,7 @@ in {
     wantedBy = ["multi-user.target"];
   };
 
-  systemd.timers.stagit-index = {
+  systemd.timers.stagix-index = {
     wantedBy = ["timers.target"];
     timerConfig = {
       OnCalendar = "hourly";
@@ -105,5 +106,4 @@ in {
   };
 
   # TODO: set up git post receive hook to run stagit for that repo
-  # TODO: set up nginx to serve static files in /local/git-www dir
 }

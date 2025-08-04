@@ -16,6 +16,7 @@
     maills.url = "github:jeffa5/maills";
     icalls.url = "github:jeffa5/icalls";
     nixSearch.url = "github:diamondburned/nix-search";
+    stagix.url = "github:jeffa5/stagix";
   };
 
   outputs = {
@@ -31,6 +32,7 @@
     maills,
     icalls,
     nixSearch,
+    stagix,
   }: let
     username = "andrew";
     system = "x86_64-linux";
@@ -46,6 +48,7 @@
       wordnet-ls = wordnet-ls.packages.${system}.wordnet-ls;
       maills = maills.packages.${system}.maills;
       icalls = icalls.packages.${system}.icalls;
+      stagix = stagix.packages.${system}.stagix;
       # khal =
       #   prev.khal.overrideAttrs
       #   (_finalAttrs: _previousAttrs: {
@@ -172,6 +175,9 @@
       cubenas = stableNixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
+          (inputs: {
+            nixpkgs.overlays = overlays;
+          })
           (import ./nixos/cubenas {
             inherit nixpkgs;
             configs = self.nixosConfigurations;
