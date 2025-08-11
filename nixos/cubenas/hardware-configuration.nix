@@ -67,6 +67,10 @@
     device = "/local/git";
     options = ["bind"];
   };
+  fileSystems."${config.services.nextcloud.datadir}"= {
+    device = "/local/nextcloud";
+    options = ["bind"];
+  };
 
   swapDevices = [];
 
