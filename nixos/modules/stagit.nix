@@ -14,9 +14,9 @@ in {
     script = ''
       set -ex
 
-      cp ${pkgs.stagix}/share/doc/stagix/style.css ${gitWebDir}/style.css
-      cp ${pkgs.stagix}/share/doc/stagix/logo.png ${gitWebDir}/logo.png
-      cp ${pkgs.stagix}/share/doc/stagix/favicon.png ${gitWebDir}/favicon.png
+      # cp ${pkgs.stagix}/share/doc/stagix/style.css ${gitWebDir}/style.css
+      # cp ${pkgs.stagix}/share/doc/stagix/logo.png ${gitWebDir}/logo.png
+      # cp ${pkgs.stagix}/share/doc/stagix/favicon.png ${gitWebDir}/favicon.png
 
       # for dir in ${gitProjDir}/*; do
       #   base=$(basename $dir)
