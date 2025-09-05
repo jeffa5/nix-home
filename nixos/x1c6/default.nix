@@ -6,6 +6,7 @@
     ../modules/node-exporter.nix
     ../modules/promtail.nix
     ../modules/printing.nix
+    ../modules/scanning.nix
   ];
 
   # override to use performance profile when charging
