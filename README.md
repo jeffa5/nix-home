@@ -19,7 +19,7 @@ After installing a system, use `make nvd` to show the diff in an upgrade.
 To deploy to a remote system (assuming password-less authentication):
 
 ```sh
-nixos-rebuild switch .#<host> --build-host root@<ip> --target-host root@<ip> --fast
+nixos-rebuild switch .#<host> --build-host root@<ip> --target-host root@<ip> --no-reexec
 ```
 
 ## Raspberry Pi
