@@ -51,6 +51,7 @@
     pkgs.wl-mirror
     pkgs.xdg-utils
     pkgs.xwayland
+    pkgs.shotwell
   ];
 
   fonts.fontconfig.enable = true;
