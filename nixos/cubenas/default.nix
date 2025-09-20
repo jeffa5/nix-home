@@ -42,6 +42,9 @@
     ../modules/stagit.nix
 
     ../modules/nextcloud.nix
+    ../modules/immich.nix
+
+    ../modules/postgres.nix
   ];
 
   services.nodeboard.enable = true;

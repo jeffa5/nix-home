@@ -5,8 +5,9 @@
   services.nginx.virtualHosts."Immich" = {
     serverName = "photos.home.jeffas.net";
     locations."/" = {
-      proxyPass = "http://127.0.0.1:${toString config.services.immich.port}";
+      proxyPass = "http://[::1]:${toString config.services.immich.port}";
       proxyWebsockets = true;
+      recommendedProxySettings = true;
     };
   };
 }

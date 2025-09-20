@@ -71,6 +71,14 @@
     device = "/local/nextcloud";
     options = ["bind"];
   };
+  fileSystems."${config.services.immich.mediaLocation}"= {
+    device = "/local/immich";
+    options = ["bind"];
+  };
+  fileSystems."${config.services.postgresql.dataDir}"= {
+    device = "/local/postgresql";
+    options = ["bind"];
+  };
 
   swapDevices = [];
 
