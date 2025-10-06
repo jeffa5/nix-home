@@ -1,6 +1,6 @@
 {
   personal = {
-    primary = true;
+    primary = false;
     address = "andrewjeffery97@gmail.com";
     # host = "mail.google.com";
     flavor = "gmail.com";
@@ -22,7 +22,7 @@
     smtp = {};
   };
   jeffasnet = {
-    primary = false;
+    primary = true;
     address = "andrew@jeffas.net";
     flavor = "plain";
     imap = {
