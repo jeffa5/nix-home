@@ -6,11 +6,12 @@
   serverName = "cloud.home.jeffas.net";
 in {
   services.nextcloud = {
-    enable = true;
+    enable = false;
     package = pkgs.nextcloud31;
     hostName = serverName;
+    database.createLocally = true;
     config = {
-      dbtype = "sqlite";
+      dbtype = "pgsql";
       adminuser = "Admin";
       adminpassFile = "/etc/nextcloud/admin-pass";
     };
