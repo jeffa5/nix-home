@@ -47,18 +47,16 @@ end
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-local lspconfig = require('lspconfig')
-
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
 local servers = { 'clangd', 'pyright', 'gopls', 'texlab', 'marksman', 'tinymist', 'julials', 'beancount' }
 for _, lsp in ipairs(servers) do
-    lspconfig[lsp].setup {
+    vim.lsp.config(lsp, {
         on_attach = on_attach,
         capabilities = capabilities,
-    }
+    })
 end
 
-lspconfig['nil_ls'].setup {
+vim.lsp.config('nil_ls', {
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
@@ -68,11 +66,11 @@ lspconfig['nil_ls'].setup {
             },
         }
     }
-}
+})
 
-lspconfig['rust_analyzer'].setup {}
+vim.lsp.enable('rust_analyzer')
 
-lspconfig['lua_ls'].setup {
+vim.lsp.config('lua_ls', {
     on_attach = on_attach,
     capabilities = capabilities,
     settings = {
@@ -95,7 +93,7 @@ lspconfig['lua_ls'].setup {
             },
         },
     },
-}
+})
 
 require('lspconfig.configs')['maills'] = {
     default_config = {

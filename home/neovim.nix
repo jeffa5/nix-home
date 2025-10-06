@@ -144,25 +144,25 @@ in {
         config =
           (builtins.readFile ./neovim/nvim-cmp.lua)
           + lib.optionalString (pkgs ? wordnet-ls) ''
-            require('lspconfig')['wordnet'].setup {
+            vim.lsp.config('wordnet', {
                 on_attach = on_attach,
                 capabilities = capabilities,
                 init_options = { wordnet = '${pkgs.wordnet}/dict' },
-            }
+            })
           ''
           + lib.optionalString (pkgs ? maills) ''
-            require('lspconfig')['maills'].setup {
+            vim.lsp.config('maills', {
                 on_attach = on_attach,
                 capabilities = capabilities,
                 init_options = { vcard_dir = '~/contacts/jeffas', contact_list_file = '~/contacts/list' },
-            }
+            })
           ''
           + lib.optionalString (pkgs ? icalls) ''
-            require('lspconfig')['icalls'].setup {
+            vim.lsp.config('icalls', {
                 on_attach = on_attach,
                 capabilities = capabilities,
                 init_options = {},
-            }
+            })
           '';
       }
       {
