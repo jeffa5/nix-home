@@ -14,13 +14,13 @@
     imap = {};
     smtp = {};
   };
-  jeffasio = {
-    primary = false;
-    address = "andrew@jeffas.io";
-    flavor = "plain";
-    imap = {};
-    smtp = {};
-  };
+  # jeffasio = {
+  #   primary = false;
+  #   address = "andrew@jeffas.io";
+  #   flavor = "plain";
+  #   imap = {};
+  #   smtp = {};
+  # };
   jeffasnet = {
     primary = true;
     address = "andrew@jeffas.net";
@@ -40,13 +40,13 @@
       };
     };
   };
-  devio = {
-    primary = false;
-    address = "dev@jeffas.io";
-    flavor = "plain";
-    imap = {};
-    smtp = {};
-  };
+  # devio = {
+  #   primary = false;
+  #   address = "dev@jeffas.io";
+  #   flavor = "plain";
+  #   imap = {};
+  #   smtp = {};
+  # };
   devnet = {
     primary = false;
     address = "dev@jeffas.net";
