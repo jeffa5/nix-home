@@ -148,6 +148,13 @@ in {
                 on_attach = on_attach,
                 capabilities = capabilities,
                 init_options = { wordnet = '${pkgs.wordnet}/dict' },
+                default_config = {
+                    cmd = { 'wordnet-ls', '--stdio' },
+                    filetypes = { 'text', 'markdown', 'typst' },
+                    root_dir = function(_)
+                        return '/'
+                    end,
+                }
             })
           ''
           + lib.optionalString (pkgs ? maills) ''
@@ -155,6 +162,13 @@ in {
                 on_attach = on_attach,
                 capabilities = capabilities,
                 init_options = { vcard_dir = '~/contacts/jeffas', contact_list_file = '~/contacts/list' },
+                default_config = {
+                    cmd = { 'maills', '--stdio' },
+                    filetypes = { 'mail' },
+                    root_dir = function(_)
+                        return '/'
+                    end,
+                }
             })
           ''
           + lib.optionalString (pkgs ? icalls) ''
@@ -162,6 +176,13 @@ in {
                 on_attach = on_attach,
                 capabilities = capabilities,
                 init_options = {},
+                default_config = {
+                    cmd = { 'icalls', '--stdio' },
+                    filetypes = { 'icalendar' },
+                    root_dir = function(_)
+                        return '/'
+                    end,
+                }
             })
           '';
       }

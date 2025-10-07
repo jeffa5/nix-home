@@ -95,36 +95,6 @@ vim.lsp.config('lua_ls', {
     },
 })
 
-require('lspconfig.configs')['maills'] = {
-    default_config = {
-        cmd = { 'maills', '--stdio' },
-        filetypes = { 'mail' },
-        root_dir = function(_)
-            return '/'
-        end,
-    }
-}
-
-require('lspconfig.configs')['icalls'] = {
-    default_config = {
-        cmd = { 'icalls', '--stdio' },
-        filetypes = { 'icalendar' },
-        root_dir = function(_)
-            return '/'
-        end,
-    }
-}
-
-require('lspconfig.configs')['wordnet'] = {
-    default_config = {
-        cmd = { 'wordnet-ls', '--stdio' },
-        filetypes = { 'text', 'markdown', 'typst' },
-        root_dir = function(_)
-            return '/'
-        end,
-    }
-}
-
 -- luasnip setup
 local luasnip = require 'luasnip'
 
