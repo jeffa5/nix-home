@@ -20,6 +20,7 @@ in {
         modules-right = [
           "custom/mediaplayer"
           "custom/pomo"
+          "systemd-failed-units"
           "pulseaudio"
           "backlight"
           "bluetooth"
@@ -52,6 +53,7 @@ in {
             };
             scroll-step = 5;
           };
+          systemd-failed-units = { };
           backlight = {
             format = "☼ {percent}%";
             exec-if = "${pkgs.status-bar.backlight}/bin/bar-backlight";
@@ -183,6 +185,7 @@ in {
       #bluetooth,
       #network,
       #pulseaudio,
+      #systemd-failed-units,
       #mode,
       #custom-pomo,
       #custom-mediaplayer,
