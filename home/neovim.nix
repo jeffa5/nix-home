@@ -32,28 +32,6 @@ in {
     extraConfig = builtins.readFile ./neovim/init.vim;
     plugins = [
       {
-        plugin = vimPkgs.goyo-vim;
-        config = ''
-          let g:goyo_linenr = 1
-          function! s:goyo_enter()
-            set noshowmode
-            set noshowcmd
-            set scrolloff=999
-            lua require('lualine').hide()
-          endfunction
-
-          function! s:goyo_leave()
-            set showmode
-            set showcmd
-            set scrolloff=5
-            lua require('lualine').hide({unhide=true})
-          endfunction
-
-          autocmd! User GoyoEnter nested call <SID>goyo_enter()
-          autocmd! User GoyoLeave nested call <SID>goyo_leave()
-        '';
-      }
-      {
         plugin = vimPkgs.gruvbox-nvim;
         type = "lua";
         config = ''
@@ -63,7 +41,6 @@ in {
         '';
       }
       vimPkgs.vim-fugitive
-      vimPkgs.neogit
       vimPkgs.vim-rhubarb
       vimPkgs.fugitive-gitlab-vim
       vimPkgs.vim-eunuch
@@ -79,29 +56,6 @@ in {
       vimPkgs.vim-surround
       vimPkgs.vim-repeat
       vimPkgs.lexima-vim
-      {
-        plugin = vimPkgs.vimtex;
-        config = ''
-          let g:vimtex_quickfix_open_on_warning = 0
-          let g:vimtex_compiler_latexmk = {
-              \ 'options' : [
-              \   '-pdf',
-              \   '-shell-escape',
-              \   '-verbose',
-              \   '-file-line-error',
-              \   '-synctex=1',
-              \   '-interaction=nonstopmode',
-              \ ],
-              \}
-          let g:tex_flavor = 'latex'
-        '';
-      }
-      {
-        plugin = vimPkgs.vimspector;
-        config = ''
-          let g:vimspector_enable_mappings='HUMAN'
-        '';
-      }
       {
         plugin = vimPkgs.vim-polyglot;
         config = ''
@@ -269,7 +223,6 @@ in {
           require('gitsigns').setup()
         '';
       }
-      vimPkgs.typst-vim
 
       {
         plugin = vimPkgs.aerial-nvim;
@@ -286,7 +239,6 @@ in {
           vim.keymap.set("n", "<localleader>o", "<cmd>AerialToggle!<CR>", {desc = "Outline"})
         '';
       }
-
       {
         plugin = vimPkgs.img-clip-nvim;
         type = "lua";
@@ -315,13 +267,6 @@ in {
         type = "lua";
         config = ''
           require("oil").setup()
-        '';
-      }
-      {
-        plugin = vimPkgs.hardtime-nvim;
-        type = "lua";
-        config = ''
-          require("hardtime").setup()
         '';
       }
     ];
