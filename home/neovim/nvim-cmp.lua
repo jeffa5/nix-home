@@ -46,19 +46,12 @@ end
 
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
--- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = { 'clangd', 'pyright', 'gopls', 'texlab', 'marksman', 'tinymist', 'julials', 'beancount' }
-for _, lsp in ipairs(servers) do
-    vim.lsp.config(lsp, {
-        on_attach = on_attach,
-        capabilities = capabilities,
-    })
-end
-
-vim.lsp.config('nil_ls', {
+vim.lsp.config('*', {
     on_attach = on_attach,
     capabilities = capabilities,
+})
+
+vim.lsp.config('nil_ls', {
     settings = {
         ['nil'] = {
             formatting = {
@@ -68,11 +61,7 @@ vim.lsp.config('nil_ls', {
     }
 })
 
-vim.lsp.enable('rust_analyzer')
-
 vim.lsp.config('lua_ls', {
-    on_attach = on_attach,
-    capabilities = capabilities,
     settings = {
         Lua = {
             runtime = {
@@ -94,6 +83,12 @@ vim.lsp.config('lua_ls', {
         },
     },
 })
+
+-- Enable some language servers with the additional completion capabilities offered by nvim-cmp
+local servers = { 'clangd', 'pyright', 'gopls', 'texlab', 'marksman', 'tinymist', 'julials', 'beancount', 'nil_ls', 'lua_ls', 'rust_analyzer' }
+for _, lsp in ipairs(servers) do
+    vim.lsp.enable(lsp)
+end
 
 -- luasnip setup
 local luasnip = require 'luasnip'
