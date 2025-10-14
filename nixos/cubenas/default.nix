@@ -47,6 +47,8 @@
     ../modules/postgres.nix
   ];
 
+  programs.tmux.enable = true;
+
   services.nodeboard.enable = true;
   services.homeboard.enable = true;
 
