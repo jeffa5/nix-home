@@ -87,6 +87,10 @@ vim.lsp.config('lua_ls', {
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
 local servers = { 'clangd', 'pyright', 'gopls', 'texlab', 'marksman', 'tinymist', 'julials', 'beancount', 'nil_ls', 'lua_ls', 'rust_analyzer' }
 for _, lsp in ipairs(servers) do
+    vim.lsp.config(lsp, {
+        on_attach = on_attach,
+        capabilities = capabilities,
+    })
     vim.lsp.enable(lsp)
 end
 

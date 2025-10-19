@@ -17,16 +17,18 @@ in {
     home = let
       gray = 8;
     in {
-      "*.selected.bg" = gray;
-      "statusline_*.dim" = false;
-      "msglist_read.selected.bold" = false;
-      "border.fg" = gray;
-      "title.bg" = gray;
-      "msglist_pill.bg" = gray;
-      "part_mimetype.default" = true;
-      "part_mimetype.bold" = true;
-      "selector_focused.fg" = gray;
-      "header.default" = true;
+      default = {
+        "*.selected.bg" = gray;
+        "statusline_*.dim" = false;
+        "msglist_read.selected.bold" = false;
+        "border.fg" = gray;
+        "title.bg" = gray;
+        "msglist_pill.bg" = gray;
+        "part_mimetype.default" = true;
+        "part_mimetype.bold" = true;
+        "selector_focused.fg" = gray;
+        "header.default" = true;
+      };
     };
   };
   programs.aerc.templates = {
