@@ -171,33 +171,7 @@ in {
           require("fidget").setup{}
         '';
       }
-      {
-        plugin = vimPkgs.rust-tools-nvim;
-        type = "lua";
-        config = ''
-          local rt = require("rust-tools")
-
-          rt.setup({
-            server = {
-              on_attach = function(client, bufnr)
-                -- call the general bindings
-                on_attach(client, bufnr)
-                -- Hover actions
-                vim.keymap.set("n", "<localleader>h", rt.hover_actions.hover_actions, { buffer = bufnr, desc = "Hover" })
-                -- Code action groups
-                vim.keymap.set("n", "<localleader>a", rt.code_action_group.code_action_group, { buffer = bufnr, desc = "Code action" })
-              end,
-              -- https://github.com/simrat39/rust-tools.nvim/issues/300
-              settings = {
-                  ["rust-analyzer"] = {
-                      inlayHints = { locationLinks = false },
-                  }
-              }
-            },
-          })
-        '';
-      }
-
+      vimPkgs.rustaceanvim
       {
         plugin = vimPkgs.which-key-nvim;
         type = "lua";
