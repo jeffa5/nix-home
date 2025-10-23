@@ -20,6 +20,7 @@
     # monitoring
     ../modules/node-exporter.nix
     ../modules/prometheus.nix
+    ./promalerts.nix
     ../modules/grafana.nix
     ../modules/loki.nix
     ../modules/promtail.nix
