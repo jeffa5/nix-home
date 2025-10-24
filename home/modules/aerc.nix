@@ -17,7 +17,7 @@ in {
     home = let
       gray = 8;
     in {
-      default = {
+      global = {
         "*.selected.bg" = gray;
         "statusline_*.dim" = false;
         "msglist_read.selected.bold" = false;
