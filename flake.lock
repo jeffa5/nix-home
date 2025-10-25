@@ -368,6 +368,26 @@
         "type": "github"
       }
     },
+    "prometheusResticExporter": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1761470490,
+        "narHash": "sha256-Uc7CU44C0LIDHoUvGTmciLNkyjQkkkyQgLci9oUlK/o=",
+        "owner": "jeffa5",
+        "repo": "prometheus-restic-exporter",
+        "rev": "11ddc74ef49ef71b6823d42ace1c7fe84b3a6286",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jeffa5",
+        "repo": "prometheus-restic-exporter",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "hardware": "hardware",
@@ -377,6 +397,7 @@
         "nixSearch": "nixSearch",
         "nixpkgs": "nixpkgs_4",
         "papers": "papers",
+        "prometheusResticExporter": "prometheusResticExporter",
         "stableNixpkgs": "stableNixpkgs",
         "stagix": "stagix",
         "tasknet": "tasknet",

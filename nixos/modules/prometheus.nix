@@ -77,6 +77,14 @@ in {
         ];
       }
       {
+        job_name = "restic";
+        static_configs = [
+          # x1c6, not running nginx
+          {targets = ["${x1c6}:${toString ports.restic-exporter-local.private}"];}
+          {targets = ["${x1c6}:${toString ports.restic-exporter-homelab.private}"];}
+        ];
+      }
+      {
         job_name = "wttr_in_london";
         static_configs = [
           {

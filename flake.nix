@@ -17,6 +17,10 @@
     icalls.url = "github:jeffa5/icalls";
     nixSearch.url = "github:diamondburned/nix-search";
     stagix.url = "github:jeffa5/stagix";
+    prometheusResticExporter = {
+      url = "github:jeffa5/prometheus-restic-exporter";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -33,6 +37,7 @@
     icalls,
     nixSearch,
     stagix,
+    prometheusResticExporter,
   }: let
     username = "andrew";
     system = "x86_64-linux";
@@ -49,6 +54,7 @@
       maills = maills.packages.${system}.maills;
       icalls = icalls.packages.${system}.icalls;
       stagix = stagix.packages.${system}.stagix;
+      prometheus-restic-exporter = prometheusResticExporter.packages.${system}.prometheus-restic-exporter;
       # khal =
       #   prev.khal.overrideAttrs
       #   (_finalAttrs: _previousAttrs: {
