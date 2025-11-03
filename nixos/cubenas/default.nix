@@ -17,6 +17,8 @@
     ../modules/openssh.nix
     ../modules/tailscale.nix
 
+    ../modules/restic.nix
+
     # monitoring
     ../modules/node-exporter.nix
     ../modules/prometheus.nix
@@ -52,6 +54,24 @@
 
   services.nodeboard.enable = true;
   services.homeboard.enable = true;
+
+  services.backups = {
+    enable = true;
+    local = false;
+    homelab = false;
+    user = "root";
+    paths = ["/local"];
+    excludes = [
+      "/local/.snapshots"
+      "/local/backups"
+      "/local/influxdb2"
+      "/local/loki"
+      "/local/mosquitto"
+      "/local/postgresql"
+      "/local/prometheus"
+      "/local/zigbee2mqtt"
+    ];
+  };
 
   services.snapper = {
     configs."local" = {

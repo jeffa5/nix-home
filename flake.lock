@@ -375,11 +375,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1761470490,
-        "narHash": "sha256-Uc7CU44C0LIDHoUvGTmciLNkyjQkkkyQgLci9oUlK/o=",
+        "lastModified": 1761769743,
+        "narHash": "sha256-WmtrVPxGRjfq/fLHytKk4NEmBlUjQgA+20qXdlS5XOs=",
         "owner": "jeffa5",
         "repo": "prometheus-restic-exporter",
-        "rev": "11ddc74ef49ef71b6823d42ace1c7fe84b3a6286",
+        "rev": "8f96490b784b19ca0fbc49cac260618659db55e0",
         "type": "github"
       },
       "original": {

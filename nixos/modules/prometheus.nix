@@ -82,6 +82,9 @@ in {
           # x1c6, not running nginx
           {targets = ["${x1c6}:${toString ports.restic-exporter-local.private}"];}
           {targets = ["${x1c6}:${toString ports.restic-exporter-homelab.private}"];}
+          {targets = ["${x1c6}:${toString ports.restic-exporter-storagebox.private}"];}
+
+          {targets = ["${cubenas}:${toString ports.restic-exporter-storagebox.private}"];}
         ];
       }
       {

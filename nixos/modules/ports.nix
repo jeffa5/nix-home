@@ -10,4 +10,5 @@
   promtail.private_grpc = 9082;
   restic-exporter-local.private = 8001;
   restic-exporter-homelab.private = 8003;
+  restic-exporter-storagebox.private = 8005;
 }

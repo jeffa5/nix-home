@@ -9,6 +9,9 @@
     ../modules/scanning.nix
   ];
 
+  services.backups.enable = true;
+  services.backups.user = "andrew";
+
   # override to use performance profile when charging
   services.auto-cpufreq.settings.charger.governor = "performance";
 
