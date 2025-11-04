@@ -48,6 +48,8 @@ in {
       serverName = "${config.networking.hostName}.home.jeffas.net";
       root = root;
       default = true;
+      forceSSL = true;
+      useACMEHost = "home.jeffas.net";
     };
   };
 }

@@ -1,6 +1,23 @@
 {config, ...}: let
   ports = (import ./ports.nix).nginx-exporter;
+  domainName = "jeffas.net";
+  homeDomainName = "home.${domainName}";
 in {
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "dev+acme@${domainName}";
+    certs = {
+      "${homeDomainName}" = {
+        domain = "*.${homeDomainName}";
+        group = config.services.nginx.group;
+        dnsProvider = "cloudflare";
+        # location of your CLOUDFLARE_DNS_API_TOKEN=[value]
+        environmentFile = "/etc/acme/cloudflare";
+        reloadServices = ["nginx"];
+      };
+    };
+  };
+
   services.nginx = {
     enable = true;
     recommendedTlsSettings = true;

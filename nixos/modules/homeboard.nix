@@ -63,6 +63,8 @@ in {
     services.nginx.virtualHosts."Homeboard" = {
       serverName = "home.jeffas.net";
       root = root;
+      forceSSL = true;
+      useACMEHost = "home.jeffas.net";
     };
   };
 }

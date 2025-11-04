@@ -103,6 +103,8 @@ in {
     locations."/" = {
       root = gitWebDir;
     };
+    forceSSL = true;
+    useACMEHost = "home.jeffas.net";
   };
 
   # TODO: set up git post receive hook to run stagit for that repo

@@ -9,5 +9,7 @@
       proxyWebsockets = true;
       recommendedProxySettings = true;
     };
+    forceSSL = true;
+    useACMEHost = "home.jeffas.net";
   };
 }
