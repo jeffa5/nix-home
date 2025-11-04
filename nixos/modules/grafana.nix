@@ -77,6 +77,11 @@ in {
           name = "restic";
           options.path = ./grafana/dashboard-restic.json;
         }
+        {
+          type = "file";
+          name = "postgres";
+          options.path = ./grafana/dashboard-postgres.json;
+        }
       ];
     };
   };

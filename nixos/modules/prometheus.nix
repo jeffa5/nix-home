@@ -63,6 +63,12 @@ in {
         ];
       }
       {
+        job_name = "postgres";
+        static_configs = [
+          {targets = ["postgres-exporter.${cubenas}"];}
+        ];
+      }
+      {
         job_name = "nginx";
         static_configs = [
           {targets = ["nginx-exporter.${cubenas}"];}
