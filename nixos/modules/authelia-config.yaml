@@ -1,0 +1,27 @@
+authentication_backend:
+  file:
+    path: "/var/lib/authelia-home/users.yaml"
+
+storage:
+  postgres:
+    address: "unix:///var/run/postgresql"
+    database: "authelia-home"
+    username: "authelia-home"
+    password: ""
+    # password: '{{ fileContent "/etc/authelia/postgres_password" }}'
+
+session:
+  secret: "todotestingsecret"
+  cookies:
+  - domain: "home.jeffas.net"
+    authelia_url: "https://authelia.home.jeffas.net"
+
+notifier:
+  filesystem:
+    filename: "/var/lib/authelia-home/notifications.txt"
+
+access_control:
+  rules:
+  - domain:
+    - "*.home.jeffas.net"
+    policy: "one_factor"

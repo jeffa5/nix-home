@@ -79,6 +79,10 @@
     device = "/local/postgresql";
     options = ["bind"];
   };
+  fileSystems."${config.services.paperless.dataDir}"= {
+    device = "/local/paperless";
+    options = ["bind"];
+  };
 
   swapDevices = [];
 

@@ -1,4 +1,4 @@
-{...}: let
+{pkgs, ...}: let
   port = 9070;
 in {
   services.zigbee2mqtt = {
@@ -54,13 +54,22 @@ in {
     requires = ["local.mount"];
   };
 
-  services.nginx.virtualHosts."Zigbee2MQTT" = {
+  services.nginx.virtualHosts."Zigbee2MQTT" = let
+    authelia-snippets = import ./authelia-snippets.nix {inherit pkgs;};
+  in {
     serverName = "zigbee2mqtt.home.jeffas.net";
     locations."/" = {
       proxyPass = "http://127.0.0.1:${toString port}";
       proxyWebsockets = true;
+      extraConfig = ''
+        include ${authelia-snippets.proxy};
+        include ${authelia-snippets.authelia-authrequest};
+      '';
     };
     forceSSL = true;
     useACMEHost = "home.jeffas.net";
+    extraConfig = ''
+      include ${authelia-snippets.authelia-location};
+    '';
   };
 }

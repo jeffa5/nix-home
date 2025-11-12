@@ -19,17 +19,17 @@ in {
       datasources.settings.datasources = [
         {
           name = "Prometheus";
-          url = "http://prometheus.home.jeffas.net";
+          url = "https://prometheus.home.jeffas.net";
           type = "prometheus";
         }
         {
           name = "Loki";
-          url = "http://loki.home.jeffas.net";
+          url = "https://loki.home.jeffas.net";
           type = "loki";
         }
         {
           name = "InfluxDB";
-          url = "http://influxdb.home.jeffas.net";
+          url = "https://influxdb.home.jeffas.net";
           type = "influxdb";
           jsonData = {
             httpHeaderName1 = "Authorization";

@@ -9,7 +9,7 @@ in {
       postgres      postgres           postgres
       postgres      postgres-exporter  postgres
       # Let other names login as themselves
-      superuser_map      /^(.*)$            \1
+      postgres      /^(.*)$            \1
     '';
   };
 

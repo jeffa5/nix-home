@@ -98,13 +98,22 @@ in {
     };
   };
 
-  services.nginx.virtualHosts."Git" = {
+  services.nginx.virtualHosts."Git" = let
+    authelia-snippets = import ./authelia-snippets.nix {inherit pkgs;};
+  in {
     serverName = "git.home.jeffas.net";
     locations."/" = {
       root = gitWebDir;
+      extraConfig = ''
+        include ${authelia-snippets.proxy};
+        include ${authelia-snippets.authelia-authrequest};
+      '';
     };
     forceSSL = true;
     useACMEHost = "home.jeffas.net";
+    extraConfig = ''
+      include ${authelia-snippets.authelia-location};
+    '';
   };
 
   # TODO: set up git post receive hook to run stagit for that repo

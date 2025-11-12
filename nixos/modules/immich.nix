@@ -3,7 +3,7 @@
   services.immich.port = 2283;
 
   services.nginx.virtualHosts."Immich" = {
-    serverName = "photos.home.jeffas.net";
+    serverName = "immich.home.jeffas.net";
     locations."/" = {
       proxyPass = "http://[::1]:${toString config.services.immich.port}";
       proxyWebsockets = true;

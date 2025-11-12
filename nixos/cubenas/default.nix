@@ -29,6 +29,8 @@
 
     ../modules/nginx.nix
 
+    ../modules/authelia.nix
+
     ../modules/nodeboard.nix
     (import ../modules/homeboard.nix {inherit configs;})
 
@@ -45,9 +47,11 @@
     ../modules/stagit.nix
 
     ../modules/nextcloud.nix
-    # ../modules/immich.nix
+    ../modules/immich.nix
 
     ../modules/postgres.nix
+
+    ../modules/paperless.nix
   ];
 
   programs.tmux.enable = true;

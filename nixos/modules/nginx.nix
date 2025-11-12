@@ -11,6 +11,7 @@ in {
         domain = "*.${homeDomainName}";
         group = config.services.nginx.group;
         dnsProvider = "cloudflare";
+        extraDomainNames = [homeDomainName];
         # location of your CLOUDFLARE_DNS_API_TOKEN=[value]
         environmentFile = "/etc/acme/cloudflare";
         reloadServices = ["nginx"];
