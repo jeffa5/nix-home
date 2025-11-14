@@ -52,6 +52,7 @@
     ../modules/postgres.nix
 
     ../modules/paperless.nix
+    ../modules/syncthing.nix
   ];
 
   programs.tmux.enable = true;
