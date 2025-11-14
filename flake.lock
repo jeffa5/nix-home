@@ -375,11 +375,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1761769743,
-        "narHash": "sha256-WmtrVPxGRjfq/fLHytKk4NEmBlUjQgA+20qXdlS5XOs=",
+        "lastModified": 1763151721,
+        "narHash": "sha256-Obgd/ZbioApqkKbvzvjgp5DSyEoQkaQ2EDKCKWPJdyk=",
         "owner": "jeffa5",
         "repo": "prometheus-restic-exporter",
-        "rev": "8f96490b784b19ca0fbc49cac260618659db55e0",
+        "rev": "c78a62003e4d4e73ca2c52d573ae8e634ee403bf",
         "type": "github"
       },
       "original": {
@@ -451,11 +451,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1754345065,
-        "narHash": "sha256-HunvUfBgtm1jwwhiNah6VnkcCJezUgXJIzMO0nLPlZo=",
+        "lastModified": 1763152070,
+        "narHash": "sha256-3JYmUMq3ImUXkppUSEID1TTqD6/DuXvS89JjxILHjwA=",
         "owner": "jeffa5",
         "repo": "stagix",
-        "rev": "a9e1603d69a7db312fd9bc71079412e579b91d31",
+        "rev": "d0de3889e9c9be827345f6a6159e8aa679102fc9",
         "type": "github"
       },
       "original": {
