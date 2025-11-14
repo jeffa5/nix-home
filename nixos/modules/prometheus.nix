@@ -94,6 +94,18 @@ in {
         ];
       }
       {
+        job_name = "immich-api";
+        static_configs = [
+          {targets = ["${cubenas}:8081"];}
+        ];
+      }
+      {
+        job_name = "immich-microservices";
+        static_configs = [
+          {targets = ["${cubenas}:8082"];}
+        ];
+      }
+      {
         job_name = "wttr_in_london";
         static_configs = [
           {
