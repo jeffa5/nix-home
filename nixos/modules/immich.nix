@@ -1,6 +1,11 @@
 {config, ...}: {
-  services.immich.enable = true;
-  services.immich.port = 2283;
+  services.immich = {
+    enable = true;
+    port = 2283;
+    environment = {
+      IMMICH_TELEMETRY_INCLUDE = "all";
+    };
+  };
 
   services.nginx.virtualHosts."Immich" = {
     serverName = "immich.home.jeffas.net";
