@@ -1,11 +1,16 @@
 {
   pkgs,
+  lib,
   ...
-}: {
+}: let
+  homeDir = "/var/lib/git-server";
+in {
+  environment.systemPackages = [pkgs.git];
+
   users.users.git = {
     isSystemUser = true;
     group = "git";
-    home = "/var/lib/git-server";
+    home = homeDir;
     createHome = true;
     shell = "${pkgs.git}/bin/git-shell";
     openssh.authorizedKeys.keys = [
@@ -17,6 +22,10 @@
   };
 
   users.groups.git = {};
+
+  systemd.tmpfiles.rules = [
+    "L+ ${homeDir}/git-shell-commands/git-lfs-transfer - - - - ${lib.getExe pkgs.git-lfs-transfer}"
+  ];
 
   services.openssh = {
     enable = true;
