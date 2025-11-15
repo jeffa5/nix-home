@@ -171,7 +171,6 @@ in {
           require("fidget").setup{}
         '';
       }
-      vimPkgs.rustaceanvim
       {
         plugin = vimPkgs.which-key-nvim;
         type = "lua";
