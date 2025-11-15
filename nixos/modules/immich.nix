@@ -1,4 +1,10 @@
-{config, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
+  environment.systemPackages = [pkgs.immich-cli];
+
   services.immich = {
     enable = true;
     port = 2283;
