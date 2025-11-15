@@ -74,6 +74,11 @@ in {
         }
         {
           type = "file";
+          name = "restic-loki";
+          options.path = ./grafana/dashboard-restic-loki.json;
+        }
+        {
+          type = "file";
           name = "restic";
           options.path = ./grafana/dashboard-restic.json;
         }
