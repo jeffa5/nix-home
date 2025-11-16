@@ -44,7 +44,7 @@
     ../modules/nextcloudcmd.nix
     ../modules/jellyfin.nix
     ../modules/git-server.nix
-    ../modules/stagit.nix
+    ../modules/stagix.nix
 
     ../modules/nextcloud.nix
     ../modules/immich.nix

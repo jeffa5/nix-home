@@ -116,5 +116,5 @@ in {
     '';
   };
 
-  # TODO: set up git post receive hook to run stagit for that repo
+  # TODO: set up git post receive hook to run stagix for that repo
 }
