@@ -59,6 +59,19 @@
 
   services.nodeboard.enable = true;
   services.homeboard.enable = true;
+  services.stagix = {
+    enable = true;
+    gitRoot = "/local/git";
+    hostName = "home.jeffas.net";
+    locations = {
+      public = {
+        path = "public";
+      };
+      private = {
+        path = "private";
+      };
+    };
+  };
 
   services.backups = {
     enable = true;

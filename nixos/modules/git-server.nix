@@ -38,4 +38,10 @@ in {
         X11Forwarding no
     '';
   };
+
+  services.nginx.virtualHosts."Git" = {
+    serverName = "git.home.jeffas.net";
+    # just go to the list of services for now
+    globalRedirect = "home.jeffas.net";
+  };
 }

@@ -451,11 +451,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1763288108,
-        "narHash": "sha256-clmgZHQu8N0rLyyk0Crox2hfFhMPsYMJwBZBjSnj+PU=",
+        "lastModified": 1763305975,
+        "narHash": "sha256-3dVMqiv/twb24I1tBr2h02408b06CxIsL+vuALasNuc=",
         "owner": "jeffa5",
         "repo": "stagix",
-        "rev": "a00d1b3a38cbb663301164bc2a5a46438ce385e7",
+        "rev": "1134d71c4184be16f1ae18a8329dec9b8977d092",
         "type": "github"
       },
       "original": {
