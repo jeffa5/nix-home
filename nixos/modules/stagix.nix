@@ -3,6 +3,7 @@
   lib,
   ...
 }: let
+  gitHome = "/local/git";
   gitReposDir = "/local/git/public";
   gitWebDir = "/local/git-www";
   gitPagesDir = "/local/git-pages";
@@ -10,6 +11,7 @@
   stagix-repo = lib.getExe' pkgs.stagix "stagix-repo";
   stagix-index = lib.getExe' pkgs.stagix "stagix-index";
   stagix-pages = lib.getExe' pkgs.stagix "stagix-pages";
+  publicGitHost = "git.home.jeffas.net";
   pagesHost = "pages.home.jeffas.net";
 in {
   systemd.services.stagix-index = {
@@ -18,28 +20,13 @@ in {
     script = ''
       set -ex
 
-      # cp ${pkgs.stagix}/share/doc/stagix/style.css ${gitWebDir}/style.css
-      # cp ${pkgs.stagix}/share/doc/stagix/logo.png ${gitWebDir}/logo.png
-      # cp ${pkgs.stagix}/share/doc/stagix/favicon.png ${gitWebDir}/favicon.png
-
-      # for dir in ${gitReposDir}/*; do
-      #   base=$(basename $dir)
-      #   if [ ! -f $dir/url ]; then
-      #     echo "git://git.home.jeffas.net/$base" > $dir/url
-      #   fi
-      #   if [ ! -f $dir/owner ]; then
-      #     echo "Andrew Jeffery <dev@jeffas.net>" > $dir/owner
-      #   fi
-      #   mkdir -p ${gitWebDir}/$base
-      #   cd ${gitWebDir}/$base
-      #   ${stagix-repo} ${gitReposDir}/$base
-      #   ln -sf log.html index.html
-      #   ln -sf ../style.css style.css
-      #   ln -sf ../logo.png logo.png
-      #   ln -sf ../favicon.png favicon.png
-      # done
-      # cd ${gitWebDir}
-      # ${stagix-index} ${gitReposDir}/* > index.html
+      # Set some default values if missing
+      for dir in ${gitReposDir}/*; do
+        echo "git://${publicGitHost}/''${dir#${gitHome}/}" > $dir/url
+        if [ ! -f $dir/owner ]; then
+          echo "Andrew Jeffery <dev@jeffas.net>" > $dir/owner
+        fi
+      done
 
       cd ${gitWebDir}
 
@@ -75,7 +62,7 @@ in {
 
       	mkdir -p "''${curdir}/''${d}"
       	cd "''${curdir}/''${d}" || continue
-        # ${stagix-repo} -c ".cache" -u "https://git.home.jeffas.net/$d/" "''${reposdir}/''${r}"
+        # ${stagix-repo} -c ".cache" -u "https://${publicGitHost}/$d/" "''${reposdir}/''${r}"
       	${stagix-repo} "''${reposdir}/''${r}"
 
       	# symlinks
@@ -128,7 +115,7 @@ in {
   services.nginx.virtualHosts."Git" = let
     authelia-snippets = import ./authelia-snippets.nix {inherit pkgs;};
   in {
-    serverName = "git.home.jeffas.net";
+    serverName = publicGitHost;
     locations."/" = {
       root = gitWebDir;
       extraConfig = ''
