@@ -58,4 +58,8 @@ in {
       };
     };
   };
+  programs.todoman = {
+    enable = true;
+    glob = "jeffas/*";
+  };
 }
