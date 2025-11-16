@@ -3,10 +3,14 @@
   lib,
   ...
 }: let
-  gitProjDir = "/local/git/public";
+  gitReposDir = "/local/git/public";
   gitWebDir = "/local/git-www";
+  gitPagesDir = "/local/git-pages";
+  gitPagesWorkingDir = "/local/git-pages-workdir/tempdir";
   stagix-repo = lib.getExe' pkgs.stagix "stagix-repo";
   stagix-index = lib.getExe' pkgs.stagix "stagix-index";
+  stagix-pages = lib.getExe' pkgs.stagix "stagix-pages";
+  pagesHost = "pages.home.jeffas.net";
 in {
   systemd.services.stagix-index = {
     enable = true;
@@ -18,7 +22,7 @@ in {
       # cp ${pkgs.stagix}/share/doc/stagix/logo.png ${gitWebDir}/logo.png
       # cp ${pkgs.stagix}/share/doc/stagix/favicon.png ${gitWebDir}/favicon.png
 
-      # for dir in ${gitProjDir}/*; do
+      # for dir in ${gitReposDir}/*; do
       #   base=$(basename $dir)
       #   if [ ! -f $dir/url ]; then
       #     echo "git://git.home.jeffas.net/$base" > $dir/url
@@ -28,14 +32,14 @@ in {
       #   fi
       #   mkdir -p ${gitWebDir}/$base
       #   cd ${gitWebDir}/$base
-      #   ${stagix-repo} ${gitProjDir}/$base
+      #   ${stagix-repo} ${gitReposDir}/$base
       #   ln -sf log.html index.html
       #   ln -sf ../style.css style.css
       #   ln -sf ../logo.png logo.png
       #   ln -sf ../favicon.png favicon.png
       # done
       # cd ${gitWebDir}
-      # ${stagix-index} ${gitProjDir}/* > index.html
+      # ${stagix-index} ${gitReposDir}/* > index.html
 
       cd ${gitWebDir}
 
@@ -56,11 +60,11 @@ in {
       # - sh example_create.sh
 
       # path must be absolute.
-      reposdir="${gitProjDir}"
+      reposdir="${gitReposDir}"
       curdir="${gitWebDir}"
 
       # make index.
-      ${stagix-index} "''${reposdir}/"*/ --out-dir "''${curdir}"
+      ${stagix-index} "''${reposdir}/"*/ --out-dir "''${curdir}" --pages-url "https://${pagesHost}"
 
       # make files per repo.
       for dir in "''${reposdir}/"*/; do
@@ -98,12 +102,53 @@ in {
     };
   };
 
+  systemd.services.stagix-pages = {
+    enable = true;
+    description = "Generate stagix pages";
+    script = ''
+      set -ex
+
+      ${stagix-pages} --out-dir "${gitPagesDir}" --working-dir "${gitPagesWorkingDir}" "${gitReposDir}/"*/
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      User = "git";
+      Group = "git";
+    };
+    wantedBy = ["multi-user.target"];
+  };
+
+  systemd.timers.stagix-pages = {
+    wantedBy = ["timers.target"];
+    timerConfig = {
+      OnCalendar = "hourly";
+    };
+  };
+
   services.nginx.virtualHosts."Git" = let
     authelia-snippets = import ./authelia-snippets.nix {inherit pkgs;};
   in {
     serverName = "git.home.jeffas.net";
     locations."/" = {
       root = gitWebDir;
+      extraConfig = ''
+        include ${authelia-snippets.proxy};
+        include ${authelia-snippets.authelia-authrequest};
+      '';
+    };
+    forceSSL = true;
+    useACMEHost = "home.jeffas.net";
+    extraConfig = ''
+      include ${authelia-snippets.authelia-location};
+    '';
+  };
+
+  services.nginx.virtualHosts."Git Pages" = let
+    authelia-snippets = import ./authelia-snippets.nix {inherit pkgs;};
+  in {
+    serverName = pagesHost;
+    locations."/" = {
+      root = gitPagesDir;
       extraConfig = ''
         include ${authelia-snippets.proxy};
         include ${authelia-snippets.authelia-authrequest};
