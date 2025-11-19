@@ -53,7 +53,11 @@ in {
             };
             scroll-step = 5;
           };
-          systemd-failed-units = { };
+          systemd-failed-units = {
+            format = "✗ {nr_failed}";
+            format-ok = "✓";
+            hide-on-ok = false;
+          };
           backlight = {
             format = "☼ {percent}%";
             exec-if = "${pkgs.status-bar.backlight}/bin/bar-backlight";
