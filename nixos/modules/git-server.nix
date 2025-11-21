@@ -4,8 +4,18 @@
   ...
 }: let
   homeDir = "/var/lib/git-server";
+
+  new-git-repo = pkgs.writeShellScriptBin "new-git-repo" ''
+    read name
+    read description
+
+    mkdir "$name.git"
+    cd "$name.git"
+    ${lib.getExe pkgs.git} init --bare .
+    echo "$description" > "$name.git/description"
+  '';
 in {
-  environment.systemPackages = [pkgs.git];
+  environment.systemPackages = [pkgs.git new-git-repo];
 
   users.users.git = {
     isSystemUser = true;
@@ -41,7 +51,7 @@ in {
 
   services.nginx.virtualHosts."Git" = {
     serverName = "git.home.jeffas.net";
-    # just go to the list of services for now
+    # just go to the list of services for now, this is really just to get the dns entry
     globalRedirect = "home.jeffas.net";
   };
 }
