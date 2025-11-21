@@ -6,8 +6,8 @@
   homeDir = "/var/lib/git-server";
 
   new-git-repo = pkgs.writeShellScriptBin "new-git-repo" ''
-    read name
-    read description
+    read -p "Name: " name
+    read -p "Description: " description
 
     mkdir "$name.git"
     cd "$name.git"
