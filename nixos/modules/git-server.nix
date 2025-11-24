@@ -12,7 +12,9 @@
     mkdir "$name.git"
     cd "$name.git"
     ${lib.getExe pkgs.git} init --bare .
-    echo "$description" > "$name.git/description"
+    echo "$description" > "description"
+
+    chown -R git:git .
   '';
 in {
   environment.systemPackages = [pkgs.git new-git-repo];
