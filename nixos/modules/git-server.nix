@@ -3,7 +3,7 @@
   lib,
   ...
 }: let
-  homeDir = "/var/lib/git-server";
+  homeDir = "/local/git";
 
   new-git-repo = pkgs.writeShellScriptBin "new-git-repo" ''
     read -p "Name: " name
