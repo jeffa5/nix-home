@@ -28,9 +28,7 @@
       services = servicesForNode value.config;
     in ''
       <h2>${node}</h2>
-      <table>
       ${services}
-      </table>
     '')
     configs);
 
