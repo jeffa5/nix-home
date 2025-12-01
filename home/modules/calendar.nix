@@ -62,5 +62,8 @@ in {
   programs.todoman = {
     enable = true;
     glob = "jeffas/*";
+    extraConfig = ''
+      default_list = "personal"
+    '';
   };
 }
