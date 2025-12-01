@@ -142,7 +142,7 @@ in {
       enable = true;
       description = "Export metrics for restic";
       script = ''
-        ${lib.getExe pkgs.prometheus-restic-exporter} --listen-address :${toString ports.restic-exporter-local.private} --refresh-interval 5m --repo-name local --ignore-errors --restic-binary ${lib.getExe pkgs.restic} --print-command-output-on-error
+        ${lib.getExe pkgs.prometheus-restic-exporter} --listen-address :${toString ports.restic-exporter-local.private} --refresh-interval 30m --repo-name local --ignore-errors --restic-binary ${lib.getExe pkgs.restic} --print-command-output-on-error
       '';
       environment = {
         RESTIC_REPOSITORY = local-repository;
@@ -160,7 +160,7 @@ in {
       path = [config.programs.ssh.package];
       description = "Export metrics for restic";
       script = ''
-        ${lib.getExe pkgs.prometheus-restic-exporter} --listen-address :${toString ports.restic-exporter-homelab.private} --refresh-interval 5m --repo-name homelab --ignore-errors --restic-binary ${lib.getExe pkgs.restic} --print-command-output-on-error
+        ${lib.getExe pkgs.prometheus-restic-exporter} --listen-address :${toString ports.restic-exporter-homelab.private} --refresh-interval 30m --repo-name homelab --ignore-errors --restic-binary ${lib.getExe pkgs.restic} --print-command-output-on-error
       '';
       environment = {
         RESTIC_REPOSITORY = homelab-repository;
@@ -178,7 +178,7 @@ in {
       description = "Export metrics for restic";
       path = [config.programs.ssh.package];
       script = ''
-        ${lib.getExe pkgs.prometheus-restic-exporter} --listen-address :${toString ports.restic-exporter-storagebox.private} --refresh-interval 5m --repo-name storagebox --ignore-errors --restic-binary ${lib.getExe pkgs.restic} --print-command-output-on-error
+        ${lib.getExe pkgs.prometheus-restic-exporter} --listen-address :${toString ports.restic-exporter-storagebox.private} --refresh-interval 30m --repo-name storagebox --ignore-errors --restic-binary ${lib.getExe pkgs.restic} --print-command-output-on-error
       '';
       environment = {
         RESTIC_REPOSITORY = storagebox-repository;
