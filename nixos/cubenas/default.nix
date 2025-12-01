@@ -118,6 +118,7 @@
     pkgs.htop
     pkgs.lm_sensors
     pkgs.dnsutils
+    pkgs.lf
   ];
 
   # This option defines the first version of NixOS you have installed on this particular machine,
