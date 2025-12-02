@@ -41,12 +41,14 @@ in {
   nixpkgs.config.permittedInsecurePackages =
     pkgs.lib.optional (pkgs.obsidian.version == "1.4.16") "electron-25.9.0";
 
-  networking.networkmanager.enable = true;
+  networking.networkmanager.enable = false;
+
+
   networking.nameservers = [
     "1.1.1.1"
     "8.8.8.8"
   ];
-  networking.networkmanager.wifi.backend = "iwd";
+
   networking.wireless.iwd = {
     enable = true;
     settings = {
@@ -80,6 +82,8 @@ in {
 
   environment.systemPackages = [
     pkgs.fish
+    pkgs.impala
+    pkgs.bluetui
   ];
 
   console.packages = [colemakdh];
