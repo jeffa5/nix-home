@@ -1,18 +1,13 @@
 {pkgs, ...}: {
   programs.git = {
     enable = true;
-    package = pkgs.gitAndTools.gitFull;
-    delta.enable = true;
-    delta.options = {
-      gruvbox-light = {
-        syntax-theme = "gruvbox-light";
-      };
-      features = "gruvbox-light";
-    };
+    package = pkgs.gitFull;
     lfs.enable = true;
-    userEmail = "dev@jeffas.net";
-    userName = "Andrew Jeffery";
-    extraConfig = {
+    settings = {
+      user = {
+        email = "dev@jeffas.net";
+        name = "Andrew Jeffery";
+      };
       init = {
         defaultBranch = "main";
       };
@@ -22,6 +17,16 @@
       merge = {
         tool = "vimdiff";
       };
+    };
+  };
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+    options = {
+      gruvbox-light = {
+        syntax-theme = "gruvbox-light";
+      };
+      features = "gruvbox-light";
     };
   };
 }
