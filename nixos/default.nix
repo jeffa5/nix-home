@@ -155,8 +155,6 @@ in {
     fuse.userAllowOther = true;
   };
 
-  zramSwap.enable = true; # Creates a zram block device and uses it as a swap device
-
   # boot.kernel.sysctl."fs.inotify.max_user_watches" = pkgs.lib.mkDefault 524288;
   boot.tmp.useTmpfs = true;
   systemd.services.nix-daemon = {
