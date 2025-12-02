@@ -25,6 +25,7 @@
     pkgs.git-open
     pkgs.libreoffice
     pkgs.nextcloud-client
+    pkgs.nh
     pkgs.spotify
     pkgs.vlc
     pkgs.wally-cli
