@@ -12,19 +12,7 @@ in {
     extraPackages =
       [
         pkgs.alejandra
-        pkgs.black
-        pkgs.beancount-language-server
-        pkgs.clang-tools
-        pkgs.isort
-        pkgs.lua-language-server
-        pkgs.marksman
         pkgs.nil
-        pkgs.nodePackages.prettier
-        pkgs.pylint
-        pkgs.pyright
-        pkgs.rust-analyzer
-        pkgs.texlab
-        pkgs.tinymist
       ]
       ++ lib.optional (pkgs ? wordnet-ls) pkgs.wordnet-ls
       ++ lib.optional (pkgs ? maills) pkgs.maills

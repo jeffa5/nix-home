@@ -19,6 +19,7 @@ in {
       ./modules/tailscale.nix
       ./modules/restic.nix
       ./modules/autoupgrade.nix
+      ./modules/slim.nix
 
       ./modules/nodeboard.nix
     ]
@@ -61,12 +62,11 @@ in {
     users.andrew = {
       isNormalUser = true;
       extraGroups = ["wheel" "docker" "networkmanager" "plugdev" "adbusers" "libvirtd"];
-      shell = pkgs.fish;
+      shell = pkgs.nushell;
     };
   };
 
   environment.systemPackages = [
-    pkgs.zsh
     pkgs.fish
   ];
 

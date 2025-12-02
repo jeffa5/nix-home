@@ -5,8 +5,8 @@
     ../modules/laptop.nix
     ../modules/node-exporter.nix
     ../modules/promtail.nix
-    ../modules/printing.nix
-    ../modules/scanning.nix
+    # ../modules/printing.nix
+    # ../modules/scanning.nix
     ../modules/syncthing.nix
   ];
 

@@ -9,7 +9,7 @@
     ./ssh.nix
     ./git.nix
     ./jujutsu.nix
-    ./zsh.nix
+    # ./zsh.nix
     ./starship.nix
     ./fzf.nix
   ];

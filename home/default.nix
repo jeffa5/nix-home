@@ -7,9 +7,8 @@
       (import ./modules/home.nix {inherit username;})
       (import ./modules/tui.nix {inherit gui;})
       ./xkb.nix
-      ./latexmk.nix
       ./neovim.nix
-      ./helix.nix
+      # ./helix.nix
       ./modules/cargo.nix
       (import ./modules/nix.nix {inherit username;})
     ]

@@ -33,7 +33,6 @@
     pkgs.wl-clipboard
     pkgs.wl-mirror
     pkgs.xdg-utils
-    pkgs.xwayland
   ];
 
   fonts.fontconfig.enable = true;
