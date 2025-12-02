@@ -10,7 +10,7 @@
     ./contacts.nix
     ./calendar.nix
     ./foot.nix
-    ./papers.nix
+    # ./papers.nix
 
     ./sway.nix
     ./lf.nix

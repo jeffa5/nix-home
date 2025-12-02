@@ -2,7 +2,7 @@
   imports = [
     ./bat.nix
     ./direnv.nix
-    ./eza.nix
+    # ./eza.nix
     ./fish.nix
     ./nushell.nix
     (import ./tmux.nix {server = !gui;})
