@@ -31,6 +31,9 @@ in {
           collections = ["from a" "from b"];
           conflictResolution = "remote wins";
         };
+        pimsync = {
+          enable = true;
+        };
       }
     )
     accounts
@@ -40,6 +43,9 @@ in {
 
   services.vdirsyncer.enable = true;
   programs.vdirsyncer.enable = true;
+
+  programs.pimsync.enable = true;
+
   programs.khal = {
     enable = true;
     locale = {
