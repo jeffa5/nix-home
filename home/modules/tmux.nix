@@ -91,7 +91,7 @@
       # messages
       set -g message-style 'fg=colour15 bg=colour4 bold'
 
-      set -g default-shell ${lib.getExe pkgs.nushell}
+      set -g default-shell ${lib.getExe pkgs.fish}
     '';
   };
 }
