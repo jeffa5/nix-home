@@ -74,7 +74,7 @@ in {
     users.andrew = {
       isNormalUser = true;
       extraGroups = ["wheel" "docker" "networkmanager" "plugdev" "adbusers" "libvirtd"];
-      shell = pkgs.nushell;
+      shell = pkgs.fish;
     };
   };
 
