@@ -82,8 +82,6 @@ in {
 
   environment.systemPackages = [
     pkgs.fish
-    pkgs.impala
-    pkgs.bluetui
   ];
 
   console.packages = [colemakdh];
