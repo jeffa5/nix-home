@@ -68,7 +68,6 @@ in {
   environment.systemPackages = [
     pkgs.zsh
     pkgs.fish
-    pkgs.qemu
   ];
 
   console.packages = [colemakdh];
@@ -102,12 +101,6 @@ in {
     udisks2.enable = gui;
 
     fwupd.enable = true;
-
-    automatic-timezoned.enable = true;
-    # mozilla's service is deprecated
-    geoclue2.geoProviderUrl = "https://beacondb.net/v1/geolocate";
-
-    tzupdate.enable = true;
   };
 
   # udev 250 doesn't reliably reinitialize devices after restart
@@ -144,10 +137,6 @@ in {
 
   # boot.kernel.sysctl."fs.inotify.max_user_watches" = pkgs.lib.mkDefault 524288;
   boot.tmp.useTmpfs = true;
-
-  # register QEMU as a binfmt wrapper for the aarch64 architecture
-  # https://nixos.wiki/wiki/NixOS_on_ARM#Compiling_through_QEMU
-  boot.binfmt.emulatedSystems = ["aarch64-linux"];
 
   system.userActivationScripts.diff = ''
     if [[ -e /run/current-system ]]; then

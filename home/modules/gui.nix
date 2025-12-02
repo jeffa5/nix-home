@@ -16,33 +16,22 @@
     ./lf.nix
     ./rbw.nix
     ./newsboat.nix
-    ./taskwarrior.nix
   ];
 
   home.packages = [
-    # bitwarden
-    # bitwarden-cli
     pkgs.anki
     pkgs.calcurse
-    pkgs.calibre
     pkgs.chromium
-    pkgs.czkawka
     pkgs.darktable
     pkgs.flare-signal
     pkgs.fractal
-    pkgs.gitAndTools.git-open
+    pkgs.git-open
     pkgs.gramps
     pkgs.libreoffice
     pkgs.loupe
-    pkgs.musescore
     pkgs.nextcloud-client
-    pkgs.obsidian
-    pkgs.organicmaps
     pkgs.signal-desktop
-    pkgs.slack
     pkgs.spotify
-    pkgs.thunderbird
-    pkgs.timewarrior
     pkgs.vlc
     pkgs.wally-cli
     pkgs.waytext
@@ -51,7 +40,6 @@
     pkgs.wl-mirror
     pkgs.xdg-utils
     pkgs.xwayland
-    pkgs.shotwell
   ];
 
   fonts.fontconfig.enable = true;
