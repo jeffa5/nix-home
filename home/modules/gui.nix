@@ -19,18 +19,12 @@
   ];
 
   home.packages = [
-    pkgs.anki
-    pkgs.calcurse
-    pkgs.chromium
     pkgs.darktable
     pkgs.flare-signal
     pkgs.fractal
     pkgs.git-open
-    pkgs.gramps
     pkgs.libreoffice
-    pkgs.loupe
     pkgs.nextcloud-client
-    pkgs.signal-desktop
     pkgs.spotify
     pkgs.vlc
     pkgs.wally-cli
@@ -48,8 +42,6 @@
     nextcloud-client = {
       enable = true;
     };
-
-    udiskie.enable = true;
 
     wlsunset = {
       enable = true;

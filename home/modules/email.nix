@@ -63,8 +63,6 @@ in {
         mu.enable = true;
 
         realName = "Andrew Jeffery";
-
-        thunderbird.enable = true;
       })
       accounts)
     // search;

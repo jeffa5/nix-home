@@ -101,6 +101,9 @@ in {
     udisks2.enable = gui;
 
     fwupd.enable = true;
+
+    # disable this as its enabled by default but I do not need it
+    speechd.enable = false;
   };
 
   # udev 250 doesn't reliably reinitialize devices after restart
