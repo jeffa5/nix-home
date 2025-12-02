@@ -11,6 +11,8 @@
     wrapperFeatures.gtk = true;
   };
 
+  services.xserver.displayManager.lightdm.enable = false;
+
   services.greetd = {
     enable = false;
     settings = {
