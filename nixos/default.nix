@@ -47,6 +47,17 @@ in {
     "8.8.8.8"
   ];
   networking.networkmanager.wifi.backend = "iwd";
+  networking.wireless.iwd = {
+    enable = true;
+    settings = {
+      Network = {
+        EnableIPv6 = true;
+      };
+      Settings = {
+        AutoConnect = true;
+      };
+    };
+  };
 
   hardware = {
     bluetooth.enable = true;
