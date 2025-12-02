@@ -46,6 +46,7 @@ in {
     "1.1.1.1"
     "8.8.8.8"
   ];
+  networking.networkmanager.wifi.backend = "iwd";
 
   hardware = {
     bluetooth.enable = true;
@@ -102,8 +103,9 @@ in {
 
     fwupd.enable = true;
 
-    # disable this as its enabled by default but I do not need it
-    speechd.enable = false;
+    dbus.implementation = "broker";
+
+    irqbalance.enable = true;
   };
 
   # udev 250 doesn't reliably reinitialize devices after restart
@@ -138,8 +140,15 @@ in {
     fuse.userAllowOther = true;
   };
 
+  zramSwap.enable = true; # Creates a zram block device and uses it as a swap device
+
   # boot.kernel.sysctl."fs.inotify.max_user_watches" = pkgs.lib.mkDefault 524288;
   boot.tmp.useTmpfs = true;
+  systemd.services.nix-daemon = {
+    environment.TMPDIR = "/var/tmp";
+  };
+
+  boot.initrd.systemd.enable = true;
 
   system.userActivationScripts.diff = ''
     if [[ -e /run/current-system ]]; then

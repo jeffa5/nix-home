@@ -27,6 +27,7 @@
   };
 
   boot.initrd.luks.devices."nixenc".device = "/dev/disk/by-uuid/49f0d8b3-5171-4738-8204-c109cef2c3b3";
+  boot.initrd.luks.devices."nixenc".allowDiscards = true;
 
   fileSystems."/home" = {
     device = "/dev/disk/by-uuid/98cc9159-2cb8-4756-8971-b97c04638808";
