@@ -58,7 +58,26 @@ in {
         config = builtins.readFile ./neovim/fzf-lua.lua;
       }
 
-      vimPkgs.nvim-treesitter.withAllGrammars
+      (vimPkgs.nvim-treesitter.withPlugins (p: [
+        p.bash
+        p.beancount
+        p.c
+        p.cpp
+        p.css
+        p.go
+        p.html
+        p.json
+        p.lua
+        p.markdown
+        p.nix
+        p.nu
+        p.python
+        p.rust
+        p.sql
+        p.toml
+        p.typst
+        p.yaml
+      ]))
       {
         plugin = vimPkgs.nvim-treesitter-context;
         type = "lua";
