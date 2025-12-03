@@ -56,7 +56,16 @@ in {
 
   services.nginx.virtualHosts."Git" = {
     serverName = "git.home.jeffas.net";
-    # just go to the list of services for now, this is really just to get the dns entry
-    globalRedirect = "home.jeffas.net";
+    locations."/" = {
+      # serve the nice web UI
+      root = "${homeDir}-www/public-external";
+      tryFiles = "$uri @git";
+    };
+    locations."@git" = {
+      # fallback to serving the backing git repo
+      root = "${homeDir}/public";
+    };
+    forceSSL = true;
+    useACMEHost = "home.jeffas.net";
   };
 }
