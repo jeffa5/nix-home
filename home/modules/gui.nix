@@ -23,7 +23,6 @@
     pkgs.flare-signal
     pkgs.fractal
     pkgs.git-open
-    pkgs.libreoffice
     pkgs.nextcloud-client
     pkgs.nh
     pkgs.spotify
