@@ -465,11 +465,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1764741095,
-        "narHash": "sha256-ntm+suK5mky5dbqaVj8+M91QYwylMxPESYwmcc8A+QY=",
+        "lastModified": 1764779880,
+        "narHash": "sha256-VSUWF2n4Wtr7L2AWTXBaOOrGEX7AaiJIkyRqKK5BxFU=",
         "owner": "jeffa5",
         "repo": "stagix",
-        "rev": "f3e86bc2fdf4d06bba74079c8be8e662a0f21784",
+        "rev": "7142f9dc39a77966ef29a413d037305d34545267",
         "type": "github"
       },
       "original": {
