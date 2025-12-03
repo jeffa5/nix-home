@@ -14,6 +14,9 @@
     ${lib.getExe pkgs.git} init --bare .
     echo "$description" > "description"
 
+    cp --update=none hooks/post-update.sample hooks/post-update
+    chmod a+x hooks/post-update
+
     chown -R git:git .
   '';
 in {
