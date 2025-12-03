@@ -38,8 +38,6 @@ in {
     );
 
   nixpkgs.overlays = overlays;
-  nixpkgs.config.permittedInsecurePackages =
-    pkgs.lib.optional (pkgs.obsidian.version == "1.4.16") "electron-25.9.0";
 
   networking.networkmanager.enable = false;
 
