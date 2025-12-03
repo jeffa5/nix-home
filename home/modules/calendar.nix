@@ -33,6 +33,16 @@ in {
         };
         pimsync = {
           enable = true;
+          extraPairDirectives = [
+            {
+              name = "collections";
+              params = ["all"];
+            }
+            {
+              name = "conflict_resolution";
+              params = ["keep" "b"]; # keep server version
+            }
+          ];
         };
       }
     )
