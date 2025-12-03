@@ -17,10 +17,7 @@
     icalls.url = "github:jeffa5/icalls";
     nixSearch.url = "github:diamondburned/nix-search";
     stagix.url = "github:jeffa5/stagix";
-    prometheusResticExporter = {
-      url = "github:jeffa5/prometheus-restic-exporter";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    prometheusResticExporter.url = "github:jeffa5/prometheus-restic-exporter";
   };
 
   outputs = {
