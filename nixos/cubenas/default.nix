@@ -64,11 +64,18 @@
     gitRoot = "/local/git";
     hostName = "home.jeffas.net";
     locations = {
+      public-external = {
+        path = "public-external";
+        repoPath = "public";
+        cloneBaseUrls = ["https://git.home.jeffas.net"];
+      };
       public = {
         path = "public";
+        cloneBaseUrls = ["git@git.home.jeffas.net/public"];
       };
       private = {
         path = "private";
+        cloneBaseUrls = ["git@git.home.jeffas.net/private"];
       };
     };
   };

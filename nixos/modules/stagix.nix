@@ -8,18 +8,26 @@
   stagix-index = lib.getExe' pkgs.stagix "stagix-index";
   stagix-pages = lib.getExe' pkgs.stagix "stagix-pages";
 
+  mkGitCloneUrls = {
+    gitHost,
+    name,
+    cloneBaseUrls,
+  }:
+    lib.strings.concatStringsSep "," cloneBaseUrls;
+
   stagix-index-script = {
     gitHost,
     gitReposDir,
     gitWebDir,
     gitReposUrl,
     gitPagesUrl,
+    gitCloneUrls,
   }: ''
-    set -ex
+    set -x
 
     # Set some default values if missing
     for dir in ${gitReposDir}/*; do
-      echo "git://${gitHost}/''${dir#${cfg.gitRoot}/}" > $dir/url
+      echo "git@${gitHost}/''${dir#${cfg.gitRoot}/}" > $dir/url
       if [ ! -f $dir/owner ]; then
         echo "Andrew Jeffery <dev@jeffas.net>" > $dir/owner
       fi
@@ -59,7 +67,7 @@
 
     	mkdir -p "''${curdir}/''${d}"
     	cd "''${curdir}/''${d}" || continue
-    	${stagix-repo} --log-length 50 "''${reposdir}/''${r}"
+    	${stagix-repo} --log-length 50 --clone-base-urls "${gitCloneUrls}" "''${reposdir}/''${r}"
 
     	# symlinks
     	ln -sf log.html index.html
@@ -76,6 +84,7 @@
     gitWebDir,
     gitReposUrl,
     gitPagesUrl,
+    gitCloneUrls,
   }: {
     enable = true;
     description = "Generate stagix repos";
@@ -86,6 +95,7 @@
         gitWebDir
         gitReposUrl
         gitPagesUrl
+        gitCloneUrls
         ;
     };
     serviceConfig = {
@@ -126,15 +136,20 @@
   gitHost = "git.${cfg.hostName}";
   pagesHost = "pages.${cfg.hostName}";
 
-  mkServicesConfig = name: {path}: let
+  mkServicesConfig = name: {
+    path,
+    repoPath ,
+    cloneBaseUrls,
+  }: let
     gitWebDir = "${cfg.gitRoot}-www/${path}";
     gitPagesDir = "${cfg.gitRoot}-pages/${path}";
-    gitReposDir = "${cfg.gitRoot}/${path}";
+    gitReposDir = "${cfg.gitRoot}/${if repoPath == null then path else repoPath}";
   in {
     "stagix-index-${path}" = stagix-index-service {
       inherit gitHost gitWebDir gitReposDir;
       gitReposUrl = "${path}-${gitHost}";
       gitPagesUrl = "${path}-${pagesHost}";
+      gitCloneUrls = mkGitCloneUrls {inherit gitHost name cloneBaseUrls;};
     };
 
     "stagix-pages-${path}" = stagix-pages-service {
@@ -145,13 +160,22 @@
     };
   };
 
-  mkTimersConfig = name: {path}: {
+  mkTimersConfig = name: {
+    path,
+    repoPath ? path,
+    cloneBaseUrls,
+  }: {
     "stagix-index-${path}" = timerConfig;
 
     "stagix-pages-${path}" = timerConfig;
   };
 
-  mkNginxConfig = name: {path}: let
+  mkNginxConfig = name: {
+    path,
+    repoPath ? path,
+    cloneBaseUrls,
+  }: let
+    gitDir = "${cfg.gitRoot}/${path}";
     gitWebDir = "${cfg.gitRoot}-www/${path}";
     gitPagesDir = "${cfg.gitRoot}-pages/${path}";
     authelia-snippets = import ./authelia-snippets.nix {inherit pkgs;};
@@ -162,10 +186,15 @@
       serverName = host;
       locations."/" = {
         root = root;
+        tryFiles = "$uri $uri/ @git";
         extraConfig = ''
           include ${authelia-snippets.proxy};
           include ${authelia-snippets.authelia-authrequest};
         '';
+      };
+      locations."@git" = {
+        # fallback to serving the backing git repo
+        root = gitDir;
       };
       forceSSL = true;
       useACMEHost = cfg.hostName;
@@ -215,6 +244,14 @@ in {
         options = {
           path = lib.mkOption {
             type = lib.types.str;
+          };
+          repoPath = lib.mkOption {
+            type = lib.types.nullOr lib.types.str;
+            default = null;
+          };
+          cloneBaseUrls = lib.mkOption {
+            type = lib.types.listOf lib.types.str;
+            default = [];
           };
         };
       });
