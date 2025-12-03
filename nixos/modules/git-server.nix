@@ -54,7 +54,7 @@ in {
   services.nginx.virtualHosts."Git" = {
     serverName = "git.home.jeffas.net";
     locations."/" = {
-      root = "${homeDir}/public";
+      root = "${homeDir}-www/public";
     };
     forceSSL = true;
     useACMEHost = "home.jeffas.net";
