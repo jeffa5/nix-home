@@ -4,7 +4,7 @@
   hosts,
 }: let
   deploy = host: ip: let
-    cmd = "nixos-rebuild switch --flake .#${host} --show-trace --no-reexec --build-host root@${ip} --target-host root@${ip}";
+    cmd = "nh os switch .# --hostname ${host} --show-trace --build-host root@${ip} --target-host root@${ip}";
   in ''
     echo "+ ${cmd}"
     ${cmd}
