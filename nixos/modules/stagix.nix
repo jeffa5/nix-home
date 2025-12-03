@@ -8,7 +8,6 @@
   stagix-index = lib.getExe' pkgs.stagix "stagix-index";
   stagix-pages = lib.getExe' pkgs.stagix "stagix-pages";
 
-
   stagix-index-script = {
     gitHost,
     gitReposDir,

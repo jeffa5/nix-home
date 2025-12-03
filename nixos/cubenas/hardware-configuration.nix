@@ -67,19 +67,19 @@
     device = "/local/git";
     options = ["bind"];
   };
-  fileSystems."${config.services.nextcloud.datadir}"= {
+  fileSystems."${config.services.nextcloud.datadir}" = {
     device = "/local/nextcloud";
     options = ["bind"];
   };
-  fileSystems."${config.services.immich.mediaLocation}"= {
+  fileSystems."${config.services.immich.mediaLocation}" = {
     device = "/local/immich";
     options = ["bind"];
   };
-  fileSystems."${config.services.postgresql.dataDir}"= {
+  fileSystems."${config.services.postgresql.dataDir}" = {
     device = "/local/postgresql";
     options = ["bind"];
   };
-  fileSystems."${config.services.paperless.dataDir}"= {
+  fileSystems."${config.services.paperless.dataDir}" = {
     device = "/local/paperless";
     options = ["bind"];
   };
