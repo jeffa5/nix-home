@@ -60,7 +60,7 @@
 
     	mkdir -p "''${curdir}/''${d}"
     	cd "''${curdir}/''${d}" || continue
-    	${stagix-repo} "''${reposdir}/''${r}"
+    	${stagix-repo} --log-length 50 "''${reposdir}/''${r}"
 
     	# symlinks
     	ln -sf log.html index.html
