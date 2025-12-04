@@ -7,7 +7,6 @@
     ../modules/promtail.nix
     # ../modules/printing.nix
     # ../modules/scanning.nix
-    ../modules/syncthing.nix
   ];
 
   services.backups.enable = true;

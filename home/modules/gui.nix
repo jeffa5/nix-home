@@ -42,6 +42,10 @@
       enable = true;
     };
 
+    syncthing = {
+      enable = true;
+    };
+
     wlsunset = {
       enable = true;
       latitude = 51.5;
