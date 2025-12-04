@@ -59,7 +59,7 @@ in {
     locations."/" = {
       # serve the nice web UI
       root = "${homeDir}-www/public-external";
-      tryFiles = "$uri @git";
+      tryFiles = "$uri $uri/ @git";
     };
     locations."@git" = {
       # fallback to serving the backing git repo
