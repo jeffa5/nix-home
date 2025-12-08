@@ -83,6 +83,10 @@
     device = "/local/paperless";
     options = ["bind"];
   };
+  fileSystems."${config.services.syncthing.dataDir}" = {
+    device = "/local/syncthing";
+    options = ["bind"];
+  };
 
   swapDevices = [];
 
