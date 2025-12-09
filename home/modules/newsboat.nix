@@ -327,6 +327,7 @@
       color info default default reverse
 
       feed-sort-order latestunread
+      confirm-exit yes
     '';
   };
 }
