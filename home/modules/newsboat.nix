@@ -31,7 +31,7 @@
         url = "https://rust-analyzer.github.io/feed.xml";
       }
       {
-        title = " The Cloudflare Blog ";
+        title = "The Cloudflare Blog";
         url = "https://blog.cloudflare.com/rss/";
       }
       {
@@ -308,6 +308,8 @@
       unbind-key A
       unbind-key q
       unbind-key Q
+      unbind-key HOME
+      unbind-key END
 
       bind-key j down
       bind-key k up
@@ -316,11 +318,15 @@
       bind-key l open
       bind-key N prev-unread
       bind-key t mark-feed-read
+      bind-key g home
+      bind-key G end
 
       color listfocus default default reverse
       color listfocus_unread default default bold reverse
       color title default default reverse
       color info default default reverse
+
+      feed-sort-order latestunread
     '';
   };
 }
