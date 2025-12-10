@@ -67,7 +67,7 @@
       public-external = {
         path = "public-external";
         repoPath = "public";
-        cloneBaseUrls = ["https://git.home.jeffas.net"];
+        cloneBaseUrls = ["https://git.jeffas.net"];
       };
       public = {
         path = "public";
