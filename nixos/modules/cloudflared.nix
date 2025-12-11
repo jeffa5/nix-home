@@ -35,7 +35,7 @@ in {
         credentialsFile = "/local/cloudflared/bb0853ce-9799-4f0f-9b0d-80250eae1002.json";
         default = "http_status:404";
         ingress = {
-          "next.jeffas.net" = {
+          "www.jeffas.net" = {
             service = "http://${wwwLocal}";
           };
           "git.jeffas.net" = {
