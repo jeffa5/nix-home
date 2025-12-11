@@ -5,6 +5,11 @@
       "bb0853ce-9799-4f0f-9b0d-80250eae1002" = {
         credentialsFile = "/local/cloudflared/bb0853ce-9799-4f0f-9b0d-80250eae1002.json";
         default = "http_status:404";
+        ingress = {
+          "www.jeffas.net" = {
+            service = "http://localhost:3080";
+          };
+        };
       };
     };
   };
