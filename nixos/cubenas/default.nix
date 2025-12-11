@@ -55,6 +55,8 @@
 
     ../modules/paperless.nix
     ../modules/syncthing.nix
+
+    ./files.nix
   ];
 
   programs.tmux.enable = true;
