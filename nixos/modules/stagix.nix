@@ -8,11 +8,7 @@
   stagix-index = lib.getExe' pkgs.stagix "stagix-index";
   stagix-pages = lib.getExe' pkgs.stagix "stagix-pages";
 
-  mkGitCloneUrls = {
-    gitHost,
-    name,
-    cloneBaseUrls,
-  }:
+  mkGitCloneUrls = {cloneBaseUrls}:
     lib.strings.concatStringsSep "," cloneBaseUrls;
 
   stagix-index-script = {
@@ -56,7 +52,7 @@
     curdir="${gitWebDir}"
 
     # make index.
-    ${stagix-index} --out-dir "''${curdir}" --repos-url "https://${gitReposUrl}" --pages-url "https://${gitPagesUrl}" --stylesheet ${pkgs.stagix}/share/doc/stagix/style.css --logo ${pkgs.stagix}/share/doc/stagix/logo.png --favicon ${pkgs.stagix}/share/doc/stagix/favicon.png "''${reposdir}/"*/
+    ${stagix-index} --out-dir "''${curdir}" --repos-url "${gitReposUrl}" --pages-url "${gitPagesUrl}" --stylesheet ${pkgs.stagix}/share/doc/stagix/style.css --logo ${pkgs.stagix}/share/doc/stagix/logo.png --favicon ${pkgs.stagix}/share/doc/stagix/favicon.png "''${reposdir}/"*/
 
     # make files per repo.
     for dir in "''${reposdir}/"*/; do
@@ -117,7 +113,7 @@
     script = ''
       set -ex
 
-      ${stagix-pages} --out-dir "${gitPagesDir}" --working-dir "${gitPagesWorkingDir}" --index --repos-url "https://${gitReposUrl}" --pages-url "https://${gitPagesUrl}" --stylesheet ${pkgs.stagix}/share/doc/stagix/style.css --logo ${pkgs.stagix}/share/doc/stagix/logo.png --favicon ${pkgs.stagix}/share/doc/stagix/favicon.png "${gitReposDir}/"*/
+      ${stagix-pages} --out-dir "${gitPagesDir}" --working-dir "${gitPagesWorkingDir}" --index --repos-url "${gitReposUrl}" --pages-url "${gitPagesUrl}" --stylesheet ${pkgs.stagix}/share/doc/stagix/style.css --logo ${pkgs.stagix}/share/doc/stagix/logo.png --favicon ${pkgs.stagix}/share/doc/stagix/favicon.png "${gitReposDir}/"*/
     '';
     serviceConfig = {
       Type = "oneshot";
@@ -138,25 +134,43 @@
 
   mkServicesConfig = name: {
     path,
-    repoPath ,
+    repoPath,
     cloneBaseUrls,
+    gitUrl,
+    pagesUrl,
   }: let
     gitWebDir = "${cfg.gitRoot}-www/${path}";
     gitPagesDir = "${cfg.gitRoot}-pages/${path}";
-    gitReposDir = "${cfg.gitRoot}/${if repoPath == null then path else repoPath}";
+    gitReposDir = "${cfg.gitRoot}/${
+      if repoPath == null
+      then path
+      else repoPath
+    }";
   in {
     "stagix-index-${path}" = stagix-index-service {
       inherit gitHost gitWebDir gitReposDir;
-      gitReposUrl = "${path}-${gitHost}";
-      gitPagesUrl = "${path}-${pagesHost}";
-      gitCloneUrls = mkGitCloneUrls {inherit gitHost name cloneBaseUrls;};
+      gitReposUrl =
+        if gitUrl == null
+        then "https://${path}-${gitHost}"
+        else gitUrl;
+      gitPagesUrl =
+        if pagesUrl == null
+        then "https://${path}-${pagesHost}"
+        else pagesUrl;
+      gitCloneUrls = mkGitCloneUrls {inherit cloneBaseUrls;};
     };
 
     "stagix-pages-${path}" = stagix-pages-service {
       inherit gitPagesDir gitReposDir;
       gitPagesWorkingDir = "${cfg.gitRoot}-pages-workdir/${path}";
-      gitReposUrl = "${path}-${gitHost}";
-      gitPagesUrl = "${path}-${pagesHost}";
+      gitReposUrl =
+        if gitUrl == null
+        then "https://${path}-${gitHost}"
+        else gitUrl;
+      gitPagesUrl =
+        if pagesUrl == null
+        then "https://${path}-${pagesHost}"
+        else pagesUrl;
     };
   };
 
@@ -164,6 +178,8 @@
     path,
     repoPath ? path,
     cloneBaseUrls,
+    gitUrl,
+    pagesUrl,
   }: {
     "stagix-index-${path}" = timerConfig;
 
@@ -174,6 +190,8 @@
     path,
     repoPath ? path,
     cloneBaseUrls,
+    gitUrl,
+    pagesUrl,
   }: let
     gitDir = "${cfg.gitRoot}/${path}";
     gitWebDir = "${cfg.gitRoot}-www/${path}";
@@ -252,6 +270,14 @@ in {
           cloneBaseUrls = lib.mkOption {
             type = lib.types.listOf lib.types.str;
             default = [];
+          };
+          gitUrl = lib.mkOption {
+            type = lib.types.nullOr lib.types.str;
+            default = null;
+          };
+          pagesUrl = lib.mkOption {
+            type = lib.types.nullOr lib.types.str;
+            default = null;
           };
         };
       });
