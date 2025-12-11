@@ -317,7 +317,7 @@
       bind-key q hard-quit
       bind-key l open
       bind-key N prev-unread
-      bind-key t mark-feed-read
+      bind-key t toggle-article-read
       bind-key g home
       bind-key G end
 
