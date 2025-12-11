@@ -113,7 +113,7 @@
     script = ''
       set -ex
 
-      ${stagix-pages} --out-dir "${gitPagesDir}" --working-dir "${gitPagesWorkingDir}" --index --repos-url "${gitReposUrl}" --pages-url "${gitPagesUrl}" --stylesheet ${pkgs.stagix}/share/doc/stagix/style.css --logo ${pkgs.stagix}/share/doc/stagix/logo.png --favicon ${pkgs.stagix}/share/doc/stagix/favicon.png "${gitReposDir}/"*/
+      ${stagix-pages} --out-dir "${gitPagesDir}" --working-dir "${gitPagesWorkingDir}" "${gitReposDir}/"*/
     '';
     serviceConfig = {
       Type = "oneshot";
