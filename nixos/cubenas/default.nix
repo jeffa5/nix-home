@@ -28,6 +28,7 @@
     ../modules/promtail.nix
 
     ../modules/nginx.nix
+    ../modules/cloudflared.nix
 
     ../modules/authelia.nix
 
