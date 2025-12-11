@@ -6,6 +6,27 @@
   wwwLocal = "localhost:${toString wwwPort}";
   gitLocal = "localhost:${toString gitPort}";
   pagesLocal = "localhost:${toString pagesPort}";
+
+  mkNginxConf = {
+    serverName,
+    root,
+    port,
+  }: {
+    inherit serverName;
+    extraConfig = ''
+      server_name_in_redirect on;
+      port_in_redirect off;
+    '';
+    locations."/" = {
+      inherit root;
+    };
+    listen = [
+      {
+        inherit port;
+        addr = "127.0.0.1";
+      }
+    ];
+  };
 in {
   services.cloudflared = {
     enable = true;
@@ -28,54 +49,21 @@ in {
     };
   };
 
-  services.nginx.virtualHosts."Tunnel WWW" = {
+  services.nginx.virtualHosts."Tunnel WWW" = mkNginxConf {
     serverName = "www.jeffas.net ${wwwLocal}";
-    extraConfig = ''
-      server_name_in_redirect on;
-      port_in_redirect off;
-    '';
-    locations."/" = {
-      root = "/local/git-pages/public-external/jeffasnet/";
-    };
-    listen = [
-      {
-        addr = "127.0.0.1";
-        port = wwwPort;
-      }
-    ];
+    root = "/local/git-pages/public-external/jeffasnet/";
+    port = wwwPort;
   };
 
-  services.nginx.virtualHosts."Tunnel Git" = {
+  services.nginx.virtualHosts."Tunnel Git" = mkNginxConf {
     serverName = "git.jeffas.net ${gitLocal}";
-    extraConfig = ''
-      server_name_in_redirect on;
-      port_in_redirect off;
-    '';
-    locations."/" = {
-      root = "/local/git-www/public-external/";
-    };
-    listen = [
-      {
-        addr = "127.0.0.1";
-        port = gitPort;
-      }
-    ];
+    root = "/local/git-www/public-external/";
+    port = gitPort;
   };
 
-  services.nginx.virtualHosts."Tunnel Pages" = {
+  services.nginx.virtualHosts."Tunnel Pages" = mkNginxConf {
     serverName = "pages.jeffas.net ${pagesLocal}";
-    extraConfig = ''
-      server_name_in_redirect on;
-      port_in_redirect off;
-    '';
-    locations."/" = {
-      root = "/local/git-pages/public-external/";
-    };
-    listen = [
-      {
-        addr = "127.0.0.1";
-        port = pagesPort;
-      }
-    ];
+    root = "/local/git-pages/public-external/";
+    port = pagesPort;
   };
 }
