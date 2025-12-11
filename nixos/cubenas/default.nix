@@ -9,10 +9,11 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../modules/btrfs.nix
-    # (import ../modules/nix.nix {
-    #   inherit nixpkgs;
-    #   users = [];
-    # })
+
+    (import ../modules/nix.nix {
+      inherit nixpkgs;
+      users = [];
+    })
 
     ../modules/openssh.nix
     ../modules/tailscale.nix

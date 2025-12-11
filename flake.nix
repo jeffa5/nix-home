@@ -182,7 +182,7 @@
             nixpkgs.overlays = overlays;
           })
           (import ./nixos/cubenas {
-            inherit nixpkgs;
+            nixpkgs = stableNixpkgs;
             configs = self.nixosConfigurations;
           })
         ];

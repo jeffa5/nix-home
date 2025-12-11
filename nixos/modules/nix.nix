@@ -4,7 +4,6 @@
 }: {pkgs, ...}: {
   nix = {
     extraOptions = ''
-      experimental-features = nix-command flakes
       keep-outputs = true
       keep-derivations = true
 
@@ -14,6 +13,7 @@
 
     settings = {
       trusted-users = ["root"] ++ users;
+      experimental-features = ["nix-command" "flakes"];
     };
 
     # make nix shell commands use same nixpkgs as system
