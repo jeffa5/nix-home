@@ -52,7 +52,7 @@
     curdir="${gitWebDir}"
 
     # make index.
-    ${stagix-index} --out-dir "''${curdir}" --repos-url "${gitReposUrl}" --pages-url "${gitPagesUrl}" --stylesheet ${pkgs.stagix}/share/doc/stagix/style.css --logo ${pkgs.stagix}/share/doc/stagix/logo.png --favicon ${pkgs.stagix}/share/doc/stagix/favicon.png "''${reposdir}/"*/
+    ${stagix-index} --out-dir "''${curdir}" --repos-url "${gitReposUrl}" --pages-url "${gitPagesUrl}" --stylesheet ${pkgs.stagix}/share/doc/stagix/style.css --logo ${./logo.png} --favicon ${./favicon.png} "''${reposdir}/"*/
 
     # make files per repo.
     for dir in "''${reposdir}/"*/; do
