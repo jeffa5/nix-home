@@ -18,7 +18,7 @@ in {
       (import ./modules/nix.nix {inherit nixpkgs users;})
       ./modules/tailscale.nix
       ./modules/restic.nix
-      ./modules/autoupgrade.nix
+      # ./modules/autoupgrade.nix
       ./modules/slim.nix
 
       ./modules/nodeboard.nix
