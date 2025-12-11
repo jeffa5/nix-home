@@ -12,7 +12,7 @@
     url =
       if service.serverName == null
       then ""
-      else "http://${service.serverName}";
+      else "http://${lib.head (lib.splitString " " service.serverName)}";
   in ''<li><a href="${url}">${name}</a></li>'';
   services = lib.concatStringsSep "\n" (lib.mapAttrsToList (name: value: formatService name value) nginxHosts);
 
