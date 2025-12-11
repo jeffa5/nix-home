@@ -2,8 +2,8 @@
   services.cloudflared = {
     enable = true;
     tunnels = {
-      "1653cea6-96b2-44f4-9984-d90efb9d748e" = {
-        credentialsFile = "/local/cloudflared/cert.pem";
+      "bb0853ce-9799-4f0f-9b0d-80250eae1002" = {
+        credentialsFile = "/local/cloudflared/bb0853ce-9799-4f0f-9b0d-80250eae1002.json";
         default = "http_status:404";
       };
     };
