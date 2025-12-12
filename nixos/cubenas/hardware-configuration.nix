@@ -87,6 +87,10 @@
     device = "/local/syncthing";
     options = ["bind"];
   };
+  fileSystems."/var/lib/radicale" = {
+    device = "/local/radicale";
+    options = ["bind"];
+  };
 
   swapDevices = [];
 

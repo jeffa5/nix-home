@@ -56,6 +56,8 @@
     ../modules/paperless.nix
     ../modules/syncthing.nix
 
+    ../modules/radicale.nix
+
     ./files.nix
   ];
 
