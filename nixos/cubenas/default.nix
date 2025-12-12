@@ -43,12 +43,10 @@
     ../modules/mosquitto.nix
     ../modules/influxdb.nix
 
-    ../modules/nextcloudcmd.nix
     ../modules/jellyfin.nix
     ../modules/git-server.nix
     ../modules/stagix.nix
 
-    ../modules/nextcloud.nix
     ../modules/immich.nix
 
     ../modules/postgres.nix

@@ -23,7 +23,6 @@
     pkgs.flare-signal
     pkgs.fractal
     pkgs.git-open
-    pkgs.nextcloud-client
     pkgs.nh
     pkgs.spotify
     pkgs.vlc
@@ -38,10 +37,6 @@
   fonts.fontconfig.enable = true;
 
   services = {
-    nextcloud-client = {
-      enable = true;
-    };
-
     syncthing = {
       enable = true;
     };

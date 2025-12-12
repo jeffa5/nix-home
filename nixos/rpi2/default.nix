@@ -12,7 +12,6 @@
     ../modules/promtail.nix
     ../modules/nginx.nix
     ../modules/tailscale.nix
-    ../modules/nextcloudcmd.nix
   ];
 
   networking.hostName = "rpi2";

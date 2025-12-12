@@ -67,10 +67,6 @@
     device = "/local/git";
     options = ["bind"];
   };
-  fileSystems."${config.services.nextcloud.datadir}" = {
-    device = "/local/nextcloud";
-    options = ["bind"];
-  };
   fileSystems."${config.services.immich.mediaLocation}" = {
     device = "/local/immich";
     options = ["bind"];
