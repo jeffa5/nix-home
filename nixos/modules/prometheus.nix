@@ -106,6 +106,12 @@ in {
         ];
       }
       {
+        job_name = "cloudflared";
+        static_configs = [
+          {targets = ["127.0.0.1:20241"];}
+        ];
+      }
+      {
         job_name = "wttr_in_london";
         static_configs = [
           {
