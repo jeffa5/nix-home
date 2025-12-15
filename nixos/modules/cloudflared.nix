@@ -1,4 +1,4 @@
-{...}: let
+{lib, ...}: let
   wwwPort = 3080;
   gitPort = 3081;
   pagesPort = 3082;
@@ -55,11 +55,19 @@ in {
     port = wwwPort;
   };
 
-  services.nginx.virtualHosts."Tunnel Git" = mkNginxConf {
-    serverName = "git.jeffas.net ${gitLocal}";
-    root = "/local/git-www/public-external/";
-    port = gitPort;
-  };
+  services.nginx.virtualHosts."Tunnel Git" =
+    lib.attrsets.recursiveUpdate (mkNginxConf {
+      serverName = "git.jeffas.net ${gitLocal}";
+      root = "/local/git-www/public-external/";
+      port = gitPort;
+    })
+    {
+      locations."/".tryFiles = "$uri $uri/ @git";
+      locations."@git" = {
+        # fallback to serving the backing git repo
+        root = "/local/git/public";
+      };
+    };
 
   services.nginx.virtualHosts."Tunnel Pages" = mkNginxConf {
     serverName = "pages.jeffas.net ${pagesLocal}";
