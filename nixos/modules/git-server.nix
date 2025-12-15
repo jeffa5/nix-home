@@ -68,4 +68,7 @@ in {
     forceSSL = true;
     useACMEHost = "home.jeffas.net";
   };
+
+  # let nginx access the git repos
+  users.users.nginx.extraGroups = ["git"];
 }
