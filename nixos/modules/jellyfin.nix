@@ -1,4 +1,4 @@
-{pkgs, ...}: let
+{...}: let
   http_port = 8096;
 in {
   services.jellyfin = {

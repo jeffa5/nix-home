@@ -105,8 +105,7 @@
     gitPagesDir,
     gitPagesWorkingDir,
     gitReposDir,
-    gitReposUrl,
-    gitPagesUrl,
+    ...
   }: {
     enable = true;
     description = "Generate stagix pages";
@@ -132,7 +131,7 @@
   gitHost = "git.${cfg.hostName}";
   pagesHost = "pages.${cfg.hostName}";
 
-  mkServicesConfig = name: {
+  mkServicesConfig = _: {
     path,
     repoPath,
     cloneBaseUrls,
@@ -174,13 +173,7 @@
     };
   };
 
-  mkTimersConfig = name: {
-    path,
-    repoPath ? path,
-    cloneBaseUrls,
-    gitUrl,
-    pagesUrl,
-  }: {
+  mkTimersConfig = _: {path, ...}: {
     "stagix-index-${path}" = timerConfig;
 
     "stagix-pages-${path}" = timerConfig;
@@ -188,10 +181,7 @@
 
   mkNginxConfig = name: {
     path,
-    repoPath ? path,
-    cloneBaseUrls,
-    gitUrl,
-    pagesUrl,
+    ...
   }: let
     gitDir = "${cfg.gitRoot}/${path}";
     gitWebDir = "${cfg.gitRoot}-www/${path}";

@@ -1,7 +1,7 @@
 {
   nixpkgs,
   users,
-}: {pkgs, ...}: {
+}: {...}: {
   nix = {
     extraOptions = ''
       keep-outputs = true
