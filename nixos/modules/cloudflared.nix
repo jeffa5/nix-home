@@ -2,10 +2,12 @@
   wwwPort = 3080;
   gitPort = 3081;
   pagesPort = 3082;
+  sharePort = 3083;
 
   wwwLocal = "localhost:${toString wwwPort}";
   gitLocal = "localhost:${toString gitPort}";
   pagesLocal = "localhost:${toString pagesPort}";
+  shareLocal = "localhost:${toString sharePort}";
 
   mkNginxConf = {
     serverName,
@@ -44,6 +46,9 @@ in {
           "pages.jeffas.net" = {
             service = "http://${pagesLocal}";
           };
+          "share.jeffas.net" = {
+            service = "http://${shareLocal}";
+          };
         };
       };
     };
@@ -73,5 +78,11 @@ in {
     serverName = "pages.jeffas.net ${pagesLocal}";
     root = "/local/git-pages/public-external/";
     port = pagesPort;
+  };
+
+  services.nginx.virtualHosts."Tunnel Share" = mkNginxConf {
+    serverName = "share.jeffas.net ${shareLocal}";
+    root = "/local/share/";
+    port = sharePort;
   };
 }
