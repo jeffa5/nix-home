@@ -69,7 +69,6 @@ in {
       keybindings = {
         delete = "x";
         export = "ctrl e";
-        external_edit = "e";
         duplicate = "d";
         save = "ctrl s";
       };
