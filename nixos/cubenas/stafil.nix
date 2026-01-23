@@ -53,9 +53,29 @@
         command = "echo \"<img src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(${exiftool} $in)</pre>\"";
         wrap = true;
       };
+      ".gif" = {
+        name = "gif";
+        command = "echo \"<img src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(${exiftool} $in)</pre>\"";
+        wrap = true;
+      };
       ".heic" = {
         name = "heic";
         command = "echo \"<img src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(${exiftool} $in)</pre>\"";
+        wrap = true;
+      };
+      ".mp4" = {
+        name = "mp4";
+        command = "echo \"<video controls src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(${exiftool} $in)</pre>\"";
+        wrap = true;
+      };
+      ".mov" = {
+        name = "mov";
+        command = "echo \"<video controls src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(${exiftool} $in)</pre>\"";
+        wrap = true;
+      };
+      ".mp3" = {
+        name = "mp3";
+        command = "echo \"<audio controls src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(${exiftool} $in)</pre>\"";
         wrap = true;
       };
       index = {
