@@ -26,6 +26,7 @@ in {
     isSystemUser = true;
     group = "git";
     home = homeDir;
+    homeMode = "0750";
     createHome = true;
     shell = "${pkgs.git}/bin/git-shell";
     openssh.authorizedKeys.keys = [
