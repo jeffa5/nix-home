@@ -18,6 +18,7 @@
     nixSearch.url = "github:diamondburned/nix-search";
     stagix.url = "github:jeffa5/stagix";
     prometheusResticExporter.url = "github:jeffa5/prometheus-restic-exporter";
+    stafil.url = "git+https://git.jeffas.net/stafil.git";
   };
 
   outputs = {
@@ -35,6 +36,7 @@
     nixSearch,
     stagix,
     prometheusResticExporter,
+    stafil,
   }: let
     username = "andrew";
     system = "x86_64-linux";
@@ -52,6 +54,7 @@
       icalls = icalls.packages.${system}.icalls;
       stagix = stagix.packages.${system}.stagix;
       prometheus-restic-exporter = prometheusResticExporter.packages.${system}.prometheus-restic-exporter;
+      stafil = stafil.packages.${system}.stafil;
       # khal =
       #   prev.khal.overrideAttrs
       #   (_finalAttrs: _previousAttrs: {

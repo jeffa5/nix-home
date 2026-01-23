@@ -57,6 +57,7 @@
     ../modules/radicale.nix
 
     ./files.nix
+    ./stafil.nix
   ];
 
   programs.tmux.enable = true;
