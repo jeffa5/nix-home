@@ -44,6 +44,15 @@ in {
         "0xa4c1384d69014eec" = {
           friendly_name = "lounge/ap/power";
         };
+        "0xa4c138369a7c7618" = {
+          friendly_name = "bedroom/bedside_left/light";
+        };
+        "0xa4c1383784ccb9df" = {
+          friendly_name = "bedroom/bedside_right/light";
+        };
+        "0x943469fffe3dfcc0" = {
+          friendly_name = "bedroom/mobile/switch";
+        };
       };
     };
   };
