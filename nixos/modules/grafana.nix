@@ -1,4 +1,4 @@
-{...}: let
+{pkgs, ...}: let
   ports = import ./ports.nix;
   private_port = ports.grafana.private;
   serverName = "grafana.home.jeffas.net";
@@ -13,6 +13,9 @@ in {
       server = {
         http_port = private_port;
       };
+      # todo: when using authelia disable this login
+      # auth.disable_login_form = true;
+      "auth.anonymous".enabled = true;
     };
     provision = {
       enable = true;
@@ -91,13 +94,22 @@ in {
     };
   };
 
-  services.nginx.virtualHosts."Grafana" = {
+  services.nginx.virtualHosts."Grafana" = let
+    authelia-snippets = import ./authelia-snippets.nix {inherit pkgs;};
+  in {
     inherit serverName;
     locations."/" = {
       proxyPass = "http://127.0.0.1:${toString private_port}";
       proxyWebsockets = true;
+      extraConfig = ''
+        include ${authelia-snippets.proxy};
+        include ${authelia-snippets.authelia-authrequest};
+      '';
     };
     forceSSL = true;
     useACMEHost = "home.jeffas.net";
+    extraConfig = ''
+      include ${authelia-snippets.authelia-location};
+    '';
   };
 }
