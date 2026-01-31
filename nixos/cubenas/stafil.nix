@@ -135,7 +135,7 @@ in {
   services.nginx.virtualHosts."Files WWW" = let
     authelia-snippets = import ../modules/authelia-snippets.nix {inherit pkgs;};
   in {
-    serverName = "files-www.home.jeffas.net";
+    serverName = "files.home.jeffas.net";
     root = "/local/files-www/";
     forceSSL = true;
     useACMEHost = "home.jeffas.net";

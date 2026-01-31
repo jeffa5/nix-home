@@ -56,7 +56,6 @@
 
     ../modules/radicale.nix
 
-    ./files.nix
     ./stafil.nix
     ./home-assistant.nix
   ];
