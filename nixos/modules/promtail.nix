@@ -14,7 +14,7 @@ in {
       };
       clients = [
         {
-          url = "http://${loki_address}/loki/api/v1/push";
+          url = "https://${loki_address}/loki/api/v1/push";
         }
       ];
       scrape_configs = [
