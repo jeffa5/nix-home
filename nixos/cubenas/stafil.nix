@@ -28,6 +28,31 @@
         command = "echo \"<p><pre>$$(cat $in)</pre></p>\"";
         wrap = true;
       };
+      ".csv" = {
+        name = "csv";
+        command = "echo \"<p><pre>$$(cat $in)</pre></p>\"";
+        wrap = true;
+      };
+      ".sh" = {
+        name = "sh";
+        command = "echo \"<p><pre>$$(cat $in)</pre></p>\"";
+        wrap = true;
+      };
+      ".log" = {
+        name = "log";
+        command = "echo \"<p><pre>$$(cat $in)</pre></p>\"";
+        wrap = true;
+      };
+      ".eml" = {
+        name = "eml";
+        command = "echo \"<p><pre>$$(cat $in)</pre></p>\"";
+        wrap = true;
+      };
+      ".pdf" = {
+        name = "pdf";
+        command = "echo \"<embed src=\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\" type=\"application/pdf\" frameBorder=\"0\" scrolling=\"auto\" height=\"100%\" width=\"100%\"></embed>\"";
+        wrap = true;
+      };
       ".md" = {
         name = "markdown";
         command = "${lib.getExe' pkgs.lowdown "lowdown"} $in";
@@ -136,7 +161,7 @@ in {
     authelia-snippets = import ../modules/authelia-snippets.nix {inherit pkgs;};
   in {
     serverName = "files.home.jeffas.net";
-    root = "${destination}/andrew/";
+    root = "${destination}/";
     forceSSL = true;
     useACMEHost = "home.jeffas.net";
     extraConfig = ''
