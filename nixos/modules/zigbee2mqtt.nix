@@ -48,7 +48,7 @@ in {
           friendly_name = "kitchen/kettle/power";
         };
         "0xa4c1384d69014eec" = {
-          friendly_name = "lounge/ap/power";
+          friendly_name = "bedroom/lamp/power";
         };
         "0xa4c138369a7c7618" = {
           friendly_name = "bedroom/bedside_left/light";
