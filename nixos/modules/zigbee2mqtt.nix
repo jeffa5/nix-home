@@ -28,36 +28,102 @@ in {
       devices = {
         "0x00158d000ab704e1" = {
           friendly_name = "kitchen/washing_machine/vibration";
+          homeassistant = {
+            name = "Kitchen vibration sensor";
+            device = {
+              suggested_area = "Kitchen";
+            };
+          };
         };
         "0x9035eafffe0d82b3" = {
           friendly_name = "bedroom/temp_hum";
+          homeassistant = {
+            name = "Bedroom temperature sensor";
+            device = {
+              suggested_area = "Bedroom";
+            };
+          };
         };
         "0x9035eafffe02bb4c" = {
           friendly_name = "lounge/temp_hum";
+          homeassistant = {
+            name = "Lounge temperature sensor";
+            device = {
+              suggested_area = "Lounge";
+            };
+          };
         };
         "0x9035eafffe02b57c" = {
           friendly_name = "kitchen/temp_hum";
+          homeassistant = {
+            name = "Kitchen temperature sensor";
+            device = {
+              suggested_area = "Kitchen";
+            };
+          };
         };
         "0xa4c1380101c477a3" = {
           friendly_name = "desk/homelab/power";
+          homeassistant = {
+            name = "Desk homelab plug";
+            device = {
+              suggested_area = "Desk";
+            };
+          };
         };
         "0xa4c1384f889e5eed" = {
           friendly_name = "kitchen/fridge/power";
+          homeassistant = {
+            name = "Kitchen fridge plug";
+            device = {
+              suggested_area = "Kitchen";
+            };
+          };
         };
         "0xa4c13890038bb6fc" = {
           friendly_name = "kitchen/kettle/power";
+          homeassistant = {
+            name = "Kitchen kettle plug";
+            device = {
+              suggested_area = "Kitchen";
+            };
+          };
         };
         "0xa4c1384d69014eec" = {
           friendly_name = "bedroom/lamp/power";
+          homeassistant = {
+            name = "Bedroom lamp plug";
+            device = {
+              suggested_area = "Bedroom";
+            };
+          };
         };
         "0xa4c138369a7c7618" = {
           friendly_name = "bedroom/bedside_left/light";
+          homeassistant = {
+            name = "Bedside lamp - left";
+            device = {
+              suggested_area = "Bedroom";
+            };
+          };
         };
         "0xa4c1383784ccb9df" = {
           friendly_name = "bedroom/bedside_right/light";
+          homeassistant = {
+            name = "Bedside lamp - right";
+            device = {
+              suggested_area = "Bedroom";
+            };
+          };
         };
         "0x943469fffe3dfcc0" = {
           friendly_name = "bedroom/mobile/switch";
+          homeassistant = {
+            name = "Bedside lamp switch";
+            device = {
+              suggested_area = "Bedroom";
+            };
+          };
         };
       };
     };
