@@ -136,11 +136,10 @@ in {
     authelia-snippets = import ../modules/authelia-snippets.nix {inherit pkgs;};
   in {
     serverName = "files.home.jeffas.net";
-    root = "/local/files-www/";
+    root = "${destination}/andrew/";
     forceSSL = true;
     useACMEHost = "home.jeffas.net";
     extraConfig = ''
-      autoindex on;
       include ${authelia-snippets.proxy};
       include ${authelia-snippets.authelia-authrequest};
       include ${authelia-snippets.authelia-location};
