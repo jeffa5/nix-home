@@ -1,4 +1,5 @@
 {pkgs, ...}: let
+  serverName = "zigbee2mqtt.home.jeffas.net";
   port = 9070;
 in {
   services.zigbee2mqtt = {
@@ -12,11 +13,16 @@ in {
         port = "/dev/ttyUSB0";
       };
       frontend = {
+        enable = true;
         port = port;
+        url = "https://${serverName}";
       };
       advanced = {
         last_seen = "ISO_8601";
         #   network_key = "GENERATE";
+      };
+      homeassistant = {
+        enabled = true;
       };
 
       devices = {
@@ -66,7 +72,7 @@ in {
   services.nginx.virtualHosts."Zigbee2MQTT" = let
     authelia-snippets = import ./authelia-snippets.nix {inherit pkgs;};
   in {
-    serverName = "zigbee2mqtt.home.jeffas.net";
+    inherit serverName;
     locations."/" = {
       proxyPass = "http://127.0.0.1:${toString port}";
       proxyWebsockets = true;
