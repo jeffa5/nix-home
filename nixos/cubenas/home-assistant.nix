@@ -19,6 +19,9 @@
       "radio_browser"
       "shopping_list"
     ];
+    customComponents = [
+      pkgs.home-assistant-custom-components.octopus_energy
+    ];
     config = {
       # Includes dependencies for a basic setup
       # https://www.home-assistant.io/integrations/default_config/
