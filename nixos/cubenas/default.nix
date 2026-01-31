@@ -58,6 +58,7 @@
 
     ./files.nix
     ./stafil.nix
+    ./home-assistant.nix
   ];
 
   programs.tmux.enable = true;
