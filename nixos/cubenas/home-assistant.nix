@@ -30,6 +30,10 @@
         trusted_proxies = ["127.0.0.1"];
         use_x_forwarded_for = true;
       };
+
+      "automation ui" = "!include automations.yaml";
+      # "scene ui" = "!include scenes.yaml";
+      # "script ui" = "!include scripts.yaml";
     };
   };
 
