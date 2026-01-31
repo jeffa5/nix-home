@@ -31,7 +31,7 @@ in {
           homeassistant = {
             name = "Kitchen vibration sensor";
             device = {
-              suggested_area = "Kitchen";
+              suggested_area = "kitchen";
             };
           };
         };
@@ -40,7 +40,7 @@ in {
           homeassistant = {
             name = "Bedroom temperature sensor";
             device = {
-              suggested_area = "Bedroom";
+              suggested_area = "bedroom";
             };
           };
         };
@@ -49,7 +49,7 @@ in {
           homeassistant = {
             name = "Lounge temperature sensor";
             device = {
-              suggested_area = "Lounge";
+              suggested_area = "lounge";
             };
           };
         };
@@ -58,7 +58,7 @@ in {
           homeassistant = {
             name = "Kitchen temperature sensor";
             device = {
-              suggested_area = "Kitchen";
+              suggested_area = "kitchen";
             };
           };
         };
@@ -67,7 +67,7 @@ in {
           homeassistant = {
             name = "Desk homelab plug";
             device = {
-              suggested_area = "Desk";
+              suggested_area = "desk";
             };
           };
         };
@@ -76,7 +76,7 @@ in {
           homeassistant = {
             name = "Kitchen fridge plug";
             device = {
-              suggested_area = "Kitchen";
+              suggested_area = "kitchen";
             };
           };
         };
@@ -85,7 +85,7 @@ in {
           homeassistant = {
             name = "Kitchen kettle plug";
             device = {
-              suggested_area = "Kitchen";
+              suggested_area = "kitchen";
             };
           };
         };
@@ -94,7 +94,7 @@ in {
           homeassistant = {
             name = "Bedroom lamp plug";
             device = {
-              suggested_area = "Bedroom";
+              suggested_area = "bedroom";
             };
           };
         };
@@ -103,7 +103,7 @@ in {
           homeassistant = {
             name = "Bedside lamp - left";
             device = {
-              suggested_area = "Bedroom";
+              suggested_area = "bedroom";
             };
           };
         };
@@ -112,7 +112,7 @@ in {
           homeassistant = {
             name = "Bedside lamp - right";
             device = {
-              suggested_area = "Bedroom";
+              suggested_area = "bedroom";
             };
           };
         };
@@ -121,9 +121,21 @@ in {
           homeassistant = {
             name = "Bedside lamp switch";
             device = {
-              suggested_area = "Bedroom";
+              suggested_area = "bedroom";
             };
           };
+        };
+      };
+
+      groups = {
+        "1" = {
+          friendly_name = "Bedroom lights";
+          transition = 2;
+          devices = [
+            "0xa4c138369a7c7618"
+            "0xa4c1383784ccb9df"
+            "0xa4c1384d69014eec"
+          ];
         };
       };
     };
