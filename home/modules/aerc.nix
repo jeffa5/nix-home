@@ -148,7 +148,7 @@ in {
     ! = :term<space>
     | = :pipe<space>
 
-    a = :read<Enter>:archive flat<Enter>
+    a = :read<Enter>:archive month<Enter>
     / = :search<space>
     \ = :filter<space>
     n = :next-result<Enter>
@@ -179,7 +179,7 @@ in {
 
     h = :close<Enter>
     o = :open<Enter>
-    a = :read<Enter>:archive flat<Enter>:close<Enter>
+    a = :read<Enter>:archive month<Enter>:close<Enter>
     d = :read<Enter>:move Deleted<Enter>
     u = :pipe -p ${lib.getExe pkgs.urlscan}<Enter>
     c = :pipe -p ${lib.getExe' pkgs.khal "khal"} import --batch<Enter>
