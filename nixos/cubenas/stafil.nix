@@ -105,7 +105,7 @@
       };
       index = {
         name = "index";
-        command = "${index} -root ${source} -dir $in";
+        command = "${index} -image-extensions png,jpg,jpeg,gif -root ${source} -dir $in";
         wrap = true;
       };
     };

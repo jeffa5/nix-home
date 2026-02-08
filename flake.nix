@@ -18,7 +18,7 @@
     nixSearch.url = "github:diamondburned/nix-search";
     stagix.url = "github:jeffa5/stagix";
     prometheusResticExporter.url = "github:jeffa5/prometheus-restic-exporter";
-    stafil.url = "git+https://git.jeffas.net/stafil.git";
+    stafil.url = "git+https://git.jeffas.net/stafil.git?shallow=0";
   };
 
   outputs = {
