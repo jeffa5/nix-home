@@ -67,21 +67,45 @@
         name = "jpg";
         command = "echo \"<img src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(${exiftool} $in)</pre>\"";
         wrap = true;
+        extraRules = [
+          {
+            suffix = "thumb";
+            command = "cp $in $out && magick -define jpeg:size=500x180 $out -auto-orient -thumbnail 250x90 -unsharp 0x.5 $out";
+          }
+        ];
       };
       ".jpeg" = {
         name = "jpeg";
         command = "echo \"<img src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(${exiftool} $in)</pre>\"";
         wrap = true;
+        extraRules = [
+          {
+            suffix = "thumb";
+            command = "cp $in $out && magick -define jpeg:size=500x180 $out -auto-orient -thumbnail 250x90 -unsharp 0x.5 $out";
+          }
+        ];
       };
       ".png" = {
         name = "png";
         command = "echo \"<img src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(${exiftool} $in)</pre>\"";
         wrap = true;
+        extraRules = [
+          {
+            suffix = "thumb";
+            command = "cp $in $out && magick -define jpeg:size=500x180 $out -auto-orient -thumbnail 250x90 -unsharp 0x.5 $out";
+          }
+        ];
       };
       ".gif" = {
         name = "gif";
         command = "echo \"<img src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(${exiftool} $in)</pre>\"";
         wrap = true;
+        extraRules = [
+          {
+            suffix = "thumb";
+            command = "cp $in $out && magick -define jpeg:size=500x180 $out -auto-orient -thumbnail 250x90 -unsharp 0x.5 $out";
+          }
+        ];
       };
       ".heic" = {
         name = "heic";
@@ -105,7 +129,7 @@
       };
       index = {
         name = "index";
-        command = "${index} -image-extensions png,jpg,jpeg,gif -root ${source} -dir $in";
+        command = "${index} -thumb-extensions .png,.jpg,.jpeg,.gif -root ${source} -dir $in";
         wrap = true;
       };
     };
