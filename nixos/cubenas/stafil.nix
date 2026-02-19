@@ -12,6 +12,7 @@
   exiftool = lib.getExe pkgs.exiftool;
   wrap = lib.getExe' pkgs.stafil "stafil-wrap";
   index = lib.getExe' pkgs.stafil "stafil-index";
+  magick = lib.getExe' pkgs.imagemagick "magick";
 
   config = {
     source = source;
@@ -70,7 +71,7 @@
         extraRules = [
           {
             suffix = "thumb";
-            command = "cp $in $out && magick -define jpeg:size=500x180 $out -auto-orient -thumbnail 250x90 -unsharp 0x.5 $out";
+            command = "cp $in $out && ${magick} -define jpeg:size=500x180 $out -auto-orient -thumbnail 250x90 -unsharp 0x.5 $out";
           }
         ];
       };
@@ -81,7 +82,7 @@
         extraRules = [
           {
             suffix = "thumb";
-            command = "cp $in $out && magick -define jpeg:size=500x180 $out -auto-orient -thumbnail 250x90 -unsharp 0x.5 $out";
+            command = "cp $in $out && ${magick} -define jpeg:size=500x180 $out -auto-orient -thumbnail 250x90 -unsharp 0x.5 $out";
           }
         ];
       };
@@ -92,7 +93,7 @@
         extraRules = [
           {
             suffix = "thumb";
-            command = "cp $in $out && magick -define jpeg:size=500x180 $out -auto-orient -thumbnail 250x90 -unsharp 0x.5 $out";
+            command = "cp $in $out && ${magick} -define jpeg:size=500x180 $out -auto-orient -thumbnail 250x90 -unsharp 0x.5 $out";
           }
         ];
       };
@@ -103,7 +104,7 @@
         extraRules = [
           {
             suffix = "thumb";
-            command = "cp $in $out && magick -define jpeg:size=500x180 $out -auto-orient -thumbnail 250x90 -unsharp 0x.5 $out";
+            command = "cp $in $out && ${magick} -define jpeg:size=500x180 $out -auto-orient -thumbnail 250x90 -unsharp 0x.5 $out";
           }
         ];
       };
