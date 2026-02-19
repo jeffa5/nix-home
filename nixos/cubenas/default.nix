@@ -113,6 +113,12 @@
     ];
     isNormalUser = true;
   };
+  users.users.charlene = {
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIODXbDACWjYCOv+NxgC6Lzi3hx4+hdpHYaPyWDcOuyWU andrew@x1c6"
+    ];
+    isNormalUser = true;
+  };
 
   services.snapper = {
     configs."local" = {
