@@ -7,6 +7,8 @@
     ../modules/promtail.nix
     # ../modules/printing.nix
     # ../modules/scanning.nix
+
+    ../modules/steam.nix
   ];
 
   services.backups.enable = true;
