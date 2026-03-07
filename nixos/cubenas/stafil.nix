@@ -155,7 +155,7 @@ in {
     script = ''
       set -ex
       ${lib.getExe' pkgs.stafil "stafil-configure"} --config-file ${configFile} >${destination}/build.ninja
-      ${lib.getExe pkgs.ninja} -C ${destination}
+      ${lib.getExe pkgs.ninja} -C ${destination} -k 0
     '';
     environment = {
       SHELL = lib.getExe pkgs.bash;
