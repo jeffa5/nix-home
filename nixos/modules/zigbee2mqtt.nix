@@ -81,20 +81,20 @@ in {
           };
         };
         "0xa4c13890038bb6fc" = {
-          friendly_name = "kitchen/kettle/power";
+          friendly_name = "lounge/bookshelf_lamp/power";
           homeassistant = {
-            name = "Kitchen kettle plug";
+            name = "Lounge bookshelf lamp power";
             device = {
-              suggested_area = "kitchen";
+              suggested_area = "lounge";
             };
           };
         };
         "0xa4c1384d69014eec" = {
-          friendly_name = "bedroom/lamp/power";
+          friendly_name = "lounge/xmas_lights/power";
           homeassistant = {
-            name = "Bedroom lamp plug";
+            name = "Lounge xmas lights plug";
             device = {
-              suggested_area = "bedroom";
+              suggested_area = "lounge";
             };
           };
         };
@@ -120,6 +120,33 @@ in {
           friendly_name = "bedroom/mobile/switch";
           homeassistant = {
             name = "Bedside lamp switch";
+            device = {
+              suggested_area = "bedroom";
+            };
+          };
+        };
+        "0x943469fffe3de99a" = {
+          friendly_name = "lounge/mobile/switch";
+          homeassistant = {
+            name = "Lounge lamp switch";
+            device = {
+              suggested_area = "lounge";
+            };
+          };
+        };
+        "0xa4c1389ff9ea695d" = {
+          friendly_name = "lounge/reading_chair/light";
+          homeassistant = {
+            name = "Lounge reading chair lamp";
+            device = {
+              suggested_area = "lounge";
+            };
+          };
+        };
+        "0xa4c138bceb19acb1" = {
+          friendly_name = "bedroom/corner/light";
+          homeassistant = {
+            name = "Bedroom corner lamp";
             device = {
               suggested_area = "bedroom";
             };
