@@ -161,7 +161,24 @@ in {
           devices = [
             "0xa4c138369a7c7618"
             "0xa4c1383784ccb9df"
+            "0xa4c138bceb19acb1"
+          ];
+        };
+        "2" = {
+          friendly_name = "Bedside lights";
+          transition = 2;
+          devices = [
+            "0xa4c138369a7c7618"
+            "0xa4c1383784ccb9df"
+          ];
+        };
+        "3" = {
+          friendly_name = "Lounge lights";
+          transition = 2;
+          devices = [
             "0xa4c1384d69014eec"
+            "0xa4c13890038bb6fc"
+            "0xa4c1389ff9ea695d"
           ];
         };
       };
