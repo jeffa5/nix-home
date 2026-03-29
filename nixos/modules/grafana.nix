@@ -12,10 +12,24 @@ in {
       };
       server = {
         http_port = private_port;
+        root_url = "https://${serverName}";
       };
-      # todo: when using authelia disable this login
-      # auth.disable_login_form = true;
-      "auth.anonymous".enabled = true;
+      # Disable Grafana's built-in login, use Authelia instead
+      auth = {
+        disable_login_form = true;
+      };
+      "auth.anonymous" = {
+        enabled = false;
+      };
+      # Configure auth proxy to trust Authelia headers
+      "auth.proxy" = {
+        enabled = true;
+        header_name = "Remote-User";
+        header_property = "username";
+        auto_sign_up = true;
+        enable_login_token = false;
+        headers = "Email:Remote-Email Name:Remote-Name";
+      };
     };
     provision = {
       enable = true;
