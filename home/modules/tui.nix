@@ -12,6 +12,7 @@
     # ./zsh.nix
     ./starship.nix
     ./fzf.nix
+    ./claude.nix
   ];
   home.packages =
     [
