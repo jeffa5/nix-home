@@ -30,6 +30,7 @@
 
     ../modules/nginx.nix
     ../modules/cloudflared.nix
+    ../modules/share.nix
 
     ../modules/authelia.nix
 
@@ -66,6 +67,7 @@
 
   services.nodeboard.enable = true;
   services.homeboard.enable = true;
+  services.share.enable = true;
   services.stagix = {
     enable = true;
     gitRoot = "/local/git";

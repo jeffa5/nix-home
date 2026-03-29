@@ -1,8 +1,8 @@
-{lib, ...}: let
+{lib, config, ...}: let
   wwwPort = 3080;
   gitPort = 3081;
   pagesPort = 3082;
-  sharePort = 3083;
+  sharePort = config.services.share.port;
 
   wwwLocal = "localhost:${toString wwwPort}";
   gitLocal = "localhost:${toString gitPort}";
@@ -82,7 +82,7 @@ in {
 
   services.nginx.virtualHosts."Tunnel Share" = mkNginxConf {
     serverName = "share.jeffas.net ${shareLocal}";
-    root = "/local/share/";
+    root = "${config.services.share.directory}/";
     port = sharePort;
   };
 }
