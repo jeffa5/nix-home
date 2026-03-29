@@ -10,6 +10,7 @@ in {
   programs.claude-code = {
     enable = true;
     settings = {
+      model = "sonnet";
       permissions = {
         enable_extension_marketplace = false;
         allow = [
