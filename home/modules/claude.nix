@@ -12,6 +12,67 @@ in {
     settings = {
       permissions = {
         enable_extension_marketplace = false;
+        allow = [
+          # Git read-only operations
+          "Bash(git status:*)"
+          "Bash(git log:*)"
+          "Bash(git diff:*)"
+          "Bash(git branch --list:*)"
+          "Bash(git branch -a:*)"
+          "Bash(git branch -r:*)"
+          "Bash(git show:*)"
+          "Bash(git rev-parse:*)"
+          "Bash(git symbolic-ref:*)"
+          "Bash(git remote -v:*)"
+          "Bash(git remote show:*)"
+          # Directory listing
+          "Bash(ls:*)"
+          "Bash(pwd:*)"
+          "Bash(tree:*)"
+          # Nix evaluation (read-only)
+          "Bash(nix flake show:*)"
+          "Bash(nix flake metadata:*)"
+          "Bash(nix eval:*)"
+          "Bash(nix build:*)"
+          "Bash(nixos-rebuild build:*)"
+          "Bash(home-manager build:*)"
+          # File inspection
+          "Bash(cat:*)"
+          "Bash(head:*)"
+          "Bash(tail:*)"
+          "Bash(less:*)"
+          "Bash(wc:*)"
+          "Bash(file:*)"
+          # Search
+          "Bash(grep:*)"
+          "Bash(rg:*)"
+          "Bash(ag:*)"
+          "Bash(find:*)"
+          "Bash(fd:*)"
+          "Bash(fzf:*)"
+          # Cargo (Rust)
+          "Bash(cargo check:*)"
+          "Bash(cargo build:*)"
+          "Bash(cargo test:*)"
+          "Bash(cargo clippy:*)"
+          "Bash(cargo doc:*)"
+          "Bash(cargo tree:*)"
+          "Bash(cargo metadata:*)"
+          "Bash(cargo fmt --check:*)"
+          # Go
+          "Bash(go build:*)"
+          "Bash(go test:*)"
+          "Bash(go vet:*)"
+          "Bash(go list:*)"
+          "Bash(go env:*)"
+          "Bash(go version:*)"
+          # Other common read-only commands
+          "Bash(which:*)"
+          "Bash(type:*)"
+          "Bash(man:*)"
+          "Bash(env:*)"
+          "Bash(printenv:*)"
+        ];
       };
       env = {
         DISABLE_INSTALLATION_CHECKS = "1";
