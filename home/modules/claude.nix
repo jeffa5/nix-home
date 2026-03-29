@@ -1,4 +1,12 @@
-{...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: let
+  notify-script = pkgs.writeShellScriptBin "claude-notify" ''
+    ${lib.getExe' pkgs.libnotify "notify-send"} --urgency normal --app-name claude-code "Claude needs your assistance"
+  '';
+in {
   programs.claude-code = {
     enable = true;
     settings = {
@@ -7,6 +15,18 @@
       };
       env = {
         DISABLE_INSTALLATION_CHECKS = "1";
+      };
+      hooks = {
+        Notification = [
+          {
+            hooks = [
+              {
+                type = "command";
+                command = lib.getExe notify-script;
+              }
+            ];
+          }
+        ];
       };
       statusLine = {
         type = "command";
