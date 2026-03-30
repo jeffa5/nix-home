@@ -188,7 +188,7 @@ in {
         '';
       }
       {
-        plugin = vimPkgs.indent-blankline-nvim-lua;
+        plugin = vimPkgs.indent-blankline-nvim;
         type = "lua";
         config = ''
           -- indent blankline
