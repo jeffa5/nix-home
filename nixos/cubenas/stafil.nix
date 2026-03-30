@@ -19,8 +19,11 @@
     destination = destination;
     staticFiles = ["${stafil-static}/style.css"];
     staticDir = "static";
+    search = {
+      command = lib.getExe' pkgs.stafil "stafil-search";
+    };
     wrap = {
-      command = " | ${wrap} -root ${destination} -path $out -before ${stafil-templates}/head.html,${stafil-templates}/header.html -after ${stafil-templates}/footer.html,${stafil-templates}/foot.html > $out";
+      command = " | ${wrap} -root ${destination} -path $out -prev=\"$prev\" -next=\"$next\" -before ${stafil-templates}/head.html,${stafil-templates}/header.html -after ${stafil-templates}/footer.html,${stafil-templates}/foot.html > $out";
       deps = ["${stafil-templates}/head.html" "${stafil-templates}/header.html" "${stafil-templates}/footer.html" "${stafil-templates}/foot.html"];
     };
     rules = {
@@ -71,7 +74,7 @@
         extraRules = [
           {
             suffix = "thumb";
-            command = "cp $in $out && ${magick} -define jpeg:size=500x180 $out -auto-orient -thumbnail 250x90 -unsharp 0x.5 $out";
+            command = "${magick} -auto-orient -thumbnail 250x90 -unsharp 0x.5 $in $out || cp $in $out";
           }
         ];
       };
@@ -82,7 +85,7 @@
         extraRules = [
           {
             suffix = "thumb";
-            command = "cp $in $out && ${magick} -define jpeg:size=500x180 $out -auto-orient -thumbnail 250x90 -unsharp 0x.5 $out";
+            command = "${magick} -auto-orient -thumbnail 250x90 -unsharp 0x.5 $in $out || cp $in $out";
           }
         ];
       };
@@ -93,7 +96,7 @@
         extraRules = [
           {
             suffix = "thumb";
-            command = "cp $in $out && ${magick} -define jpeg:size=500x180 $out -auto-orient -thumbnail 250x90 -unsharp 0x.5 $out";
+            command = "${magick} -auto-orient -thumbnail 250x90 -unsharp 0x.5 $in $out || cp $in $out";
           }
         ];
       };
@@ -105,6 +108,11 @@
       ".heic" = {
         name = "heic";
         command = "echo \"<img src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(${exiftool} $in)</pre>\"";
+        wrap = true;
+      };
+      ".nef" = {
+        name = "nef";
+        command = "echo \"<pre>$$(${exiftool} $in)</pre>\"";
         wrap = true;
       };
       ".mp4" = {
@@ -154,8 +162,8 @@ in {
     description = "Generate stafil file browser";
     script = ''
       set -ex
-      ${lib.getExe' pkgs.stafil "stafil-configure"} --config-file ${configFile} >${destination}/build.ninja
-      ${lib.getExe pkgs.ninja} -C ${destination} -k 0
+      time ${lib.getExe' pkgs.stafil "stafil-configure"} --config-file ${configFile} --search-paths ${destination}/search.paths >${destination}/build.ninja
+      time ${lib.getExe pkgs.ninja} -C ${destination} -k 0
     '';
     environment = {
       SHELL = lib.getExe pkgs.bash;
