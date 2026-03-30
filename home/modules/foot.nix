@@ -10,7 +10,7 @@
       main = {
         font = "Hack Nerd Font:size=12";
       };
-      colors = {
+      colors-dark = {
         # Colors (Gruvbox light)
         background = "fbf1c7";
         foreground = "3c3836";
