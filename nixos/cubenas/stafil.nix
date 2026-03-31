@@ -29,32 +29,32 @@
     rules = {
       ".txt" = {
         name = "text";
-        command = "echo \"<p><pre>$$(cat $in)</pre></p>\"";
+        command = "echo \"<p><pre>$$(cat '$in')</pre></p>\"";
         wrap = true;
       };
       ".csv" = {
         name = "csv";
-        command = "echo \"<p><pre>$$(cat $in)</pre></p>\"";
+        command = "echo \"<p><pre>$$(cat '$in')</pre></p>\"";
         wrap = true;
       };
       ".sh" = {
         name = "sh";
-        command = "echo \"<p><pre>$$(cat $in)</pre></p>\"";
+        command = "echo \"<p><pre>$$(cat '$in')</pre></p>\"";
         wrap = true;
       };
       ".log" = {
         name = "log";
-        command = "echo \"<p><pre>$$(cat $in)</pre></p>\"";
+        command = "echo \"<p><pre>$$(cat '$in')</pre></p>\"";
         wrap = true;
       };
       ".eml" = {
         name = "eml";
-        command = "echo \"<p><pre>$$(cat $in)</pre></p>\"";
+        command = "echo \"<p><pre>$$(cat '$in')</pre></p>\"";
         wrap = true;
       };
       ".pdf" = {
         name = "pdf";
-        command = "echo \"<embed src=\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\" type=\"application/pdf\" frameBorder=\"0\" scrolling=\"auto\" height=\"100%\" width=\"100%\"></embed>\"";
+        command = "echo \"<embed src=\"$$(echo '$in' | sed 's#${destination}\\(.*\\)#\\1#')\" type=\"application/pdf\" frameBorder=\"0\" scrolling=\"auto\" height=\"100%\" width=\"100%\"></embed>\"";
         wrap = true;
       };
       ".md" = {
@@ -69,7 +69,7 @@
       };
       ".jpg" = {
         name = "jpg";
-        command = "echo \"<img src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat $meta)</pre>\"";
+        command = "echo \"<img src=\\\"$$(echo '$in' | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat '$meta')</pre>\"";
         wrap = true;
         extraRules = [
           {
@@ -86,7 +86,7 @@
       };
       ".jpeg" = {
         name = "jpeg";
-        command = "echo \"<img src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat $meta)</pre>\"";
+        command = "echo \"<img src=\\\"$$(echo '$in' | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat '$meta')</pre>\"";
         wrap = true;
         extraRules = [
           {
@@ -103,7 +103,7 @@
       };
       ".png" = {
         name = "png";
-        command = "echo \"<img src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat $meta)</pre>\"";
+        command = "echo \"<img src=\\\"$$(echo '$in' | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat '$meta')</pre>\"";
         wrap = true;
         extraRules = [
           {
@@ -120,7 +120,7 @@
       };
       ".gif" = {
         name = "gif";
-        command = "echo \"<img src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat $meta)</pre>\"";
+        command = "echo \"<img src=\\\"$$(echo '$in' | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat '$meta')</pre>\"";
         wrap = true;
         extraRules = [
           {
@@ -133,7 +133,7 @@
       };
       ".heic" = {
         name = "heic";
-        command = "echo \"<img src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat $meta)</pre>\"";
+        command = "echo \"<img src=\\\"$$(echo '$in' | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat '$meta')</pre>\"";
         wrap = true;
         extraRules = [
           {
@@ -146,7 +146,7 @@
       };
       ".nef" = {
         name = "nef";
-        command = "echo \"<pre>$$(cat $meta)</pre>\"";
+        command = "echo \"<pre>$$(cat '$meta')</pre>\"";
         wrap = true;
         extraRules = [
           {
@@ -159,7 +159,7 @@
       };
       ".mp4" = {
         name = "mp4";
-        command = "echo \"<video controls src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat $meta)</pre>\"";
+        command = "echo \"<video controls src=\\\"$$(echo '$in' | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat '$meta')</pre>\"";
         wrap = true;
         extraRules = [
           {
@@ -172,7 +172,7 @@
       };
       ".mov" = {
         name = "mov";
-        command = "echo \"<video controls src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat $meta)</pre>\"";
+        command = "echo \"<video controls src=\\\"$$(echo '$in' | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat '$meta')</pre>\"";
         wrap = true;
         extraRules = [
           {
@@ -185,7 +185,7 @@
       };
       ".mp3" = {
         name = "mp3";
-        command = "echo \"<audio controls src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat $meta)</pre>\"";
+        command = "echo \"<audio controls src=\\\"$$(echo '$in' | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat '$meta')</pre>\"";
         wrap = true;
         extraRules = [
           {
