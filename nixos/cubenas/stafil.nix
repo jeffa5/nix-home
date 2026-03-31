@@ -162,8 +162,8 @@ in {
     description = "Generate stafil file browser";
     script = ''
       set -ex
-      time ${lib.getExe' pkgs.stafil "stafil-configure"} --config-file ${configFile} --search-paths ${destination}/search.paths >${destination}/build.ninja
-      time ${lib.getExe pkgs.ninja} -C ${destination} -k 0
+      time ${lib.getExe' pkgs.stafil "stafil-configure"} --config-file ${configFile} --search-paths ${destination}/search.paths --concurrency 2 >${destination}/build.ninja
+      time ${lib.getExe pkgs.ninja} -C ${destination} -j 2 -k 0
     '';
     environment = {
       SHELL = lib.getExe pkgs.bash;
