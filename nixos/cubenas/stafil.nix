@@ -13,6 +13,7 @@
   wrap = lib.getExe' pkgs.stafil "stafil-wrap";
   index = lib.getExe' pkgs.stafil "stafil-index";
   magick = lib.getExe' pkgs.imagemagick "magick";
+  ffmpeg = lib.getExe pkgs.ffmpeg;
 
   config = {
     source = source;
@@ -168,6 +169,10 @@
             var = "meta";
             appendSuffix = true;
           }
+          {
+            suffix = "thumb";
+            command = "${ffmpeg} -y -i $in -ss 00:00:01 -vframes 1 -vf scale=250:-1 $out || cp $in $out";
+          }
         ];
       };
       ".mov" = {
@@ -180,6 +185,10 @@
             command = "${exiftool} $in > $out";
             var = "meta";
             appendSuffix = true;
+          }
+          {
+            suffix = "thumb";
+            command = "${ffmpeg} -y -i $in -ss 00:00:01 -vframes 1 -vf scale=250:-1 $out || cp $in $out";
           }
         ];
       };
@@ -198,7 +207,7 @@
       };
       index = {
         name = "index";
-        command = "${index} -thumb-extensions .png,.jpg,.jpeg,.gif -root ${source} -dir $in";
+        command = "${index} -thumb-extensions .png,.jpg,.jpeg,.gif,.mp4,.mov -root ${source} -dir $in";
         wrap = true;
       };
     };
