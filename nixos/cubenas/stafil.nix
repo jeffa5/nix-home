@@ -69,66 +69,78 @@
       };
       ".jpg" = {
         name = "jpg";
-        command = "echo \"<img src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(${exiftool} $in)</pre>\"";
+        command = "echo \"<img src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat $meta)</pre>\"";
         wrap = true;
         extraRules = [
-          {
-            suffix = "thumb";
-            command = "${magick} -auto-orient -thumbnail 250x90 -unsharp 0x.5 $in $out || cp $in $out";
-          }
+          { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; appendSuffix = true; }
+          { suffix = "thumb"; command = "${magick} $in -auto-orient -thumbnail 250x90 -unsharp 0x.5 $out || cp $in $out"; }
         ];
       };
       ".jpeg" = {
         name = "jpeg";
-        command = "echo \"<img src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(${exiftool} $in)</pre>\"";
+        command = "echo \"<img src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat $meta)</pre>\"";
         wrap = true;
         extraRules = [
-          {
-            suffix = "thumb";
-            command = "${magick} -auto-orient -thumbnail 250x90 -unsharp 0x.5 $in $out || cp $in $out";
-          }
+          { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; appendSuffix = true; }
+          { suffix = "thumb"; command = "${magick} $in -auto-orient -thumbnail 250x90 -unsharp 0x.5 $out || cp $in $out"; }
         ];
       };
       ".png" = {
         name = "png";
-        command = "echo \"<img src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(${exiftool} $in)</pre>\"";
+        command = "echo \"<img src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat $meta)</pre>\"";
         wrap = true;
         extraRules = [
-          {
-            suffix = "thumb";
-            command = "${magick} -auto-orient -thumbnail 250x90 -unsharp 0x.5 $in $out || cp $in $out";
-          }
+          { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; appendSuffix = true; }
+          { suffix = "thumb"; command = "${magick} $in -auto-orient -thumbnail 250x90 -unsharp 0x.5 $out || cp $in $out"; }
         ];
       };
       ".gif" = {
         name = "gif";
-        command = "echo \"<img src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(${exiftool} $in)</pre>\"";
+        command = "echo \"<img src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat $meta)</pre>\"";
         wrap = true;
+        extraRules = [
+          { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; appendSuffix = true; }
+        ];
       };
       ".heic" = {
         name = "heic";
-        command = "echo \"<img src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(${exiftool} $in)</pre>\"";
+        command = "echo \"<img src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat $meta)</pre>\"";
         wrap = true;
+        extraRules = [
+          { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; appendSuffix = true; }
+        ];
       };
       ".nef" = {
         name = "nef";
-        command = "echo \"<pre>$$(${exiftool} $in)</pre>\"";
+        command = "echo \"<pre>$$(cat $meta)</pre>\"";
         wrap = true;
+        extraRules = [
+          { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; appendSuffix = true; }
+        ];
       };
       ".mp4" = {
         name = "mp4";
-        command = "echo \"<video controls src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(${exiftool} $in)</pre>\"";
+        command = "echo \"<video controls src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat $meta)</pre>\"";
         wrap = true;
+        extraRules = [
+          { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; appendSuffix = true; }
+        ];
       };
       ".mov" = {
         name = "mov";
-        command = "echo \"<video controls src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(${exiftool} $in)</pre>\"";
+        command = "echo \"<video controls src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat $meta)</pre>\"";
         wrap = true;
+        extraRules = [
+          { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; appendSuffix = true; }
+        ];
       };
       ".mp3" = {
         name = "mp3";
-        command = "echo \"<audio controls src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(${exiftool} $in)</pre>\"";
+        command = "echo \"<audio controls src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat $meta)</pre>\"";
         wrap = true;
+        extraRules = [
+          { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; appendSuffix = true; }
+        ];
       };
       index = {
         name = "index";
@@ -174,7 +186,7 @@ in {
       User = user;
       Group = group;
     };
-    wantedBy = ["multi-user.target"];
+    restartIfChanged = false;
   };
 
   systemd.timers.stafil = {

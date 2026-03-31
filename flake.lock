@@ -482,11 +482,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1774901073,
-        "narHash": "sha256-GBMZsUY0wsbKnc2C9Z1QhBXyDUvxNKTtlwTtlzO4+WA=",
+        "lastModified": 1774940006,
+        "narHash": "sha256-lvLA7CDmcyJsVH+PAxo47IZGICD6oZt1jUjqZJFwPp8=",
         "ref": "refs/heads/main",
-        "rev": "bedd701e312f8eb9c886d476d296a84d8bd24e4a",
-        "revCount": 44,
+        "rev": "69655a6f62a03b56ea0dffb2f43c466c3c41db3c",
+        "revCount": 48,
         "shallow": false,
         "type": "git",
         "url": "https://git.jeffas.net/stafil.git"
