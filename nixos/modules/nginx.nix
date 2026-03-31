@@ -24,6 +24,7 @@ in {
     recommendedTlsSettings = true;
     recommendedOptimisation = true;
     recommendedGzipSettings = true;
+    recommendedBrotliSettings = true;
     recommendedProxySettings = true;
     statusPage = true;
   };
