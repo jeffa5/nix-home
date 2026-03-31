@@ -7,19 +7,24 @@
 
   # Create a script to generate Authelia users.yaml from NixOS user configs
   generateUsersScript = let
+    jq = pkgs.lib.getExe pkgs.jq;
     usersWithPasswords = pkgs.lib.filterAttrs (_: user: user.hashedPasswordFile != null) config.users.users;
-    userLines = pkgs.lib.mapAttrsToList (name: user: ''
-      echo "${name}:"
-      echo "  displayname: \"${user.description or name}\""
-      echo -n "  password: \""
-      cat "${user.hashedPasswordFile}"
-      echo "\""
-      echo "  email: \"${name}@jeffas.net\""
-      echo "  groups: [${pkgs.lib.concatStringsSep ", " user.extraGroups}]"
+    userEntries = pkgs.lib.mapAttrsToList (name: user: ''
+      password=$(tr -d '\n' < "${user.hashedPasswordFile}")
+      users=$(${jq} -n \
+        --argjson existing "$users" \
+        --arg name "${name}" \
+        --arg displayname "${user.description or name}" \
+        --arg password "$password" \
+        --arg email "${name}@jeffas.net" \
+        --argjson groups '${builtins.toJSON user.extraGroups}' \
+        '$existing + {($name): {displayname: $displayname, password: $password, email: $email, groups: $groups}}')
     '') usersWithPasswords;
   in pkgs.writeShellScript "generate-authelia-users" ''
     set -euo pipefail
-    ${pkgs.lib.concatStringsSep "\n" userLines}
+    users='{}'
+    ${pkgs.lib.concatStringsSep "\n" userEntries}
+    ${jq} -n --argjson users "$users" '{users: $users}'
   '';
 in {
   environment.systemPackages = [pkgs.authelia];
