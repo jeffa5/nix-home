@@ -114,12 +114,14 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIODXbDACWjYCOv+NxgC6Lzi3hx4+hdpHYaPyWDcOuyWU andrew@x1c6"
     ];
     isNormalUser = true;
+    hashedPasswordFile = "/etc/nixos/secrets/andrew-password-hash";
   };
   users.users.charlene = {
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIODXbDACWjYCOv+NxgC6Lzi3hx4+hdpHYaPyWDcOuyWU andrew@x1c6"
     ];
     isNormalUser = true;
+    hashedPasswordFile = "/etc/nixos/secrets/charlene-password-hash";
   };
 
   services.snapper = {
