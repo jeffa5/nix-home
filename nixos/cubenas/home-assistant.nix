@@ -50,22 +50,13 @@
     ];
   };
 
-  services.nginx.virtualHosts."Home Assistant" = let
-    authelia-snippets = import ../modules/authelia-snippets.nix {inherit pkgs;};
-  in {
+  services.nginx.virtualHosts."Home Assistant" = {
     serverName = "hass.home.jeffas.net";
     locations."/" = {
       proxyPass = "http://127.0.0.1:${toString config.services.home-assistant.config.http.server_port}";
       proxyWebsockets = true;
-      extraConfig = ''
-        include ${authelia-snippets.proxy};
-        include ${authelia-snippets.authelia-authrequest};
-      '';
     };
     forceSSL = true;
     useACMEHost = "home.jeffas.net";
-    extraConfig = ''
-      include ${authelia-snippets.authelia-location};
-    '';
   };
 }
