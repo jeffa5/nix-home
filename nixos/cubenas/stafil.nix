@@ -205,6 +205,14 @@
           { suffix = "meta"; command = "${exiftool} \"$in\" > \"$out\""; var = "meta"; }
         ];
       };
+      ".flac" = {
+        name = "flac";
+        command = "echo \"<audio controls src=\\\"$$(echo \"$in\" | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat \"$meta\")</pre>\"";
+        wrap = true;
+        extraRules = [
+          { suffix = "meta"; command = "${exiftool} \"$in\" > \"$out\""; var = "meta"; }
+        ];
+      };
       index = {
         name = "index";
         command = "${index} -thumb-extensions .png,.jpg,.jpeg,.gif,.mp4,.mov -thumb-suffix thumb.jpg -root ${source} -dir $in";
