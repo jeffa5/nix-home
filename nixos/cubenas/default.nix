@@ -58,6 +58,7 @@
     ../modules/radicale.nix
 
     ./stafil.nix
+    ./webdav.nix
     ./home-assistant.nix
 
     # ./llm.nix
@@ -110,6 +111,8 @@
   };
 
   users.groups.family = {};
+  users.groups.andrew-files = {};
+  users.groups.charlene-files = {};
 
   users.users.andrew = {
     description = "Andrew Jeffery";
@@ -118,7 +121,7 @@
     ];
     isNormalUser = true;
     hashedPasswordFile = "/etc/nixos/secrets/andrew-password-hash";
-    extraGroups = ["family"];
+    extraGroups = ["family" "andrew-files"];
   };
   users.users.charlene = {
     description = "Charlene Tang";
@@ -127,7 +130,7 @@
     ];
     isNormalUser = true;
     hashedPasswordFile = "/etc/nixos/secrets/charlene-password-hash";
-    extraGroups = ["family"];
+    extraGroups = ["family" "charlene-files"];
   };
 
   services.snapper = {

@@ -1,4 +1,4 @@
-{config, ...}: let
+{config, pkgs, ...}: let
   ports = (import ./ports.nix).nginx-exporter;
   domainName = "jeffas.net";
   homeDomainName = "home.${domainName}";
@@ -21,6 +21,9 @@ in {
 
   services.nginx = {
     enable = true;
+    package = pkgs.nginx.override {
+      modules = [pkgs.nginxModules.dav];
+    };
     recommendedTlsSettings = true;
     recommendedOptimisation = true;
     recommendedGzipSettings = true;
