@@ -109,6 +109,8 @@
     ];
   };
 
+  users.groups.family = {};
+
   users.users.andrew = {
     description = "Andrew Jeffery";
     openssh.authorizedKeys.keys = [
@@ -116,6 +118,7 @@
     ];
     isNormalUser = true;
     hashedPasswordFile = "/etc/nixos/secrets/andrew-password-hash";
+    extraGroups = ["family"];
   };
   users.users.charlene = {
     description = "Charlene Tang";
@@ -124,6 +127,7 @@
     ];
     isNormalUser = true;
     hashedPasswordFile = "/etc/nixos/secrets/charlene-password-hash";
+    extraGroups = ["family"];
   };
 
   services.snapper = {

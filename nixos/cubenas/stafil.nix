@@ -236,6 +236,7 @@ in {
   users.users.${user} = {
     isSystemUser = true;
     group = group;
+    extraGroups = ["family"];
   };
 
   users.groups.${group} = {};
