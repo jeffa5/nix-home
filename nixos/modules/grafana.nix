@@ -14,6 +14,12 @@ in {
         http_port = private_port;
         root_url = "https://${serverName}";
       };
+      database = {
+        type = "postgres";
+        host = "/run/postgresql";
+        name = "grafana";
+        user = "grafana";
+      };
       # Disable Grafana's built-in login, use Authelia instead
       auth = {
         disable_login_form = true;
@@ -106,6 +112,21 @@ in {
         }
       ];
     };
+  };
+
+  services.postgresql = {
+    ensureDatabases = ["grafana"];
+    ensureUsers = [
+      {
+        name = "grafana";
+        ensureDBOwnership = true;
+      }
+    ];
+  };
+
+  systemd.services.grafana = {
+    requires = ["postgresql.service"];
+    after = ["postgresql.service"];
   };
 
   services.nginx.virtualHosts."Grafana" = let
