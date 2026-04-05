@@ -29,7 +29,7 @@ with lib; let
     Examples:
         share photo.jpg              # -> $SHARE_URL/a1b2c3d4.jpg
         share ~/Documents/report     # -> $SHARE_URL/e5f6g7h8.zip
-        share -n vacation photos/    # -> $SHARE_URL/vacation.zip
+        share -n vacation photos/    # -> $SHARE_URL/vacation-e5f6g7h8.zip
     EOF
         exit 0
     }
@@ -117,13 +117,13 @@ with lib; let
     # Determine output filename
     if [[ -n "$custom_name" ]]; then
         if $needs_zip; then
-            out_name="''${custom_name}.zip"
+            out_name="''${custom_name}-''${uuid}.zip"
         else
             ext="''${target##*.}"
             if [[ "$ext" != "$target" && -n "$ext" ]]; then
-                out_name="''${custom_name}.''${ext}"
+                out_name="''${custom_name}-''${uuid}.''${ext}"
             else
-                out_name="$custom_name"
+                out_name="''${custom_name}-''${uuid}"
             fi
         fi
     elif $keep_name; then
@@ -154,7 +154,7 @@ with lib; let
     # Create zip or copy file
     if $needs_zip; then
         echo "Creating zip archive..."
-        tmp_zip=$(mktemp --suffix=.zip)
+        tmp_zip="$(mktemp -d)/archive.zip"
         trap 'rm -f "$tmp_zip"' EXIT
 
         (cd "$(dirname "$target")" && ${pkgs.zip}/bin/zip -r -q "$tmp_zip" "$(basename "$target")")
@@ -216,7 +216,7 @@ in {
     environment.systemPackages = [shareScript];
 
     systemd.tmpfiles.rules = [
-      "d ${cfg.directory} 0755 root root -"
+      "d ${cfg.directory} 0755 root root ~7d"
     ];
   };
 }
