@@ -14,6 +14,8 @@
   index = lib.getExe' pkgs.stafil "stafil-index";
   magick = lib.getExe' pkgs.imagemagick "magick";
   ffmpeg = lib.getExe pkgs.ffmpeg;
+  unzip = lib.getExe pkgs.unzip;
+  sevenzip = lib.getExe pkgs.p7zip;
 
   relSrc = "$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')";
   imgLightbox = "<a href=\\\"#lightbox\\\"><img src=\\\"${relSrc}\\\" /></a><div id=\\\"lightbox\\\"><a href=\\\"#\\\"><img src=\\\"${relSrc}\\\" /></a></div>";
@@ -71,6 +73,60 @@
         command = "echo \"<p><pre>$$(${lib.getExe pkgs.jq} . $in)\\\"</pre></p>\"";
         wrap = true;
       };
+      ".zip" = {
+        name = "zip";
+        command = "echo \"<p><pre>$$(${unzip} -l $in)</pre></p>\"";
+        wrap = true;
+      };
+      ".tsv" = {
+        name = "tsv";
+        command = "echo \"<p><pre>$$(cat $in)</pre></p>\"";
+        wrap = true;
+      };
+      ".iso" = {
+        name = "iso";
+        command = "echo \"<p><pre>$$(${sevenzip} l $in)</pre></p>\"";
+        wrap = true;
+      };
+      ".epub" = {
+        name = "epub";
+        command = "echo \"<p><pre>$$(${unzip} -l $in)</pre></p>\"";
+        wrap = true;
+      };
+      ".htm" = {
+        name = "htm";
+        command = "echo \"<p><pre>$$(cat $in)</pre></p>\"";
+        wrap = true;
+      };
+      ".html" = {
+        name = "html";
+        command = "echo \"<p><pre>$$(cat $in)</pre></p>\"";
+        wrap = true;
+      };
+      ".py" = {
+        name = "py";
+        command = "echo \"<p><pre>$$(cat $in)</pre></p>\"";
+        wrap = true;
+      };
+      ".xml" = {
+        name = "xml";
+        command = "echo \"<p><pre>$$(cat $in)</pre></p>\"";
+        wrap = true;
+      };
+      ".svg" = {
+        name = "svg";
+        command = "echo \"<img src=\\\"${relSrc}\\\" />\"";
+        wrap = true;
+      };
+      ".avif" = {
+        name = "avif";
+        command = "echo \"${imgLightbox}<pre>$$(cat $meta)</pre>\"";
+        wrap = true;
+        extraRules = [
+          { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; }
+          { suffix = "thumb.jpg"; command = "${magick} $in -auto-orient -thumbnail 250x90 -unsharp 0x.5 $out || cp $in $out"; }
+        ];
+      };
       ".jpg" = {
         name = "jpg";
         command = "echo \"${imgLightbox}<pre>$$(cat $meta)</pre>\"";
@@ -116,10 +172,11 @@
       };
       ".nef" = {
         name = "nef";
-        command = "echo \"<pre>$$(cat $meta)</pre>\"";
+        command = "echo \"<a href=\\\"#lightbox\\\"><img src=\\\"$$(echo $thumb | sed 's#${destination}\\(.*\\)#\\1#')\\\" /></a><div id=\\\"lightbox\\\"><a href=\\\"#\\\"><img src=\\\"$$(echo $thumb | sed 's#${destination}\\(.*\\)#\\1#')\\\" /></a></div><p><em>Preview is a thumbnail conversion from NEF — do not expect full quality.</em></p><pre>$$(cat $meta)</pre>\"";
         wrap = true;
         extraRules = [
           { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; }
+          { suffix = "thumb.jpg"; command = "${magick} $in -auto-orient -thumbnail 250x90 -unsharp 0x.5 $out || cp $in $out"; var = "thumb"; }
         ];
       };
       ".mp4" = {
