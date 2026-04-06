@@ -207,10 +207,10 @@
       };
       ".flac" = {
         name = "flac";
-        command = "echo \"<audio controls src=\\\"$$(echo \"$in\" | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat \"$meta\")</pre>\"";
+        command = "echo \"<audio controls src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat \"$meta\")</pre>\"";
         wrap = true;
         extraRules = [
-          { suffix = "meta"; command = "${exiftool} \"$in\" > \"$out\""; var = "meta"; }
+          { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; }
         ];
       };
       index = {
