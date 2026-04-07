@@ -40,6 +40,8 @@ in {
     enable = true;
     secrets.storageEncryptionKeyFile = "/etc/authelia/storageEncryptionKeyFile";
     secrets.jwtSecretFile = "/etc/authelia/jwtSecretFile";
+    secrets.oidcHmacSecretFile = "/etc/authelia/oidcHmacSecret";
+    secrets.oidcIssuerPrivateKeyFile = "/etc/authelia/oidcPrivateKey";
     settingsFiles = [./authelia-config.yaml];
     settings = {
       theme = "light";

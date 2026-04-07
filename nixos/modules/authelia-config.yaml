@@ -8,7 +8,6 @@ storage:
     database: "authelia-home"
     username: "authelia-home"
     password: ""
-    # password: '{{ fileContent "/etc/authelia/postgres_password" }}'
 
 session:
   secret: "todotestingsecret"
@@ -19,6 +18,23 @@ session:
 notifier:
   filesystem:
     filename: "/var/lib/authelia-home/notifications.txt"
+
+identity_providers:
+  oidc:
+    clients:
+      - client_id: immich
+        client_secret: '{{ secret "/etc/authelia/immichOidcClientSecret" }}'
+        authorization_policy: one_factor
+        redirect_uris:
+          - https://immich.home.jeffas.net/auth/login
+          - https://immich.home.jeffas.net/user-settings
+          - app.immich:///oauth-callback
+        scopes:
+          - openid
+          - profile
+          - email
+        userinfo_signed_response_alg: none
+        token_endpoint_auth_method: client_secret_post
 
 access_control:
   rules:

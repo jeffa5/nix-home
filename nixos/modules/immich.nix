@@ -11,6 +11,17 @@
     environment = {
       IMMICH_TELEMETRY_INCLUDE = "all";
     };
+    settings = {
+      oauth = {
+        enabled = true;
+        issuerUrl = "https://authelia.home.jeffas.net";
+        clientId = "immich";
+        clientSecret._secret = "/etc/immich/oauthClientSecret";
+        autoRegister = true;
+        buttonText = "Login with Authelia";
+        autoLaunch = false;
+      };
+    };
   };
 
   services.nginx.virtualHosts."Immich" = {
