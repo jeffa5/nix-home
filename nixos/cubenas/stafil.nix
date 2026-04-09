@@ -19,11 +19,16 @@
 
   relSrc = "$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')";
   imgLightbox = "<a href=\\\"#lightbox\\\"><img src=\\\"${relSrc}\\\" /></a><div id=\\\"lightbox\\\"><a href=\\\"#\\\"><img src=\\\"${relSrc}\\\" /></a></div>";
+  gpsExtra = {
+    suffix = "gpslink";
+    command = "${exiftool} -n -GPSLatitude -GPSLongitude -csv $in 2>/dev/null | awk -F, 'NR==2 && $2 != \"\" && $3 != \"\" {printf \"<p><a href=&quot;https://www.openstreetmap.org/?mlat=%s&mlon=%s&zoom=15&quot; target=&quot;_blank&quot;>📍 View on OpenStreetMap</a></p>\", $2, $3}' > $out";
+    var = "gpslink";
+  };
 
   config = {
     source = source;
     destination = destination;
-    staticFiles = ["${stafil-static}/style.css" "${stafil-static}/nav.js"];
+    staticFiles = ["${stafil-static}/style.css" "${stafil-static}/stafil.js"];
     staticDir = "static";
     search = {
       command = lib.getExe' pkgs.stafil "stafil-search";
@@ -120,37 +125,41 @@
       };
       ".avif" = {
         name = "avif";
-        command = "echo \"${imgLightbox}<pre>$$(cat $meta)</pre>\"";
+        command = "echo \"${imgLightbox}<pre>$$(cat $meta)</pre>$$(cat $gpslink)\"";
         wrap = true;
         extraRules = [
           { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; }
+          gpsExtra
           { suffix = "thumb.jpg"; command = "${magick} $in -auto-orient -thumbnail 250x90 -unsharp 0x.5 $out || cp $in $out"; }
         ];
       };
       ".jpg" = {
         name = "jpg";
-        command = "echo \"${imgLightbox}<pre>$$(cat $meta)</pre>\"";
+        command = "echo \"${imgLightbox}<pre>$$(cat $meta)</pre>$$(cat $gpslink)\"";
         wrap = true;
         extraRules = [
           { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; }
+          gpsExtra
           { suffix = "thumb.jpg"; command = "${magick} $in -auto-orient -thumbnail 250x90 -unsharp 0x.5 $out || cp $in $out"; }
         ];
       };
       ".jpeg" = {
         name = "jpeg";
-        command = "echo \"${imgLightbox}<pre>$$(cat $meta)</pre>\"";
+        command = "echo \"${imgLightbox}<pre>$$(cat $meta)</pre>$$(cat $gpslink)\"";
         wrap = true;
         extraRules = [
           { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; }
+          gpsExtra
           { suffix = "thumb.jpg"; command = "${magick} $in -auto-orient -thumbnail 250x90 -unsharp 0x.5 $out || cp $in $out"; }
         ];
       };
       ".png" = {
         name = "png";
-        command = "echo \"${imgLightbox}<pre>$$(cat $meta)</pre>\"";
+        command = "echo \"${imgLightbox}<pre>$$(cat $meta)</pre>$$(cat $gpslink)\"";
         wrap = true;
         extraRules = [
           { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; }
+          gpsExtra
           { suffix = "thumb.jpg"; command = "${magick} $in -auto-orient -thumbnail 250x90 -unsharp 0x.5 $out || cp $in $out"; }
         ];
       };
@@ -164,18 +173,20 @@
       };
       ".heic" = {
         name = "heic";
-        command = "echo \"${imgLightbox}<pre>$$(cat $meta)</pre>\"";
+        command = "echo \"${imgLightbox}<pre>$$(cat $meta)</pre>$$(cat $gpslink)\"";
         wrap = true;
         extraRules = [
           { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; }
+          gpsExtra
         ];
       };
       ".nef" = {
         name = "nef";
-        command = "echo \"<a href=\\\"#lightbox\\\"><img src=\\\"$$(echo $thumb | sed 's#${destination}\\(.*\\)#\\1#')\\\" /></a><div id=\\\"lightbox\\\"><a href=\\\"#\\\"><img src=\\\"$$(echo $thumb | sed 's#${destination}\\(.*\\)#\\1#')\\\" /></a></div><p><em>Preview is a thumbnail conversion from NEF — do not expect full quality.</em></p><pre>$$(cat $meta)</pre>\"";
+        command = "echo \"<a href=\\\"#lightbox\\\"><img src=\\\"$$(echo $thumb | sed 's#${destination}\\(.*\\)#\\1#')\\\" /></a><div id=\\\"lightbox\\\"><a href=\\\"#\\\"><img src=\\\"$$(echo $thumb | sed 's#${destination}\\(.*\\)#\\1#')\\\" /></a></div><p><em>Preview is a thumbnail conversion from NEF — do not expect full quality.</em></p><pre>$$(cat $meta)</pre>$$(cat $gpslink)\"";
         wrap = true;
         extraRules = [
           { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; }
+          gpsExtra
           { suffix = "thumb.jpg"; command = "${magick} $in -auto-orient -thumbnail 250x90 -unsharp 0x.5 $out || cp $in $out"; var = "thumb"; }
         ];
       };
