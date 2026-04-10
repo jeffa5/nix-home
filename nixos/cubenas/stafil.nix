@@ -125,7 +125,7 @@
       };
       ".avif" = {
         name = "avif";
-        command = "echo \"${imgLightbox}<pre>$$(cat $meta)</pre>$$(cat $gpslink)\"";
+        command = "echo \"${imgLightbox}<pre>$$(cat \"$meta\")</pre>$$(cat \"$gpslink\")\"";
         wrap = true;
         extraRules = [
           { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; }
@@ -135,7 +135,7 @@
       };
       ".jpg" = {
         name = "jpg";
-        command = "echo \"${imgLightbox}<pre>$$(cat $meta)</pre>$$(cat $gpslink)\"";
+        command = "echo \"${imgLightbox}<pre>$$(cat \"$meta\")</pre>$$(cat \"$gpslink\")\"";
         wrap = true;
         extraRules = [
           { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; }
@@ -145,7 +145,7 @@
       };
       ".jpeg" = {
         name = "jpeg";
-        command = "echo \"${imgLightbox}<pre>$$(cat $meta)</pre>$$(cat $gpslink)\"";
+        command = "echo \"${imgLightbox}<pre>$$(cat \"$meta\")</pre>$$(cat \"$gpslink\")\"";
         wrap = true;
         extraRules = [
           { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; }
@@ -155,7 +155,7 @@
       };
       ".png" = {
         name = "png";
-        command = "echo \"${imgLightbox}<pre>$$(cat $meta)</pre>$$(cat $gpslink)\"";
+        command = "echo \"${imgLightbox}<pre>$$(cat \"$meta\")</pre>$$(cat \"$gpslink\")\"";
         wrap = true;
         extraRules = [
           { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; }
@@ -165,7 +165,7 @@
       };
       ".gif" = {
         name = "gif";
-        command = "echo \"${imgLightbox}<pre>$$(cat $meta)</pre>\"";
+        command = "echo \"${imgLightbox}<pre>$$(cat \"$meta\")</pre>\"";
         wrap = true;
         extraRules = [
           { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; }
@@ -173,7 +173,7 @@
       };
       ".heic" = {
         name = "heic";
-        command = "echo \"${imgLightbox}<pre>$$(cat $meta)</pre>$$(cat $gpslink)\"";
+        command = "echo \"${imgLightbox}<pre>$$(cat \"$meta\")</pre>$$(cat \"$gpslink\")\"";
         wrap = true;
         extraRules = [
           { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; }
@@ -182,7 +182,7 @@
       };
       ".nef" = {
         name = "nef";
-        command = "echo \"<a href=\\\"#lightbox\\\"><img src=\\\"$$(echo $thumb | sed 's#${destination}\\(.*\\)#\\1#')\\\" /></a><div id=\\\"lightbox\\\"><a href=\\\"#\\\"><img src=\\\"$$(echo $thumb | sed 's#${destination}\\(.*\\)#\\1#')\\\" /></a></div><p><em>Preview is a thumbnail conversion from NEF — do not expect full quality.</em></p><pre>$$(cat $meta)</pre>$$(cat $gpslink)\"";
+        command = "echo \"<a href=\\\"#lightbox\\\"><img src=\\\"$$(echo \"$thumb\" | sed 's#${destination}\\(.*\\)#\\1#')\\\" /></a><div id=\\\"lightbox\\\"><a href=\\\"#\\\"><img src=\\\"$$(echo \"$thumb\" | sed 's#${destination}\\(.*\\)#\\1#')\\\" /></a></div><p><em>Preview is a thumbnail conversion from NEF — do not expect full quality.</em></p><pre>$$(cat \"$meta\")</pre>$$(cat \"$gpslink\")\"";
         wrap = true;
         extraRules = [
           { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; }
@@ -192,7 +192,7 @@
       };
       ".mp4" = {
         name = "mp4";
-        command = "echo \"<video controls src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat $meta)</pre>\"";
+        command = "echo \"<video controls src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat \"$meta\")</pre>\"";
         wrap = true;
         extraRules = [
           { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; }
@@ -201,7 +201,7 @@
       };
       ".mov" = {
         name = "mov";
-        command = "echo \"<video controls src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat $meta)</pre>\"";
+        command = "echo \"<video controls src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat \"$meta\")</pre>\"";
         wrap = true;
         extraRules = [
           { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; }
@@ -210,7 +210,7 @@
       };
       ".mp3" = {
         name = "mp3";
-        command = "echo \"<audio controls src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat $meta)</pre>\"";
+        command = "echo \"<audio controls src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat \"$meta\")</pre>\"";
         wrap = true;
         extraRules = [
           { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; }
