@@ -16,13 +16,27 @@
   ffmpeg = lib.getExe pkgs.ffmpeg;
   unzip = lib.getExe pkgs.unzip;
   sevenzip = lib.getExe pkgs.p7zip;
+  awk = lib.getExe' pkgs.gawk "awk";
 
   relSrc = "$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')";
   imgLightbox = "<a href=\\\"#lightbox\\\"><img src=\\\"${relSrc}\\\" /></a><div id=\\\"lightbox\\\"><a href=\\\"#\\\"><img src=\\\"${relSrc}\\\" /></a></div>";
+  pre = "echo \"<p><pre>$$(cat $in)</pre></p>\"";
+  video = "echo \"<video controls src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat '$meta')</pre>\"";
+  audio = "echo \"<audio controls src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat '$meta')</pre>\"";
+  image = "echo \"${imgLightbox}<pre>$$(cat '$meta')</pre>$$(cat '$gpslink')\"";
   gpsExtra = {
     suffix = "gpslink";
-    command = "${exiftool} -n -GPSLatitude -GPSLongitude -csv $in 2>/dev/null | awk -F, 'NR==2 && $2 != \"\" && $3 != \"\" {printf \"<p><a href=&quot;https://www.openstreetmap.org/?mlat=%s&mlon=%s&zoom=15&quot; target=&quot;_blank&quot;>📍 View on OpenStreetMap</a></p>\", $2, $3}' > $out";
+    command = "${exiftool} -n -GPSLatitude -GPSLongitude -csv $in 2>/dev/null | ${awk} -F, 'NR==2 && \"$2\" != \"\" && \"$3\" != \"\" {printf \"<p><a href=&quot;https://www.openstreetmap.org/?mlat=%s&mlon=%s&zoom=15&quot; target=&quot;_blank&quot;>📍 View on OpenStreetMap</a></p>\", \"$2\", \"$3\"}' > $out";
     var = "gpslink";
+  };
+  exifMetaExtra = {
+    suffix = "meta";
+    command = "${exiftool} $in > $out";
+    var = "meta";
+  };
+  jpgThumbExtra = {
+    suffix = "thumb.jpg";
+    command = "${magick} $in -auto-orient -thumbnail 250x90 -unsharp 0x.5 $out || cp $in $out";
   };
 
   config = {
@@ -40,32 +54,32 @@
     rules = {
       ".txt" = {
         name = "text";
-        command = "echo \"<p><pre>$$(cat $in)</pre></p>\"";
+        command = pre;
         wrap = true;
       };
       ".csv" = {
         name = "csv";
-        command = "echo \"<p><pre>$$(cat $in)</pre></p>\"";
+        command = pre;
         wrap = true;
       };
       ".sh" = {
         name = "sh";
-        command = "echo \"<p><pre>$$(cat $in)</pre></p>\"";
+        command = pre;
         wrap = true;
       };
       ".log" = {
         name = "log";
-        command = "echo \"<p><pre>$$(cat $in)</pre></p>\"";
+        command = pre;
         wrap = true;
       };
       ".eml" = {
         name = "eml";
-        command = "echo \"<p><pre>$$(cat $in)</pre></p>\"";
+        command = pre;
         wrap = true;
       };
       ".pdf" = {
         name = "pdf";
-        command = "echo \"<embed src=\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\" type=\"application/pdf\" frameBorder=\"0\" scrolling=\"auto\" height=\"100%\" width=\"100%\"></embed>\"";
+        command = "echo \"<embed src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" type=\"application/pdf\" frameBorder=\"0\" scrolling=\"auto\" height=\"100%\" width=\"100%\"></embed>\"";
         wrap = true;
       };
       ".md" = {
@@ -85,7 +99,7 @@
       };
       ".tsv" = {
         name = "tsv";
-        command = "echo \"<p><pre>$$(cat $in)</pre></p>\"";
+        command = pre;
         wrap = true;
       };
       ".iso" = {
@@ -100,22 +114,22 @@
       };
       ".htm" = {
         name = "htm";
-        command = "echo \"<p><pre>$$(cat $in)</pre></p>\"";
+        command = pre;
         wrap = true;
       };
       ".html" = {
         name = "html";
-        command = "echo \"<p><pre>$$(cat $in)</pre></p>\"";
+        command = pre;
         wrap = true;
       };
       ".py" = {
         name = "py";
-        command = "echo \"<p><pre>$$(cat $in)</pre></p>\"";
+        command = pre;
         wrap = true;
       };
       ".xml" = {
         name = "xml";
-        command = "echo \"<p><pre>$$(cat $in)</pre></p>\"";
+        command = pre;
         wrap = true;
       };
       ".svg" = {
@@ -125,103 +139,109 @@
       };
       ".avif" = {
         name = "avif";
-        command = "echo \"${imgLightbox}<pre>$$(cat \"$meta\")</pre>$$(cat \"$gpslink\")\"";
+        command = image;
         wrap = true;
         extraRules = [
-          { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; }
+          exifMetaExtra
           gpsExtra
-          { suffix = "thumb.jpg"; command = "${magick} $in -auto-orient -thumbnail 250x90 -unsharp 0x.5 $out || cp $in $out"; }
+          jpgThumbExtra
         ];
       };
       ".jpg" = {
         name = "jpg";
-        command = "echo \"${imgLightbox}<pre>$$(cat \"$meta\")</pre>$$(cat \"$gpslink\")\"";
+        command = image;
         wrap = true;
         extraRules = [
-          { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; }
+          exifMetaExtra
           gpsExtra
-          { suffix = "thumb.jpg"; command = "${magick} $in -auto-orient -thumbnail 250x90 -unsharp 0x.5 $out || cp $in $out"; }
+          jpgThumbExtra
         ];
       };
       ".jpeg" = {
         name = "jpeg";
-        command = "echo \"${imgLightbox}<pre>$$(cat \"$meta\")</pre>$$(cat \"$gpslink\")\"";
+        command = image;
         wrap = true;
         extraRules = [
-          { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; }
+          exifMetaExtra
           gpsExtra
-          { suffix = "thumb.jpg"; command = "${magick} $in -auto-orient -thumbnail 250x90 -unsharp 0x.5 $out || cp $in $out"; }
+          jpgThumbExtra
         ];
       };
       ".png" = {
         name = "png";
-        command = "echo \"${imgLightbox}<pre>$$(cat \"$meta\")</pre>$$(cat \"$gpslink\")\"";
+        command = image;
         wrap = true;
         extraRules = [
-          { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; }
+          exifMetaExtra
           gpsExtra
-          { suffix = "thumb.jpg"; command = "${magick} $in -auto-orient -thumbnail 250x90 -unsharp 0x.5 $out || cp $in $out"; }
+          jpgThumbExtra
         ];
       };
       ".gif" = {
         name = "gif";
-        command = "echo \"${imgLightbox}<pre>$$(cat \"$meta\")</pre>\"";
+        command = "echo \"${imgLightbox}<pre>$$(cat '$meta')</pre>\"";
         wrap = true;
         extraRules = [
-          { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; }
+          exifMetaExtra
         ];
       };
       ".heic" = {
         name = "heic";
-        command = "echo \"${imgLightbox}<pre>$$(cat \"$meta\")</pre>$$(cat \"$gpslink\")\"";
+        command = image;
         wrap = true;
         extraRules = [
-          { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; }
+          exifMetaExtra
           gpsExtra
         ];
       };
       ".nef" = {
         name = "nef";
-        command = "echo \"<a href=\\\"#lightbox\\\"><img src=\\\"$$(echo \"$thumb\" | sed 's#${destination}\\(.*\\)#\\1#')\\\" /></a><div id=\\\"lightbox\\\"><a href=\\\"#\\\"><img src=\\\"$$(echo \"$thumb\" | sed 's#${destination}\\(.*\\)#\\1#')\\\" /></a></div><p><em>Preview is a thumbnail conversion from NEF — do not expect full quality.</em></p><pre>$$(cat \"$meta\")</pre>$$(cat \"$gpslink\")\"";
+        command = "echo \"<a href=\\\"#lightbox\\\"><img src=\\\"$$(echo '$thumb' | sed 's#${destination}\\(.*\\)#\\1#')\\\" /></a><div id=\\\"lightbox\\\"><a href=\\\"#\\\"><img src=\\\"$$(echo '$thumb' | sed 's#${destination}\\(.*\\)#\\1#')\\\" /></a></div><p><em>Preview is a thumbnail conversion from NEF — do not expect full quality.</em></p><pre>$$(cat '$meta')</pre>$$(cat '$gpslink')\"";
         wrap = true;
         extraRules = [
-          { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; }
+          exifMetaExtra
           gpsExtra
-          { suffix = "thumb.jpg"; command = "${magick} $in -auto-orient -thumbnail 250x90 -unsharp 0x.5 $out || cp $in $out"; var = "thumb"; }
+          jpgThumbExtra
         ];
       };
       ".mp4" = {
         name = "mp4";
-        command = "echo \"<video controls src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat \"$meta\")</pre>\"";
+        command = video;
         wrap = true;
         extraRules = [
-          { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; }
-          { suffix = "thumb.jpg"; command = "${ffmpeg} -y -i $in -ss 00:00:01 -vframes 1 -vf scale=250:-1 $out || cp $in $out"; }
+          exifMetaExtra
+          {
+            suffix = "thumb.jpg";
+            command = "${ffmpeg} -y -i $in -ss 00:00:01 -vframes 1 -vf scale=250:-1 $out || cp $in $out";
+          }
         ];
       };
       ".mov" = {
         name = "mov";
-        command = "echo \"<video controls src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat \"$meta\")</pre>\"";
+        command = video;
         wrap = true;
         extraRules = [
-          { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; }
-          { suffix = "thumb.jpg"; command = "${ffmpeg} -y -i $in -ss 00:00:01 -vframes 1 -vf scale=250:-1 $out || cp $in $out"; }
+          exifMetaExtra
+          {
+            suffix = "thumb.jpg";
+            command = "${ffmpeg} -y -i $in -ss 00:00:01 -vframes 1 -vf scale=250:-1 $out || cp $in $out";
+          }
         ];
       };
       ".mp3" = {
         name = "mp3";
-        command = "echo \"<audio controls src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat \"$meta\")</pre>\"";
+        command = audio;
         wrap = true;
         extraRules = [
-          { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; }
+          exifMetaExtra
         ];
       };
       ".flac" = {
         name = "flac";
-        command = "echo \"<audio controls src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat \"$meta\")</pre>\"";
+        command = audio;
         wrap = true;
         extraRules = [
-          { suffix = "meta"; command = "${exiftool} $in > $out"; var = "meta"; }
+          exifMetaExtra
         ];
       };
       index = {
