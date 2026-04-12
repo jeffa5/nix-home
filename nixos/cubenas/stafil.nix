@@ -38,6 +38,10 @@
     suffix = "thumb.jpg";
     command = "${magick} $in -auto-orient -thumbnail 250x90 -unsharp 0x.5 $out || cp $in $out";
   };
+  videoThumbExtra = {
+    suffix = "thumb.jpg";
+    command = "${ffmpeg} -y -i $in -vframes 1 -vf scale=250:-1 $out || cp $in $out";
+  };
 
   config = {
     source = source;
@@ -210,10 +214,7 @@
         wrap = true;
         extraRules = [
           exifMetaExtra
-          {
-            suffix = "thumb.jpg";
-            command = "${ffmpeg} -y -i $in -ss 00:00:01 -vframes 1 -vf scale=250:-1 $out || cp $in $out";
-          }
+          videoThumbExtra
         ];
       };
       ".mov" = {
@@ -222,10 +223,7 @@
         wrap = true;
         extraRules = [
           exifMetaExtra
-          {
-            suffix = "thumb.jpg";
-            command = "${ffmpeg} -y -i $in -ss 00:00:01 -vframes 1 -vf scale=250:-1 $out || cp $in $out";
-          }
+          videoThumbExtra
         ];
       };
       ".mp3" = {
