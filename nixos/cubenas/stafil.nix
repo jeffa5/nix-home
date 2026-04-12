@@ -21,9 +21,9 @@
   relSrc = "$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')";
   imgLightbox = "<a href=\\\"#lightbox\\\"><img src=\\\"${relSrc}\\\" /></a><div id=\\\"lightbox\\\"><a href=\\\"#\\\"><img src=\\\"${relSrc}\\\" /></a></div>";
   pre = "echo \"<p><pre>$$(cat $in)</pre></p>\"";
-  video = "echo \"<video controls src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat '$meta')</pre>\"";
-  audio = "echo \"<audio controls src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat '$meta')</pre>\"";
-  image = "echo \"${imgLightbox}<pre>$$(cat '$meta')</pre>$$(cat '$gpslink')\"";
+  video = "echo \"<video controls src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat \"$meta\")</pre>\"";
+  audio = "echo \"<audio controls src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat \"$meta\")</pre>\"";
+  image = "echo \"${imgLightbox}<pre>$$(cat \"$meta\")</pre>$$(cat \"$gpslink\")\"";
   gpsExtra = {
     suffix = "gpslink";
     command = "${exiftool} -n -GPSLatitude -GPSLongitude -csv $in 2>/dev/null | ${awk} -F, 'NR==2 && \"$2\" != \"\" && \"$3\" != \"\" {printf \"<p><a href=&quot;https://www.openstreetmap.org/?mlat=%s&mlon=%s&zoom=15&quot; target=&quot;_blank&quot;>📍 View on OpenStreetMap</a></p>\", \"$2\", \"$3\"}' > $out";
@@ -89,7 +89,7 @@
       };
       ".json" = {
         name = "json";
-        command = "echo \"<p><pre>$$(${lib.getExe pkgs.jq} . $in)\\\"</pre></p>\"";
+        command = "echo \"<p><pre>$$(${lib.getExe pkgs.jq} . $in || cat $in)\\\"</pre></p>\"";
         wrap = true;
       };
       ".zip" = {
@@ -179,7 +179,7 @@
       };
       ".gif" = {
         name = "gif";
-        command = "echo \"${imgLightbox}<pre>$$(cat '$meta')</pre>\"";
+        command = "echo \"${imgLightbox}<pre>$$(cat \"$meta\")</pre>\"";
         wrap = true;
         extraRules = [
           exifMetaExtra
@@ -196,7 +196,7 @@
       };
       ".nef" = {
         name = "nef";
-        command = "echo \"<a href=\\\"#lightbox\\\"><img src=\\\"$$(echo '$thumb' | sed 's#${destination}\\(.*\\)#\\1#')\\\" /></a><div id=\\\"lightbox\\\"><a href=\\\"#\\\"><img src=\\\"$$(echo '$thumb' | sed 's#${destination}\\(.*\\)#\\1#')\\\" /></a></div><p><em>Preview is a thumbnail conversion from NEF — do not expect full quality.</em></p><pre>$$(cat '$meta')</pre>$$(cat '$gpslink')\"";
+        command = "echo \"<a href=\\\"#lightbox\\\"><img src=\\\"$$(echo \"$thumb\" | sed 's#${destination}\\(.*\\)#\\1#')\\\" /></a><div id=\\\"lightbox\\\"><a href=\\\"#\\\"><img src=\\\"$$(echo \"$thumb\" | sed 's#${destination}\\(.*\\)#\\1#')\\\" /></a></div><p><em>Preview is a thumbnail conversion from NEF — do not expect full quality.</em></p><pre>$$(cat \"$meta\")</pre>$$(cat \"$gpslink\")\"";
         wrap = true;
         extraRules = [
           exifMetaExtra
