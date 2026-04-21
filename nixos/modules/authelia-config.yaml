@@ -38,22 +38,22 @@ identity_providers:
 
 access_control:
   rules:
-  - domain: "dav.home.jeffas.net"
+  - domain: "webdav.home.jeffas.net"
     policy: one_factor
     subject: "group:andrew-files"
     resources:
       - "^/andrew(/.*)?$"
-  - domain: "dav.home.jeffas.net"
+  - domain: "webdav.home.jeffas.net"
     policy: one_factor
     subject: "group:charlene-files"
     resources:
       - "^/charlene(/.*)?$"
-  - domain: "dav.home.jeffas.net"
+  - domain: "webdav.home.jeffas.net"
     policy: one_factor
     subject: "group:family"
     resources:
       - "^/family(/.*)?$"
-  - domain: "dav.home.jeffas.net"
+  - domain: "webdav.home.jeffas.net"
     policy: deny
   - domain:
     - "*.home.jeffas.net"

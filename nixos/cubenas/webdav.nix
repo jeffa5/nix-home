@@ -3,7 +3,7 @@
   davRoot = "/local/files";
 in {
   services.nginx.virtualHosts."WebDAV" = {
-    serverName = "dav.home.jeffas.net";
+    serverName = "webdav.home.jeffas.net";
     forceSSL = true;
     useACMEHost = "home.jeffas.net";
     extraConfig = ''
@@ -23,7 +23,15 @@ in {
         autoindex on;
 
         auth_request_set $www_authenticate $upstream_http_www_authenticate;
-        add_header WWW-Authenticate $www_authenticate always;
+        error_page 401 =401 @webdav_unauth;
+        error_page 403 =401 @webdav_unauth;
+      '';
+    };
+
+    locations."@webdav_unauth" = {
+      extraConfig = ''
+        add_header WWW-Authenticate "Basic realm=\"WebDAV\"" always;
+        return 401;
       '';
     };
   };
