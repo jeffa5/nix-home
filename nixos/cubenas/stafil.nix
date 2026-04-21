@@ -280,6 +280,7 @@ in {
       time ${lib.getExe' pkgs.stafil "stafil-configure"} --config-file ${configFile} --search-paths ${destination}/search.paths --concurrency ${concurrency} >${destination}/build.ninja
       time ${lib.getExe pkgs.ninja} -C ${destination} -j ${concurrency} -k 0
       time ${lib.getExe pkgs.ninja} -C ${destination} -t cleandead
+      time ${lib.getExe pkgs.lychee} --offline --root-dir '${destination}' '${destination}/**/*.html'
     '';
     environment = {
       SHELL = lib.getExe pkgs.bash;
