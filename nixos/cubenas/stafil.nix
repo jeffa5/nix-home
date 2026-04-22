@@ -31,7 +31,7 @@
   };
   exifMetaExtra = {
     suffix = "meta";
-    command = "${exiftool} $in > $out";
+    command = "${exiftool} $in > $out || true";
     var = "meta";
   };
   jpgThumbExtra = {
