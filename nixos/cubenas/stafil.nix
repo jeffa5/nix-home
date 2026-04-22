@@ -18,11 +18,11 @@
   sevenzip = lib.getExe pkgs.p7zip;
   awk = lib.getExe' pkgs.gawk "awk";
 
-  relSrc = "$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')";
+  relSrc = "$$(echo $in | sed 's|${destination}||' | sed 's/#/%23/g')";
   imgLightbox = "<a href=\\\"#lightbox\\\"><img src=\\\"${relSrc}\\\" /></a><div id=\\\"lightbox\\\"><a href=\\\"#\\\"><img src=\\\"${relSrc}\\\" /></a></div>";
   pre = "echo \"<p><pre>$$(cat $in)</pre></p>\"";
-  video = "echo \"<video controls src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat \"$meta\")</pre>\"";
-  audio = "echo \"<audio controls src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" /><pre>$$(cat \"$meta\")</pre>\"";
+  video = "echo \"<video controls src=\\\"$$(echo $in | sed 's|${destination}||' | sed 's/#/%23/g')\\\" /><pre>$$(cat \"$meta\")</pre>\"";
+  audio = "echo \"<audio controls src=\\\"$$(echo $in | sed 's|${destination}||' | sed 's/#/%23/g')\\\" /><pre>$$(cat \"$meta\")</pre>\"";
   image = "echo \"${imgLightbox}<pre>$$(cat \"$meta\")</pre>$$(cat \"$gpslink\")\"";
   gpsExtra = {
     suffix = "gpslink";
@@ -83,7 +83,7 @@
       };
       ".pdf" = {
         name = "pdf";
-        command = "echo \"<embed src=\\\"$$(echo $in | sed 's#${destination}\\(.*\\)#\\1#')\\\" type=\"application/pdf\" frameBorder=\"0\" scrolling=\"auto\" height=\"100%\" width=\"100%\"></embed>\"";
+        command = "echo \"<embed src=\\\"$$(echo $in | sed 's|${destination}||' | sed 's/#/%23/g')\\\" type=\"application/pdf\" frameBorder=\"0\" scrolling=\"auto\" height=\"100%\" width=\"100%\"></embed>\"";
         wrap = true;
       };
       ".md" = {
@@ -200,7 +200,7 @@
       };
       ".nef" = {
         name = "nef";
-        command = "echo \"<a href=\\\"#lightbox\\\"><img src=\\\"$$(echo \"$thumb\" | sed 's#${destination}\\(.*\\)#\\1#')\\\" /></a><div id=\\\"lightbox\\\"><a href=\\\"#\\\"><img src=\\\"$$(echo \"$thumb\" | sed 's#${destination}\\(.*\\)#\\1#')\\\" /></a></div><p><em>Preview is a thumbnail conversion from NEF — do not expect full quality.</em></p><pre>$$(cat \"$meta\")</pre>$$(cat \"$gpslink\")\"";
+        command = "echo \"<a href=\\\"#lightbox\\\"><img src=\\\"$$(echo \"$thumb\" | sed 's|${destination}||' | sed 's/#/%23/g')\\\" /></a><div id=\\\"lightbox\\\"><a href=\\\"#\\\"><img src=\\\"$$(echo \"$thumb\" | sed 's|${destination}||' | sed 's/#/%23/g')\\\" /></a></div><p><em>Preview is a thumbnail conversion from NEF — do not expect full quality.</em></p><pre>$$(cat \"$meta\")</pre>$$(cat \"$gpslink\")\"";
         wrap = true;
         extraRules = [
           exifMetaExtra
