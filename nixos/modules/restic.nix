@@ -98,7 +98,7 @@ in {
         exclude = cfg.excludes;
         initialize = true;
         timerConfig = {
-          OnCalendar = "daily";
+          OnCalendar = "*-*-* 12:00:00";
         };
         passwordFile = "${passwordFileHomelab}";
         # extraBackupArgs = ["-vv"];
@@ -121,7 +121,7 @@ in {
         exclude = cfg.excludes;
         initialize = true;
         timerConfig = {
-          OnCalendar = "daily";
+          OnCalendar = "*-*-* 12:00:00";
         };
         passwordFile = passwordFileStorageBox;
         extraBackupArgs = cfg.extraStorageboxArgs;

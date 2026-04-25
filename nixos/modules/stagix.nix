@@ -124,7 +124,7 @@
   timerConfig = {
     wantedBy = ["timers.target"];
     timerConfig = {
-      OnCalendar = "hourly";
+      OnCalendar = "*-*-* 12:00:00";
     };
   };
 
@@ -225,6 +225,34 @@
   };
 
   cfg = config.services.stagix;
+
+  locationScripts = lib.mapAttrs (name: locCfg:
+    pkgs.writeShellScript "stagix-run-${name}" ''
+      exec ${lib.getExe' pkgs.systemd "systemctl"} start \
+        stagix-index-${locCfg.path} \
+        stagix-pages-${locCfg.path}
+    ''
+  ) cfg.locations;
+
+  hookScript = pkgs.writeShellScript "stagix-post-receive" (''
+    gitdir="$(${lib.getExe' pkgs.coreutils "realpath"} "''${GIT_DIR}")"
+  '' + lib.concatStringsSep "\n" (lib.mapAttrsToList (name: locCfg: let
+    reposDir = "${cfg.gitRoot}/${
+      if locCfg.repoPath != null
+      then locCfg.repoPath
+      else locCfg.path
+    }";
+  in ''
+    if [[ "''${gitdir}" == ${reposDir}/* ]]; then
+      /run/wrappers/bin/sudo ${locationScripts.${name}}
+    fi
+  '') cfg.locations));
+
+  hooksDir = pkgs.runCommand "stagix-hooks" {} ''
+    mkdir -p $out
+    cp ${hookScript} $out/post-receive
+    chmod +x $out/post-receive
+  '';
 in {
   options.services.stagix = {
     enable = lib.mkEnableOption "stagix";
@@ -290,6 +318,23 @@ in {
         )
       )
     );
+
+    environment.etc."stagix/gitconfig".text = ''
+      [core]
+        hooksPath = ${hooksDir}
+    '';
+
+    systemd.tmpfiles.rules = [
+      "L+ ${cfg.gitRoot}/.gitconfig - - - - /etc/stagix/gitconfig"
+    ];
+
+    security.sudo.extraRules = [{
+      users = [cfg.user];
+      commands = lib.mapAttrsToList (_: script: {
+        command = toString script;
+        options = ["NOPASSWD"];
+      }) locationScripts;
+    }];
 
     services.nginx.virtualHosts = (
       lib.mergeAttrsList (

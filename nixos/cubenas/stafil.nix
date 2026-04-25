@@ -297,7 +297,7 @@ in {
   systemd.timers.stafil = {
     wantedBy = ["timers.target"];
     timerConfig = {
-      OnCalendar = "daily";
+      OnCalendar = "*-*-* 12:00:00";
     };
   };
 
