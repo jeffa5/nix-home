@@ -226,13 +226,30 @@
 
   cfg = config.services.stagix;
 
-  locationScripts = lib.mapAttrs (name: locCfg:
-    pkgs.writeShellScript "stagix-run-${name}" ''
-      exec ${lib.getExe' pkgs.systemd "systemctl"} start \
-        stagix-index-${locCfg.path} \
-        stagix-pages-${locCfg.path}
-    ''
-  ) cfg.locations;
+  locationScripts = lib.mapAttrs (_: locCfg: let
+    gitWebDir = "${cfg.gitRoot}-www/${locCfg.path}";
+    gitPagesDir = "${cfg.gitRoot}-pages/${locCfg.path}";
+    gitReposDir = "${cfg.gitRoot}/${
+      if locCfg.repoPath != null
+      then locCfg.repoPath
+      else locCfg.path
+    }";
+    gitReposUrl =
+      if locCfg.gitUrl != null
+      then locCfg.gitUrl
+      else "https://${locCfg.path}-${gitHost}";
+    gitPagesUrl =
+      if locCfg.pagesUrl != null
+      then locCfg.pagesUrl
+      else "https://${locCfg.path}-${pagesHost}";
+    gitCloneUrls = mkGitCloneUrls {cloneBaseUrls = locCfg.cloneBaseUrls;};
+  in pkgs.writeShellScript "stagix-run-${locCfg.path}" ''
+    ${stagix-index-script {
+      inherit gitHost gitWebDir gitReposDir gitReposUrl gitPagesUrl gitCloneUrls;
+    }}
+    set -ex
+    ${stagix-pages} --out-dir "${gitPagesDir}" --working-dir "${cfg.gitRoot}-pages-workdir/${locCfg.path}" "${gitReposDir}/"*/
+  '') cfg.locations;
 
   hookScript = pkgs.writeShellScript "stagix-post-receive" (''
     gitdir="$(${lib.getExe' pkgs.coreutils "realpath"} "''${GIT_DIR}")"
@@ -244,7 +261,7 @@
     }";
   in ''
     if [[ "''${gitdir}" == ${reposDir}/* ]]; then
-      /run/wrappers/bin/sudo ${locationScripts.${name}}
+      ${locationScripts.${name}}
     fi
   '') cfg.locations));
 
@@ -327,14 +344,6 @@ in {
     systemd.tmpfiles.rules = [
       "L+ ${cfg.gitRoot}/.gitconfig - - - - /etc/stagix/gitconfig"
     ];
-
-    security.sudo.extraRules = [{
-      users = [cfg.user];
-      commands = lib.mapAttrsToList (_: script: {
-        command = toString script;
-        options = ["NOPASSWD"];
-      }) locationScripts;
-    }];
 
     services.nginx.virtualHosts = (
       lib.mergeAttrsList (
