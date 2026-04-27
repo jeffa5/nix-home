@@ -229,26 +229,29 @@
   locationScripts = lib.mapAttrs (_: locCfg: let
     gitWebDir = "${cfg.gitRoot}-www/${locCfg.path}";
     gitPagesDir = "${cfg.gitRoot}-pages/${locCfg.path}";
-    gitReposDir = "${cfg.gitRoot}/${
-      if locCfg.repoPath != null
-      then locCfg.repoPath
-      else locCfg.path
-    }";
-    gitReposUrl =
-      if locCfg.gitUrl != null
-      then locCfg.gitUrl
-      else "https://${locCfg.path}-${gitHost}";
-    gitPagesUrl =
-      if locCfg.pagesUrl != null
-      then locCfg.pagesUrl
-      else "https://${locCfg.path}-${pagesHost}";
     gitCloneUrls = mkGitCloneUrls {cloneBaseUrls = locCfg.cloneBaseUrls;};
   in pkgs.writeShellScript "stagix-run-${locCfg.path}" ''
-    ${stagix-index-script {
-      inherit gitHost gitWebDir gitReposDir gitReposUrl gitPagesUrl gitCloneUrls;
-    }}
     set -ex
-    ${stagix-pages} --out-dir "${gitPagesDir}" --working-dir "${cfg.gitRoot}-pages-workdir/${locCfg.path}" "${gitReposDir}/"*/
+    dir="$1"
+
+    echo "git@${gitHost}/''${dir#${cfg.gitRoot}/}" > "''${dir}/url"
+    if [ ! -f "''${dir}/owner" ]; then
+      echo "Andrew Jeffery <dev@jeffas.net>" > "''${dir}/owner"
+    fi
+
+    r=$(basename "''${dir}")
+    d=$(basename "''${dir}" ".git")
+
+    mkdir -p "${gitWebDir}/''${d}"
+    cd "${gitWebDir}/''${d}"
+    ${stagix-repo} --log-length 50 --clone-base-urls "${gitCloneUrls}" "''${dir}"
+
+    ln -sf log.html index.html
+    ln -sf ../style.css style.css
+    ln -sf ../logo.png logo.png
+    ln -sf ../favicon.png favicon.png
+
+    ${stagix-pages} --out-dir "${gitPagesDir}" --working-dir "${cfg.gitRoot}-pages-workdir/${locCfg.path}" "''${dir}"
   '') cfg.locations;
 
   hookScript = pkgs.writeShellScript "stagix-post-receive" (''
@@ -261,7 +264,7 @@
     }";
   in ''
     if [[ "''${gitdir}" == ${reposDir}/* ]]; then
-      ${locationScripts.${name}}
+      ${locationScripts.${name}} "''${gitdir}"
     fi
   '') cfg.locations));
 
