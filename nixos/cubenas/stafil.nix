@@ -42,10 +42,80 @@
     suffix = "thumb.jpg";
     command = "${ffmpeg} -y -i $in -vframes 1 -vf scale=250:-1 $out || cp $in $out";
   };
+  tagsExtra = {
+    suffix = "tags";
+    command = "${exiftool} -j $in 2>/dev/null | ${lib.getExe pkgs.jq} -r '.[0].Keywords // empty | if type==\"array\" then .[] else split(\",\")[] end | ltrimstr(\" \") | rtrimstr(\" \")' > $out; true";
+    tags = true;
+  };
+
+  classifierPython = pkgs.python3.withPackages (ps: [
+    ps.onnxruntime
+    ps.pillow
+    ps.numpy
+  ]);
+  mobilenetModel = pkgs.fetchurl {
+    url = "https://github.com/onnx/models/raw/main/validated/vision/classification/mobilenet/model/mobilenetv2-12.onnx";
+    hash = "sha256-wMP3bZP6P9ZYBlKkVhhhiiIPztGLq/ZXdO0WneBDKtU=";
+  };
+  imagenetLabels = pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/pytorch/hub/master/imagenet_classes.txt";
+    hash = "sha256-HzhuDRy24oucLaxlHD3qaAHpitG0GhTOa7Ggk9cgafU=";
+  };
+  classifierScript = pkgs.writeScript "stafil-classify" ''
+    #!${classifierPython}/bin/python3
+    import sys
+    import numpy as np
+    from PIL import Image
+    import onnxruntime as ort
+
+    THRESHOLD = 0.05
+    TOP_K = 5
+
+    def softmax(x):
+        e = np.exp(x - np.max(x))
+        return e / e.sum()
+
+    def preprocess(path):
+        img = Image.open(path).convert('RGB').resize((224, 224), Image.BILINEAR)
+        arr = np.array(img, dtype=np.float32) / 255.0
+        arr = (arr - [0.485, 0.456, 0.406]) / [0.229, 0.224, 0.225]
+        return arr.transpose(2, 0, 1)[np.newaxis].astype(np.float32)
+
+    def main(in_path, out_path):
+        with open('${imagenetLabels}') as f:
+            labels = [line.strip() for line in f]
+
+        sess = ort.InferenceSession('${mobilenetModel}', providers=['CPUExecutionProvider'])
+        inp_name = sess.get_inputs()[0].name
+
+        img = preprocess(in_path)
+        (logits,) = sess.run(None, {inp_name: img})
+        probs = softmax(logits[0])
+
+        top = sorted(range(len(probs)), key=lambda i: probs[i], reverse=True)[:TOP_K]
+        tags = [labels[i] for i in top if probs[i] >= THRESHOLD]
+
+        with open(out_path, 'w') as f:
+            f.write('\n'.join(tags))
+
+    if __name__ == '__main__':
+        try:
+            main(sys.argv[1], sys.argv[2])
+        except Exception:
+            open(sys.argv[2], 'w').close()
+  '';
+  tagsMLExtra = {
+    suffix = "ml-tags";
+    command = "${classifierScript} $in $out; true";
+    tags = true;
+  };
 
   config = {
     source = source;
     destination = destination;
+    tags = {
+      dir = "tags";
+    };
     staticFiles = ["${stafil-static}/style.css" "${stafil-static}/stafil.js"];
     staticDir = "static";
     search = {
@@ -149,6 +219,8 @@
           exifMetaExtra
           gpsExtra
           jpgThumbExtra
+          tagsExtra
+          tagsMLExtra
         ];
       };
       ".jpg" = {
@@ -159,6 +231,8 @@
           exifMetaExtra
           gpsExtra
           jpgThumbExtra
+          tagsExtra
+          tagsMLExtra
         ];
       };
       ".jpeg" = {
@@ -169,6 +243,8 @@
           exifMetaExtra
           gpsExtra
           jpgThumbExtra
+          tagsExtra
+          tagsMLExtra
         ];
       };
       ".png" = {
@@ -179,6 +255,8 @@
           exifMetaExtra
           gpsExtra
           jpgThumbExtra
+          tagsExtra
+          tagsMLExtra
         ];
       };
       ".gif" = {
@@ -187,6 +265,8 @@
         wrap = true;
         extraRules = [
           exifMetaExtra
+          tagsExtra
+          tagsMLExtra
         ];
       };
       ".heic" = {
@@ -196,6 +276,8 @@
         extraRules = [
           exifMetaExtra
           gpsExtra
+          tagsExtra
+          tagsMLExtra
         ];
       };
       ".nef" = {
@@ -206,6 +288,8 @@
           exifMetaExtra
           gpsExtra
           jpgThumbExtra
+          tagsExtra
+          tagsMLExtra
         ];
       };
       ".mp4" = {
