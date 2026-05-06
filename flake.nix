@@ -155,6 +155,19 @@
           }
         ];
       };
+    piSD = hostname:
+      stableNixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        modules = [
+          "${stableNixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
+          ./nixos/modules/openssh.nix
+          {
+            networking.hostName = hostname;
+            system.stateVersion = "25.11";
+            nixpkgs.config.allowUnfree = true;
+          }
+        ];
+      };
   in {
     # whole system configs
     # nixos-rebuild switch --flake '<flake-uri>#xps15'
@@ -190,6 +203,8 @@
           })
         ];
       };
+
+      jsjsd = piSD "jsj";
 
       # rpi0 = stableNixpkgs.lib.nixosSystem {
       #   system = "aarch64-linux";
@@ -238,6 +253,8 @@
       '';
 
       deploy = pkgs.callPackage ./deploy.nix {hosts = import ./nixos/hosts.nix;};
+
+      jsjSD = self.nixosConfigurations.jsjsd.config.system.build.sdImage;
 
       nvd = pkgs.writeShellScriptBin "nvd" ''
         set -e

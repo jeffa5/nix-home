@@ -151,6 +151,7 @@ in {
   };
 
   # boot.kernel.sysctl."fs.inotify.max_user_watches" = pkgs.lib.mkDefault 524288;
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
   boot.tmp.useTmpfs = true;
   systemd.services.nix-daemon = {
     environment.TMPDIR = "/var/tmp";
