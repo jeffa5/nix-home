@@ -10,9 +10,15 @@
   destination = "/local/files-www";
 
   exiftool = lib.getExe pkgs.exiftool;
-  wrap = lib.getExe' pkgs.stafil "stafil-wrap";
-  index = lib.getExe' pkgs.stafil "stafil-index";
   magick = lib.getExe' pkgs.imagemagick "magick";
+
+  # Stable /etc paths with per-binary content hashes. Ninja embeds these paths in
+  # build.ninja command strings, so they only change (triggering rebuilds) when the
+  # binary content itself changes, not just the stafil store path.
+  stafilBinHash = bin: builtins.substring 0 16 (builtins.hashFile "sha256" "${pkgs.stafil}/bin/${bin}");
+  stafilBinPath = bin: "/etc/stafil-bins/${bin}-${stafilBinHash bin}";
+  wrap = stafilBinPath "stafil-wrap";
+  index = stafilBinPath "stafil-index";
   ffmpeg = lib.getExe pkgs.ffmpeg;
   unzip = lib.getExe pkgs.unzip;
   sevenzip = lib.getExe pkgs.p7zip;
@@ -119,7 +125,7 @@
     staticFiles = ["${stafil-static}/style.css" "${stafil-static}/stafil.js"];
     staticDir = "static";
     search = {
-      command = lib.getExe' pkgs.stafil "stafil-search";
+      command = stafilBinPath "stafil-search";
     };
     wrap = {
       command = " | ${wrap} -root ${destination} -path $out -prev=\"$prev\" -next=\"$next\" -before ${stafil-templates}/head.html,${stafil-templates}/header.html -after ${stafil-templates}/footer.html,${stafil-templates}/foot.html > $out";
@@ -340,6 +346,11 @@
     text = configJson;
   };
 in {
+  environment.etc = builtins.listToAttrs (map (bin: {
+    name = "stafil-bins/${bin}-${stafilBinHash bin}";
+    value.source = "${pkgs.stafil}/bin/${bin}";
+  }) ["stafil-wrap" "stafil-index" "stafil-search"]);
+
   environment.systemPackages = [
     pkgs.ninja
     pkgs.stafil
