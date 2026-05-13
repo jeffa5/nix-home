@@ -24,6 +24,18 @@
   sevenzip = lib.getExe pkgs.p7zip;
   awk = lib.getExe' pkgs.gawk "awk";
 
+  # Only write to $out if the content has changed, preserving mtime otherwise.
+  # This prevents Ninja from seeing the output as newer and rebuilding dependents.
+  condWrite = pkgs.writeShellScript "cond-write" ''
+    tmp=$(mktemp)
+    cat > "$tmp"
+    if cmp -s "$tmp" "$1" 2>/dev/null; then
+      rm "$tmp"
+    else
+      mv "$tmp" "$1"
+    fi
+  '';
+
   relSrc = "$$(echo $in | sed 's|${destination}||' | sed 's/#/%23/g')";
   imgLightbox = "<a href=\\\"#lightbox\\\"><img src=\\\"${relSrc}\\\" /></a><div id=\\\"lightbox\\\"><a href=\\\"#\\\"><img src=\\\"${relSrc}\\\" /></a></div>";
   pre = "echo \"<p><pre>$$(cat $in)</pre></p>\"";
@@ -32,12 +44,12 @@
   image = "echo \"${imgLightbox}<pre>$$(cat \"$meta\")</pre>$$(cat \"$gpslink\")\"";
   gpsExtra = {
     suffix = "gpslink";
-    command = "${exiftool} -n -GPSLatitude -GPSLongitude -csv $in 2>/dev/null | ${awk} -F, 'NR==2 && \"$2\" != \"\" && \"$3\" != \"\" {printf \"<p><a href=&quot;https://www.openstreetmap.org/?mlat=%s&mlon=%s&zoom=15&quot; target=&quot;_blank&quot;>📍 View on OpenStreetMap</a></p>\", \"$2\", \"$3\"}' > $out";
+    command = "${exiftool} -n -GPSLatitude -GPSLongitude -csv $in 2>/dev/null | ${awk} -F, 'NR==2 && \"$2\" != \"\" && \"$3\" != \"\" {printf \"<p><a href=&quot;https://www.openstreetmap.org/?mlat=%s&mlon=%s&zoom=15&quot; target=&quot;_blank&quot;>📍 View on OpenStreetMap</a></p>\", \"$2\", \"$3\"}' | ${condWrite} $out";
     var = "gpslink";
   };
   exifMetaExtra = {
     suffix = "meta";
-    command = "${exiftool} $in > $out || true";
+    command = "${exiftool} $in | ${condWrite} $out; true";
     var = "meta";
   };
   jpgThumbExtra = {
@@ -50,7 +62,7 @@
   };
   tagsExtra = {
     suffix = "tags";
-    command = "${exiftool} -j $in 2>/dev/null | ${lib.getExe pkgs.jq} -r '.[0].Keywords // empty | if type==\"array\" then .[] else split(\",\")[] end | ltrimstr(\" \") | rtrimstr(\" \")' > $out; true";
+    command = "${exiftool} -j $in 2>/dev/null | ${lib.getExe pkgs.jq} -r '.[0].Keywords // empty | if type==\"array\" then .[] else split(\",\")[] end | ltrimstr(\" \") | rtrimstr(\" \")' | ${condWrite} $out; true";
     tags = true;
   };
 
@@ -112,7 +124,7 @@
   '';
   tagsMLExtra = {
     suffix = "ml-tags";
-    command = "${classifierScript} $in $out; true";
+    command = "tmp=$$(mktemp); ${classifierScript} $in $$tmp; ${condWrite} $out < $$tmp; rm -f $$tmp; true";
     tags = true;
   };
 
@@ -128,7 +140,7 @@
       command = stafilBinPath "stafil-search";
     };
     wrap = {
-      command = " | ${wrap} -root ${destination} -path $out -prev=\"$prev\" -next=\"$next\" -before ${stafil-templates}/head.html,${stafil-templates}/header.html -after ${stafil-templates}/footer.html,${stafil-templates}/foot.html > $out";
+      command = " | ${wrap} -root ${destination} -path $out -prev=\"$prev\" -next=\"$next\" -before ${stafil-templates}/head.html,${stafil-templates}/header.html -after ${stafil-templates}/footer.html,${stafil-templates}/foot.html | ${condWrite} $out";
       deps = ["${stafil-templates}/head.html" "${stafil-templates}/header.html" "${stafil-templates}/footer.html" "${stafil-templates}/foot.html"];
     };
     rules = {
