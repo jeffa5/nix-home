@@ -272,6 +272,11 @@
     mkdir -p $out
     cp ${hookScript} $out/post-receive
     chmod +x $out/post-receive
+    cat > $out/post-update << 'EOF'
+    #!/bin/sh
+    exec git update-server-info
+    EOF
+    chmod +x $out/post-update
   '';
 in {
   options.services.stagix = {
