@@ -482,11 +482,11 @@
         "nixpkgs": "nixpkgs_7"
       },
       "locked": {
-        "lastModified": 1776838892,
-        "narHash": "sha256-xALbPTC8MSKoDPSwwmE0KgceibqzX0LWw6sU8WkxZiA=",
+        "lastModified": 1778790092,
+        "narHash": "sha256-MbkrpHzcbIU5PCxqCd7u39MVnYxktCjpVaW+JyJYtfM=",
         "ref": "refs/heads/main",
-        "rev": "f823246e99492902c7757ddecb95edbced0c646d",
-        "revCount": 75,
+        "rev": "e8120f6b0483d8b9df1b3292855486bec98f9ec8",
+        "revCount": 83,
         "shallow": false,
         "type": "git",
         "url": "https://git.jeffas.net/stafil.git"
@@ -502,17 +502,19 @@
         "nixpkgs": "nixpkgs_8"
       },
       "locked": {
-        "lastModified": 1764785714,
-        "narHash": "sha256-oc21S1C1ZDH4rvPtTLBY2AUEyNlAheP7N5MDfapfb+w=",
-        "owner": "jeffa5",
-        "repo": "stagix",
-        "rev": "bc786cef06d183f4fa62ab305e96c0adcb89740e",
-        "type": "github"
+        "lastModified": 1778695838,
+        "narHash": "sha256-6oUOOwUpQTNJWGDS+b9XHE8Sfue0N7fM7m6K+nzgBC0=",
+        "ref": "refs/heads/main",
+        "rev": "07fbf805fc7fa00cc33715a9d7e7572a8b815ddc",
+        "revCount": 90,
+        "shallow": false,
+        "type": "git",
+        "url": "https://git.jeffas.net/stagix.git"
       },
       "original": {
-        "owner": "jeffa5",
-        "repo": "stagix",
-        "type": "github"
+        "shallow": false,
+        "type": "git",
+        "url": "https://git.jeffas.net/stagix.git"
       }
     },
     "systems": {
