@@ -140,8 +140,12 @@
       command = stafilBinPath "stafil-search";
     };
     wrap = {
-      command = " | ${wrap} -root ${destination} -path $out -prev=\"$prev\" -next=\"$next\" -before ${stafil-templates}/head.html,${stafil-templates}/header.html -after ${stafil-templates}/footer.html,${stafil-templates}/foot.html | ${condWrite} $out";
+      command = "${wrap} -root ${destination} -path $out -prev=\"$prev\" -next=\"$next\" -tags \"$tags\" -before ${stafil-templates}/head.html,${stafil-templates}/header.html -after ${stafil-templates}/footer.html,${stafil-templates}/foot.html < $in > $out";
       deps = ["${stafil-templates}/head.html" "${stafil-templates}/header.html" "${stafil-templates}/footer.html" "${stafil-templates}/foot.html"];
+    };
+    suffixes = {
+      tags = ".tags";
+      body = ".body";
     };
     rules = {
       ".txt" = {
