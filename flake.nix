@@ -206,6 +206,11 @@
 
       jsjsd = piSD "jsj";
 
+      mediavm = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules = [ ./nixos/mediavm ];
+      };
+
       # rpi0 = stableNixpkgs.lib.nixosSystem {
       #   system = "aarch64-linux";
       #   modules = [
@@ -255,6 +260,8 @@
       deploy = pkgs.callPackage ./deploy.nix {hosts = import ./nixos/hosts.nix;};
 
       jsjSD = self.nixosConfigurations.jsjsd.config.system.build.sdImage;
+
+      mediavm = self.nixosConfigurations.mediavm.config.system.build.vm;
 
       nvd = pkgs.writeShellScriptBin "nvd" ''
         set -e
