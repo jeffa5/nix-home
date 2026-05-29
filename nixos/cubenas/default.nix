@@ -18,7 +18,10 @@
     ../modules/openssh.nix
     ../modules/tailscale.nix
 
+    ../modules/remote-wayland.nix
+
     ../modules/restic.nix
+    ../modules/czkawka.nix
 
     # monitoring
     ../modules/node-exporter.nix
