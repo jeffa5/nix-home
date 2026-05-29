@@ -38,54 +38,67 @@
   fileSystems."/var/lib/${config.services.prometheus.stateDir}" = {
     device = "/local/prometheus";
     options = ["bind"];
+    fsType = "none";
   };
   fileSystems."${config.services.loki.dataDir}" = {
     device = "/local/loki";
     options = ["bind"];
+    fsType = "none";
   };
   fileSystems."${config.services.zigbee2mqtt.dataDir}" = {
     device = "/local/zigbee2mqtt";
     options = ["bind"];
+    fsType = "none";
   };
   fileSystems."${config.services.mosquitto.dataDir}" = {
     device = "/local/mosquitto";
     options = ["bind"];
+    fsType = "none";
   };
   fileSystems."/var/lib/influxdb2" = {
     device = "/local/influxdb2";
     options = ["bind"];
+    fsType = "none";
   };
   fileSystems."/var/lib/${config.services.jellyfin.dataDir}" = {
     device = "/local/jellyfin/data";
     options = ["bind"];
+    fsType = "none";
   };
   fileSystems."/var/lib/${config.services.jellyfin.cacheDir}" = {
     device = "/local/jellyfin/cache";
     options = ["bind"];
+    fsType = "none";
   };
   fileSystems."/var/lib/git-server" = {
     device = "/local/git";
     options = ["bind"];
+    fsType = "none";
   };
   fileSystems."${config.services.immich.mediaLocation}" = {
     device = "/local/immich";
     options = ["bind"];
+    fsType = "none";
   };
   fileSystems."${config.services.postgresql.dataDir}" = {
     device = "/local/postgresql";
     options = ["bind"];
+    fsType = "none";
   };
   fileSystems."${config.services.paperless.dataDir}" = {
     device = "/local/paperless";
     options = ["bind"];
+    fsType = "none";
   };
   fileSystems."${config.services.syncthing.dataDir}" = {
     device = "/local/syncthing";
     options = ["bind"];
+    fsType = "none";
   };
   fileSystems."/var/lib/radicale" = {
     device = "/local/radicale";
     options = ["bind"];
+    fsType = "none";
   };
 
   swapDevices = [];
