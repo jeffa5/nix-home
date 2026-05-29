@@ -9,7 +9,7 @@
       users = [];
     })
     ../modules/node-exporter.nix
-    ../modules/promtail.nix
+    ../modules/alloy.nix
     ../modules/nginx.nix
     ../modules/tailscale.nix
   ];

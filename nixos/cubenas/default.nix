@@ -30,7 +30,7 @@
     ./promalerts.nix
     ../modules/grafana.nix
     ../modules/loki.nix
-    ../modules/promtail.nix
+    ../modules/alloy.nix
 
     ../modules/nginx.nix
     ../modules/cloudflared.nix

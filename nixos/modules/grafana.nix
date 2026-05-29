@@ -36,6 +36,9 @@ in {
         enable_login_token = false;
         headers = "Email:Remote-Email Name:Remote-Name";
       };
+      security = {
+        secret_key = "SW2YcwTIb9zpOOhoPsMm";
+      };
     };
     provision = {
       enable = true;

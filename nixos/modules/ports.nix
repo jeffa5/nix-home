@@ -5,9 +5,7 @@
   nginx-exporter.private = 9113;
   grafana.private = 3001;
   loki.private = 3101;
-  promtail.public = 9080;
-  promtail.private = 9081;
-  promtail.private_grpc = 9082;
+  alloy.private = 12345;
   postgres-exporter.public = 9187;
   postgres-exporter.private = 9188;
   restic-exporter-local.private = 8001;

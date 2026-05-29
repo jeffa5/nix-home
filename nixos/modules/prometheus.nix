@@ -49,17 +49,17 @@ in {
         ];
       }
       {
-        job_name = "promtail";
+        job_name = "alloy";
         static_configs = [
-          {targets = ["promtail.${cubenas}"];}
-          {targets = ["promtail.${rpi1}"];}
-          {targets = ["promtail.${rpi2}"];}
+          {targets = ["alloy.${cubenas}"];}
+          {targets = ["alloy.${rpi1}"];}
+          {targets = ["alloy.${rpi2}"];}
           # xps15, not running nginx
-          {targets = ["${xps15}:${toString ports.promtail.private}"];}
+          {targets = ["${xps15}:${toString ports.alloy.private}"];}
           # x1c6, not running nginx
-          {targets = ["${x1c6}:${toString ports.promtail.private}"];}
+          {targets = ["${x1c6}:${toString ports.alloy.private}"];}
           # carbide, not running nginx
-          {targets = ["${carbide}:${toString ports.promtail.private}"];}
+          {targets = ["${carbide}:${toString ports.alloy.private}"];}
         ];
       }
       {

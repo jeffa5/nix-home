@@ -18,7 +18,7 @@
     ../modules/grafana.nix
     # logging
     ../modules/loki.nix
-    ../modules/promtail.nix
+    ../modules/alloy.nix
     # serving
     (import ../modules/dnsmasq.nix {inherit configs;})
     ../modules/nginx.nix

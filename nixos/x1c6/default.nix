@@ -4,7 +4,7 @@
     ../systemd-boot.nix
     ../modules/laptop.nix
     ../modules/node-exporter.nix
-    ../modules/promtail.nix
+    ../modules/alloy.nix
     # ../modules/printing.nix
     # ../modules/scanning.nix
 

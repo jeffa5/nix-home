@@ -3,7 +3,7 @@
     ./hardware-configuration.nix
     ../systemd-boot.nix
     ../modules/node-exporter.nix
-    ../modules/promtail.nix
+    ../modules/alloy.nix
   ];
 
   boot.loader.efi.canTouchEfiVariables = true;
