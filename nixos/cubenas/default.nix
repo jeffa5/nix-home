@@ -17,6 +17,7 @@
 
     ../modules/openssh.nix
     ../modules/tailscale.nix
+    ../modules/fish.nix
 
     ../modules/remote-wayland.nix
 
