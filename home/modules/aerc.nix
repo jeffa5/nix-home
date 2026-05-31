@@ -76,7 +76,6 @@ in {
       mouse-enabled = true;
       tab-title-account = "{{.Account}} {{if .Unread \"Inbox\"}}({{.Unread \"Inbox\"}}){{end}}";
       dirlist-tree = true;
-      dirlist-collapse = 1;
       auto-mark-read = false;
       fuzzy-complete = true;
     };
