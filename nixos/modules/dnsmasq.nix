@@ -11,7 +11,7 @@
     ip = hosts.${name};
   in
     lib.concatStringsSep "\n" (lib.mapAttrsToList (_name: value:
-      if value.serverName != null && (lib.hasInfix ".home.jeffas.net" value.serverName)
+      if value.serverName != null && (lib.hasSuffix "home.jeffas.net" value.serverName)
       then "${ip} ${value.serverName}"
       else "")
     services);
