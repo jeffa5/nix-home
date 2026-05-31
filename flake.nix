@@ -55,6 +55,10 @@
       stagix = stagix.packages.${system}.stagix;
       prometheus-restic-exporter = prometheusResticExporter.packages.${system}.prometheus-restic-exporter;
       stafil = stafil.packages.${system}.stafil;
+      mail-cleanup = import packages/mail-cleanup {
+        pkgs = prev;
+        lib = prev.lib;
+      };
       # khal =
       #   prev.khal.overrideAttrs
       #   (_finalAttrs: _previousAttrs: {

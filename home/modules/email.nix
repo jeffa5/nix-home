@@ -73,4 +73,6 @@ in {
   programs.himalaya.enable = true;
   programs.mu.enable = true;
   programs.msmtp.enable = true;
+
+  home.packages = [pkgs.mail-cleanup];
 }
