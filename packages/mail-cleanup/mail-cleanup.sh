@@ -1,26 +1,36 @@
 #!/usr/bin/env bash
 # mail-cleanup — interactive Maildir cleanup tool using mu.
 # Ranks senders by message count, lets the user iteratively refine a mu
-# query, and moves matching messages into a per-account `cleanup` Maildir
-# folder. Never deletes.
+# query, and moves matching messages into ~/mail-cleanup/<account>/ Maildir
+# folders. Never deletes.
 
 set -uo pipefail
 
+MODE=from
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --to|-t)   MODE=to;   shift ;;
+    --from|-f) MODE=from; shift ;;
+    *) printf 'mail-cleanup: unknown option: %s\n' "$1" >&2; exit 1 ;;
+  esac
+done
+
 MAIL_ROOT="${HOME}/mail"
+CLEANUP_ROOT="${HOME}/mail-cleanup"
 SESSION_DIR=$(mktemp -d -t mail-trim.XXXXXX)
 LEADERBOARD="$SESSION_DIR/leaderboard"
 PREVIEW_HELPER="$SESSION_DIR/preview.sh"
 trap 'rm -rf "$SESSION_DIR"' EXIT
 
-cat > "$PREVIEW_HELPER" <<'PREVIEW_EOF'
+cat > "$PREVIEW_HELPER" <<PREVIEW_EOF
 #!/usr/bin/env bash
-line="$*"
-sender=$(printf '%s' "$line" | awk '{print $NF}')
-[ -n "$sender" ] || exit 0
-path=$(mu find --format=json --sortfield=d --reverse -n 1 "from:$sender" 2>/dev/null \
+line="\$*"
+contact=\$(printf '%s' "\$line" | awk '{print \$NF}')
+[ -n "\$contact" ] || exit 0
+path=\$(mu find --format=json --sortfield=d --reverse -n 1 "$MODE:\$contact" 2>/dev/null \
   | jq -r '.[0][":path"] // empty')
-[ -n "$path" ] && [ -f "$path" ] || { printf '(no readable message)\n'; exit 0; }
-mu view "$path" 2>/dev/null | head -200
+[ -n "\$path" ] && [ -f "\$path" ] || { printf '(no readable message)\n'; exit 0; }
+mu view "\$path" 2>/dev/null | head -200
 PREVIEW_EOF
 chmod +x "$PREVIEW_HELPER"
 
@@ -37,13 +47,26 @@ human_size() {
 
 compute_leaderboard() {
   printf 'Scanning mu index...\n' >&2
+  local jq_filter
+  if [ "$MODE" = from ]; then
+    jq_filter='
+      .[]
+      | select((.[":path"] // "") | startswith($root) | not)
+      | select((.[":path"] // "") | startswith($cleanup) | not)
+      | [(.[":size"] // 0), ((.[":from"] // [{}])[0][":email"] // "(unknown)" | ascii_downcase)]
+      | @tsv'
+  else
+    jq_filter='
+      .[]
+      | select((.[":path"] // "") | startswith($root) | not)
+      | select((.[":path"] // "") | startswith($cleanup) | not)
+      | . as $msg
+      | (.[":to"] // [{}])[]
+      | [$msg[":size"] // 0, (.[":email"] // "(unknown)" | ascii_downcase)]
+      | @tsv'
+  fi
   mu find --format=json '' 2>/dev/null \
-    | jq -r --arg root "$MAIL_ROOT/search/" '
-        .[]
-        | select((.[":path"] // "") | startswith($root) | not)
-        | select((.[":path"] // "") | contains("/cleanup/") | not)
-        | [(.[":size"] // 0), ((.[":from"] // [{}])[0][":email"] // "(unknown)" | ascii_downcase)]
-        | @tsv' \
+    | jq -r --arg root "$MAIL_ROOT/search/" --arg cleanup "$CLEANUP_ROOT/" "$jq_filter" \
     | awk -F'\t' '
         { sz[$2]+=$1; ct[$2]++ }
         END { for (k in sz) printf "%d\t%d\t%s\n", ct[k], sz[k], k }
@@ -67,17 +90,18 @@ format_leaderboard() {
   ' "$LEADERBOARD"
 }
 
-pick_sender() {
-  local choice
-  choice=$(format_leaderboard \
-    | fzf --prompt='sender> ' \
-          --header='  count        size  sender (Esc to quit)' \
+pick_contacts() {
+  local label
+  label=$([ "$MODE" = from ] && printf 'sender' || printf 'recipient')
+  format_leaderboard \
+    | fzf --prompt="$label> " \
+          --header="  count        size  $label — Tab to multi-select, Enter to confirm, Esc to quit" \
           --no-sort --reverse \
+          --multi \
           --height=80% \
           --preview="$PREVIEW_HELPER {}" \
-          --preview-window='right,60%,wrap') || return 1
-  [ -n "$choice" ] || return 1
-  printf '%s' "$choice" | awk '{print $NF}'
+          --preview-window='right,60%,wrap' \
+    | awk '{print $NF}'
 }
 
 stats_for() {
@@ -88,7 +112,8 @@ stats_for() {
     printf '0\t0\n'
     return
   fi
-  jq -r 'map(select((.[":path"] // "") | contains("/cleanup/") | not))
+  jq -r --arg cleanup "$CLEANUP_ROOT/" \
+      'map(select((.[":path"] // "") | startswith($cleanup) | not))
       | [length, (map(.[":size"] // 0) | add // 0)]
       | @tsv' <<<"$json"
 }
@@ -97,8 +122,8 @@ show_preview() {
   local filter="$1"
   local out
   out=$(mu find --format=json --sortfield=d --reverse "$filter" 2>/dev/null \
-    | jq -r '
-        map(select((.[":path"] // "") | contains("/cleanup/") | not))
+    | jq -r --arg cleanup "$CLEANUP_ROOT/" '
+        map(select((.[":path"] // "") | startswith($cleanup) | not))
         | .[0:10][]
         | [
             ((.[":date-unix"] // 0) | strftime("%Y-%m-%d")),
@@ -138,9 +163,9 @@ do_cleanup() {
   local filter="$1"
   local paths_file="$SESSION_DIR/paths"
   mu find --format=json "$filter" 2>/dev/null \
-    | jq -r '
+    | jq -r --arg cleanup "$CLEANUP_ROOT/" '
         .[]
-        | select((.[":path"] // "") | contains("/cleanup/") | not)
+        | select((.[":path"] // "") | startswith($cleanup) | not)
         | .[":path"] // empty' > "$paths_file"
 
   local n
@@ -159,12 +184,13 @@ do_cleanup() {
   esac
 
   # Python does all renames in-process (no fork per file) and streams progress.
-  python3 - "$MAIL_ROOT" "$paths_file" "$n" <<'PYEOF'
+  python3 - "$MAIL_ROOT" "$CLEANUP_ROOT" "$paths_file" "$n" <<'PYEOF'
 import sys, os
 
 mail_root = sys.argv[1]
-paths_file = sys.argv[2]
-total = int(sys.argv[3])
+cleanup_root = sys.argv[2]
+paths_file = sys.argv[3]
+total = int(sys.argv[4])
 
 moved = skipped = missing = 0
 
@@ -183,9 +209,9 @@ for i, src in enumerate(paths, 1):
         skipped += 1
         continue
     account = rel.split('/')[0]
-    cleanup_cur = os.path.join(mail_root, account, 'cleanup', 'cur')
-    os.makedirs(os.path.join(mail_root, account, 'cleanup', 'new'), exist_ok=True)
-    os.makedirs(os.path.join(mail_root, account, 'cleanup', 'tmp'), exist_ok=True)
+    cleanup_cur = os.path.join(cleanup_root, account, 'cur')
+    os.makedirs(os.path.join(cleanup_root, account, 'new'), exist_ok=True)
+    os.makedirs(os.path.join(cleanup_root, account, 'tmp'), exist_ok=True)
     os.makedirs(cleanup_cur, exist_ok=True)
     base = os.path.basename(src)
     dst = os.path.join(cleanup_cur, base)
@@ -209,9 +235,6 @@ if skipped:  parts.append(f'{skipped} failed')
 if missing:  parts.append(f'{missing} already gone')
 print(', '.join(parts) + '.')
 PYEOF
-
-  printf '\nRe-indexing mu...\n'
-  mu index || err "mail-trim: mu index failed"
 }
 
 filter_loop() {
@@ -271,10 +294,26 @@ filter_loop() {
 main() {
   while true; do
     compute_leaderboard || exit 1
-    local sender
-    sender=$(pick_sender) || { printf 'Bye.\n'; exit 0; }
-    [ -n "$sender" ] || continue
-    filter_loop "from:$sender"
+    local contacts_raw
+    contacts_raw=$(pick_contacts) || { printf 'Bye.\n'; exit 0; }
+    [ -n "$contacts_raw" ] || continue
+
+    local -a contacts=()
+    while IFS= read -r contact; do
+      [ -n "$contact" ] && contacts+=("$contact")
+    done <<<"$contacts_raw"
+
+    local any_cleaned=0
+    for contact in "${contacts[@]}"; do
+      if filter_loop "$MODE:$contact"; then
+        any_cleaned=1
+      fi
+    done
+
+    if [ "$any_cleaned" -eq 1 ]; then
+      printf '\nRe-indexing mu...\n'
+      mu index || err "mail-trim: mu index failed"
+    fi
   done
 }
 
