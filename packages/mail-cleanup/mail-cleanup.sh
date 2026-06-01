@@ -7,10 +7,12 @@
 set -uo pipefail
 
 MODE=from
+SORT_BY=count
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    --to|-t)   MODE=to;   shift ;;
-    --from|-f) MODE=from; shift ;;
+    --to|-t)        MODE=to;      shift ;;
+    --from|-f)      MODE=from;    shift ;;
+    --sort-size|-s) SORT_BY=size; shift ;;
     *) printf 'mail-cleanup: unknown option: %s\n' "$1" >&2; exit 1 ;;
   esac
 done
@@ -21,6 +23,7 @@ SESSION_DIR=$(mktemp -d -t mail-trim.XXXXXX)
 LEADERBOARD="$SESSION_DIR/leaderboard"
 PREVIEW_HELPER="$SESSION_DIR/preview.sh"
 trap 'rm -rf "$SESSION_DIR"' EXIT
+BULK_CLEANUP=0
 
 cat > "$PREVIEW_HELPER" <<PREVIEW_EOF
 #!/usr/bin/env bash
@@ -71,7 +74,7 @@ compute_leaderboard() {
         { sz[$2]+=$1; ct[$2]++ }
         END { for (k in sz) printf "%d\t%d\t%s\n", ct[k], sz[k], k }
       ' \
-    | sort -rn -k1,1 > "$LEADERBOARD"
+    | sort -rn -k"$([ "$SORT_BY" = size ] && printf '2,2' || printf '1,1')" > "$LEADERBOARD"
   if [ ! -s "$LEADERBOARD" ]; then
     err "mail-trim: no messages found in mu index"
     return 1
@@ -91,11 +94,12 @@ format_leaderboard() {
 }
 
 pick_contacts() {
-  local label
+  local label sort_label
   label=$([ "$MODE" = from ] && printf 'sender' || printf 'recipient')
+  sort_label=$([ "$SORT_BY" = size ] && printf 'size' || printf 'count')
   format_leaderboard \
     | fzf --prompt="$label> " \
-          --header="  count        size  $label — Tab to multi-select, Enter to confirm, Esc to quit" \
+          --header="  count        size  $label — sorted by $sort_label — Tab to multi-select, Enter to confirm, Esc to quit" \
           --no-sort --reverse \
           --multi \
           --height=80% \
@@ -160,7 +164,7 @@ derive_account() {
 }
 
 do_cleanup() {
-  local filter="$1"
+  local filter="$1" auto_yes="${2:-}"
   local paths_file="$SESSION_DIR/paths"
   mu find --format=json "$filter" 2>/dev/null \
     | jq -r --arg cleanup "$CLEANUP_ROOT/" '
@@ -175,9 +179,14 @@ do_cleanup() {
     return 1
   fi
 
-  printf '\nMove %d messages into per-account cleanup folders? [y/N] ' "$n"
   local yn
-  read -r yn
+  if [ -n "$auto_yes" ]; then
+    printf '\nMoving %d messages into per-account cleanup folders...\n' "$n"
+    yn=y
+  else
+    printf '\nMove %d messages into per-account cleanup folders? [y/N] ' "$n"
+    read -r yn
+  fi
   case "$yn" in
     y|Y|yes|YES) ;;
     *) printf 'Aborted.\n'; return 1 ;;
@@ -256,9 +265,9 @@ filter_loop() {
     printf '\n'
 
     if [ "${#history[@]}" -gt 0 ]; then
-      printf '[r]efine  [u]ndo  [c]leanup  [s]kip  [q]uit > '
+      printf '[r]efine  [u]ndo  [c]leanup  [C]leanup all  [s]kip  [q]uit > '
     else
-      printf '[r]efine  [c]leanup  [s]kip  [q]uit > '
+      printf '[r]efine  [c]leanup  [C]leanup all  [s]kip  [q]uit > '
     fi
     read -r action
     case "$action" in
@@ -279,8 +288,14 @@ filter_loop() {
           printf 'Nothing to undo.\n'
         fi
         ;;
-      c|C)
+      c)
         if do_cleanup "$filter"; then
+          return 0
+        fi
+        ;;
+      C)
+        if do_cleanup "$filter" yes; then
+          BULK_CLEANUP=1
           return 0
         fi
         ;;
@@ -304,11 +319,15 @@ main() {
     done <<<"$contacts_raw"
 
     local any_cleaned=0
+    BULK_CLEANUP=0
     for contact in "${contacts[@]}"; do
-      if filter_loop "$MODE:$contact"; then
+      if [ "$BULK_CLEANUP" -eq 1 ]; then
+        do_cleanup "$MODE:$contact" yes && any_cleaned=1
+      elif filter_loop "$MODE:$contact"; then
         any_cleaned=1
       fi
     done
+    BULK_CLEANUP=0
 
     if [ "$any_cleaned" -eq 1 ]; then
       printf '\nRe-indexing mu...\n'
