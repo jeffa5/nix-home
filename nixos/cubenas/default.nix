@@ -23,6 +23,7 @@
 
     ../modules/restic.nix
     ../modules/czkawka.nix
+    ../modules/duc.nix
 
     # monitoring
     ../modules/node-exporter.nix
@@ -97,6 +98,13 @@
         cloneBaseUrls = ["git@git.home.jeffas.net/private"];
       };
     };
+  };
+
+  services.duc = {
+    enable = true;
+    paths = ["/" "/local"];
+    excludes = ["/local/.snapshots"];
+    cgi.enable = true;
   };
 
   services.backups = {
