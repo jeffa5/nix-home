@@ -58,7 +58,7 @@
     ../modules/postgres.nix
 
     ../modules/paperless.nix
-    ../modules/syncthing.nix
+    (import ../modules/syncthing.nix {users = ["andrew" "charlene"];})
 
     ../modules/radicale.nix
 

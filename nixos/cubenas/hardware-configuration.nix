@@ -90,11 +90,6 @@
     options = ["bind"];
     fsType = "none";
   };
-  fileSystems."${config.services.syncthing.dataDir}" = {
-    device = "/local/syncthing";
-    options = ["bind"];
-    fsType = "none";
-  };
   fileSystems."/var/lib/radicale" = {
     device = "/local/radicale";
     options = ["bind"];
