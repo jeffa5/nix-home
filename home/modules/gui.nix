@@ -21,7 +21,6 @@
 
   home.packages = [
     pkgs.darktable
-    pkgs.flare-signal
     pkgs.fractal
     pkgs.git-open
     pkgs.nh
