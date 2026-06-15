@@ -53,6 +53,7 @@
     ../modules/stagix.nix
 
     ../modules/immich.nix
+    ../modules/filebrowser.nix
 
     ../modules/postgres.nix
 

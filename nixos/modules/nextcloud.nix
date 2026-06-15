@@ -7,13 +7,17 @@
 in {
   services.nextcloud = {
     enable = false;
-    package = pkgs.nextcloud31;
+    package = pkgs.nextcloud32;
     hostName = serverName;
+    https = true;
     database.createLocally = true;
     config = {
       dbtype = "pgsql";
       adminuser = "Admin";
       adminpassFile = "/etc/nextcloud/admin-pass";
+    };
+    extraApps = {
+      inherit (pkgs.nextcloud32Packages.apps) memories user_oidc;
     };
     settings."memories.exiftool" = lib.getExe pkgs.exiftool;
     settings."memories.vod.ffmpeg" = lib.getExe pkgs.ffmpeg-headless;
@@ -25,11 +29,8 @@ in {
     path = [pkgs.ffmpeg];
   };
 
-  services.nginx.virtualHosts."${serverName}" = {
-    inherit serverName;
-    #   locations."/" = {
-    #     proxyPass = "http://127.0.0.1:80";
-    #     # proxyWebsockets = true;
-    #   };
+  services.nginx.virtualHosts.${serverName} = {
+    forceSSL = true;
+    useACMEHost = "home.jeffas.net";
   };
 }
