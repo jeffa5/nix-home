@@ -30,6 +30,9 @@ in {
   environment.systemPackages = [pkgs.authelia];
 
   # Generate the authelia users file from password files
+  systemd.services.authelia-home.after = ["redis-authelia.service"];
+  systemd.services.authelia-home.wants = ["redis-authelia.service"];
+
   systemd.services.authelia-home.preStart = ''
     mkdir -p /var/lib/authelia-home
     ${generateUsersScript} > /var/lib/authelia-home/users.yaml
@@ -58,6 +61,16 @@ in {
     }
   ];
   services.postgresql.ensureDatabases = ["authelia-home"];
+
+  services.redis.servers.authelia = {
+    enable = true;
+    save = [
+      [900 1]
+      [300 10]
+      [60 10000]
+    ];
+  };
+  users.users.authelia-home.extraGroups = ["redis-authelia"];
 
   services.nginx.virtualHosts."Authelia" = {
     serverName = "authelia.home.jeffas.net";

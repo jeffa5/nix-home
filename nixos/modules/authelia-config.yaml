@@ -11,6 +11,8 @@ storage:
 
 session:
   secret: "todotestingsecret"
+  redis:
+    host: "/run/redis-authelia/redis.sock"
   cookies:
   - domain: "home.jeffas.net"
     authelia_url: "https://authelia.home.jeffas.net"
