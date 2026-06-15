@@ -23,6 +23,13 @@
             's|<listenAddress>default</listenAddress>|<listenAddress>tcp://0.0.0.0:${toString (syncPort i)}</listenAddress>\n        <listenAddress>quic://0.0.0.0:${toString (syncPort i)}</listenAddress>\n        <listenAddress>dynamic+https://relays.syncthing.net/endpoint</listenAddress>|' \
             "$config"
         fi
+        # Reverse-proxied via nginx with its own Host header, so syncthing's
+        # own Host check must be disabled (see syncthing docs on reverse proxies).
+        if [ -f "$config" ] && ! grep -q '<insecureSkipHostcheck>' "$config"; then
+          ${pkgs.gnused}/bin/sed -i \
+            's|</gui>|    <insecureSkipHostcheck>true</insecureSkipHostcheck>\n    </gui>|' \
+            "$config"
+        fi
       '';
       serviceConfig = {
         User = username;
@@ -39,12 +46,9 @@
     };
   };
 
-  # nginx map entries: "$user -> value" for routing and host-check header
+  # nginx map entries: "$user -> upstream" for routing
   upstreamEntries = lib.concatStringsSep "\n    " (
     lib.imap0 (i: u: "${u} http://127.0.0.1:${toString (guiPort i)};") users
-  );
-  hostEntries = lib.concatStringsSep "\n    " (
-    lib.imap0 (i: u: "${u} 127.0.0.1:${toString (guiPort i)};") users
   );
 in {
   systemd.services = lib.listToAttrs (lib.imap0 mkSyncthingService users);
@@ -63,13 +67,10 @@ in {
   environment.systemPackages = [pkgs.syncthing];
 
   # $user is set by the authelia-authrequest snippet after the auth subrequest.
-  # These maps route each authenticated user to their own syncthing instance.
+  # This map routes each authenticated user to their own syncthing instance.
   services.nginx.commonHttpConfig = ''
     map $user $syncthing_upstream {
       ${upstreamEntries}
-    }
-    map $user $syncthing_host {
-      ${hostEntries}
     }
   '';
 
@@ -81,8 +82,6 @@ in {
       extraConfig = ''
         include ${authelia-snippets.proxy};
         include ${authelia-snippets.authelia-authrequest};
-        # Override Host so syncthing's host-check sees its own listen address
-        proxy_set_header Host $syncthing_host;
       '';
     };
     forceSSL = true;
