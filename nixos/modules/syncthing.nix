@@ -33,6 +33,7 @@
       '';
       serviceConfig = {
         User = username;
+        Group = "${username}-files";
         ExecStart = lib.escapeShellArgs [
           "${pkgs.syncthing}/bin/syncthing"
           "--no-browser"
