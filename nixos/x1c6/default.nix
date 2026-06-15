@@ -18,6 +18,9 @@
   boot.loader.efi.efiSysMountPoint = "/boot";
   boot.supportedFilesystems = ["btrfs"];
 
+  # Fix for Intel iGPU freeze/blank screen after suspend/resume and hibernate
+  boot.kernelParams = ["i915.enable_psr=0"];
+
   networking.hostName = "x1c6";
 
   system.stateVersion = "23.11";
