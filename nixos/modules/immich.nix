@@ -24,6 +24,8 @@
     };
   };
 
+  users.users.immich.extraGroups = ["andrew-files" "charlene-files"];
+
   services.nginx.virtualHosts."Immich" = {
     serverName = "immich.home.jeffas.net";
     locations."/" = {
