@@ -6,17 +6,23 @@
 }: let
   cfg = config.services.homeboard;
 
+  favicon = url: ''<img src="${url}/favicon.ico" width="16" height="16" onerror="this.remove()">'';
+
   formatNode = nodeConfig: let
     name = nodeConfig.networking.hostName;
     url = "http://${name}.home.jeffas.net";
-  in ''<a href="${url}">${name}</a>'';
+  in ''<a href="${url}">${favicon url} ${name}</a>'';
 
   formatService = name: service: let
     url =
       if service.serverName == null
       then ""
       else "http://${lib.head (lib.splitString " " service.serverName)}";
-  in ''<li><a href="${url}">${name}</a></li>'';
+    icon =
+      if url == ""
+      then ""
+      else favicon url;
+  in ''<li><a href="${url}">${icon} ${name}</a></li>'';
 
   servicesForNode = nodeConfig: let
     nginxHosts = nodeConfig.services.nginx.virtualHosts;
