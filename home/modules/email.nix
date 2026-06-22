@@ -37,6 +37,8 @@ in {
         # create with `secret-tool store type email account ${value.address}`
         passwordCommand = "${stl} type email account ${value.address}";
 
+        thunderbird.enable = true;
+
         aerc.enable = true;
         aerc.extraAccounts = {
           source = "maildir://~/mail/${name}";
