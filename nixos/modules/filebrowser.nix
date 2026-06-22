@@ -15,7 +15,7 @@
   declarativeUsers = {
     andrew = {
       admin = true;
-      scope = ".";
+      scope = "/andrew";
     };
     charlene = {
       admin = false;
@@ -38,12 +38,28 @@ in {
     mode = "0755";
   };
 
-  # Ensure each user's filebrowser scope directory exists with group access
-  # for both that user and the filebrowser service user.
+  # The upstream module defaults to UMask=0077 (files: 0600, owner-only).
+  # Override to 0002 so files created via filebrowser get 0664, making them
+  # accessible to group members (andrew via andrew-files, both via family, etc.).
+  systemd.services.filebrowser.serviceConfig.UMask = lib.mkForce "0002";
+
+  # Per-user personal directories (setgid so new files inherit the user's group)
+  # plus a shared family directory, plus symlinks inside each scope so users can
+  # reach the family folder without leaving their own scope.
   systemd.tmpfiles.rules =
     lib.pipe declarativeUsers [
       (lib.filterAttrs (_: u: u.scope != "." && u.scope != "/"))
-      (lib.mapAttrsToList (name: u: "d ${cfg.settings.root}${u.scope} 0750 ${name} ${name}-files -"))
+      (lib.mapAttrsToList (name: u:
+        let dir = "${cfg.settings.root}${u.scope}";
+        in [
+          "d ${dir} 2770 ${name} ${name}-files -"
+          "L+ ${dir}/family - - - - ${cfg.settings.root}/family"
+        ]
+      ))
+      lib.flatten
+    ]
+    ++ [
+      "d ${cfg.settings.root}/family 2770 root family -"
     ];
 
   services.filebrowser = {
