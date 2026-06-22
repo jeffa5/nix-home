@@ -43,14 +43,61 @@ in {
   # accessible to group members (andrew via andrew-files, both via family, etc.).
   systemd.services.filebrowser.serviceConfig.UMask = lib.mkForce "0002";
 
+  # The kernel only propagates the setgid bit to *new* subdirectories whose
+  # parent already has g+s set, and setgid makes new files inherit the
+  # *directory's* group. Subdirectories created before our tmpfiles rules added
+  # 2770 to the scope roots keep their old filebrowser:filebrowser ownership, so
+  # files added to them won't inherit the correct group even once g+s is set.
+  # Run a root oneshot before filebrowser to stamp the correct group and g+s
+  # onto any directory still missing either.
+  systemd.services.filebrowser-setgid = let
+    scopeDirs = lib.pipe declarativeUsers [
+      (lib.filterAttrs (_: u: u.scope != "." && u.scope != "/"))
+      (lib.mapAttrsToList (name: u: {
+        dir = "${cfg.settings.root}${u.scope}";
+        group = "${name}-files";
+      }))
+    ];
+    allDirs =
+      scopeDirs
+      ++ [
+        {
+          dir = "${cfg.settings.root}/family";
+          group = "family";
+        }
+      ];
+  in {
+    description = "Ensure setgid propagation on filebrowser scope directories";
+    before = ["filebrowser.service"];
+    requiredBy = ["filebrowser.service"];
+    after = ["systemd-tmpfiles-setup.service"];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    path = [pkgs.findutils pkgs.coreutils];
+    script =
+      lib.concatMapStrings ({
+        dir,
+        group,
+      }: ''
+        [ -d ${lib.escapeShellArg dir} ] && \
+          find ${lib.escapeShellArg dir} -not -type l -type d \
+            \( ! -perm -g+s -o ! -group ${lib.escapeShellArg group} \) \
+            -exec chgrp ${lib.escapeShellArg group} {} + -exec chmod g+s {} +
+      '')
+      allDirs;
+  };
+
   # Per-user personal directories (setgid so new files inherit the user's group)
   # plus a shared family directory, plus symlinks inside each scope so users can
   # reach the family folder without leaving their own scope.
   systemd.tmpfiles.rules =
     lib.pipe declarativeUsers [
       (lib.filterAttrs (_: u: u.scope != "." && u.scope != "/"))
-      (lib.mapAttrsToList (name: u:
-        let dir = "${cfg.settings.root}${u.scope}";
+      (lib.mapAttrsToList (
+        name: u: let
+          dir = "${cfg.settings.root}${u.scope}";
         in [
           "d ${dir} 2770 ${name} ${name}-files -"
           "L+ ${dir}/family - - - - ${cfg.settings.root}/family"
@@ -102,13 +149,13 @@ in {
         --root=${lib.escapeShellArg cfg.settings.root}
 
       ${lib.concatStrings (lib.mapAttrsToList (name: u: ''
-        if filebrowser -d "$db" users find ${lib.escapeShellArg name} >/dev/null 2>&1; then
-          filebrowser -d "$db" users update ${lib.escapeShellArg name} ${userArgs u}
-        else
-          filebrowser -d "$db" users add ${lib.escapeShellArg name} "$(head -c32 /dev/urandom | base64)" ${userArgs u}
-        fi
-      '')
-      declarativeUsers)}
+          if filebrowser -d "$db" users find ${lib.escapeShellArg name} >/dev/null 2>&1; then
+            filebrowser -d "$db" users update ${lib.escapeShellArg name} ${userArgs u}
+          else
+            filebrowser -d "$db" users add ${lib.escapeShellArg name} "$(head -c32 /dev/urandom | base64)" ${userArgs u}
+          fi
+        '')
+        declarativeUsers)}
     '';
   };
 
