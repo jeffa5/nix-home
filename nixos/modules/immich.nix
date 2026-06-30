@@ -12,6 +12,7 @@
       IMMICH_TELEMETRY_INCLUDE = "all";
     };
     settings = {
+      library.watch.enabled = true;
       oauth = {
         enabled = true;
         issuerUrl = "https://authelia.home.jeffas.net";
