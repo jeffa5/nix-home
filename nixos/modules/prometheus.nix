@@ -106,6 +106,12 @@ in {
         ];
       }
       {
+        job_name = "smartctl";
+        static_configs = [
+          {targets = ["smartctl-exporter.${cubenas}"];}
+        ];
+      }
+      {
         job_name = "cloudflared";
         static_configs = [
           {targets = ["127.0.0.1:20241"];}

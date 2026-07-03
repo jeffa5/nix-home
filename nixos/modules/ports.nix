@@ -11,4 +11,5 @@
   restic-exporter-local.private = 8001;
   restic-exporter-homelab.private = 8003;
   restic-exporter-storagebox.private = 8005;
+  smartctl-exporter.private = 9633;
 }

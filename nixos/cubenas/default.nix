@@ -27,6 +27,8 @@
 
     # monitoring
     ../modules/node-exporter.nix
+    ../modules/smartctl-exporter.nix
+    ../modules/ipmi-exporter.nix
     ../modules/prometheus.nix
     ./promalerts.nix
     ../modules/grafana.nix
