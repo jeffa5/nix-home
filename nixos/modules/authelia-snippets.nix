@@ -125,6 +125,7 @@ in {
     auth_request_set $groups $upstream_http_remote_groups;
     auth_request_set $name $upstream_http_remote_name;
     auth_request_set $email $upstream_http_remote_email;
+    auth_request_set $www_authenticate $upstream_http_www_authenticate;
 
     ## Inject the response headers from the variables into the request made to the backend.
     proxy_set_header Remote-User $user;
@@ -132,6 +133,9 @@ in {
     proxy_set_header Remote-Groups $groups;
     proxy_set_header Remote-Name $name;
     proxy_set_header Remote-Email $email;
+
+    ## Forward the WWW-Authenticate challenge so non-browser clients (CalDAV, CardDAV) know to send Basic Auth credentials.
+    add_header WWW-Authenticate $www_authenticate always;
   '';
 
   # https://www.authelia.com/integration/proxies/nginx/#proxyconf
