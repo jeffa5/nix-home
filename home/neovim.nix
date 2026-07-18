@@ -48,6 +48,7 @@ in {
       vimPkgs.lexima-vim
       {
         plugin = vimPkgs.vim-polyglot;
+        type = "viml";
         config = ''
           let g:vim_markdown_conceal = 0
           let g:vim_markdown_conceal_code_blocks = 0
@@ -238,6 +239,7 @@ in {
       vimPkgs.vim-beancount
       {
         plugin = vimPkgs.vim-slime;
+        type = "viml";
         config = ''
           " vim-slime
           let g:slime_target = "tmux"
