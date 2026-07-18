@@ -25,7 +25,6 @@ in {
           collections = ["from a" "from b"];
           conflictResolution = "remote wins";
         };
-        thunderbird.enable = true;
         pimsync = {
           enable = true;
           extraPairDirectives = [
