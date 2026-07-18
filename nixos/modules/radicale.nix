@@ -31,6 +31,7 @@ in {
       extraConfig = ''
         include ${authelia-snippets.proxy};
         include ${authelia-snippets.authelia-authrequest-basic};
+        add_header WWW-Authenticate 'Basic realm="radicale"' always;
       '';
     };
     forceSSL = true;
