@@ -65,6 +65,7 @@
     (import ../modules/syncthing.nix {users = ["andrew" "charlene"];})
 
     ../modules/radicale.nix
+    ../modules/nextcloudcmd.nix
 
     # ../modules/matrix.nix
 

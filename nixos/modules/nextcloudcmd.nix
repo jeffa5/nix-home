@@ -1,27 +1,32 @@
 {pkgs, ...}: let
-  nc = pkgs.nextcloud-client;
-  sourcedir = "/local/nextcloud-sync";
-  cloudurl = "cloud.jeffas.net";
+  sourcedir = "/local/files";
+  cloudurl = "https://cloud.jeffas.net";
+  user = "Andrew";
 in {
   systemd.services.nextcloudcmd = {
     enable = true;
-    description = "Sync nextcloud files";
+    description = "One-way sync local files to Nextcloud";
     script = ''
-      user=Admin
       password=$(cat /var/lib/nextcloudcmd/password)
-      ${nc}/bin/nextcloudcmd --non-interactive ${sourcedir} https://$user:$password@${cloudurl}
+      obscured=$(${pkgs.rclone}/bin/rclone obscure "$password")
+      ${pkgs.rclone}/bin/rclone copy \
+        --webdav-url "${cloudurl}/remote.php/dav/files/${user}/" \
+        --webdav-vendor nextcloud \
+        --webdav-user "${user}" \
+        --webdav-pass "$obscured" \
+        "${sourcedir}" \
+        :webdav:
     '';
     serviceConfig = {
       Type = "oneshot";
     };
-    wantedBy = ["multi-user.target"];
   };
 
   systemd.timers.nextcloudcmd = {
     wantedBy = ["timers.target"];
     timerConfig = {
-      OnBootSec = "15m";
-      OnUnitActiveSec = "15m";
+      OnCalendar = "*-*-* 12:00:00";
+      Persistent = true;
     };
   };
 }
