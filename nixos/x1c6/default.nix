@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
     ../systemd-boot.nix
@@ -13,6 +13,8 @@
 
   services.backups.enable = true;
   services.backups.user = "andrew";
+
+  environment.systemPackages = [pkgs.nextcloud-client];
 
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot";
