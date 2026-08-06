@@ -6,6 +6,7 @@ in {
   systemd.services.nextcloudcmd = {
     enable = true;
     description = "One-way sync local files to Nextcloud";
+    path = [pkgs.glibc];
     script = ''
       password=$(cat /var/lib/nextcloudcmd/password)
       obscured=$(${pkgs.rclone}/bin/rclone obscure "$password")
@@ -14,11 +15,14 @@ in {
         --webdav-vendor nextcloud \
         --webdav-user "${user}" \
         --webdav-pass "$obscured" \
+        --copy-links \
+        --verbose \
         "${sourcedir}" \
         :webdav:
     '';
     serviceConfig = {
       Type = "oneshot";
+      Environment = "HOME=/var/lib/nextcloudcmd";
     };
   };
 
