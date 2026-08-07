@@ -4,7 +4,7 @@
   user = "Andrew";
 in {
   systemd.services.nextcloudcmd = {
-    enable = true;
+    enable = false;
     description = "One-way sync local files to Nextcloud";
     path = [pkgs.glibc];
     script = ''
@@ -27,6 +27,7 @@ in {
   };
 
   systemd.timers.nextcloudcmd = {
+    enable = false;
     wantedBy = ["timers.target"];
     timerConfig = {
       OnCalendar = "*-*-* 12:00:00";
