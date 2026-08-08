@@ -18,7 +18,7 @@ in {
           fileExt = ".ics";
           type = "filesystem";
         };
-        primary = true;
+        primary = value.primary;
         primaryCollection = value.primaryCollection;
         remote = {
           passwordCommand = stl ++ ["type" "calendar" "account" value.address];
