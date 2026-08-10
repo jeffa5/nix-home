@@ -5,6 +5,7 @@
     ../modules/laptop.nix
     ../modules/node-exporter.nix
     ../modules/alloy.nix
+    ../modules/btrfs.nix
     # ../modules/printing.nix
     # ../modules/scanning.nix
 
