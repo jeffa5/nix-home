@@ -4,7 +4,7 @@
   user = "Andrew";
 in {
   systemd.services.nextcloudcmd = {
-    enable = false;
+    enable = true;
     description = "One-way sync local files to Nextcloud";
     path = [pkgs.glibc];
     script = ''

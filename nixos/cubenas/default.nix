@@ -47,11 +47,11 @@
     (import ../modules/dnsmasq.nix {inherit configs;})
 
     # smart home
-    ../modules/zigbee2mqtt.nix
-    ../modules/mosquitto.nix
-    ../modules/influxdb.nix
+    # ../modules/zigbee2mqtt.nix
+    # ../modules/mosquitto.nix
+    # ../modules/influxdb.nix
 
-    ../modules/jellyfin.nix
+    # ../modules/jellyfin.nix
     ../modules/git-server.nix
     ../modules/stagix.nix
 
@@ -60,18 +60,18 @@
 
     ../modules/postgres.nix
 
-    ../modules/paperless.nix
-    ../modules/miniflux.nix
+    # ../modules/paperless.nix
+    # ../modules/miniflux.nix
     (import ../modules/syncthing.nix {users = ["andrew" "charlene"];})
 
     ../modules/radicale.nix
-    ../modules/nextcloudcmd.nix
+    # ../modules/nextcloudcmd.nix
 
     # ../modules/matrix.nix
 
     ./stafil.nix
-    ./webdav.nix
-    ./home-assistant.nix
+    # ./webdav.nix
+    # ./home-assistant.nix
 
     # ./llm.nix
   ];
