@@ -28,7 +28,7 @@ in {
         };
         vdirsyncer = {
           enable = true;
-          collections = ["from a" "from b"];
+          collections = value.vdirsyncerCollections or ["from a" "from b"];
           conflictResolution = "remote wins";
         };
         pimsync = {
