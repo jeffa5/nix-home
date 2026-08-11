@@ -69,7 +69,7 @@
 
     # ../modules/matrix.nix
 
-    ./stafil.nix
+    # ./stafil.nix
     # ./webdav.nix
     # ./home-assistant.nix
 
