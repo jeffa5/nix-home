@@ -1,14 +1,14 @@
 {
-  jeffas = {
-    primary = true;
-    color = "light cyan";
-    primaryCollection = "personal";
-    address = "andrew@jeffas.net";
-    url = "https://dav.home.jeffas.net/";
-    userName = "andrew";
-  };
+  # jeffas = {
+  #   primary = true;
+  #   color = "light cyan";
+  #   primaryCollection = "personal";
+  #   address = "andrew@jeffas.net";
+  #   url = "https://dav.home.jeffas.net/";
+  #   userName = "andrew";
+  # };
   nextcloud = {
-    primary = false;
+    primary = true;
     color = "light green";
     primaryCollection = "personal";
     address = "nextcloud";

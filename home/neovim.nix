@@ -125,7 +125,7 @@ in {
             vim.lsp.config('maills', {
                 on_attach = on_attach,
                 capabilities = capabilities,
-                init_options = { vcard_dir = '~/contacts/jeffas', contact_list_file = '~/contacts/list' },
+                init_options = { vcard_dir = '~/contacts/nextcloud', contact_list_file = '~/contacts/list' },
                 default_config = {
                     cmd = { 'maills', '--stdio' },
                     filetypes = { 'mail' },

@@ -76,7 +76,7 @@ in {
   };
   programs.todoman = {
     enable = true;
-    glob = "jeffas/*";
+    glob = "nextcloud/*";
     extraConfig = ''
       default_list = "personal"
     '';
