@@ -20,6 +20,7 @@
       pkgs.fd
       pkgs.file
       pkgs.git-extras
+      pkgs.github-cli
       pkgs.htop
       pkgs.iftop
       pkgs.jq
