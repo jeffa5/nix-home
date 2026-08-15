@@ -38,6 +38,7 @@ in {
     notify-send = lib.getExe' pkgs.libnotify "notify-send";
     grimshot = lib.getExe pkgs.sway-contrib.grimshot;
     convert = lib.getExe' pkgs.imagemagick "convert";
+    wl-copy = lib.getExe' pkgs.wl-clipboard "wl-copy";
   in
     pkgs.writeShellScriptBin "sway-screenshot" ''
       # if fuzzel is running, kill it
@@ -62,6 +63,7 @@ in {
           case "$dest" in
           "File")
               ${grimshot} --notify save output "$PICTURE_FILE"
+              printf "%s" "$PICTURE_FILE" | ${wl-copy}
               ;;
           "Clipboard")
               ${grimshot} --notify copy output
@@ -74,6 +76,7 @@ in {
           case "$dest" in
           "File")
               ${grimshot} --notify save screen "$PICTURE_FILE"
+              printf "%s" "$PICTURE_FILE" | ${wl-copy}
               ;;
           "Clipboard")
               ${grimshot} --notify copy screen
@@ -86,6 +89,7 @@ in {
           case "$dest" in
           "File")
               ${grimshot} --notify save area "$PICTURE_FILE"
+              printf "%s" "$PICTURE_FILE" | ${wl-copy}
               ;;
           "Clipboard")
               ${grimshot} --notify copy area
@@ -98,6 +102,7 @@ in {
           case "$dest" in
           "File")
               ${grimshot} --notify save active "$PICTURE_FILE"
+              printf "%s" "$PICTURE_FILE" | ${wl-copy}
               ;;
           "Clipboard")
               ${grimshot} --notify copy active
@@ -110,6 +115,7 @@ in {
           case "$dest" in
           "File")
               ${grimshot} --notify save window "$PICTURE_FILE"
+              printf "%s" "$PICTURE_FILE" | ${wl-copy}
               ;;
           "Clipboard")
               ${grimshot} --notify copy window
