@@ -24,8 +24,11 @@
     pkgs.darktable
     pkgs.fractal
     pkgs.git-open
+    pkgs.libreoffice
     pkgs.nh
+    pkgs.signal-desktop
     pkgs.spotify
+    pkgs.sshfs
     pkgs.vlc
     pkgs.wally-cli
     pkgs.waytext
@@ -33,8 +36,6 @@
     pkgs.wl-clipboard
     pkgs.wl-mirror
     pkgs.xdg-utils
-    pkgs.signal-desktop
-    pkgs.sshfs
   ];
 
   fonts.fontconfig.enable = true;
