@@ -16,9 +16,9 @@
     maills.url = "github:jeffa5/maills";
     icalls.url = "github:jeffa5/icalls";
     nixSearch.url = "github:diamondburned/nix-search";
-    stagix.url = "git+https://git.jeffas.net/stagix.git?shallow=0";
+    stagix.url = "github:jeffa5/stagix";
     prometheusResticExporter.url = "github:jeffa5/prometheus-restic-exporter";
-    stafil.url = "git+https://git.jeffas.net/stafil.git?shallow=0";
+    stafil.url = "github:jeffa5/stafil";
   };
 
   outputs = {

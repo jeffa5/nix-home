@@ -119,11 +119,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1785232496,
-        "narHash": "sha256-65EQYIRRpTdpH8lUiB6Mvo5uBkG60aBIzAJuALfx+O0=",
+        "lastModified": 1788044418,
+        "narHash": "sha256-cmOd3iGoE140M2GidgQMQbyxHZ4dT7C0QZq2+CrXQyA=",
         "owner": "nixos",
         "repo": "nixos-hardware",
-        "rev": "2e790b0a6be8ec2b76174ac0931b8ff11919ec98",
+        "rev": "dc3f0cfde2050172abf6c3cdb684f735c15a57c5",
         "type": "github"
       },
       "original": {
@@ -139,11 +139,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785531816,
-        "narHash": "sha256-vkMnV0JIyw+g/NmcfoajlGaAO+9a0ezia+FZohQJrik=",
+        "lastModified": 1788229478,
+        "narHash": "sha256-G0F2rFORVcFkEvVdE/qWQTnYekIc77YP5/vRF9nZlxU=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "bf9ce9fec78f95f374e8dd3b503863a3ec128ebe",
+        "rev": "1dc2d1f720ab17fc7981e087346bf54b26d284b1",
         "type": "github"
       },
       "original": {
@@ -320,12 +320,12 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1785090369,
-        "narHash": "sha256-m0pDuRJG7EDo9ri+4Ksu83VsI+PlxNC9lNBfydejce4=",
-        "rev": "624af665418d3c65d544145b4d34ad696439570e",
-        "revCount": 1042126,
+        "lastModified": 1787498568,
+        "narHash": "sha256-9i/VTdusq/+NM/tz+J1Re+ojkMB8MBf0QshnYfzHz30=",
+        "rev": "56c02bc00adcf003215cc4bd996d6efaf4cff188",
+        "revCount": 1060451,
         "type": "tarball",
-        "url": "https://api.flakehub.com/f/pinned/DeterminateSystems/nixpkgs-weekly/0.1.1042126%2Brev-624af665418d3c65d544145b4d34ad696439570e/019fcb6c-e772-7cb3-baa0-211e12b79e38/source.tar.gz"
+        "url": "https://api.flakehub.com/f/pinned/DeterminateSystems/nixpkgs-weekly/0.1.1060451%2Brev-56c02bc00adcf003215cc4bd996d6efaf4cff188/01a05b78-a1af-7e32-b8fa-6b77e11317d1/source.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -477,11 +477,11 @@
     },
     "stableNixpkgs": {
       "locked": {
-        "lastModified": 1785734586,
-        "narHash": "sha256-ODZkEK9Gy50yg6h98u7KkitZ3oc/uuTFK00bh1CRdNA=",
+        "lastModified": 1787962033,
+        "narHash": "sha256-u6z9VTZA4Kf3RkHQo9sQI7NI4Ei/uiU9vrMqOiwWP1Y=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "531670d871c0e29724a02f3cbcac170adc65b58c",
+        "rev": "c5c4a43b0e8056328ec4529f735cabdb8f1942bb",
         "type": "github"
       },
       "original": {
@@ -498,17 +498,15 @@
       "locked": {
         "lastModified": 1778790092,
         "narHash": "sha256-MbkrpHzcbIU5PCxqCd7u39MVnYxktCjpVaW+JyJYtfM=",
-        "ref": "refs/heads/main",
+        "owner": "jeffa5",
+        "repo": "stafil",
         "rev": "e8120f6b0483d8b9df1b3292855486bec98f9ec8",
-        "revCount": 83,
-        "shallow": false,
-        "type": "git",
-        "url": "https://git.jeffas.net/stafil.git"
+        "type": "github"
       },
       "original": {
-        "shallow": false,
-        "type": "git",
-        "url": "https://git.jeffas.net/stafil.git"
+        "owner": "jeffa5",
+        "repo": "stafil",
+        "type": "github"
       }
     },
     "stagix": {
@@ -518,17 +516,15 @@
       "locked": {
         "lastModified": 1778695838,
         "narHash": "sha256-6oUOOwUpQTNJWGDS+b9XHE8Sfue0N7fM7m6K+nzgBC0=",
-        "ref": "refs/heads/main",
+        "owner": "jeffa5",
+        "repo": "stagix",
         "rev": "07fbf805fc7fa00cc33715a9d7e7572a8b815ddc",
-        "revCount": 90,
-        "shallow": false,
-        "type": "git",
-        "url": "https://git.jeffas.net/stagix.git"
+        "type": "github"
       },
       "original": {
-        "shallow": false,
-        "type": "git",
-        "url": "https://git.jeffas.net/stagix.git"
+        "owner": "jeffa5",
+        "repo": "stagix",
+        "type": "github"
       }
     },
     "systems": {
