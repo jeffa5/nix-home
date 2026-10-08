@@ -6,5 +6,5 @@ in {
   # networking.resolvconf.extraConfig = ''
   #   name_servers='${ns}'
   # '';
-  networking.nameservers = [ns];
+  # networking.nameservers = [ns];
 }
