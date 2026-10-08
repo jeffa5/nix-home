@@ -59,6 +59,7 @@
         pkgs = prev;
         lib = prev.lib;
       };
+      nextcloud-native = import packages/nextcloud-native {pkgs = prev;};
       # khal =
       #   prev.khal.overrideAttrs
       #   (_finalAttrs: _previousAttrs: {
@@ -212,7 +213,7 @@
 
       mediavm = nixpkgs.lib.nixosSystem {
         inherit system;
-        modules = [ ./nixos/mediavm ];
+        modules = [./nixos/mediavm];
       };
 
       # rpi0 = stableNixpkgs.lib.nixosSystem {

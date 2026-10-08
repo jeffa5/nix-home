@@ -25,6 +25,7 @@
     pkgs.fractal
     pkgs.git-open
     pkgs.libreoffice
+    pkgs.nextcloud-native
     pkgs.nh
     pkgs.signal-desktop
     pkgs.spotify
