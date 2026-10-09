@@ -27,11 +27,11 @@ pkgs.stdenv.mkDerivation (finalAttrs: {
     alsa-lib
     fontconfig
     libGL
-    xorg.libX11
-    xorg.libXext
-    xorg.libXi
-    xorg.libXrender
-    xorg.libXtst
+    libX11
+    libxext
+    libxi
+    libxrender
+    libxtst
   ];
 
   dontConfigure = true;

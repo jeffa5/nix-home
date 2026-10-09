@@ -41,6 +41,15 @@
 
   fonts.fontconfig.enable = true;
 
+  xdg.desktopEntries.netdata = {
+    name = "Netdata";
+    comment = "Local system monitoring dashboard";
+    exec = "xdg-open http://localhost:19999/v3";
+    icon = "utilities-system-monitor";
+    terminal = false;
+    categories = ["System" "Monitor"];
+  };
+
   services = {
     syncthing = {
       enable = true;
