@@ -45,7 +45,7 @@ in {
           check-mail-cmd = "${mbsync} ${name}";
         };
         himalaya = {
-          enable = true;
+          enable = false;
         };
         imapnotify = {
           enable = true;
