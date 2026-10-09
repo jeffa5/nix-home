@@ -31,7 +31,9 @@
 in {
   accounts.email.accounts =
     (pkgs.lib.attrsets.mapAttrs (name: value: {
-        inherit (value) address flavor imap smtp primary;
+        inherit (value) address flavor primary;
+        imap = {authentication = "login";} // value.imap;
+        smtp = {authentication = "login";} // value.smtp;
         userName = value.address;
 
         # create with `secret-tool store type email account ${value.address}`
