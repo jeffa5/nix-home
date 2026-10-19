@@ -28,6 +28,7 @@ in {
       then [
         # ./modules/gnome.nix
         ./modules/sway.nix
+        ./modules/gnome-network-displays.nix
       ]
       else []
     )

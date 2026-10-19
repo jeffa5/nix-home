@@ -5,6 +5,5 @@
     pkgs.gnomeExtensions.vitals
     pkgs.gnome-solanum
     pkgs.gnome.gnome-dictionary
-    pkgs.gnome-network-displays
   ];
 }
