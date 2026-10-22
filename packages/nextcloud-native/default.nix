@@ -58,7 +58,10 @@ pkgs.stdenv.mkDerivation (finalAttrs: {
       --replace-fail "/opt/nextcloudnative/bin/NextcloudNative" "nextcloud-native" \
       --replace-fail "Icon=dev.obiente.nextcloudnative" "Icon=nextcloud-native"
 
+    # AWT assumes a reparenting WM; under sway (Xwayland) the window
+    # otherwise ignores resizes and renders at a fixed size
     makeWrapper $out/opt/nextcloudnative/bin/NextcloudNative $out/bin/nextcloud-native \
+      --set _JAVA_AWT_WM_NONREPARENTING 1 \
       --prefix PATH : ${pkgs.lib.makeBinPath [pkgs.libsecret pkgs.xdg-utils]}
 
     runHook postInstall
