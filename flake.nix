@@ -19,6 +19,9 @@
     stagix.url = "github:jeffa5/stagix";
     prometheusResticExporter.url = "github:jeffa5/prometheus-restic-exporter";
     stafil.url = "github:jeffa5/stafil";
+    # Deliberately not following our main nixpkgs: this flake's python-validity
+    # package needs its pinned nixpkgs (25.05)'s older Python packaging format.
+    fingerprintSensor.url = "github:ahbnr/nixos-06cb-009a-fingerprint-sensor?ref=25.05";
   };
 
   outputs = {
@@ -37,6 +40,7 @@
     stagix,
     prometheusResticExporter,
     stafil,
+    fingerprintSensor,
   }: let
     username = "andrew";
     system = "x86_64-linux";
@@ -191,7 +195,11 @@
       };
 
       x1c6 = mkMachine {
-        modules = [./nixos/x1c6 hardware.nixosModules.lenovo-thinkpad-x1-6th-gen];
+        modules = [
+          ./nixos/x1c6
+          hardware.nixosModules.lenovo-thinkpad-x1-6th-gen
+          fingerprintSensor.nixosModules."06cb-009a-fingerprint-sensor"
+        ];
         users = ["andrew"];
         gui = true;
       };
