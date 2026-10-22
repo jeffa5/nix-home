@@ -1,16 +1,16 @@
 {pkgs}:
 pkgs.stdenv.mkDerivation (finalAttrs: {
   pname = "nextcloud-native";
-  version = "1.0.11711";
+  version = "1.0.12781";
 
   # https://nati.ve/ (Obiente's "nati.ve" client) only publishes nightly
   # builds, no stable releases. To bump: pick a newer tag/version from
   # https://github.com/Obiente/native/releases and update the hash.
-  nightlyTag = "nightly-20260927-1313-run2277-28db7bd4";
+  nightlyTag = "nightly-20261017-1716-run2429-9547466e";
 
   src = pkgs.fetchurl {
     url = "https://github.com/Obiente/native/releases/download/${finalAttrs.nightlyTag}/nextcloudnative_${finalAttrs.version}_amd64.deb";
-    hash = "sha256-7YoxmGEkR6ra52vfaNRGIv3rUlbQJqAexfAOOEoLNuQ=";
+    hash = "sha256-H5bU/Tsz8ljbdz84d4HQhyUPcrl3lLsw6ZKBgxJrhmA=";
   };
 
   nativeBuildInputs = with pkgs; [
