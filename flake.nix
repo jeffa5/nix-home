@@ -15,6 +15,7 @@
     wordnet-ls.url = "github:jeffa5/wordnet-ls";
     maills.url = "github:jeffa5/maills";
     icalls.url = "github:jeffa5/icalls";
+    rical.url = "github:jeffa5/rical";
     nixSearch.url = "github:diamondburned/nix-search";
     stagix.url = "github:jeffa5/stagix";
     prometheusResticExporter.url = "github:jeffa5/prometheus-restic-exporter";
@@ -36,6 +37,7 @@
     wordnet-ls,
     maills,
     icalls,
+    rical,
     nixSearch,
     stagix,
     prometheusResticExporter,
@@ -104,7 +106,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.${username} = import ./home {
-                inherit gui username;
+                inherit gui username rical;
               };
             }
           ]
@@ -115,7 +117,7 @@
         inherit pkgs;
         modules = [
           (import ./home {
-            inherit username;
+            inherit username rical;
             gui = true;
           })
         ];
@@ -125,7 +127,7 @@
         inherit pkgs;
         modules = [
           (import ./home {
-            inherit username;
+            inherit username rical;
             gui = false;
           })
         ];

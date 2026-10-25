@@ -74,6 +74,12 @@ in {
       };
     };
   };
+  programs.rical = {
+    enable = true;
+    vdir = "~/calendar/nextcloud";
+    calendar = "personal";
+    openCalendarFiles = true;
+  };
   programs.todoman = {
     enable = true;
     glob = "nextcloud/*";

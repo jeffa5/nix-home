@@ -1,9 +1,11 @@
 {
   gui,
   username,
+  rical,
 }: {...}: {
   imports =
     [
+      rical.homeManagerModules.default
       (import ./modules/home.nix {inherit username;})
       (import ./modules/tui.nix {inherit gui;})
       ./xkb.nix

@@ -466,6 +466,24 @@
         "type": "github"
       }
     },
+    "rical": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_9"
+      },
+      "locked": {
+        "lastModified": 1792932791,
+        "narHash": "sha256-qEXPxoNLx/PXHGBPhGZ5RI7+04wC1kv4DzBhhoLAPco=",
+        "owner": "jeffa5",
+        "repo": "rical",
+        "rev": "d76107138c566d084015755843976389609ca923",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jeffa5",
+        "repo": "rical",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "fingerprintSensor": "fingerprintSensor",
@@ -477,6 +495,7 @@
         "nixpkgs": "nixpkgs_6",
         "papers": "papers",
         "prometheusResticExporter": "prometheusResticExporter",
+        "rical": "rical",
         "stableNixpkgs": "stableNixpkgs",
         "stafil": "stafil",
         "stagix": "stagix",
