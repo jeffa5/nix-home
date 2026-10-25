@@ -1,5 +1,6 @@
 {...}: {
   xdg.configFile."swaylock/config".text = ''
+    ignore-empty-password
     show-failed-attempts
     indicator-idle-visible
 

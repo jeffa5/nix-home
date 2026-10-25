@@ -24,8 +24,10 @@
   # hash-pinned fetchurl (plain path would need --impure). If the sensor is ever
   # recalibrated, update the hash with:
   #   nix hash file --type sha256 /var/lib/python-validity/calib-data.bin
+  # Disabled for now: logging in with a fingerprint leaves gnome-keyring locked
+  # (no password to unlock it), which hangs vdirsyncer/mail secret-tool lookups.
   services."06cb-009a-fingerprint-sensor" = {
-    enable = true;
+    enable = false;
     backend = "libfprint-tod";
     calib-data-file = builtins.fetchurl {
       url = "file:///var/lib/python-validity/calib-data.bin";
