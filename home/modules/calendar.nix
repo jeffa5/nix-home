@@ -79,6 +79,11 @@ in {
     vdir = "~/calendar/nextcloud";
     calendar = "personal";
     openCalendarFiles = true;
+    settings = {
+      me = "andrew@jeffas.net";
+      contacts = "~/contacts/";
+      zones = "America/Los_Angeles,America/Chicago,Europe/London";
+    };
   };
   programs.todoman = {
     enable = true;
