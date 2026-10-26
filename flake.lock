@@ -487,11 +487,11 @@
         "nixpkgs": "nixpkgs_9"
       },
       "locked": {
-        "lastModified": 1792933619,
-        "narHash": "sha256-p134Lr8e4xUVEBI5Se8wg+zN3tZoNLXv38lNhkctM4w=",
+        "lastModified": 1793007208,
+        "narHash": "sha256-rwG8R1Ou1v/IsY4FYSdMRbWLfCyoREySTsM1s4HaoJU=",
         "owner": "jeffa5",
         "repo": "rical",
-        "rev": "e0bb2f3e5079e0af3df3c13220b96608ce820193",
+        "rev": "6b084697bcf31fee079423217093c8664940c8ce",
         "type": "github"
       },
       "original": {

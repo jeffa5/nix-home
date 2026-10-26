@@ -79,6 +79,7 @@ in {
     vdir = "~/calendar/nextcloud";
     calendar = "personal";
     openCalendarFiles = true;
+    openContactFiles = true;
     settings = {
       me = "andrew@jeffas.net";
       contacts = "~/contacts/";
