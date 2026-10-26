@@ -40,6 +40,11 @@ in {
         passwordCommand = "${stl} type email account ${value.address}";
 
         thunderbird.enable = true;
+        # the "login" default above is for himalaya/mbsync; thunderbird needs OAuth2 (10) for gmail
+        thunderbird.settings = pkgs.lib.mkIf (value.flavor == "gmail.com") (id: {
+          "mail.server.server_${id}.authMethod" = 10;
+          "mail.smtpserver.smtp_${id}.authMethod" = 10;
+        });
 
         aerc.enable = true;
         aerc.extraAccounts = {
