@@ -82,10 +82,13 @@ in {
     openContactFiles = true;
     settings = {
       me = "andrew@jeffas.net";
-      contacts = "~/contacts/";
+      contacts = "~/contacts/nextcloud";
       zones = "America/Los_Angeles,America/Chicago,Europe/London";
     };
   };
+  xdg.configFile."rical/contacts/config".text = ''
+    contacts = ~/contacts/nextcloud
+  '';
   programs.todoman = {
     enable = true;
     glob = "nextcloud/*";
