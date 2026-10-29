@@ -42,6 +42,9 @@ in {
     '';
 
     extraConfig = ''
+      # sushi quick preview from nautilus
+      for_window [app_id="org.gnome.NautilusPreviewer"] floating enable
+
       set $workspace1 1
       set $workspace2 2
       set $workspace3 3
@@ -219,8 +222,9 @@ in {
     border_size = 0
   '';
 
+  gtk.enable = true;
   gtk.iconTheme = {
     package = pkgs.adwaita-icon-theme;
-    name = "adwaita-icon-theme";
+    name = "Adwaita";
   };
 }

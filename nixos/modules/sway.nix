@@ -47,6 +47,12 @@
 
   environment.systemPackages = [pkgs.libsecret];
 
+  # trash://, mounts and network locations for nautilus/thunar
+  services.gvfs.enable = true;
+
+  # spacebar quick preview in nautilus
+  services.gnome.sushi.enable = true;
+
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.andrew.enableGnomeKeyring = true;
   security.pam.services.login.enableGnomeKeyring = true;
