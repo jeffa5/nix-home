@@ -26,6 +26,7 @@
     pkgs.fractal
     pkgs.git-open
     pkgs.libreoffice
+    pkgs.nautilus
     pkgs.nextcloud-native
     pkgs.nh
     pkgs.signal-desktop
@@ -37,6 +38,7 @@
     pkgs.wdisplays
     pkgs.wl-clipboard
     pkgs.wl-mirror
+    pkgs.thunar
     pkgs.xdg-utils
   ];
 
