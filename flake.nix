@@ -66,6 +66,7 @@
         lib = prev.lib;
       };
       nextcloud-native = import packages/nextcloud-native {pkgs = prev;};
+      claude-desktop = import packages/claude-desktop {pkgs = prev;};
       # khal =
       #   prev.khal.overrideAttrs
       #   (_finalAttrs: _previousAttrs: {

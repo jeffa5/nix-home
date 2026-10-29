@@ -22,6 +22,7 @@
 
   home.packages = [
     pkgs.darktable
+    pkgs.claude-desktop
     pkgs.fractal
     pkgs.git-open
     pkgs.libreoffice
