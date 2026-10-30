@@ -89,6 +89,7 @@ pkgs.stdenv.mkDerivation (finalAttrs: {
 
     makeWrapper $out/lib/claude-desktop/claude-desktop $out/bin/claude-desktop \
       --prefix PATH : ${pkgs.lib.makeBinPath [pkgs.xdg-utils pkgs.bubblewrap pkgs.socat pkgs.openssh]} \
+      --set CLAUDE_CODE_LOCAL_BINARY ${pkgs.lib.getExe pkgs.claude-code} \
       --add-flags "--ozone-platform-hint=auto"
 
     runHook postInstall
