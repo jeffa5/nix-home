@@ -9,6 +9,7 @@
     ./email.nix
     ./contacts.nix
     ./calendar.nix
+    ./rical-mail.nix
     ./foot.nix
     # ./papers.nix
 

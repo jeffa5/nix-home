@@ -86,7 +86,7 @@ in {
       zones = "America/Los_Angeles,America/Chicago,Europe/London";
     };
   };
-  xdg.configFile."rical/contacts/config".text = ''
+  xdg.configFile."rical-contacts/config".text = ''
     contacts = ~/contacts/nextcloud
   '';
   programs.todoman = {
