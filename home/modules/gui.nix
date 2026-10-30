@@ -39,7 +39,7 @@
     pkgs.wdisplays
     pkgs.wl-clipboard
     pkgs.wl-mirror
-    pkgs.thunar
+    pkgs.gnome-maps
     pkgs.xdg-utils
   ];
 
