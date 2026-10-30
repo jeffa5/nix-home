@@ -3,6 +3,7 @@
     enable = true;
 
     environmentVariables = config.home.sessionVariables;
+    loadSessionVariables = true;
 
     settings = {
       show_banner = false;
