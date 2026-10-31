@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   lib,
   ...
@@ -10,35 +9,29 @@
     (builtins.pathExists ./email-accounts.nix)
     (import ./email-accounts.nix);
   msmtp = lib.getExe pkgs.msmtp;
-  queueConfig =
-    lib.concatStringsSep "\n" (
-      # one sending command per sender; a sender without one fails rather than going out another way
-      lib.mapAttrsToList (
-        name: value: "send-from ${value.address} = ${msmtp} -a ${name} -- $RICAL_MAIL_QUEUE_RECIPIENTS"
-      )
-      accounts
-    )
-    + "\n";
+  address = value: "Andrew Jeffery <${value.address}>";
 in {
-  # rical-mail reads the Maildirs mbsync keeps in sync; the queue sends
-  xdg.configFile."rical-mail/config".text = ''
-    mail = ~/mail
-    me = ${lib.concatStringsSep ", " (lib.mapAttrsToList (_: v: v.address) accounts)}
-    contacts = ~/contacts/nextcloud
-    vdir = ~/calendar/nextcloud
-    sync = ${lib.getExe' pkgs.isync "mbsync"} -a
-    search = mu
-  '';
-
-  xdg.configFile."rical-mail-queue/config".text = queueConfig;
-
-  # the queue's worker; rical-mail only has to write into the queue
-  systemd.user.services.rical-mail-queue = {
-    Unit.Description = "rical mail queue";
-    Service = {
-      ExecStart = "${config.programs.rical.package}/bin/rical-mail-queue run";
-      Restart = "on-failure";
+  programs.rical = {
+    # the queue sends; rical-mail only has to write into it
+    mailQueue = {
+      enable = true;
+      # one sending command per sender; a sender without one fails rather than going out another way
+      sendFrom =
+        lib.mapAttrsToList (name: value: {
+          from = value.address;
+          command = "${msmtp} -a ${name} -- $RICAL_MAIL_QUEUE_RECIPIENTS";
+        })
+        accounts;
+      packages = [pkgs.msmtp];
     };
-    Install.WantedBy = ["default.target"];
+
+    # reads the Maildirs mbsync keeps in sync; vdir, queue and contacts come from the rest of programs.rical
+    mail = {
+      enable = true;
+      mail = "~/mail";
+      me = lib.mapAttrsToList (_: address) accounts;
+      accounts = lib.mapAttrs (_: value: [(address value)]) accounts;
+      settings.search = "mu";
+    };
   };
 }
